@@ -78,6 +78,8 @@
       font-weight: 500;
       color: #000;
       background: #fff;
+      display: flex;
+      justify-content: space-between;
       backdrop-filter: blur(18px) saturate(140%);
       -webkit-backdrop-filter: blur(18px) saturate(140%);
       border: 1px solid rgba(0, 0, 0, 0.1);
@@ -92,23 +94,51 @@
       box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
     }
 
-    .filter-select {
+    /* container */
+    .filter-bar {
+      display: inline-flex;
       cursor: pointer;
-      border: none;
-      outline: none;
-      font-size: clamp(2rem, 6vw, 6rem);
-      font-family: 'Museo', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      font-weight: 900;
-      text-align: center;
-      color: var(--accent-color);
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background: transparent;
+      position: relative;
     }
 
-    .filter-select option {
-      font-weight: 900;
+
+    /* dropdown list */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+      list-style: none;
+      padding: 16px;
+      margin: 0;
+      display: none;
+      z-index: 1000;
+      width: fit-content;
+    }
+
+    /* open state */
+    .glass-dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    /* items */
+    .dropdown-menu li {
+      padding: 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .dropdown-menu li:hover,
+    .dropdown-menu li.active {
+      background: var(--accent-color);
+      color: #fff;
     }
   </style>
 </head>
@@ -117,11 +147,20 @@
 
   <h1 style="font-size: clamp(2rem, 6vw, 6rem); margin: 0 0 40px 0; text-align: center;
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
-    font-weight: 900;">Next-Level Figma <select id="filterSelect" class="filter-select">
-      <option value="all">ALL</option>
-      <option value="app">App</option>
-      <option value="web">Web</option>
-    </select> Portfolio 🚀</h1>
+    font-weight: 900;">Next-Level Figma
+
+    <div class="filter-bar">
+      <div class="glass-dropdown" tabindex="0">
+        <span class="selected">All</span>
+
+        <ul class="dropdown-menu">
+          <li data-value="all" class="active">All</li>
+          <li data-value="app">App</li>
+          <li data-value="web">Web</li>
+        </ul>
+      </div>
+    </div> Portfolio 🚀
+  </h1>
 
 
   <main class="masonry-wrap" role="main">
@@ -129,112 +168,168 @@
     <a class="masonry-item" data-category="app" href="https://www.figma.com/proto/kvA5BDNLP7yxGH8FlG1fcW/Crazy-Circle"
       target="_blank" rel="noopener noreferrer">
       Crazy Circle
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="app" href="https://www.figma.com/proto/5jrPlnPqFyUKrjOfalSczB/V6IT"
       target="_blank" rel="noopener noreferrer">
+
       V6IT
+
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
+
 
     <a class="masonry-item" data-category="website"
       href="https://www.figma.com/proto/Lib57l0Iku9H7o4AoNyqjv/PagarGuru-Website" target="_blank"
       rel="noopener noreferrer">
       Pagar Guru
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website" href="https://www.figma.com/proto/xdcYf80zsgn4xuDUVx3BfL/Next-Go"
       target="_blank" rel="noopener noreferrer">
       Next Go
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website" href="https://www.figma.com/proto/Q3hHcJcyI1SKWj23hRKJFC/Chrome-35"
       target="_blank" rel="noopener noreferrer">
       Chrome 35
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website"
       href="https://www.figma.com/proto/3Saew4mvPf4XT2T2TcI2fx/AI-Generated-Interview-Report" target="_blank"
       rel="noopener noreferrer">
       AI Generated Interview Report
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website" href="https://www.figma.com/proto/DQkTGmNtfmMtadegisVrZZ/Regumsoft"
       target="_blank" rel="noopener noreferrer">
       Regumsoft
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="app" href="https://www.figma.com/proto/AZqORUi836LnRnFmqOfEwI/Safir-Camp"
       target="_blank" rel="noopener noreferrer">
       Safir Camp App
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website" href="https://www.figma.com/proto/AZqORUi836LnRnFmqOfEwI/Safir-Camp"
       target="_blank" rel="noopener noreferrer">
       Safir Camp Website
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="app" href="https://www.figma.com/design/psOHtNsHQTbCIdMtnIXTyW/Solo-Mas"
       target="_blank" rel="noopener noreferrer">
       Solo Mas
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="app" href="https://www.figma.com/proto/uqp2ACsEMR6ugSvF9URfxw/Video-SDK"
       target="_blank" rel="noopener noreferrer">
       Video SDK App
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website" href="https://www.figma.com/proto/uqp2ACsEMR6ugSvF9URfxw/Video-SDK"
       target="_blank" rel="noopener noreferrer">
       Video SDK Landing Page
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website"
       href="https://www.figma.com/proto/Qff2oJ3b9UgMKW28HsAjTn/Kishan-Modi-Jewel-Pro-Tech" target="_blank"
       rel="noopener noreferrer">
       Jewel Pro Tech
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website" href="https://www.figma.com/proto/L6StH7sQ58wgQRXc9cYQgF/Ovalstars"
       target="_blank" rel="noopener noreferrer">
       Ovalstar Landing Page
+      <span class="icon copy" title="Copy link">🔗</span>
+    </a>
+
+    <a class="masonry-item" data-category="website"
+      href="https://www.figma.com/proto/C7Ijz7zyn3uRNjfYb3z7sa/Sofen-Mockups" target="_blank" rel="noopener noreferrer">
+      Soften Mockups
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website"
       href="https://www.figma.com/proto/W7Rvt9JvH5juotb4oirgXO/Soften-Mockups-2" target="_blank"
       rel="noopener noreferrer">
-      Soften Mockups
-    </a>
-
-    <a class="masonry-item" data-category="website"
-      href="https://www.figma.com/proto/C7Ijz7zyn3uRNjfYb3z7sa/Sofen-Mockups" target="_blank" rel="noopener noreferrer">
       Soften Mockups 2
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
 
     <a class="masonry-item" data-category="website"
       href="https://www.figma.com/proto/CunUfgaN6fD0I3fVpOnlJd/Soften-Mockups-3" target="_blank"
       rel="noopener noreferrer">
       Soften Mockups 3
+      <span class="icon copy" title="Copy link">🔗</span>
     </a>
   </main>
 </body>
 
 <script>
-  const select = document.getElementById('filterSelect');
+  const dropdown = document.querySelector('.glass-dropdown');
+  const selected = dropdown.querySelector('.selected');
+  const options = dropdown.querySelectorAll('.dropdown-menu li');
   const cards = document.querySelectorAll('.masonry-item');
 
-  select.addEventListener('change', () => {
-    const filter = select.value;
+  dropdown.addEventListener('click', () => {
+    dropdown.classList.toggle('open');
+  });
 
-    cards.forEach(card => {
-      const category = card.dataset.category || '';
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('active'));
+      option.classList.add('active');
 
-      if (filter === 'all' || category.includes(filter)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      const value = option.dataset.value;
+      selected.textContent = option.textContent;
+
+      cards.forEach(card => {
+        const category = card.dataset.category || '';
+        card.style.display =
+          value === 'all' || category.includes(value)
+            ? 'block'
+            : 'none';
+      });
+
+      dropdown.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+    }
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.icon.copy').forEach(icon => {
+    icon.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const link = icon.closest('.masonry-item').href;
+      navigator.clipboard.writeText(link);
+
+      icon.textContent = '✓';
+      setTimeout(() => icon.textContent = '🔗', 1200);
     });
   });
 </script>
+
+
+
 
 </html>

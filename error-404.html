@@ -60,4 +60,21 @@
     padding: 12px 36px; border-radius: 20px;" href="index.html">Ctrl + Z</a>
 </body>
 
+<script>
+   document.addEventListener("keydown", function (e) {
+  const tag = e.target.tagName.toLowerCase();
+  if (tag === "input" || tag === "textarea" || e.target.isContentEditable) return;
+
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
+    e.preventDefault();
+    window.location.href = "index.html";
+  }
+
+  if (e.key === "Escape") {
+    window.location.href = "index.html";
+  }
+});
+
+</script>
+
 </html>

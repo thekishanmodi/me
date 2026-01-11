@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Link Preview Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f2f4f8;
+}
+header{
+  background:#5E4E9E;
+  color:#fff;
+  padding:16px;
+  text-align:center;
+}
+main{
+  max-width:800px;
+  margin:auto;
+  padding:20px;
+}
+input,button{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  font-size:15px;
+}
+button{
+  background:#5E4E9E;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+button:hover{ opacity:.9; }
+
+/* ===== Card Design ===== */
+.link-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fff;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+.left{
+  display:flex;
+  gap:10px;
+  flex:1;
+}
+.favicon{
+  width:32px;
+  height:32px;
+  border-radius:8px;
+}
+.text{
+  max-width:360px;
+}
+.title{
+  font-weight:600;
+  font-size:15px;
+  line-height:1.3;
+}
+.domain{
+  font-size:13px;
+  color:#777;
+  margin-top:4px;
+}
+.thumb{
+  width:140px;
+  height:95px;
+  border-radius:14px;
+  object-fit:cover;
+  background:#ddd;
+}
+.empty{
+  text-align:center;
+  color:#777;
+  margin-top:30px;
+}
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🔗 Link Preview Page</h2>
+  <p>Google-Style Card • Local Storage</p>
+</header>
+
+<main>
+
+  <input id="urlInput" placeholder="Paste website / app link here">
+  <button onclick="addLink()">Add Link</button>
+
+  <div id="cards"></div>
+  <div id="empty" class="empty">No links added yet</div>
+
+</main>
+
+<footer>
+  Runs locally • No backend • Permanent storage
+</footer>
+
+<script>
+const proxy = "https://api.allorigins.win/raw?url=";
+
+function getDomain(url){
+  try{
+    return new URL(url).hostname.replace("www.","");
+  }catch{
+    return url;
+  }
+}
+
+function loadLinks(){
+  return JSON.parse(localStorage.getItem("linkCards")) || [];
+}
+
+function saveLinks(data){
+  localStorage.setItem("linkCards", JSON.stringify(data));
+}
+
+async function addLink(){
+  const url = urlInput.value.trim();
+  if(!url) return alert("Please enter URL");
+
+  const res = await fetch(proxy + encodeURIComponent(url));
+  const html = await res.text();
+
+  const doc = new DOMParser().parseFromString(html,"text/html");
+
+  const title =
+    doc.querySelector("meta[property='og:title']")?.content ||
+    doc.querySelector("title")?.innerText ||
+    "Untitled Page";
+
+  const thumbnail =
+    doc.querySelector("meta[property='og:image']")?.content || "";
+
+  const favicon =
+    doc.querySelector("link[rel='icon']")?.href ||
+    doc.querySelector("link[rel='shortcut icon']")?.href ||
+    new URL("/favicon.ico", url).href;
+
+  const card = {
+    url,
+    title,
+    domain: getDomain(url),
+    thumbnail,
+    favicon
+  };
+
+  const links = loadLinks();
+  links.unshift(card);
+  saveLinks(links);
+
+  urlInput.value="";
+  render();
+}
+
+function render(){
+  const links = loadLinks();
+  cards.innerHTML="";
+  empty.style.display = links.length ? "none" : "block";
+
+  links.forEach(l=>{
+    cards.innerHTML += `
+      <a href="${l.url}" target="_blank" style="text-decoration:none;color:inherit">
+        <div class="link-card">
+          <div class="left">
+            <img class="favicon" src="${l.favicon}">
+            <div class="text">
+              <div class="title">${l.title}</div>
+              <div class="domain">${l.domain}</div>
+            </div>
+          </div>
+          <img class="thumb" src="${l.thumbnail}">
+        </div>
+      </a>
+    `;
+  });
+}
+
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# -------------------------
+# 1. Remove .html from URLs
+# -------------------------
+# If the requested file does not exist
+RewriteCond %{REQUEST_FILENAME} !-f
+# If the requested directory does not exist
+RewriteCond %{REQUEST_FILENAME} !-d
+# Rewrite URL without .html to actual .html file
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+# -------------------------
+# 2. Custom 404 Page
+# -------------------------
+# Set the custom 404 page
+ErrorDocument 404 /404.html
