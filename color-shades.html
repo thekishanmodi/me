@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Shades</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- BASE ---------- */
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: #fafafa;
+      color: #111827;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    /* ---------- CONTROLS ---------- */
+    .controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    input,
+    button {
+      font-size: 14px;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+    }
+
+    input[type="color"] {
+      height: 30px;
+      width: 40px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    button {
+      cursor: pointer;
+      background: #fff;
+    }
+
+    button:hover {
+      background: #f3f4f6;
+    }
+
+    /* ---------- GRID ---------- */
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ---------- SHADE ---------- */
+    .shade-box {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .shade-box:hover {
+      transform: translateY(-2px);
+    }
+
+    .shade-box span {
+      line-height: 1.2;
+    }
+
+    /* ---------- BASE ---------- */
+    .shade-box.base {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    /* ---------- TOAST ---------- */
+    .toast {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111827;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 640px) {
+      .shade-box {
+        width: 64px;
+        height: 64px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="controls">
+    <h1>Color Shades</h1>
+    <input type="color" id="baseColor" value="#6366f1" onchange="syncHex(); generate()">
+    <input type="text" id="hexInput" value="#6366f1" oninput="syncPicker(); generate()" size="8">
+    <input type="number" id="step" value="10" min="1" max="100" style="width:60px" onchange="generate()">
+    <button onclick="shuffle()">Shuffle</button>
+  </div>
+
+  <div class="grid-container" id="grid"></div>
+
+  <div class="toast" id="toast">Copied</div>
+
+  <script>
+    function hexToRgb(hex) {
+      const n = parseInt(hex.slice(1), 16);
+      return { r: n >> 16 & 255, g: n >> 8 & 255, b: n & 255 }
+    }
+
+    function rgbToHex({ r, g, b }) {
+      return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()
+    }
+
+    function mix(a, b, t) {
+      return {
+        r: Math.round(a.r * (1 - t) + b.r * t),
+        g: Math.round(a.g * (1 - t) + b.g * t),
+        b: Math.round(a.b * (1 - t) + b.b * t)
+      }
+    }
+
+    function contrast({ r, g, b }) {
+      return (r * 299 + g * 587 + b * 114) / 1000 > 128 ? '#000' : '#fff'
+    }
+
+    function generate() {
+      const base = document.getElementById('baseColor').value;
+      const step = +document.getElementById('step').value;
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      const rgb = hexToRgb(base);
+      const opp = rgbToHex({ r: 255 - rgb.r, g: 255 - rgb.g, b: 255 - rgb.b });
+
+      for (let i = 100; i > 0; i -= step) {
+        draw(rgbToHex(mix(rgb, { r: 255, g: 255, b: 255 }, i / 100)), `L${100 - i}%`);
+      }
+
+      draw(base, 'Base', true, opp);
+
+      for (let i = step; i <= 100; i += step) {
+        draw(rgbToHex(mix(rgb, { r: 0, g: 0, b: 0 }, i / 100)), `D${i}%`);
+      }
+    }
+
+    function draw(color, label, base = false, outline) {
+      const d = document.createElement('div');
+      d.className = 'shade-box' + (base ? ' base' : '');
+      d.style.background = color;
+      d.style.color = contrast(hexToRgb(color));
+      if (base) d.style.outlineColor = outline;
+      d.innerHTML = `<span>${color}</span><span>${label}</span>`;
+      d.onclick = () => copy(color);
+      grid.appendChild(d);
+    }
+
+    function copy(c) {
+      navigator.clipboard.writeText(c);
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1000);
+    }
+
+    function shuffle() {
+      const c = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+      baseColor.value = c; hexInput.value = c; generate();
+    }
+
+    function syncPicker() {
+      if (/^#[0-9A-F]{6}$/i.test(hexInput.value)) baseColor.value = hexInput.value;
+    }
+
+    function syncHex() {
+      hexInput.value = baseColor.value;
+    }
+
+    generate();
+  </script>
+
+</body>
+
+</html>
