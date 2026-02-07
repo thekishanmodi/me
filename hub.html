@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-white text-zinc-900">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Links</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Mona Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'bg-light': '#ffffff',
+                        'bg-lighter': '#f8fafc',
+                        'text-muted': '#64748b',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.4s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(8px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @font-face {
+            font-family: "Mona Sans";
+            src: url("assets/fonts/MonaSans-VariableFont_wdth,wght.ttf") format("truetype");
+            font-weight: 200 900;
+            font-stretch: 75% 125%;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Mona Sans";
+            src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth,wght.ttf") format("truetype");
+            font-weight: 200 900;
+            font-stretch: 75% 125%;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        body {
+            font-feature-settings: "liga" 1, "calt" 1;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-bg-light antialiased font-sans">
+
+    <h1 class="text-4xl font-bold text-zinc-900 text-center pt-12">Welcome, Konfig's hub</h1>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-12" role="main" aria-label="Dashboard links">
+
+        <!-- No Results Message -->
+        <div id="no-results" class="hidden col-span-full text-center py-16 text-zinc-500 animate-fade-in">
+            <svg class="mx-auto h-16 w-16 text-zinc-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <h3 class="text-xl font-medium mb-2">No results found</h3>
+            <p class="text-sm max-w-sm mx-auto">Try adjusting your search terms to find what you're looking for.</p>
+        </div>
+
+        <div id="grid-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+
+            <!-- Card Item -->
+            <a href="text-transform.html"
+                class="group block bg-white/50 backdrop-blur-sm border border-zinc-200/50 rounded-2xl p-6 hover:border-zinc-300/70 hover:shadow-lg transition-all duration-300 ease-out animate-fade-in focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-2 focus:ring-offset-white"
+                role="listitem" tabindex="0">
+                <h3 class="text-lg font-semibold text-zinc-900 group-hover:text-zinc-950 leading-snug capitalize">text transform</h3>
+            </a>
+
+            <a href="color-shades.html"
+                class="group block bg-white/50 backdrop-blur-sm border border-zinc-200/50 rounded-2xl p-6 hover:border-zinc-300/70 hover:shadow-lg transition-all duration-300 ease-out animate-fade-in focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-2 focus:ring-offset-white"
+                role="listitem" tabindex="0">
+                <h3 class="text-lg font-semibold text-zinc-900 group-hover:text-zinc-950 leading-snug capitalize">Color Shades
+                </h3>
+            </a>
+
+            <a href="grid-calculator.html"
+                class="group block bg-white/50 backdrop-blur-sm border border-zinc-200/50 rounded-2xl p-6 hover:border-zinc-300/70 hover:shadow-lg transition-all duration-300 ease-out animate-fade-in focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-2 focus:ring-offset-white"
+                role="listitem" tabindex="0">
+                <h3 class="text-lg font-semibold text-zinc-900 group-hover:text-zinc-950 leading-snug capitalize">Grid Calculator
+                </h3>
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- Sticky Search Footer -->
+    <footer class="bg-white/80 backdrop-blur-sm fixed bottom-0 z-10 w-full py-4">
+        <div class="max-w-4xl mx-auto px-6 py-4">
+            <div class="relative">
+                <input type="search" id="global-search" placeholder="Search..."
+                    class="w-full bg-white/70 border shadow-xl border-zinc-300 text-zinc-900 placeholder-zinc-500 pl-12 p-4 rounded-2xl text-xl transition-all duration-200 focus:border-blue-500/50 focus:pr-12 focus:shadow-lg"
+                    aria-label="Search dashboard items" />
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500 transition-colors duration-200"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <button id="clear-search"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 hidden w-5 h-5 text-zinc-500 hover:text-zinc-900 transition-colors duration-200"
+                    aria-label="Clear search">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced real-time search with debouncing and clear button
+        const searchInput = document.getElementById('global-search');
+        const clearBtn = document.getElementById('clear-search');
+        const cards = document.querySelectorAll('main a[role="listitem"]');
+        const gridContainer = document.getElementById('grid-container');
+        const noResults = document.getElementById('no-results');
+
+        let timeoutId;
+
+        function filterCards(term) {
+            let visible = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+
+                if (title.includes(term)) {
+                    card.style.display = '';
+                    card.classList.add('animate-fade-in');
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('hidden', visible > 0);
+            gridContainer.classList.toggle('hidden', visible === 0);
+        }
+
+        function debounceFilter() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                const term = searchInput.value.toLowerCase().trim();
+                filterCards(term);
+            }, 150);
+        }
+
+        searchInput.addEventListener('input', debounceFilter);
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.classList.add('hidden');
+            filterCards('');
+            searchInput.focus();
+        });
+
+        searchInput.addEventListener('input', () => {
+            clearBtn.classList.toggle('hidden', !searchInput.value);
+        });
+
+        // Keyboard navigation support
+        cards.forEach((card, index) => {
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
