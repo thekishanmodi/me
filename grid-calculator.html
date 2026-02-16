@@ -2,12 +2,9 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grid Calculator</title>
-  <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     @font-face {
@@ -24,246 +21,1126 @@
       font-style: italic;
     }
 
-    body {
-      font-family: 'Mona Sans', sans-serif;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Mode Switch */
-    .mode-btn {
-      padding: 6px 14px;
-      font-size: 12px;
+    :root {
+      --ink: #1a1612;
+      --ink2: #4a4540;
+      --ink3: #9a9490;
+      --ink4: #cac7c2;
+      --paper: #faf9f6;
+      --paper2: #f2f0eb;
+      --paper3: #e8e4dc;
+      --white: #ffffff;
+      --accent: #fd6204;
+      --accent-l: #fef0ea;
+      --col-bg: #ddeeff;
+      --col-fg: #1a5fa8;
+      --col-bdr: #b8d8f8;
+      --gut-bg: #faf9f6;
+      --gut-bdr: #ddd9d0;
+      --mar-bg: #f2f0eb;
+      --mar-fg: #9a9490;
+      --mar-bdr: #e0dbd0;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(26, 22, 18, 0.08), 0 4px 16px rgba(26, 22, 18, 0.06);
+    }
+
+    html {
+      font-size: 14px;
+    }
+
+    body {
+      background: var(--paper);
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(232, 69, 10, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 100%, rgba(26, 95, 168, 0.04) 0%, transparent 50%);
+      color: var(--ink);
+      font-family: 'Mona Sans', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    /* ─── Page Header ─── */
+    .page-header {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+
+    .page-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .page-title {
+      font-family: 'Mona Sans', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+
+    .page-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .page-sub {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-top: 5px;
+    }
+
+    .badge {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      border: 1px solid var(--ink4);
       border-radius: 4px;
-      color: #374151;
+      padding: 4px 8px;
+      text-decoration: none;
+    }
+
+    /* ─── Main Card ─── */
+    .card {
+      width: 100%;
+      max-width: 960px;
+      background: var(--white);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* ─── Toolbar ─── */
+    .toolbar {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1.5px solid var(--ink);
+      background: var(--paper2);
+    }
+
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex;
+      flex-direction: column;
+      border-right: 1.5px solid var(--ink);
+      background: var(--paper);
+      min-width: 72px;
+    }
+
+    .mode-btn {
+      font-family: 'Mona Sans', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0 16px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      color: var(--ink3);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      position: relative;
+      min-height: 46px;
+    }
+
+    .mode-btn:first-child {
+      border-bottom: 1px solid var(--paper3);
+    }
+
+    .mode-btn .mode-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      gap: 2px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .mode-btn[data-mode="columns"] .mode-icon {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .mode-btn[data-mode="columns"] .mode-icon span {
+      display: block;
+      width: 3px;
+      flex: 1;
+      background: currentColor;
+      border-radius: 1px;
+    }
+
+    .mode-btn[data-mode="rows"] .mode-icon {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mode-btn[data-mode="rows"] .mode-icon span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: currentColor;
+      border-radius: 1px;
+    }
+
+    .mode-btn:hover {
+      color: var(--ink);
+      background: var(--paper2);
     }
 
     .mode-btn.active {
-      background: #111827;
-      color: #fff;
+      color: var(--accent);
+      background: var(--accent-l);
     }
 
-    /* Preview */
-    .preview {
-      width: 100%;
-      height: 120px;
-      background: #fafafa;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      padding: 4px;
+    .mode-btn.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Input section */
+    .inputs-section {
+      flex: 1;
       display: flex;
-      gap: 3px;
-    }
-
-    .preview.vertical {
-      height: 300px;
       flex-direction: column;
+      min-width: 0;
     }
 
-    /* Grid Segments */
-    .segment {
+    .inputs-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      flex: 1;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 16px 10px;
+      border-right: 1px solid var(--paper3);
+      gap: 4px;
+      position: relative;
+      transition: background 0.12s;
+      flex: 1;
+      min-width: 90px;
+    }
+
+    .field:last-child {
+      border-right: none;
+    }
+
+    .field:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .field:focus-within {
+      background: var(--white);
+    }
+
+    .field:focus-within::after {
+      content: '';
+      position: absolute;
+      bottom: -1.5px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      z-index: 1;
+    }
+
+    .field label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      user-select: none;
+    }
+
+    .field-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .field input {
+      font-family: 'Mona Sans', monospace;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 62px;
+      flex-shrink: 1;
+      min-width: 40px;
+      -moz-appearance: textfield;
+      appearance: textfield;
+      line-height: 1;
+    }
+
+    .field input::-webkit-outer-spin-button,
+    .field input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .px-label {
+      font-size: 10px;
+      color: var(--ink4);
+      flex-shrink: 0;
+    }
+
+    .stepper {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .step-btn {
+      width: 20px;
+      height: 15px;
+      background: var(--paper2);
+      border: 1px solid var(--paper3);
+      border-radius: 3px;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
+      color: var(--ink3);
+      transition: all 0.1s;
+      padding: 0;
+    }
+
+    .step-btn:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--white);
+    }
+
+    .step-btn:active {
+      transform: scale(0.88);
+    }
+
+    .step-btn svg {
+      width: 8px;
+      height: 8px;
+      display: block;
+    }
+
+    /* ─── Stats Bar ─── */
+    .stats-bar {
+      display: flex;
+      align-items: stretch;
+      border-top: 1px solid var(--paper3);
+      background: var(--paper);
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-right: 1px solid var(--paper3);
+      flex: 1;
+      min-width: 80px;
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      white-space: nowrap;
+    }
+
+    .stat-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      margin-left: auto;
+    }
+
+    .stat-value .unit {
+      font-size: 9px;
+      color: var(--ink3);
+      font-weight: 400;
+    }
+
+    .stat.accent-stat .stat-value {
+      color: var(--accent);
+    }
+
+    .stat-diff {
+      font-size: 9px;
+      color: var(--ink3);
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+
+    .stat-diff.negative {
+      color: #cc2200;
+    }
+
+    .stat-diff.ok {
+      color: #1a8a2e;
+    }
+
+    /* ─── Preview Area ─── */
+    .preview-area {
+      padding: 24px 28px 28px;
+      background: var(--white);
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .preview-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-title::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--ink3);
+    }
+
+    /* Ruler */
+    .ruler {
+      height: 22px;
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+      border-radius: 5px 5px 0 0;
+      border: 1px solid var(--paper3);
+      border-bottom: none;
+      background: var(--paper2);
+    }
+
+    .ruler-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: var(--ink3);
+      border-right: 1px solid var(--paper3);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .ruler-seg.r-col {
+      background: rgba(26, 95, 168, 0.07);
+      color: var(--col-fg);
+      font-weight: 500;
+    }
+
+    .ruler-seg.r-gut {
+      background: transparent;
+    }
+
+    .ruler-seg.r-mar {
+      background: rgba(154, 148, 144, 0.05);
+    }
+
+    /* Preview containers */
+    #horizontalPreview {
+      width: 100%;
+      height: 90px;
+      display: flex;
+      overflow: hidden;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid var(--ink4);
+    }
+
+    #verticalPreview {
+      width: 100%;
+      height: 270px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--ink4);
+    }
+
+    /* Segments */
+    .seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: visible;
+      cursor: default;
+      transition: filter 0.15s;
+    }
+
+    .seg:hover {
+      filter: brightness(0.94);
+    }
+
+    .seg-label {
+      font-family: 'Mona Sans', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .seg.s-col {
+      background: var(--col-bg);
+      border-right: 1px solid var(--col-bdr);
+      border-left: 1px solid var(--col-bdr);
+    }
+
+    .seg.s-col .seg-label {
+      color: var(--col-fg);
+    }
+
+    .seg.s-col::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(135deg,
+          transparent, transparent 10px,
+          rgba(26, 95, 168, 0.05) 10px, rgba(26, 95, 168, 0.05) 11px);
+      pointer-events: none;
+    }
+
+    .seg.s-gut {
+      background: var(--gut-bg);
+      border-right: 1px dashed var(--gut-bdr);
+      border-left: 1px dashed var(--gut-bdr);
+    }
+
+    .seg.s-gut .seg-label {
+      color: var(--ink4);
+    }
+
+    .seg.s-mar {
+      background: var(--mar-bg);
+    }
+
+    .seg.s-mar .seg-label {
+      color: var(--mar-fg);
+    }
+
+    .seg.s-row {
+      background: var(--col-bg);
+      border-bottom: 1px solid var(--col-bdr);
+      border-top: 1px solid var(--col-bdr);
+    }
+
+    .seg.s-row .seg-label {
+      color: var(--col-fg);
+    }
+
+    .seg.s-row::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent, transparent 10px,
+          rgba(26, 95, 168, 0.05) 10px, rgba(26, 95, 168, 0.05) 11px);
+      pointer-events: none;
+    }
+
+    .seg.s-vgut {
+      background: var(--gut-bg);
+      border-top: 1px dashed var(--gut-bdr);
+      border-bottom: 1px dashed var(--gut-bdr);
+    }
+
+    .seg.s-vgut .seg-label {
+      color: var(--ink4);
+    }
+
+    .seg.s-vmar {
+      background: var(--mar-bg);
+    }
+
+    .seg.s-vmar .seg-label {
+      color: var(--mar-fg);
+    }
+
+    /* Tooltip */
+    .seg-tip {
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'Mona Sans', monospace;
+      font-size: 10px;
+      padding: 4px 9px;
+      border-radius: 5px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.12s;
+      z-index: 100;
+    }
+
+    .seg-tip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: var(--ink);
+    }
+
+    .seg:hover .seg-tip {
+      opacity: 1;
+    }
+
+    /* Row tooltip - show to the right */
+    #verticalPreview .seg-tip {
+      bottom: auto;
+      top: 50%;
+      left: calc(100% + 7px);
+      transform: translateY(-50%);
+    }
+
+    #verticalPreview .seg-tip::after {
+      top: 50%;
+      left: -8px;
+      transform: translateY(-50%);
+      border: 4px solid transparent;
+      border-right-color: var(--ink);
+      border-top-color: transparent;
+    }
+
+    /* ─── Legend ─── */
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--paper3);
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink2);
+    }
+
+    .legend-swatch {
+      width: 26px;
+      height: 13px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .legend-hint {
+      margin-left: auto;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--ink4);
+    }
+
+    /* ─── Animations ─── */
+    .seg {
+      animation: segIn 0.18s ease both;
+    }
+
+    @keyframes segIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .error-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      color: var(--accent);
       font-size: 11px;
-      color: #374151;
-      min-width: 20px;
+      letter-spacing: 0.06em;
+      gap: 8px;
+      background: var(--accent-l);
     }
 
-    /* Gray Scale */
-    .margin {
-      background: #f3f4f6;
+    ::-webkit-scrollbar {
+      width: 4px;
     }
 
-    .column {
-      background: #e5e7eb;
-    }
-
-    .row {
-      background: #e5e7eb;
-    }
-
-    .gutter {
-      background: #ffffff;
-    }
-
-    /* Inputs */
-    input {
-      background: #f3f4f6;
-      border: 1px solid #d1d5db;
-      border-radius: 4px;
-      padding: 2px 4px !important;
-      font-size: 14px !important;
-      width: 80px;
-    }
-
-    label {
-      font-size: 14px;
-      color: #6b7280;
+    ::-webkit-scrollbar-thumb {
+      background: var(--ink4);
+      border-radius: 2px;
     }
   </style>
 </head>
 
-<body class="bg-gray-50">
-  <div class="w-full px-4 py-4">
+<body>
 
-    <h1 class="text-lg font-semibold text-center text-gray-900 mb-4">
-      Grid Calculator
-    </h1>
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1 class="page-title">Grid <em>Calculator</em></h1>
+      <p class="page-sub">Layout System Utility</p>
+    </div>
+    <div>
+      <a href="index.html" class="badge">#thekishanmodi</a>
+    </div>
+  </div>
 
-    <!-- TOOLBAR (TABS + INPUTS IN ONE ROW) -->
-    <div
-      class="flex items-center gap-6 border border-gray-300 rounded-md p-2 bg-white mb-6 flex-wrap justify-between overflow-x-auto">
+  <!-- Card -->
+  <div class="card">
+    <div class="toolbar">
 
-      <!-- MODE SWITCH -->
-      <div class="inline-flex border border-gray-300 rounded-md p-0.5 bg-gray-50 shrink-0">
-        <button class="mode-btn active" data-mode="columns">Columns</button>
-        <button class="mode-btn" data-mode="rows">Rows</button>
+      <!-- Mode Tabs -->
+      <div class="mode-tabs">
+        <button class="mode-btn active" data-mode="columns">
+          <span class="mode-icon">
+            <span></span><span></span><span></span>
+          </span>
+          Cols
+        </button>
+        <button class="mode-btn" data-mode="rows">
+          <span class="mode-icon">
+            <span></span><span></span><span></span>
+          </span>
+          Rows
+        </button>
       </div>
 
-      <!-- COLUMN INPUTS -->
-      <div id="columnInputs" class="flex flex-wrap items-center gap-3">
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Target</label>
-          <input id="targetWidth" type="number" value="1400">
+      <!-- Inputs + Stats -->
+      <div class="inputs-section">
+
+        <!-- Column inputs -->
+        <div id="columnInputs" class="inputs-row">
+          <div class="field">
+            <label>Target Width</label>
+            <div class="field-input-wrap">
+              <input id="targetWidth" type="number" value="1400" min="1">
+              <span class="px-label">px</span>
+              <div class="stepper">
+                <button class="step-btn" data-target="targetWidth" data-dir="1" data-step="10"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="targetWidth" data-dir="-1" data-step="10"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Columns</label>
+            <div class="field-input-wrap">
+              <input id="cols" type="number" value="12" min="1">
+              <div class="stepper">
+                <button class="step-btn" data-target="cols" data-dir="1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="cols" data-dir="-1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Gutter</label>
+            <div class="field-input-wrap">
+              <input id="gutterH" type="number" value="24" min="0">
+              <span class="px-label">px</span>
+              <div class="stepper">
+                <button class="step-btn" data-target="gutterH" data-dir="1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="gutterH" data-dir="-1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Margin</label>
+            <div class="field-input-wrap">
+              <input id="marginH" type="number" value="24" min="0">
+              <span class="px-label">px</span>
+              <div class="stepper">
+                <button class="step-btn" data-target="marginH" data-dir="1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="marginH" data-dir="-1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Cols</label>
-          <input id="cols" type="number" value="12">
+        <!-- Row inputs -->
+        <div id="rowInputs" class="inputs-row hidden">
+          <div class="field">
+            <label>Target Height</label>
+            <div class="field-input-wrap">
+              <input id="targetHeight" type="number" value="900" min="1">
+              <span class="px-label">px</span>
+              <div class="stepper">
+                <button class="step-btn" data-target="targetHeight" data-dir="1" data-step="10"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="targetHeight" data-dir="-1" data-step="10"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Rows</label>
+            <div class="field-input-wrap">
+              <input id="rows" type="number" value="8" min="1">
+              <div class="stepper">
+                <button class="step-btn" data-target="rows" data-dir="1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="rows" data-dir="-1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Gutter</label>
+            <div class="field-input-wrap">
+              <input id="gutterV" type="number" value="24" min="0">
+              <span class="px-label">px</span>
+              <div class="stepper">
+                <button class="step-btn" data-target="gutterV" data-dir="1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="gutterV" data-dir="-1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Margin</label>
+            <div class="field-input-wrap">
+              <input id="marginV" type="number" value="24" min="0">
+              <span class="px-label">px</span>
+              <div class="stepper">
+                <button class="step-btn" data-target="marginV" data-dir="1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 2L7 6H1Z" fill="currentColor" />
+                  </svg></button>
+                <button class="step-btn" data-target="marginV" data-dir="-1" data-step="1"><svg viewBox="0 0 8 8">
+                    <path d="M4 6L1 2H7Z" fill="currentColor" />
+                  </svg></button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Gutter</label>
-          <input id="gutterH" type="number" value="24">
-        </div>
-
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Margin</label>
-          <input id="marginH" type="number" value="24">
+        <!-- Stats bar -->
+        <div class="stats-bar">
+          <div class="stat">
+            <span class="stat-label">Target</span>
+            <span class="stat-value"><span id="targetOut">0</span><span class="unit">px</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Page</span>
+            <span class="stat-value"><span id="pageOut">0</span><span class="unit">px</span><span class="stat-diff"
+                id="diffOut"></span></span>
+          </div>
+          <div class="stat accent-stat">
+            <span class="stat-label" id="unitLabel">Column</span>
+            <span class="stat-value"><span id="unitOut">0</span><span class="unit">px</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label" id="countLabel">Columns</span>
+            <span class="stat-value"><span id="countOut">0</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">2-span</span>
+            <span class="stat-value"><span id="span2Out">0</span><span class="unit">px</span></span>
+          </div>
         </div>
       </div>
-
-      <!-- ROW INPUTS -->
-      <div id="rowInputs" class="hidden flex flex-wrap items-center gap-3">
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Target</label>
-          <input id="targetHeight" type="number" value="900">
-        </div>
-
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Rows</label>
-          <input id="rows" type="number" value="8">
-        </div>
-
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Gutter</label>
-          <input id="gutterV" type="number" value="24">
-        </div>
-
-        <div class="flex gap-2 items-center shrink-0">
-          <label>Margin</label>
-          <input id="marginV" type="number" value="24">
-        </div>
-      </div>
-
-      <!-- RESULT -->
-      <div class="text-sm text-gray-700 whitespace-nowrap shrink-0">
-        Target:
-        <span id="targetOut">0</span>px |
-        Page:
-        <span id="pageOut">0</span>px |
-        <span id="unitLabel">Column</span>:
-        <span id="unitOut">0</span>px
-      </div>
-
     </div>
 
-    <!-- PREVIEWS -->
-    <div id="columnSection">
-      <div class="preview" id="horizontalPreview"></div>
-    </div>
+    <!-- Preview -->
+    <div class="preview-area">
+      <div class="preview-header">
+        <span class="preview-title" id="previewTitle">Horizontal Preview</span>
+      </div>
 
-    <div id="rowSection" class="hidden">
-      <div class="preview vertical" id="verticalPreview"></div>
+      <!-- Columns section -->
+      <div id="columnSection">
+        <div class="ruler" id="rulerH"></div>
+        <div id="horizontalPreview"></div>
+      </div>
+
+      <!-- Rows section -->
+      <div id="rowSection" class="hidden">
+        <div id="verticalPreview"></div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-swatch" style="background:var(--col-bg);border:1px solid var(--col-bdr)"></div>
+          <span id="unitLegend">Column</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch" style="background:var(--gut-bg);border:1px dashed var(--gut-bdr)"></div>
+          <span>Gutter</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch" style="background:var(--mar-bg);border:1px solid var(--mar-bdr)"></div>
+          <span>Margin</span>
+        </div>
+        <span class="legend-hint">Hover segments for details · ↑↓ arrows adjust values</span>
+      </div>
     </div>
 
   </div>
 
-
   <script>
-    const modeButtons = document.querySelectorAll('.mode-btn');
     let viewMode = 'columns';
 
-    modeButtons.forEach(btn => {
+    document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.onclick = () => {
-        modeButtons.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         viewMode = btn.dataset.mode;
         updatePreview();
       };
     });
 
-    function labelHTML(v) {
-      return v > 0 ? v : '';
+    document.querySelectorAll('.step-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        const step = parseInt(btn.dataset.step) || 1;
+        const dir = parseInt(btn.dataset.dir);
+        input.value = Math.max(parseInt(input.min) || 0, parseInt(input.value || 0) + dir * step);
+        updatePreview();
+      });
+    });
+
+    document.querySelectorAll('input[type=number]').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const dir = e.key === 'ArrowUp' ? 1 : -1;
+          const isTarget = input.id.startsWith('target');
+          const step = isTarget ? (e.shiftKey ? 100 : 10) : (e.shiftKey ? 8 : 1);
+          input.value = Math.max(parseInt(input.min) || 0, parseInt(input.value || 0) + dir * step);
+          updatePreview();
+        }
+      });
+    });
+
+    function makeSeg(cls, sizeKey, sizeVal, label, tipText) {
+      const div = document.createElement('div');
+      div.className = `seg ${cls}`;
+      div.style[sizeKey] = sizeVal + 'px';
+      div.style[sizeKey === 'width' ? 'height' : 'width'] = '100%';
+
+      if (label !== null && label !== undefined) {
+        const lbl = document.createElement('span');
+        lbl.className = 'seg-label';
+        lbl.textContent = label;
+        div.appendChild(lbl);
+      }
+      if (tipText) {
+        const tip = document.createElement('div');
+        tip.className = 'seg-tip';
+        tip.textContent = tipText;
+        div.appendChild(tip);
+      }
+      return div;
+    }
+
+    function maybeLabel(pxSize, threshold) {
+      return pxSize > threshold ? Math.round(pxSize / (window._scale || 1)) : null;
     }
 
     function updatePreview() {
-      columnInputs.classList.toggle('hidden', viewMode === 'rows');
-      rowInputs.classList.toggle('hidden', viewMode === 'columns');
+      const isCol = viewMode === 'columns';
 
-      columnSection.classList.toggle('hidden', viewMode === 'rows');
-      rowSection.classList.toggle('hidden', viewMode === 'columns');
+      document.getElementById('columnInputs').classList.toggle('hidden', !isCol);
+      document.getElementById('rowInputs').classList.toggle('hidden', isCol);
+      document.getElementById('columnSection').classList.toggle('hidden', !isCol);
+      document.getElementById('rowSection').classList.toggle('hidden', isCol);
+      document.getElementById('unitLabel').textContent = isCol ? 'Column' : 'Row';
+      document.getElementById('unitLegend').textContent = isCol ? 'Column' : 'Row';
+      document.getElementById('countLabel').textContent = isCol ? 'Columns' : 'Rows';
+      document.getElementById('previewTitle').textContent = isCol ? 'Horizontal Preview' : 'Vertical Preview';
 
-      unitLabel.textContent = viewMode === 'columns' ? 'Column' : 'Row';
-
-      if (viewMode === 'columns') {
-        const t = +targetWidth.value;
-        const c = +cols.value;
-        const g = +gutterH.value;
-        const m = +marginH.value;
-
+      if (isCol) {
+        const t = +document.getElementById('targetWidth').value || 1;
+        const c = Math.max(1, +document.getElementById('cols').value || 1);
+        const g = +document.getElementById('gutterH').value || 0;
+        const m = +document.getElementById('marginH').value || 0;
         const colW = Math.floor((t - 2 * m - (c - 1) * g) / c);
         const pageW = c * colW + (c - 1) * g + 2 * m;
+        const diff = pageW - t;
 
-        targetOut.textContent = t;
-        unitOut.textContent = colW;
-        pageOut.textContent = pageW;
+        document.getElementById('targetOut').textContent = t;
+        document.getElementById('unitOut').textContent = Math.max(0, colW);
+        document.getElementById('pageOut').textContent = pageW;
+        document.getElementById('countOut').textContent = c;
+        document.getElementById('span2Out').textContent = Math.max(0, colW * 2 + g);
 
-        const scale = horizontalPreview.clientWidth / pageW;
+        const diffEl = document.getElementById('diffOut');
+        if (diff < 0) { diffEl.textContent = ' (' + diff + ')'; diffEl.className = 'stat-diff negative'; }
+        else if (diff > 0) { diffEl.textContent = ' (+' + diff + ')'; diffEl.className = 'stat-diff'; }
+        else { diffEl.textContent = ' ✓'; diffEl.className = 'stat-diff ok'; }
 
-        horizontalPreview.innerHTML = `
-   <div class="segment margin" style="width:${m * scale}px">${labelHTML(m)}</div>
-   ${Array.from({ length: c }).map((_, i) => `
-    <div class="segment column" style="width:${colW * scale}px">${labelHTML(colW)}</div>
-    ${i < c - 1 ? `<div class="segment gutter" style="width:${g * scale}px">${labelHTML(g)}</div>` : ''}
-   `).join('')}
-   <div class="segment margin" style="width:${m * scale}px">${labelHTML(m)}</div>
-  `;
-      }
+        const preview = document.getElementById('horizontalPreview');
+        const rulerEl = document.getElementById('rulerH');
+        const avail = preview.clientWidth || 800;
+        const scale = avail / pageW;
+        window._scale = scale;
 
-      if (viewMode === 'rows') {
-        const t = +targetHeight.value;
-        const r = +rows.value;
-        const g = +gutterV.value;
-        const m = +marginV.value;
+        // ruler
+        rulerEl.innerHTML = '';
+        rulerEl.style.borderRadius = '5px 5px 0 0';
+        const addRulerSeg = (cls, w, txt) => {
+          const d = document.createElement('div');
+          d.className = `ruler-seg ${cls}`;
+          d.style.cssText = `width:${w}px;flex-shrink:0;height:100%`;
+          d.textContent = txt || '';
+          rulerEl.appendChild(d);
+        };
+        addRulerSeg('r-mar', m * scale, '');
+        for (let i = 0; i < c; i++) {
+          addRulerSeg('r-col', colW * scale, colW * scale > 14 ? (i + 1) : '');
+          if (i < c - 1) addRulerSeg('r-gut', g * scale, '');
+        }
+        addRulerSeg('r-mar', m * scale, '');
 
+        // preview
+        preview.innerHTML = '';
+        if (colW <= 0) {
+          preview.innerHTML = '<div class="error-state">⚠ Column width too small</div>';
+          return;
+        }
+        preview.appendChild(makeSeg('s-mar', 'width', m * scale, m * scale > 26 ? m : null, `Margin: ${m}px`));
+        for (let i = 0; i < c; i++) {
+          preview.appendChild(makeSeg('s-col', 'width', colW * scale, colW * scale > 30 ? colW : null, `Column ${i + 1}: ${colW}px`));
+          if (i < c - 1) {
+            preview.appendChild(makeSeg('s-gut', 'width', g * scale, g * scale > 22 ? g : null, `Gutter: ${g}px`));
+          }
+        }
+        preview.appendChild(makeSeg('s-mar', 'width', m * scale, m * scale > 26 ? m : null, `Margin: ${m}px`));
+
+      } else {
+        const t = +document.getElementById('targetHeight').value || 1;
+        const r = Math.max(1, +document.getElementById('rows').value || 1);
+        const g = +document.getElementById('gutterV').value || 0;
+        const m = +document.getElementById('marginV').value || 0;
         const rowH = Math.floor((t - 2 * m - (r - 1) * g) / r);
         const pageH = r * rowH + (r - 1) * g + 2 * m;
+        const diff = pageH - t;
 
-        targetOut.textContent = t;
-        unitOut.textContent = rowH;
-        pageOut.textContent = pageH;
+        document.getElementById('targetOut').textContent = t;
+        document.getElementById('unitOut').textContent = Math.max(0, rowH);
+        document.getElementById('pageOut').textContent = pageH;
+        document.getElementById('countOut').textContent = r;
+        document.getElementById('span2Out').textContent = Math.max(0, rowH * 2 + g);
 
-        const scale = verticalPreview.clientHeight / pageH;
+        const diffEl = document.getElementById('diffOut');
+        if (diff < 0) { diffEl.textContent = ' (' + diff + ')'; diffEl.className = 'stat-diff negative'; }
+        else if (diff > 0) { diffEl.textContent = ' (+' + diff + ')'; diffEl.className = 'stat-diff'; }
+        else { diffEl.textContent = ' ✓'; diffEl.className = 'stat-diff ok'; }
 
-        verticalPreview.innerHTML = `
-   <div class="segment margin" style="height:${m * scale}px">${labelHTML(m)}</div>
-   ${Array.from({ length: r }).map((_, i) => `
-    <div class="segment row" style="height:${rowH * scale}px">${labelHTML(rowH)}</div>
-    ${i < r - 1 ? `<div class="segment gutter" style="height:${g * scale}px">${labelHTML(g)}</div>` : ''}
-   `).join('')}
-   <div class="segment margin" style="height:${m * scale}px">${labelHTML(m)}</div>
-  `;
+        const preview = document.getElementById('verticalPreview');
+        const avail = preview.clientHeight || 270;
+        const scale = avail / pageH;
+
+        preview.innerHTML = '';
+        if (rowH <= 0) {
+          preview.innerHTML = '<div class="error-state">⚠ Row height too small</div>';
+          return;
+        }
+        preview.appendChild(makeSeg('s-vmar', 'height', m * scale, m * scale > 18 ? m : null, `Margin: ${m}px`));
+        for (let i = 0; i < r; i++) {
+          preview.appendChild(makeSeg('s-row', 'height', rowH * scale, rowH * scale > 22 ? rowH : null, `Row ${i + 1}: ${rowH}px`));
+          if (i < r - 1) {
+            preview.appendChild(makeSeg('s-vgut', 'height', g * scale, g * scale > 16 ? g : null, `Gutter: ${g}px`));
+          }
+        }
+        preview.appendChild(makeSeg('s-vmar', 'height', m * scale, m * scale > 18 ? m : null, `Margin: ${m}px`));
       }
     }
 
@@ -271,7 +1148,6 @@
     window.addEventListener('resize', updatePreview);
     updatePreview();
   </script>
-
 </body>
 
 </html>
