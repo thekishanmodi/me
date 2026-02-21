@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konfig's Box</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+
+  <style>
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("assets/fonts/MonaSans-VariableFont_wdth.ttf") format("truetype");
+      font-weight: 200 900;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth.ttf") format("truetype");
+      font-weight: 200 900;
+      font-style: italic;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #fd6204;
+      --orange-dim: rgba(253, 98, 4, 0.12);
+      --orange-glow: rgba(253, 98, 4, 0.25);
+      --bg: #0d0c0b;
+      --surface: #161412;
+      --card: #1c1917;
+      --card-hover: #211e1b;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(253, 98, 4, 0.5);
+      --text: #f5f0eb;
+      --muted: #7a7168;
+      --subtle: rgba(245, 240, 235, 0.06);
+    }
+
+    html,
+    body {
+      font-family: 'Mona Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Noise texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.6;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(253, 98, 4, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── Header ─── */
+    header {
+      padding-top: 56px;
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    h1 {
+      font-family: 'Mona Sans', serif;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    /* ─── Intro card ─── */
+    .intro-card {
+      width: 260px;
+      flex-shrink: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.5s ease-out 0.15s both;
+      text-decoration: none;
+    }
+
+    .intro-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, var(--orange) 0%, transparent 70%);
+      opacity: 0.14;
+    }
+
+    .avatar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .avatar .card-arrow {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .intro-card h2 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .intro-card p {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--orange-dim);
+      color: var(--orange);
+      border-radius: 30px;
+      padding: 4px 10px;
+      border: 1px solid rgba(253, 98, 4, 0.2);
+    }
+
+    /* ─── Meta row ─── */
+    .meta-row {
+      margin: 44px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .meta-row span {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── Grid ─── */
+    #grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: 14px;
+      padding-bottom: 160px;
+    }
+
+    .card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 24px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      animation: fadeUp 0.4s ease-out both;
+    }
+
+    .card:nth-child(1) {
+      animation-delay: 0.08s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.14s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.20s;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(253, 98, 4, 0.07) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: var(--subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .card:hover .card-icon {
+      background: var(--orange-dim);
+      border-color: rgba(253, 98, 4, 0.3);
+    }
+
+    .card-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--muted);
+      transition: color 0.25s;
+      stroke-width: 1.7;
+    }
+
+    .card:hover .card-icon svg {
+      color: var(--orange);
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card p {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-arrow {
+      position: absolute;
+      top: 26px;
+      right: 22px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--orange-dim);
+      border: 1px solid rgba(253, 98, 4, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 1;
+    }
+
+    .card-arrow svg {
+      width: 13px;
+      height: 13px;
+      color: var(--orange);
+    }
+
+    .card:hover .card-arrow {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+    }
+
+    /* ─── No results ─── */
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 80px 0;
+      grid-column: 1 / -1;
+    }
+
+    #no-results.show {
+      display: block;
+    }
+
+    #no-results svg {
+      width: 44px;
+      height: 44px;
+      color: var(--muted);
+      margin: 0 auto 14px;
+      opacity: 0.4;
+      display: block;
+    }
+
+    #no-results h3 {
+      font-family: 'Mona Sans', serif;
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    #no-results p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ─── Footer search ─── */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding-bottom: 28px;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+    }
+
+    .search-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+    }
+
+    #global-search {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 15px 48px;
+      font-family: 'Mona Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    #global-search::placeholder {
+      color: var(--muted);
+    }
+
+    #global-search:focus {
+      outline: none;
+      border-color: rgba(253, 98, 4, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(253, 98, 4, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    #clear-search {
+      position: absolute;
+      right: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background: var(--subtle);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    #clear-search:hover {
+      background: var(--orange-dim);
+      border-color: rgba(253, 98, 4, 0.3);
+    }
+
+    #clear-search svg {
+      width: 11px;
+      height: 11px;
+      color: var(--muted);
+    }
+
+    #clear-search.hidden {
+      display: none;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .header-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-glow"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Design Toolbox</p>
+          <h1>Konfig's<br><em>Box</em></h1>
+        </div>
+
+        <a href="index.html" class="intro-card" role="complementary" aria-label="About Konfig">
+          <div class="avatar">
+            <img src="assets/images/favicon.png" alt="">
+            <span class="card-arrow">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+          <h2>Hey, I'm Kishan Modi</h2>
+          <p>A designer building tools to make creative work faster and more intentional.</p>
+          <span class="badge">UI/UX & Graphics Designer</span>
+        </a>
+      </div>
+
+      <div class="meta-row">
+        <span>3 tools available</span>
+        <div class="meta-line"></div>
+        <span>Pick one ↓</span>
+      </div>
+    </header>
+
+    <main>
+      <div id="grid-container">
+
+        <div id="no-results">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <h3>Nothing found</h3>
+          <p>Try a different search term.</p>
+        </div>
+
+        <a href="textcase.html" class="card" data-title="text transform" tabindex="0">
+          <div class="card-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 7V4h16v3M9 20h6M12 4v16" />
+            </svg>
+          </div>
+          <h3>Text Case</h3>
+          <p>Convert case, format strings and manipulate text in seconds.</p>
+          <span class="card-arrow">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </a>
+
+        <a href="color-shades.html" class="card" data-title="color shades" tabindex="0">
+          <div class="card-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+          </div>
+          <h3>Color Shades</h3>
+          <p>Generate beautiful tint and shade palettes from any base color.</p>
+          <span class="card-arrow">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </a>
+
+        <a href="grid-calculator.html" class="card" data-title="grid calculator" tabindex="0">
+          <div class="card-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
+            </svg>
+          </div>
+          <h3>Grid Calculator</h3>
+          <p>Design pixel-perfect grids with columns, gutters and margins.</p>
+          <span class="card-arrow">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </a>
+
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="search-wrap">
+      <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input type="search" id="global-search" placeholder="Search tools…" aria-label="Search tools"
+        autocomplete="off" />
+      <button id="clear-search" class="hidden" aria-label="Clear search">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('global-search');
+    const clearBtn = document.getElementById('clear-search');
+    const cards = document.querySelectorAll('.card');
+    const noResults = document.getElementById('no-results');
+    let timer;
+
+    function filter(term) {
+      let visible = 0;
+      cards.forEach(card => {
+        const match = (card.dataset.title || '').includes(term);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      noResults.classList.toggle('show', visible === 0);
+    }
+
+    searchInput.addEventListener('input', () => {
+      clearTimeout(timer);
+      const val = searchInput.value;
+      clearBtn.classList.toggle('hidden', !val);
+      timer = setTimeout(() => filter(val.toLowerCase().trim()), 150);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.classList.add('hidden');
+      filter('');
+      searchInput.focus();
+    });
+
+    cards.forEach(card => {
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
+    });
+  </script>
+</body>
+
+</html>

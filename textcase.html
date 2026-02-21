@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Case</title>
+  <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
+  <style>
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("assets/fonts/MonaSans-VariableFont_wdth.ttf") format("truetype");
+      font-weight: 200 900;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth.ttf") format("truetype");
+      font-weight: 200 900;
+      font-style: italic;
+    }
+
+    :root {
+      --orange: #fd6204;
+      --orange-dark: #d94e00;
+      --orange-light: #fff1ea;
+      --black: #111;
+      --gray-100: #f5f4f2;
+      --gray-200: #e8e6e2;
+      --gray-400: #a09d99;
+      --gray-600: #6b6763;
+      --white: #fdfcfa;
+      --radius: 10px;
+      --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Mona Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow: hidden;
+    }
+
+    /* ── HEADER ───────────────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 1.5rem;
+      height: 56px;
+      background: var(--black);
+      border-bottom: 2px solid var(--orange);
+      flex-shrink: 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      font-family: 'Mona Sans', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .logo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-left: 1px;
+      margin-bottom: 3px;
+      align-self: flex-end;
+    }
+
+    .stats {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.3rem 0.9rem;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 64px;
+      cursor: default;
+      transition: background var(--transition);
+    }
+
+    .stat:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-value {
+      font-family: 'Mona Sans', monospace;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--orange);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      line-height: 1.2;
+    }
+
+    /* ── MAIN LAYOUT ──────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 56px);
+    }
+
+    /* ── TEXTAREA ─────────────────────────────────────────────── */
+    .editor-wrap {
+      flex: 1;
+      position: relative;
+      min-height: 0;
+    }
+
+    textarea {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Mona Sans', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--black);
+      background: var(--white);
+      border: none;
+      outline: none;
+      resize: none;
+      padding: clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 8vw, 6rem);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      caret-color: var(--orange);
+    }
+
+    textarea::placeholder {
+      color: var(--gray-200);
+      font-style: italic;
+      font-family: 'DM Serif Display', serif;
+    }
+
+    textarea::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+      background: var(--gray-200);
+      border-radius: 4px;
+    }
+
+    textarea::-webkit-scrollbar-thumb:hover {
+      background: var(--gray-400);
+    }
+
+    /* ── COPY BUTTON ──────────────────────────────────────────── */
+    .copy-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Mona Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+
+    .copy-btn:hover {
+      background: var(--orange);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(253, 98, 4, 0.35);
+    }
+
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+
+    .copy-btn.copied {
+      background: #22a05c;
+    }
+
+    .copy-icon {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* ── TOOLBAR ──────────────────────────────────────────────── */
+    .toolbar {
+      flex-shrink: 0;
+      background: var(--gray-100);
+      border-top: 1px solid var(--gray-200);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toolbar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1rem;
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Mona Sans', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .btn:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .btn.primary {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+    }
+
+    .btn.primary:hover {
+      background: var(--orange-dark);
+      border-color: var(--orange-dark);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--gray-600);
+      border-color: var(--gray-200);
+    }
+
+    .btn.ghost:hover {
+      background: #fee8d8;
+      color: var(--orange-dark);
+      border-color: var(--orange);
+    }
+
+    /* Separator */
+    .sep {
+      width: 1px;
+      height: 32px;
+      background: var(--gray-200);
+      align-self: center;
+      margin: 0 0.15rem;
+      border-radius: 1px;
+    }
+
+    /* ── CHAR HIGHLIGHT ANIMATION ─────────────────────────────── */
+    @keyframes statPop {
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.25);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .stat-value.pop {
+      animation: statPop 280ms ease;
+    }
+
+    /* ── WORD COUNT PROGRESS BAR ──────────────────────────────── */
+    .word-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), #ff9f52);
+      transition: width 0.3s ease;
+      border-radius: 0 2px 2px 0;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .badge {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      border: 1px solid var(--ink4);
+      border-radius: 4px;
+      padding: 4px 8px;
+      text-decoration: none;
+      margin-left: auto;
+    }
+
+    /* responsive: hide some labels on small screens */
+    @media (max-width: 480px) {
+      .stat:nth-child(n+3) .stat-label {
+        display: none;
+      }
+
+      .stat {
+        min-width: 48px;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .sep {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">
+      <span class="logo-text"><img src="assets/images/favicon.png" alt=""> Text Case</span>
+      <span class="logo-dot"></span>
+    </a>
+
+    <div class="stats">
+      <div class="stat" title="Characters">
+        <span class="stat-value" id="charCount">0</span>
+        <span class="stat-label">Chars</span>
+      </div>
+      <div class="stat" title="Words">
+        <span class="stat-value" id="wordCount">0</span>
+        <span class="stat-label">Words</span>
+      </div>
+      <div class="stat" title="Sentences">
+        <span class="stat-value" id="sentenceCount">0</span>
+        <span class="stat-label">Sentences</span>
+      </div>
+      <div class="stat" title="Lines">
+        <span class="stat-value" id="lineCount">1</span>
+        <span class="stat-label">Lines</span>
+      </div>
+      <div class="stat" title="Reading time (minutes)">
+        <span class="stat-value" id="readTime">0m</span>
+        <span class="stat-label">Read</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <div class="layout">
+    <div class="editor-wrap">
+      <textarea id="textArea" spellcheck="true" placeholder="Start typing, or paste your text here…"></textarea>
+      <div class="word-bar" id="wordBar"></div>
+
+      <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">
+        <svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="5" width="9" height="10" rx="2" />
+          <path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+        </svg>
+        Copy
+      </button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <button class="btn" onclick="toUpper()" title="Convert to UPPERCASE">ABC</button>
+        <button class="btn" onclick="toLower()" title="Convert to lowercase">abc</button>
+        <button class="btn" onclick="toCapitalized()" title="Capitalize Every Word">Abc</button>
+        <button class="btn" onclick="toTitle()" title="Title Case (skip small words)">Title</button>
+        <button class="btn" onclick="toSentence()" title="Sentence case">Sent.</button>
+        <button class="btn" onclick="toAlternating()" title="aLtErNaTiNg CaSe">aLt</button>
+        <button class="btn" onclick="toInverse()" title="Inverse case">iNV</button>
+
+        <div class="sep"></div>
+
+        <button class="btn" onclick="trimWhitespace()" title="Trim extra spaces & blank lines">Trim</button>
+        <button class="btn" onclick="removeDuplicateLines()" title="Remove duplicate lines">Dedup</button>
+        <button class="btn" onclick="sortLines()" title="Sort lines A→Z">Sort↑</button>
+        <button class="btn" onclick="reverseLines()" title="Reverse line order">Rev↕</button>
+
+        <div class="sep"></div>
+
+        <button class="btn primary" onclick="addLoremParagraph()" title="Add a Lorem Ipsum paragraph">+ Lorem</button>
+        <button class="btn ghost" onclick="clearText()" title="Clear all text">Clear</button>
+      </div>
+      <a href="index.html" class="badge">#thekishanmodi</a>
+    </div>
+  </div>
+
+  <script>
+    const textArea = document.getElementById('textArea');
+    const charCountEl = document.getElementById('charCount');
+    const wordCountEl = document.getElementById('wordCount');
+    const sentenceCountEl = document.getElementById('sentenceCount');
+    const lineCountEl = document.getElementById('lineCount');
+    const readTimeEl = document.getElementById('readTime');
+    const wordBar = document.getElementById('wordBar');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const STORAGE_KEY = 'textcase_v2_text';
+    const EXPIRY_KEY = 'textcase_v2_expiry';
+
+    // ── Storage ────────────────────────────────────────────────
+    function saveToStorage() {
+      localStorage.setItem(STORAGE_KEY, textArea.value);
+      localStorage.setItem(EXPIRY_KEY, Date.now() + 24 * 60 * 60 * 1000);
+    }
+
+    function loadFromStorage() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const expiry = localStorage.getItem(EXPIRY_KEY);
+      if (saved !== null && expiry && Date.now() < parseInt(expiry)) {
+        textArea.value = saved;
+        updateStats();
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(EXPIRY_KEY);
+      }
+    }
+
+    // ── Stats ──────────────────────────────────────────────────
+    let prevChars = 0;
+
+    function animatePop(el) {
+      el.classList.remove('pop');
+      void el.offsetWidth;
+      el.classList.add('pop');
+    }
+
+    function updateStats() {
+      const text = textArea.value;
+      const chars = text.length;
+      const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+      const fallbackSentences = text.trim() === '' ? 0 : (text.match(/[.!?]/g) || []).length || (text.trim() ? 1 : 0);
+      const lines = text === '' ? 1 : text.split('\n').length;
+      const readMins = Math.max(0, Math.ceil(words / 200));
+
+      if (chars !== prevChars) animatePop(charCountEl);
+      prevChars = chars;
+
+      charCountEl.textContent = chars.toLocaleString();
+      wordCountEl.textContent = words.toLocaleString();
+      sentenceCountEl.textContent = fallbackSentences;
+      lineCountEl.textContent = lines;
+      readTimeEl.textContent = readMins < 1 ? '<1m' : readMins + 'm';
+
+      // progress bar — grows up to ~500 words
+      const pct = Math.min(words / 500, 1) * 100;
+      wordBar.style.width = pct + '%';
+    }
+
+    // ── Case converters ────────────────────────────────────────
+    const TITLE_SMALL = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is', 'it']);
+
+    function apply(fn) {
+      textArea.value = fn(textArea.value);
+      updateStats(); saveToStorage(); textArea.focus();
+    }
+
+    function toUpper() { apply(t => t.toUpperCase()); }
+    function toLower() { apply(t => t.toLowerCase()); }
+    function toCapitalized() { apply(t => t.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())); }
+    function toTitle() {
+      apply(t => t.toLowerCase().replace(/\S+/g, (word, i) => {
+        if (i === 0 || !TITLE_SMALL.has(word)) return word.charAt(0).toUpperCase() + word.slice(1);
+        return word;
+      }));
+    }
+    function toSentence() {
+      apply(t => t.toLowerCase().replace(/(^\s*\S|[.!?]\s+\S)/g, l => l.toUpperCase()));
+    }
+    function toAlternating() {
+      apply(t => t.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join(''));
+    }
+    function toInverse() {
+      apply(t => t.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''));
+    }
+    function trimWhitespace() {
+      apply(t => t.split('\n').map(l => l.trim()).filter((l, i, a) => l || (a[i - 1] !== '')).join('\n').trim());
+    }
+    function removeDuplicateLines() {
+      apply(t => [...new Set(t.split('\n'))].join('\n'));
+    }
+    function sortLines() {
+      apply(t => t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n'));
+    }
+    function reverseLines() {
+      apply(t => t.split('\n').reverse().join('\n'));
+    }
+    function clearText() { apply(() => ''); }
+
+    // ── Lorem ipsum ────────────────────────────────────────────
+    const FALLBACK_LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+
+    async function addLoremParagraph() {
+      try {
+        const res = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1&format=text&start-with-lorem=1');
+        if (!res.ok) throw new Error();
+        const para = (await res.text()).trim();
+        appendText(para);
+      } catch {
+        appendText(FALLBACK_LOREM);
+      }
+    }
+
+    function appendText(para) {
+      const sep = textArea.value && !textArea.value.endsWith('\n\n') ? '\n\n' : '';
+      textArea.value += sep + para;
+      updateStats(); saveToStorage(); textArea.focus();
+      textArea.scrollTop = textArea.scrollHeight;
+    }
+
+    // ── Copy ───────────────────────────────────────────────────
+    async function copyToClipboard() {
+      try {
+        await navigator.clipboard.writeText(textArea.value);
+      } catch {
+        textArea.select();
+        document.execCommand('copy');
+      }
+      copyBtn.textContent = '✓ Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.innerHTML = `<svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="9" height="10" rx="2"/><path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copy`;
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    }
+
+    // ── Keyboard shortcut: Ctrl/Cmd+Shift+C to copy ────────────
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
+        e.preventDefault();
+        copyToClipboard();
+      }
+    });
+
+    // ── Init ───────────────────────────────────────────────────
+    textArea.addEventListener('input', () => { saveToStorage(); updateStats(); });
+
+    window.addEventListener('load', () => {
+      loadFromStorage();
+      textArea.focus();
+    });
+  </script>
+</body>
+
+</html>
