@@ -16,6 +16,84 @@
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
+        .static-line {
+            display: block;
+        }
+
+        /* ── FLIP STAGE ── */
+        .flip-stage {
+            display: inline-block;
+            position: relative;
+            height: 1em;
+            vertical-align: bottom;
+            perspective: 600px;
+            margin: 0;
+        }
+
+        .flip-face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            white-space: nowrap;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform-style: preserve-3d;
+            margin: 0;
+        }
+
+        .flip-face.front {
+            transform: rotateX(0deg);
+        }
+
+        .flip-face.back {
+            transform: rotateX(90deg);
+        }
+
+        .flip-stage.flipping .front {
+            animation: foldUp 0.42s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .flip-stage.flipping .back {
+            animation: unfoldDown 0.42s cubic-bezier(0.4, 0, 0.2, 1) 0.38s forwards;
+        }
+
+        @keyframes foldUp {
+            0% {
+                transform: rotateX(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: rotateX(-90deg);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes unfoldDown {
+            0% {
+                transform: rotateX(90deg);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: rotateX(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Alternating solid colors */
+        .color-white {
+            color: #ffffff;
+        }
+
+        .color-black {
+            color: #000000;
+        }
+    </style>
+
+    <style>
         .portfolio-bento {
             display: grid;
             min-height: 100%;
@@ -191,42 +269,54 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="#fff"
                                     d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
-                            </svg></a></li>
+                            </svg>
+                        </a></li>
                     <li><a target="_blank" href="https://dribbble.com/thekishanmodi">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="#fff"
                                     d="M12 0c-6.628 0-12 5.373-12 12s5.372 12 12 12 12-5.373 12-12-5.372-12-12-12zm9.885 11.441c-2.575-.422-4.943-.445-7.103-.073-.244-.563-.497-1.125-.767-1.68 2.31-1 4.165-2.358 5.548-4.082 1.35 1.594 2.197 3.619 2.322 5.835zm-3.842-7.282c-1.205 1.554-2.868 2.783-4.986 3.68-1.016-1.861-2.178-3.676-3.488-5.438.779-.197 1.591-.314 2.431-.314 2.275 0 4.368.779 6.043 2.072zm-10.516-.993c1.331 1.742 2.511 3.538 3.537 5.381-2.43.715-5.331 1.082-8.684 1.105.692-2.835 2.601-5.193 5.147-6.486zm-5.44 8.834l.013-.256c3.849-.005 7.169-.448 9.95-1.322.233.475.456.952.67 1.432-3.38 1.057-6.165 3.222-8.337 6.48-1.432-1.719-2.296-3.927-2.296-6.334zm3.829 7.81c1.969-3.088 4.482-5.098 7.598-6.027.928 2.42 1.609 4.91 2.043 7.46-3.349 1.291-6.953.666-9.641-1.433zm11.586.43c-.438-2.353-1.08-4.653-1.92-6.897 1.876-.265 3.94-.196 6.199.196-.437 2.786-2.028 5.192-4.279 6.701z" />
-                            </svg></a></li>
+                            </svg>
+                        </a></li>
                     <li><a target="_blank" href="https://www.facebook.com/kishanmodi1995">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="#fff"
                                     d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                            </svg></a></li>
+                            </svg>
+                        </a></li>
                     <li><a target="_blank" href="https://www.instagram.com/thekishanmodi/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="#fff"
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                            </svg></a></li>
+                            </svg>
+                        </a></li>
                     <li><a target="_blank" href="https://in.pinterest.com/thekishanmodi/">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                            <svg width="20" height="20" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="#fff"
-                                    d="M204 6.5C101.4 6.5 0 74.9 0 185.6 0 256 39.6 296 63.6 296c9.9 0 15.6-27.6 15.6-35.4 0-9.3-23.7-29.1-23.7-67.8 0-80.4 61.2-137.4 140.4-137.4 68.1 0 118.5 38.7 118.5 109.8 0 53.1-21.3 152.7-90.3 152.7-24.9 0-46.2-18-46.2-43.8 0-37.8 26.4-74.4 26.4-113.4 0-66.2-93.9-54.2-93.9 25.8 0 16.8 2.1 35.4 9.6 50.7-13.8 59.4-42 147.9-42 209.1 0 18.9 2.7 37.5 4.5 56.4 3.4 3.8 1.7 3.4 6.9 1.5 50.4-69 48.6-82.5 71.4-172.8 12.3 23.4 44.1 36 69.3 36 106.2 0 153.9-103.5 153.9-196.8C384 71.3 298.2 6.5 204 6.5z" />
-                            </svg></a></li>
+                                    d="M335.375 0C203.919 0 74 87.7085 74 229.658C74 319.931 124.738 371.222 155.488 371.222C168.172 371.222 175.475 335.831 175.475 325.829C175.475 313.904 145.109 288.515 145.109 238.89C145.109 135.794 223.522 62.7039 324.997 62.7039C412.25 62.7039 476.825 112.328 476.825 203.499C476.825 271.589 449.534 399.305 361.128 399.305C329.225 399.305 301.934 376.223 301.934 343.14C301.934 294.67 335.759 247.738 335.759 197.729C335.759 112.841 215.45 128.229 215.45 230.812C215.45 252.354 218.141 276.205 227.75 295.824C210.069 371.992 173.938 485.474 173.938 563.95C173.938 588.186 177.397 612.036 179.703 636.271C184.059 641.144 181.881 640.631 188.544 638.195C253.119 549.717 250.812 532.406 280.025 416.615C295.784 446.621 336.528 462.778 368.816 462.778C504.884 462.778 566 330.061 566 210.424C566 83.0923 456.069 0 335.375 0Z" />
+                            </svg>
+                        </a></li>
                     <li><a target="_blank" href="https://twitter.com/thekishanmodi">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
                                 <path fill="#fff"
                                     d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-                            </svg></a></li>
-                    <li><a target="_blank" href="https://www.youtube.com/@thekishanmodi"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            </svg>
+                        </a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/@thekishanmodi">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path fill="#fff"
                                     d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-                            </svg></a></li>
+                            </svg>
+                        </a></li>
                     <li><a target="_blank" href="https://t.me/thekishanmodi">
                             <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                                 <path fill="#fff"
-                                    d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z"
-                                    fill="#000000" />
+                                    d="M41.4193 7.30899C41.4193 7.30899 45.3046 5.79399 44.9808 9.47328C44.8729 10.9883 43.9016 16.2908 43.1461 22.0262L40.5559 39.0159C40.5559 39.0159 40.3401 41.5048 38.3974 41.9377C36.4547 42.3705 33.5408 40.4227 33.0011 39.9898C32.5694 39.6652 24.9068 34.7955 22.2086 32.4148C21.4531 31.7655 20.5897 30.4669 22.3165 28.9519L33.6487 18.1305C34.9438 16.8319 36.2389 13.8019 30.8426 17.4812L15.7331 27.7616C15.7331 27.7616 14.0063 28.8437 10.7686 27.8698L3.75342 25.7055C3.75342 25.7055 1.16321 24.0823 5.58815 22.459C16.3807 17.3729 29.6555 12.1786 41.4193 7.30899Z" />
+                            </svg>
+                        </a></li>
+                    <li><a target="_blank" href="https://www.linkedin.com/in/thekishanmodi/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 640 640">
+                                <path fill="#fff"
+                                    d="M196.3 512L103.4 512L103.4 212.9L196.3 212.9L196.3 512zM149.8 172.1C120.1 172.1 96 147.5 96 117.8C96 103.5 101.7 89.9 111.8 79.8C121.9 69.7 135.6 64 149.8 64C164 64 177.7 69.7 187.8 79.8C197.9 89.9 203.6 103.6 203.6 117.8C203.6 147.5 179.5 172.1 149.8 172.1zM543.9 512L451.2 512L451.2 366.4C451.2 331.7 450.5 287.2 402.9 287.2C354.6 287.2 347.2 324.9 347.2 363.9L347.2 512L254.4 512L254.4 212.9L343.5 212.9L343.5 253.7L344.8 253.7C357.2 230.2 387.5 205.4 432.7 205.4C526.7 205.4 544 267.3 544 347.7L544 512L543.9 512z" />
                             </svg>
                         </a></li>
                     <li><a target="_blank" class="contact-me" href="https://wa.me/919909648096">
@@ -239,7 +329,13 @@
 
                 <div class="banner-content">
                     <span class="section-tag-title">|| नमस्ते ||</span>
-                    <h1>I'm Kishan Modi,<br>UI/UX & Graphic Designer.</h1>
+                    <!-- <h1>I'm Kishan Modi,<span>UI/UX Designer.</span></h1> -->
+                    <h1>I'm Kishan Modi,
+                        <span class="flip-stage" id="stage">
+                            <span class="flip-face front" id="front"></span>
+                            <span class="flip-face back" id="back"></span>
+                        </span>
+                    </h1>
                     <h3>What I design in my professional time</h3>
                     <ul>
                         <li>2D Game Design</li>
@@ -339,6 +435,74 @@
     </main>
 
     <script rel="script" src="assets/js/jquery.min.js"></script>
+
+    <script>
+        const roles = [
+            "UI/UX Designer",
+            "Graphics Designer",
+            "Front-End Developer",
+            "Product Designer",
+            "Logo Designer",
+            "Video Editor",
+            "Character Designer",
+            "2d-Game Designer",
+            "Application Designer",
+            "Website Designer",
+            "Visual Designer",
+        ];
+
+        const stage = document.getElementById('stage');
+        const front = document.getElementById('front');
+        const back = document.getElementById('back');
+
+        let current = 0;
+
+        /* measure max width so stage never jumps */
+        const ruler = document.createElement('span');
+        ruler.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:800 clamp(2.2rem,5vw,4.5rem) "Plus Jakarta Sans",sans-serif;letter-spacing:-0.03em;';
+        document.body.appendChild(ruler);
+        const maxW = Math.max(...roles.map(r => { ruler.textContent = r; return ruler.offsetWidth; }));
+        document.body.removeChild(ruler);
+        stage.style.width = maxW + 'px';
+
+        /* white on even index, black on odd */
+        function colorClass(idx) {
+            return idx % 2 === 0 ? 'color-white' : 'color-black';
+        }
+
+        function applyRole(el, idx) {
+            el.textContent = roles[idx];
+            el.className = `flip-face ${el.id === 'front' ? 'front' : 'back'} ${colorClass(idx)}`;
+        }
+
+        applyRole(front, 0);
+
+        function doFlip() {
+            const next = (current + 1) % roles.length;
+
+            applyRole(back, next);
+            stage.classList.add('flipping');
+
+            setTimeout(() => {
+                stage.classList.remove('flipping');
+                applyRole(front, next);
+
+                front.style.animation = 'none';
+                back.style.animation = 'none';
+                front.offsetHeight;
+                front.style.animation = '';
+                back.style.animation = '';
+
+                current = next;
+            }, 880);
+        }
+
+        setTimeout(() => {
+            doFlip();
+            setInterval(doFlip, 2400);
+        }, 2200);
+    </script>
+
     <script>
         //loader
         $(document).ready(function () {

@@ -123,6 +123,8 @@ h1 {
     text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     font-weight: 900;
     margin-bottom: 40px;
+    display: block;
+    line-height: 1;
 }
 
 h2 {

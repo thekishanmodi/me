@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -319,7 +320,7 @@
     }
 
     /* ══════════════════════════
-       CARDS — IMPROVED
+       CARDS
     ══════════════════════════ */
     #grid-container {
       display: flex;
@@ -378,469 +379,19 @@
     }
 
     /* ─────────────────────────
-       CARD VISUAL (top section)
-    ───────────────────────── */
-    .card-visual {
-      position: relative;
-      overflow: hidden;
-      background: #0f0e0c;
-      flex-shrink: 0;
-    }
-
-    .card.card--wide .card-visual {
-      height: 160px;
-    }
-
-    .card.card--half .card-visual {
-      height: 160px;
-    }
-
-    /* Shared shape layer */
-    .shape {
-      position: absolute;
-      inset: 0;
-      transition: transform .8s cubic-bezier(.22, 1, .36, 1), opacity .4s;
-    }
-
-    .card:hover .shape {
-      transform: scale(1.1) rotate(2deg);
-    }
-
-    /* ── Shape: concentric rings (Card 1) ── */
-    .shape-circles {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Multiple rings via box-shadow trick */
-    .shape-circles .ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(240, 79, 0, .1);
-      transition: border-color .5s, transform .8s cubic-bezier(.22, 1, .36, 1);
-    }
-
-    .ring-1 {
-      width: 60px;
-      height: 60px;
-      border-color: rgba(240, 79, 0, .28);
-    }
-
-    .ring-2 {
-      width: 120px;
-      height: 120px;
-      border-color: rgba(240, 79, 0, .16);
-    }
-
-    .ring-3 {
-      width: 200px;
-      height: 200px;
-      border-color: rgba(240, 79, 0, .09);
-    }
-
-    .ring-4 {
-      width: 290px;
-      height: 290px;
-      border-color: rgba(240, 79, 0, .05);
-    }
-
-    .card:hover .ring-1 {
-      border-color: rgba(240, 79, 0, .55);
-    }
-
-    .card:hover .ring-2 {
-      border-color: rgba(240, 79, 0, .32);
-    }
-
-    .card:hover .ring-3 {
-      border-color: rgba(240, 79, 0, .18);
-    }
-
-    .card:hover .ring-4 {
-      border-color: rgba(240, 79, 0, .1);
-    }
-
-    /* center dot with glow */
-    .shape-core {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--o);
-      position: absolute;
-      z-index: 2;
-      box-shadow: 0 0 0 4px rgba(240, 79, 0, .18), 0 0 28px rgba(240, 79, 0, .35);
-      transition: transform .4s, box-shadow .4s;
-    }
-
-    .card:hover .shape-core {
-      transform: scale(1.3);
-      box-shadow: 0 0 0 8px rgba(240, 79, 0, .16), 0 0 48px rgba(240, 79, 0, .55);
-    }
-
-    /* Animated orbit dot */
-    .orbit {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: spin 6s linear infinite;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .orbit::after {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--o);
-      box-shadow: 0 0 8px rgba(240, 79, 0, .7);
-    }
-
-    @keyframes spin {
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
-
-    /* ── Shape: dot grid (Card 2) ── */
-    .shape-dots {
-      background-image: radial-gradient(circle, rgba(240, 79, 0, .22) 1.5px, transparent 1.5px);
-      background-size: 16px 16px;
-      background-position: 8px 8px;
-      transition: background-color .4s;
-    }
-
-    .card:hover .shape-dots {
-      background-image: radial-gradient(circle, rgba(240, 79, 0, .4) 1.5px, transparent 1.5px);
-    }
-
-    /* color swatches floating in dot card */
-    .dot-swatches {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      display: flex;
-      gap: 5px;
-      z-index: 3;
-    }
-
-    .dot-swatch {
-      width: 22px;
-      height: 22px;
-      border-radius: 8px;
-      border: 1.5px solid rgba(255, 255, 255, .12);
-      transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s;
-    }
-
-    .dot-swatch:nth-child(1) {
-      background: #f04f00;
-    }
-
-    .dot-swatch:nth-child(2) {
-      background: #ff7d40;
-      transform: translateY(-3px);
-    }
-
-    .dot-swatch:nth-child(3) {
-      background: #ffb380;
-    }
-
-    .dot-swatch:nth-child(4) {
-      background: #ffe4d2;
-      transform: translateY(-3px);
-    }
-
-    .dot-swatch:nth-child(5) {
-      background: #7a2800;
-    }
-
-    .card:hover .dot-swatch:nth-child(1) {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 16px rgba(240, 79, 0, .3);
-      transition-delay: 0s;
-    }
-
-    .card:hover .dot-swatch:nth-child(2) {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(240, 79, 0, .2);
-      transition-delay: .04s;
-    }
-
-    .card:hover .dot-swatch:nth-child(3) {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 16px rgba(240, 79, 0, .15);
-      transition-delay: .08s;
-    }
-
-    .card:hover .dot-swatch:nth-child(4) {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(240, 79, 0, .1);
-      transition-delay: .12s;
-    }
-
-    .card:hover .dot-swatch:nth-child(5) {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 16px rgba(240, 79, 0, .2);
-      transition-delay: .16s;
-    }
-
-    /* ── Shape: grid calc (Card 3) — full canvas ── */
-    .shape-grid-thumb {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    /* Fine background crosshatch */
-    .shape-grid-thumb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(240, 79, 0, .06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(240, 79, 0, .06) 1px, transparent 1px);
-      background-size: 20px 20px;
-      transition: opacity .4s;
-    }
-
-    .card:hover .shape-grid-thumb::before {
-      opacity: 1.6;
-    }
-
-    /* Column track wrapper */
-    .gt-tracks {
-      position: absolute;
-      inset: 18px 14px 14px;
-      display: flex;
-      gap: 6px;
-      align-items: stretch;
-    }
-
-    /* Individual column */
-    .gt-col {
-      flex: 1;
-      border-radius: 6px;
-      background: rgba(240, 79, 0, .07);
-      border: 1px solid rgba(240, 79, 0, .16);
-      position: relative;
-      transition: background .32s, border-color .32s, transform .4s cubic-bezier(.22, 1, .36, 1);
-    }
-
-    .gt-col:nth-child(even) {
-      background: rgba(240, 79, 0, .04);
-    }
-
-    /* Active highlight bar inside column */
-    .gt-col::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 0%;
-      background: linear-gradient(to top, rgba(240, 79, 0, .35), rgba(240, 79, 0, .06));
-      border-radius: 0 0 5px 5px;
-      transition: height .55s cubic-bezier(.22, 1, .36, 1);
-    }
-
-    .card:hover .gt-col:nth-child(1)::after {
-      height: 55%;
-      transition-delay: .00s;
-    }
-
-    .card:hover .gt-col:nth-child(2)::after {
-      height: 80%;
-      transition-delay: .06s;
-    }
-
-    .card:hover .gt-col:nth-child(3)::after {
-      height: 40%;
-      transition-delay: .12s;
-    }
-
-    .card:hover .gt-col:nth-child(4)::after {
-      height: 70%;
-      transition-delay: .18s;
-    }
-
-    .card:hover .gt-col:nth-child(5)::after {
-      height: 60%;
-      transition-delay: .24s;
-    }
-
-    .card:hover .gt-col {
-      background: rgba(240, 79, 0, .10);
-      border-color: rgba(240, 79, 0, .32);
-    }
-
-    .card:hover .gt-col:nth-child(1) {
-      transition-delay: .00s;
-    }
-
-    .card:hover .gt-col:nth-child(2) {
-      transition-delay: .05s;
-    }
-
-    .card:hover .gt-col:nth-child(3) {
-      transition-delay: .10s;
-    }
-
-    .card:hover .gt-col:nth-child(4) {
-      transition-delay: .15s;
-    }
-
-    .card:hover .gt-col:nth-child(5) {
-      transition-delay: .20s;
-    }
-
-    /* Gutter labels that appear between cols */
-    .gt-gutter-label {
-      position: absolute;
-      top: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Mona Sans', monospace;
-      font-size: 6.5px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: rgba(240, 79, 0, .0);
-      white-space: nowrap;
-      transition: color .3s;
-      pointer-events: none;
-    }
-
-    .card:hover .gt-col .gt-gutter-label {
-      color: rgba(240, 79, 0, .65);
-    }
-
-    /* Top dimension ruler */
-    .gt-ruler-bar {
-      position: absolute;
-      top: 6px;
-      left: 14px;
-      right: 14px;
-      height: 10px;
-      display: flex;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(-4px);
-      transition: opacity .3s .08s, transform .3s .08s;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .card:hover .gt-ruler-bar {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .gt-ruler-bar::before,
-    .gt-ruler-bar::after {
-      content: '';
-      width: 1px;
-      height: 8px;
-      background: rgba(240, 79, 0, .45);
-      flex-shrink: 0;
-    }
-
-    .gt-ruler-line {
-      flex: 1;
-      height: 1px;
-      background: rgba(240, 79, 0, .3);
-      position: relative;
-    }
-
-    .gt-ruler-line::after {
-      content: '1440px';
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Mona Sans', monospace;
-      font-size: 7px;
-      letter-spacing: .06em;
-      color: rgba(240, 79, 0, .7);
-      background: #0f0e0c;
-      padding: 0 4px;
-    }
-
-    /* Bottom stats row */
-    .gt-stats {
-      position: absolute;
-      bottom: 6px;
-      left: 14px;
-      right: 14px;
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity .3s .15s, transform .3s .15s;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .card:hover .gt-stats {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .gt-stat {
-      font-family: 'Mona Sans', monospace;
-      font-size: 6.5px;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      color: rgba(240, 79, 0, .55);
-      background: rgba(240, 79, 0, .1);
-      border: 1px solid rgba(240, 79, 0, .18);
-      border-radius: 4px;
-      padding: 2px 6px;
-      white-space: nowrap;
-    }
-
-    .gt-stat span {
-      color: rgba(255, 255, 255, .6);
-    }
-
-    /* Bottom gradient fade on all visuals */
-    .card-visual::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: linear-gradient(to top, rgba(15, 14, 12, .6), transparent);
-      pointer-events: none;
-      z-index: 4;
-    }
-
-    /* ─────────────────────────
-       ICON BADGE (top-left)
+       ICON BADGE (in card body)
     ───────────────────────── */
     .card-icon-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      z-index: 5;
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
-      background: rgba(15, 14, 12, .65);
-      border: 1px solid rgba(240, 79, 0, .28);
+      background: rgba(240, 79, 0, .08);
+      border: 1px solid rgba(240, 79, 0, .18);
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+      margin-bottom: 14px;
       transition: background .28s, border-color .28s, transform .35s cubic-bezier(.22, 1, .36, 1);
     }
 
@@ -860,46 +411,6 @@
 
     .card:hover .card-icon-badge svg {
       color: #fff;
-    }
-
-    /* ─────────────────────────
-       STATUS PILL (top-right)
-    ───────────────────────── */
-    .card-status {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-family: 'Mona Sans', monospace;
-      font-size: 8px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .4);
-      background: rgba(15, 14, 12, .5);
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 99px;
-      padding: 4px 9px 4px 7px;
-      backdrop-filter: blur(8px);
-      transition: background .25s, border-color .25s, color .25s;
-    }
-
-    .card:hover .card-status {
-      background: rgba(240, 79, 0, .15);
-      border-color: rgba(240, 79, 0, .3);
-      color: rgba(255, 255, 255, .7);
-    }
-
-    .card-status-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--o);
-      opacity: .75;
-      animation: blink 2.5s ease-in-out infinite;
-      flex-shrink: 0;
     }
 
     /* ─────────────────────────
@@ -930,32 +441,6 @@
       opacity: 1;
     }
 
-    /* ── Chip ── */
-    .card-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-family: 'Mona Sans', monospace;
-      font-size: 8px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--o);
-      background: rgba(240, 79, 0, .07);
-      border: 1px solid rgba(240, 79, 0, .16);
-      border-radius: 99px;
-      padding: 3px 10px;
-      margin-bottom: 11px;
-      width: fit-content;
-      transition: background .22s, border-color .22s;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card:hover .card-chip {
-      background: rgba(240, 79, 0, .13);
-      border-color: rgba(240, 79, 0, .3);
-    }
-
     /* ── Title ── */
     .card h3 {
       font-family: 'Mona Sans', sans-serif;
@@ -982,119 +467,6 @@
       flex: 1;
       position: relative;
       z-index: 1;
-    }
-
-    /* ─────────────────────────
-       CARD FOOTER
-    ───────────────────────── */
-    .card-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--b);
-      position: relative;
-      z-index: 1;
-      transition: border-color .25s;
-    }
-
-    .card:hover .card-foot {
-      border-color: rgba(240, 79, 0, .15);
-    }
-
-    /* ── CTA text ── */
-    .card-cta {
-      font-family: 'Mona Sans', monospace;
-      font-size: 9.5px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--ink4);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: color .22s;
-    }
-
-    .card-cta::before {
-      content: '';
-      width: 14px;
-      height: 1.5px;
-      background: currentColor;
-      border-radius: 2px;
-      transition: width .3s cubic-bezier(.22, 1, .36, 1);
-    }
-
-    .card:hover .card-cta {
-      color: var(--o);
-    }
-
-    .card:hover .card-cta::before {
-      width: 26px;
-    }
-
-    /* ── Arrow button ── */
-    .card-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      border: 1.5px solid var(--b);
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: opacity .25s, transform .32s cubic-bezier(.22, 1, .36, 1),
-        background .22s, border-color .22s;
-    }
-
-    .card-btn svg {
-      width: 11px;
-      height: 11px;
-      color: var(--o);
-    }
-
-    .card:hover .card-btn {
-      opacity: 1;
-      transform: translateX(0);
-      background: var(--o);
-      border-color: var(--o);
-    }
-
-    .card:hover .card-btn svg {
-      color: #fff;
-    }
-
-    .card:focus-visible {
-      outline: 2px solid var(--o);
-      outline-offset: 4px;
-    }
-
-    /* ─────────────────────────
-       HOVER NUMBER OVERLAY
-       Large faint index number 
-       appears on hover
-    ───────────────────────── */
-    .card-num {
-      position: absolute;
-      bottom: -10px;
-      right: 12px;
-      font-family: 'Mona Sans', sans-serif;
-      font-size: 100px;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(240, 79, 0, .06);
-      pointer-events: none;
-      z-index: 0;
-      transition: -webkit-text-stroke-color .4s, transform .5s cubic-bezier(.22, 1, .36, 1);
-      transform: translateY(8px);
-      user-select: none;
-    }
-
-    .card:hover .card-num {
-      -webkit-text-stroke-color: rgba(240, 79, 0, .12);
-      transform: translateY(0);
     }
 
     /* ─────────────────────────
@@ -1375,132 +747,56 @@
 
           <!-- ── Card 1: Text Case ── -->
           <a href="textcase.html" class="card card--wide" data-title="text transform" tabindex="0">
-            <div class="card-visual">
-              <!-- concentric rings -->
-              <div class="shape shape-circles">
-                <div class="ring ring-4"></div>
-                <div class="ring ring-3"></div>
-                <div class="ring ring-2"></div>
-                <div class="ring ring-1"></div>
-                <div class="shape-core"></div>
-                <div class="orbit"></div>
-              </div>
+            <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 7V4h16v3M9 20h6M12 4v16" />
                 </svg>
               </div>
-              <div class="card-status">
-                <span class="card-status-dot"></span>
-                Ready
-              </div>
-            </div>
-            <div class="card-body">
-              <span class="card-num">01</span>
-              <span class="card-chip">Text Utility</span>
               <h3>Text Case</h3>
               <p>Convert case, format strings and manipulate text in seconds.</p>
-              <div class="card-foot">
-                <span class="card-cta">Open tool</span>
-                <span class="card-btn">
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
             </div>
           </a>
 
           <!-- ── Card 2: Color Shades ── -->
           <a href="color-shades.html" class="card card--half" data-title="color shades" tabindex="0">
-            <div class="card-visual">
-              <div class="shape shape-dots"></div>
-              <!-- floating color swatches -->
-              <div class="dot-swatches">
-                <div class="dot-swatch"></div>
-                <div class="dot-swatch"></div>
-                <div class="dot-swatch"></div>
-                <div class="dot-swatch"></div>
-                <div class="dot-swatch"></div>
-              </div>
+            <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                 </svg>
               </div>
-              <div class="card-status">
-                <span class="card-status-dot"></span>
-                Ready
-              </div>
-            </div>
-            <div class="card-body">
-              <span class="card-num">02</span>
-              <span class="card-chip">Color</span>
               <h3>Color Shades</h3>
               <p>Generate beautiful tint & shade palettes from any base color.</p>
-              <div class="card-foot">
-                <span class="card-cta">Open tool</span>
-                <span class="card-btn">
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
             </div>
           </a>
 
           <!-- ── Card 3: Grid Calculator ── -->
           <a href="grid-calculator.html" class="card card--half" data-title="grid calculator" tabindex="0">
-            <div class="card-visual">
-              <div class="shape shape-grid-thumb">
-
-                <!-- top ruler -->
-                <div class="gt-ruler-bar">
-                  <div class="gt-ruler-line"></div>
-                </div>
-
-                <!-- column tracks -->
-                <div class="gt-tracks">
-                  <div class="gt-col"><span class="gt-gutter-label">col</span></div>
-                  <div class="gt-col"><span class="gt-gutter-label">col</span></div>
-                  <div class="gt-col"><span class="gt-gutter-label">col</span></div>
-                  <div class="gt-col"><span class="gt-gutter-label">col</span></div>
-                  <div class="gt-col"><span class="gt-gutter-label">col</span></div>
-                </div>
-
-                <!-- bottom stat pills -->
-                <div class="gt-stats">
-                  <span class="gt-stat">cols <span>5</span></span>
-                  <span class="gt-stat">gutter <span>24px</span></span>
-                  <span class="gt-stat">margin <span>40px</span></span>
-                </div>
-
-              </div>
+            <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
                 </svg>
               </div>
-              <div class="card-status">
-                <span class="card-status-dot"></span>
-                Ready
-              </div>
-            </div>
-            <div class="card-body">
-              <span class="card-num">03</span>
-              <span class="card-chip">Layout</span>
               <h3>Grid Calculator</h3>
               <p>Design pixel-perfect grids with columns, gutters & margins.</p>
-              <div class="card-foot">
-                <span class="card-cta">Open tool</span>
-                <span class="card-btn">
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
+            </div>
+          </a>
+
+          <!-- ── Card 4: Multi-Skill ── -->
+          <a href="https://docs.google.com/presentation/d/1gAv1qN9ppPdUbCIsx54M_AEXcvTiGCLnSMm6SxrVK9o/edit?slide=id.gcb9a0b074_1_0#slide=id.gcb9a0b074_1_0" class="card card--half" data-title="multi skill multitasking" tabindex="0">
+            <div class="card-body">
+              <div class="card-icon-badge">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 2l9 4.5L12 11 3 6.5 12 2zM3 12l9 4.5 9-4.5M3 17l9 4.5 9-4.5" />
+                </svg>
               </div>
+              <h3>Multi-Skill & Multitasking</h3>
+              <p>Ability to perform multiple tasks using different skills efficiently.</p>
             </div>
           </a>
 
