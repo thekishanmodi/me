@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -325,10 +324,10 @@
     #grid-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 20px;
       width: 100%;
       align-items: flex-start;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     #no-results {
@@ -353,8 +352,8 @@
         inset 0 1px 0 rgba(255, 255, 255, .95),
         0 2px 6px rgba(0, 0, 0, .05),
         0 1px 2px rgba(0, 0, 0, .04);
-      width: 300px;
-      flex: 0 0 300px;
+      width: 370px;
+      flex: 0 0 370px;
     }
 
     .card.card--wide {
@@ -444,7 +443,7 @@
     /* ── Title ── */
     .card h3 {
       font-family: 'Mona Sans', sans-serif;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 800;
       color: var(--ink);
       letter-spacing: -.03em;
@@ -461,7 +460,7 @@
 
     /* ── Description ── */
     .card p {
-      font-size: 11.5px;
+      font-size: 14px;
       color: var(--ink3);
       line-height: 1.72;
       flex: 1;
@@ -701,13 +700,15 @@
     <aside class="sidebar">
       <div class="sidebar-inner">
 
-        <img src="assets/images/konfig-mascot.png" alt="" style="max-width: 120px;margin-bottom: 20px;">
+        <a href="index.html" style="text-decoration: none;">
+          <img src="assets/images/konfig-mascot.png" alt="" style="max-width: 120px;margin-bottom: 20px;">
 
-        <!-- Title -->
-        <div class="s-title">
-          KONFIG'S
-          <span class="outline">BOX</span>
-        </div>
+          <!-- Title -->
+          <div class="s-title">
+            KONFIG'S
+            <span class="outline">BOX</span>
+          </div>
+        </a>
 
         <!-- Rule + desc -->
         <div class="s-rule"></div>
@@ -745,7 +746,6 @@
             <p>Try a different search term.</p>
           </div>
 
-          <!-- ── Card 1: Text Case ── -->
           <a href="textcase.html" class="card card--wide" data-title="text transform" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
@@ -758,7 +758,6 @@
             </div>
           </a>
 
-          <!-- ── Card 2: Color Shades ── -->
           <a href="color-shades.html" class="card card--half" data-title="color shades" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
@@ -772,7 +771,6 @@
             </div>
           </a>
 
-          <!-- ── Card 3: Grid Calculator ── -->
           <a href="grid-calculator.html" class="card card--half" data-title="grid calculator" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
@@ -786,8 +784,8 @@
             </div>
           </a>
 
-          <!-- ── Card 4: Multi-Skill ── -->
-          <a href="https://docs.google.com/presentation/d/1gAv1qN9ppPdUbCIsx54M_AEXcvTiGCLnSMm6SxrVK9o/edit?slide=id.gcb9a0b074_1_0#slide=id.gcb9a0b074_1_0" class="card card--half" data-title="multi skill multitasking" tabindex="0">
+          <a href="https://docs.google.com/presentation/d/1gAv1qN9ppPdUbCIsx54M_AEXcvTiGCLnSMm6SxrVK9o/edit?slide=id.gcb9a0b074_1_0#slide=id.gcb9a0b074_1_0"
+            class="card card--half" data-title="multi skill multitasking" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -797,6 +795,20 @@
               </div>
               <h3>Multi-Skill & Multitasking</h3>
               <p>Ability to perform multiple tasks using different skills efficiently.</p>
+            </div>
+          </a>
+
+          <a href="https://www.figma.com/deck/2kiGrPmXyg4PTm2EfTNBtf/UI_UX-CORE?node-id=1-1805&viewport=-148%2C-157%2C0.72&t=B2d3Cj7pEYnJv6w2-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+            class="card card--half" data-title="multi skill multitasking" tabindex="0">
+            <div class="card-body">
+              <div class="card-icon-badge">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.862 4.487a2.25 2.25 0 1 1 3.182 3.182L7.5 20.213l-4 1 1-4 12.362-12.726z" />
+                </svg>
+              </div>
+              <h3>Core UI/UX</h3>
+              <p>Improving usability through structured UI systems and UX thinking.</p>
             </div>
           </a>
 
