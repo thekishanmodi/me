@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Projects | #thekishanmodi</title>
+  <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
+  <style>
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("assets/fonts/MonaSans-VariableFont_wdth.ttf") format("truetype");
+      font-weight: 200 900;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth.ttf") format("truetype");
+      font-weight: 200 900;
+      font-style: italic;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --primary-color: #fd6204;
+      --secondary-color: #ff6700;
+      --accent-color: #008000;
+      --bg: #faf9f7;
+      --surface: #f2f0ec;
+      --card: #ffffff;
+      --card-hover: #fff7f2;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(253, 98, 4, 0.35);
+      --primary-dim: rgba(253, 98, 4, 0.08);
+      --accent-dim: rgba(0, 128, 0, 0.09);
+      --text-primary: #1a1714;
+      --text-secondary: rgba(26, 23, 20, 0.58);
+      --text-muted: rgba(26, 23, 20, 0.6);
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Mona Sans', sans-serif;
+      scroll-behavior: smooth
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(253, 98, 4, 0.13) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .55
+    }
+
+    .glow {
+      position: fixed;
+      top: -180px;
+      right: -120px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(253, 98, 4, 0.08) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0
+    }
+
+    .glow2 {
+      position: fixed;
+      bottom: -200px;
+      left: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(0, 128, 0, 0.06) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      min-height: 100vh
+    }
+
+    .main {
+      padding: 52px 44px 80px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border)
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap
+    }
+
+    .page-title {
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      color: var(--text-primary)
+    }
+
+    .page-title span {
+      color: var(--primary-color)
+    }
+
+    .search-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      padding-top: 4px
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .search-wrap {
+      position: relative
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 13px;
+      height: 13px;
+      color: var(--text-muted);
+      pointer-events: none
+    }
+
+    .search-input {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px 10px 36px;
+      font-size: 12.5px;
+      font-family: monospace;
+      color: var(--text-primary);
+      outline: none;
+      width: 200px;
+      transition: border-color .2s, width .3s, box-shadow .2s
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted)
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-color);
+      width: 240px;
+      box-shadow: 0 0 0 3px rgba(253, 98, 4, 0.1)
+    }
+
+    /* filter select */
+    .filter-wrap {
+      position: relative
+    }
+
+    .filter-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 34px 10px 14px;
+      font-size: 12.5px;
+      font-family: monospace;
+      color: var(--text-primary);
+      outline: none;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+      min-width: 140px
+    }
+
+    .filter-select:focus,
+    .filter-select:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(253, 98, 4, 0.1)
+    }
+
+    .filter-wrap::after {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--text-muted);
+      pointer-events: none;
+      transition: border-top-color .2s
+    }
+
+    .filter-wrap:hover::after {
+      border-top-color: var(--primary-color)
+    }
+
+    /* badge */
+    .filter-badge {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      background: rgba(253, 98, 4, 0.1);
+      border: 1px solid rgba(253, 98, 4, 0.25);
+      border-radius: 20px;
+      padding: 4px 10px 4px 8px;
+      font-size: 11px;
+      font-family: monospace;
+      color: var(--primary-color);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .filter-badge:hover {
+      background: rgba(253, 98, 4, 0.18)
+    }
+
+    .filter-badge.visible {
+      display: flex
+    }
+
+    .filter-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      flex-shrink: 0
+    }
+
+    .filter-badge-x {
+      margin-left: 3px;
+      font-size: 12px;
+      line-height: 1;
+      opacity: .7
+    }
+
+    /* grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 13px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .22s, box-shadow .22s, transform .2s;
+      animation: fadeUp .4s ease both;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05)
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(253, 98, 4, 0.1)
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px
+    }
+
+    .favicon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden
+    }
+
+    .favicon-wrap img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display: block
+    }
+
+    .favicon-fallback {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary-color);
+      line-height: 1
+    }
+
+    .card-arrow {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: background .2s, color .2s, border-color .2s
+    }
+
+    .card:hover .card-arrow {
+      background: var(--primary-color);
+      color: #fff;
+      border-color: var(--primary-color)
+    }
+
+    .card-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      letter-spacing: -.01em
+    }
+
+    .card-cat {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary-dim);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-family: monospace;
+      font-weight: 600;
+      color: var(--primary-color);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      width: fit-content
+    }
+
+    .card-url {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: auto
+    }
+
+    mark {
+      background: rgba(253, 98, 4, 0.15);
+      color: var(--secondary-color);
+      border-radius: 3px;
+      padding: 0 2px;
+      font-style: normal
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -400px 0
+      }
+
+      100% {
+        background-position: 400px 0
+      }
+    }
+
+    .skel {
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--surface) 25%, #e8e4de 50%, var(--surface) 75%);
+      background-size: 800px 100%;
+      animation: shimmer 1.4s infinite linear
+    }
+
+    .skel-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      flex-shrink: 0
+    }
+
+    .skel-title {
+      width: 68%;
+      height: 14px
+    }
+
+    .skel-url {
+      width: 46%;
+      height: 10px;
+      margin-top: auto
+    }
+
+    .empty {
+      grid-column: 1/-1;
+      padding: 70px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 2.2
+    }
+
+    .empty strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-secondary);
+      margin-bottom: 6px
+    }
+
+    /* sidebar */
+    .sidebar {
+      padding: 52px 36px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--surface)
+    }
+
+    .avatar-ring {
+      width: 200px;
+      margin-bottom: 20px;
+      flex-shrink: 0
+    }
+
+    .avatar-inner {
+      display: none
+    }
+
+    .designer-name {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 4px;
+      color: var(--text-primary)
+    }
+
+    .designer-role {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--primary-color);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 20px
+    }
+
+    .designer-bio {
+      font-size: 20px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px
+    }
+
+    .designer-url {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: monospace;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--primary-color);
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(253, 98, 4, 0.3);
+      padding-bottom: 2px;
+      transition: border-color .2s, gap .2s
+    }
+
+    .designer-url:hover {
+      border-color: var(--primary-color);
+      gap: 12px
+    }
+
+    .designer-url-arrow {
+      font-size: 20px
+    }
+
+    @media(max-width:900px) {
+      .page {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-top: 1px solid var(--border);
+        padding: 36px 24px
+      }
+
+      .main {
+        border-right: none;
+        padding: 36px 24px 60px
+      }
+    }
+
+    @media(max-width:640px) {
+      .controls-row {
+        flex-direction: column;
+        align-items: stretch
+      }
+
+      .search-input {
+        width: 100%
+      }
+
+      .filter-select {
+        width: 100%
+      }
+    }
+
+    @media(max-width:540px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+  <div class="page">
+    <main class="main">
+      <div class="top-bar">
+        <div class="title-block">
+          <div class="page-title">Live <span><span id="totalProject"></span> Projects.</span></div>
+        </div>
+        <div class="search-col">
+          <div class="controls-row">
+            <div class="search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input class="search-input" id="searchInput" type="text" placeholder="press / to search…"
+                autocomplete="off" spellcheck="false" oninput="onSearch()">
+            </div>
+            <div class="filter-wrap">
+              <select class="filter-select" id="filterSelect" onchange="onFilter()">
+                <option value="">All</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-badge" id="filterBadge" onclick="clearFilter()">
+            <span class="filter-badge-dot"></span>
+            <span id="filterBadgeLabel"></span>
+            <span class="filter-badge-x">✕</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </main>
+    <aside class="sidebar">
+      <div class="avatar-ring">
+        <div class="avatar-inner" id="avatarEl"></div>
+        <img src="assets/images/konfig-mascot.png" alt="" style="width:100%;">
+      </div>
+      <div class="designer-name" id="sName"></div>
+      <div class="designer-role" id="sRole"></div>
+      <p class="designer-bio" id="sBio"></p>
+      <a class="designer-url" id="sUrl" href="/index.html" target="_blank" rel="noopener">
+        <span id="sUrlLabel">#thekishanmodi</span><span class="designer-url-arrow">↗</span>
+      </a>
+    </aside>
+  </div>
+  <script>
+    const DESIGNER = {
+      initials: 'AK', name: 'Kishan Modi', role: 'UI/UX Designer & Developer',
+      bio: 'UI/UX & Graphics Designer passionate about creating visually stunning, user-friendly designs for apps, websites, branding, and marketing. Expert in frontend development, building seamless user interfaces that elevate the digital experience. Lets collaborate +91 99096 48096.',
+      avatar: '', url: '#thekidshanmodi',
+    };
+
+    const PROJECTS_DATA = [
+      { url: 'https://coinremitter.com/', category: 'Website' },
+      { url: 'https://play.google.com/store/apps/details?id=com.bitrix.preschool.kids.game&hl=en_IN', category: 'Game' },
+      { url: 'https://play.google.com/store/apps/details?id=com.bitrix.brain.game&hl=en_IN', category: 'Game' },
+      { url: 'https://diamondsutra.in/', category: 'Website' },
+      { url: 'https://smartlink.so/', category: 'Website' },
+      { url: 'https://pumpd.ai/', category: 'Website' },
+      { url: 'https://www.arteel.com/', category: 'Website' },
+      { url: 'https://www.pagarguru.com/', category: 'Website' },
+      { url: 'https://corp-angels.com/', category: 'Website' },
+      { url: 'https://tensorgo.com/', category: 'Website' },
+      { url: 'https://theme.bitrixinfotech.com/', category: 'Website' },
+      { url: 'https://aportglobal.com/', category: 'Website' },
+      { url: 'https://aportglobal.us/', category: 'Website' },
+      { url: 'https://www.g-crankz.com/', category: 'Website' },
+      { url: 'https://miyax.com/', category: 'Website' },
+      { url: 'https://thermwinsystems.com/', category: 'Website' },
+      { url: 'https://www.softenwebmedia.com/', category: 'Website' },
+      { url: 'https://spendwelltechsystem.com/', category: 'Website' },
+      { url: 'https://nexoratechai.com/', category: 'Website' },
+      { url: 'https://texfabindia.in/', category: 'Website' },
+      { url: 'https://prajaktchemical.com/', category: 'Website' },
+      { url: 'https://www.kosmiclabs.com/', category: 'Website' },
+    ];
+
+    const projects = PROJECTS_DATA.map((p, i) => ({ id: i, url: p.url, category: p.category || '', title: null, favicon: null, loading: true }));
+    let searchQ = '', activeFilter = '';
+
+    function buildFilterSelect() {
+      const cats = [...new Set(projects.map(p => p.category).filter(Boolean))].sort();
+      const sel = document.getElementById('filterSelect');
+      cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o); });
+    }
+
+    function onFilter() {
+      activeFilter = document.getElementById('filterSelect').value;
+      const badge = document.getElementById('filterBadge');
+      document.getElementById('filterBadgeLabel').textContent = activeFilter;
+      activeFilter ? badge.classList.add('visible') : badge.classList.remove('visible');
+      renderGrid();
+    }
+
+    function clearFilter() {
+      document.getElementById('filterSelect').value = '';
+      activeFilter = '';
+      document.getElementById('filterBadge').classList.remove('visible');
+      renderGrid();
+    }
+
+    const PROXIES = [
+      u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+      u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+      u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+      u => `https://thingproxy.freeboard.io/fetch/${u}`,
+    ];
+
+    async function fetchHtml(targetUrl) {
+      for (const mk of PROXIES) {
+        try {
+          const r = await fetch(mk(targetUrl), { signal: AbortSignal.timeout(8000) });
+          if (!r.ok) continue;
+          const ct = r.headers.get('content-type') || '';
+          if (ct.includes('application/json')) { const j = await r.json(); const h = j.contents || j.body || ''; if (h.length > 100) return h; }
+          else { const h = await r.text(); if (h.length > 100) return h; }
+        } catch { }
+      }
+      return null;
+    }
+
+    function extractTitle(html) {
+      if (!html) return null;
+      const og1 = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{1,200})["']/i);
+      const og2 = html.match(/<meta[^>]+content=["']([^"']{1,200})["'][^>]+property=["']og:title["']/i);
+      if (og1) return og1[1].trim(); if (og2) return og2[1].trim();
+      const tw = html.match(/<meta[^>]+name=["']twitter:title["'][^>]+content=["']([^"']{1,200})["']/i);
+      if (tw) return tw[1].trim();
+      const tt = html.match(/<title[^>]*>([\s\S]{1,300}?)<\/title>/i);
+      if (tt) { const r = tt[1].replace(/<[^>]+>/g, '').trim(); return r.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n)).replace(/\s+/g, ' ').trim(); }
+      return null;
+    }
+
+    function extractFavicon(html, baseUrl) {
+      if (!html) return null;
+      const pats = [
+        /<link[^>]+rel=["'][^"']*shortcut icon[^"']*["'][^>]+href=["']([^"']+)["']/gi,
+        /<link[^>]+href=["']([^"']+)["'][^>]+rel=["'][^"']*shortcut icon[^"']*["']/gi,
+        /<link[^>]+rel=["'][^"']*apple-touch-icon[^"']*["'][^>]+href=["']([^"']+)["']/gi,
+        /<link[^>]+href=["']([^"']+)["'][^>]+rel=["'][^"']*apple-touch-icon[^"']*["']/gi,
+        /<link[^>]+rel=["'][^"']*icon[^"']*["'][^>]+href=["']([^"']+)["']/gi,
+        /<link[^>]+href=["']([^"']+)["'][^>]+rel=["'][^"']*icon[^"']*["']/gi,
+      ];
+      for (const re of pats) { re.lastIndex = 0; const m = re.exec(html); if (m && m[1]) { try { const h = m[1].trim(); if (h.startsWith('data:')) continue; return h.startsWith('http') ? h : new URL(h, baseUrl).href; } catch { } } }
+      return null;
+    }
+
+    async function fetchMeta(proj) {
+      const domain = new URL(proj.url).hostname;
+      proj.favicon = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+      const html = await fetchHtml(proj.url);
+      proj.title = extractTitle(html) || displayUrl(proj.url);
+      const fav = extractFavicon(html, proj.url);
+      if (fav) proj.favicon = fav;
+      proj.loading = false;
+    }
+
+    async function loadAllMeta() {
+      await Promise.all(projects.map(p => fetchMeta(p).then(() => updateCard(p))));
+    }
+
+    function updateCard(p) {
+      const el = document.querySelector(`[data-id="${p.id}"]`);
+      if (!el) return;
+      const fb = escHtml((p.title || '?')[0].toUpperCase());
+      const a = document.createElement('a');
+      a.className = 'card'; a.dataset.id = p.id; a.href = p.url; a.target = '_blank'; a.rel = 'noopener';
+      a.style.animationDelay = el.style.animationDelay;
+      a.innerHTML = `
+        <div class="card-top">
+          <div class="favicon-wrap"><img src="${p.favicon}" alt="" onerror="this.outerHTML='<span class=favicon-fallback>${escHtml(fb)}</span>'"></div>
+          <div class="card-arrow">↗</div>
+        </div>
+        <div class="card-title">${hl(p.title || displayUrl(p.url), searchQ)}</div>
+        ${p.category ? `<div class="card-cat">${escHtml(p.category)}</div>` : ''}
+        <div class="card-url">${hl(displayUrl(p.url), searchQ)}</div>`;
+      el.replaceWith(a);
+    }
+
+    function buildSidebar() {
+      const d = DESIGNER;
+      document.getElementById('sName').textContent = d.name;
+      document.getElementById('sRole').textContent = d.role;
+      document.getElementById('sBio').textContent = d.bio;
+      document.getElementById('avatarEl').innerHTML = d.avatar ? `<img src="${d.avatar}" alt="${d.name}">` : d.initials;
+      const labelEl = document.getElementById('sUrlLabel');
+      // try { labelEl.textContent = new URL(d.url).hostname.replace(/^www\./, ''); } catch { labelEl.textContent = d.url; }
+      // document.getElementById('sUrl').href = d.url;
+    }
+
+    function displayUrl(url) { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } }
+    function escHtml(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function hl(text, q) {
+      if (!q) return escHtml(text);
+      const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return escHtml(text).replace(re, '<mark>$1</mark>');
+    }
+
+    function getVisible() {
+      let list = projects;
+      if (activeFilter) list = list.filter(p => p.category === activeFilter);
+      if (searchQ) { const q = searchQ.toLowerCase(); list = list.filter(p => (p.title || '').toLowerCase().includes(q) || displayUrl(p.url).includes(q) || (p.category || '').toLowerCase().includes(q)); }
+      return list;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('grid');
+      const list = getVisible();
+      document.getElementById('totalProject').textContent = `${projects.length}`;
+      if (!list.length) { grid.innerHTML = `<div class="empty"><strong>No results</strong>Try a different search or filter.</div>`; return; }
+      grid.innerHTML = list.map((p, i) => {
+        if (p.loading) return `<div class="card" data-id="${p.id}" style="animation-delay:${i * .04}s;pointer-events:none;"><div class="card-top"><div class="favicon-wrap"><div class="skel skel-icon"></div></div><div class="card-arrow" style="opacity:.3">↗</div></div><div class="card-title skel skel-title">&nbsp;</div><div class="card-url skel skel-url" style="border-top:none;padding-top:0">&nbsp;</div></div>`;
+        const fb = escHtml((p.title || '?')[0].toUpperCase());
+        return `<a class="card" data-id="${p.id}" href="${p.url}" target="_blank" rel="noopener" style="animation-delay:${i * .04}s"><div class="card-top"><div class="favicon-wrap"><img src="${p.favicon}" alt="" onerror="this.outerHTML='<span class=favicon-fallback>${fb}</span>'"></div><div class="card-arrow">↗</div></div><div class="card-title">${hl(p.title || displayUrl(p.url), searchQ)}</div>${p.category ? `<div class="card-cat">${escHtml(p.category)}</div>` : ''}<div class="card-url">${hl(displayUrl(p.url), searchQ)}</div></a>`;
+      }).join('');
+    }
+
+    function onSearch() { searchQ = document.getElementById('searchInput').value.trim(); renderGrid(); }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+      if (e.key === 'Escape') document.getElementById('searchInput').blur();
+    });
+
+    buildSidebar();
+    buildFilterSelect();
+    renderGrid();
+    loadAllMeta();
+  </script>
+</body>
+
+</html>
