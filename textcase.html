@@ -2,616 +2,1219 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text Case | #thekishanmodi</title>
-  <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
-  <style>
-    @font-face {
-      font-family: "Mona Sans";
-      src: url("assets/fonts/MonaSans-VariableFont_wdth.ttf") format("truetype");
-      font-weight: 200 900;
-      font-style: normal;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Case | #thekishanmodi</title>
+    <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
+    <style>
+        @font-face {
+            font-family: "Mona Sans";
+            src: url("assets/fonts/MonaSans-VariableFont_wdth.ttf") format("truetype");
+            font-weight: 200 900;
+            font-style: normal;
+        }
 
-    @font-face {
-      font-family: "Mona Sans";
-      src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth.ttf") format("truetype");
-      font-weight: 200 900;
-      font-style: italic;
-    }
+        @font-face {
+            font-family: "Mona Sans";
+            src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth.ttf") format("truetype");
+            font-weight: 200 900;
+            font-style: italic;
+        }
 
-    :root {
-      --orange: #fd6204;
-      --orange-dark: #d94e00;
-      --orange-light: #fff1ea;
-      --black: #111;
-      --gray-100: #f5f4f2;
-      --gray-200: #e8e6e2;
-      --gray-400: #a09d99;
-      --gray-600: #6b6763;
-      --white: #fdfcfa;
-      --radius: 10px;
-      --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
+        :root {
+            --orange: #fd6204;
+            --orange-dark: #d94e00;
+            --orange-light: #fff1ea;
+            --black: #111;
+            --gray-100: #f5f4f2;
+            --gray-200: #e8e6e2;
+            --gray-400: #a09d99;
+            --gray-600: #6b6763;
+            --white: #fdfcfa;
+            --radius: 10px;
+            --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    html,
-    body {
-      height: 100%;
-      font-family: 'Mona Sans', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      overflow: hidden;
-    }
+        html,
+        body {
+            height: 100%;
+            font-family: 'Mona Sans', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow: hidden;
+        }
 
-    /* ── HEADER ───────────────────────────────────────────────── */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0 1.5rem;
-      height: 56px;
-      background: var(--black);
-      border-bottom: 2px solid var(--orange);
-      flex-shrink: 0;
-    }
+        /* ── HEADER ───────────────────────────────────────────────── */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0 1.5rem;
+            height: 56px;
+            background: var(--black);
+            border-bottom: 2px solid var(--orange);
+            flex-shrink: 0;
+        }
 
-    .logo {
-      display: flex;
-      align-items: baseline;
-      gap: 2px;
-      text-decoration: none;
-    }
+        .logo {
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+            text-decoration: none;
+        }
 
-    .logo-text {
-      font-family: 'Mona Sans', serif;
-      font-size: 1.4rem;
-      color: var(--white);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 0.15rem;
-    }
+        .logo-text {
+            font-family: 'Mona Sans', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
 
-    .logo-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--orange);
-      margin-left: 1px;
-      margin-bottom: 3px;
-      align-self: flex-end;
-    }
+        .logo-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--orange);
+            margin-left: 1px;
+            margin-bottom: 3px;
+            align-self: flex-end;
+        }
 
-    .stats {
-      display: flex;
-      gap: 0.25rem;
-      align-items: center;
-    }
+        .stats {
+            display: flex;
+            gap: 0.25rem;
+            align-items: center;
+        }
 
-    .stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0.3rem 0.9rem;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      min-width: 64px;
-      cursor: default;
-      transition: background var(--transition);
-    }
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.3rem 0.9rem;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            min-width: 64px;
+            cursor: default;
+            transition: background var(--transition);
+        }
 
-    .stat:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
+        .stat:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-    .stat-value {
-      font-family: 'Mona Sans', monospace;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--orange);
-      line-height: 1.2;
-    }
+        .stat-value {
+            font-family: 'Mona Sans', monospace;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--orange);
+            line-height: 1.2;
+        }
 
-    .stat-label {
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      line-height: 1.2;
-    }
+        .stat-label {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            line-height: 1.2;
+        }
 
-    /* ── MAIN LAYOUT ──────────────────────────────────────────── */
-    .layout {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - 56px);
-    }
+        /* ── MAIN LAYOUT ──────────────────────────────────────────── */
+        .layout {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 56px);
+        }
 
-    /* ── TEXTAREA ─────────────────────────────────────────────── */
-    .editor-wrap {
-      flex: 1;
-      position: relative;
-      min-height: 0;
-    }
+        /* ── TEXTAREA ─────────────────────────────────────────────── */
+        .editor-wrap {
+            flex: 1;
+            position: relative;
+            min-height: 0;
+        }
 
-    textarea {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      font-family: 'Mona Sans', sans-serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--black);
-      background: var(--white);
-      border: none;
-      outline: none;
-      resize: none;
-      padding: clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 8vw, 6rem);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      caret-color: var(--orange);
-    }
+        textarea {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Mona Sans', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--white);
+            border: none;
+            outline: none;
+            resize: none;
+            padding: clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 8vw, 6rem);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            caret-color: var(--orange);
+        }
 
-    textarea::placeholder {
-      color: var(--gray-200);
-      font-style: italic;
-      font-family: 'DM Serif Display', serif;
-    }
+        textarea::placeholder {
+            color: var(--gray-200);
+            font-style: italic;
+            font-family: 'DM Serif Display', serif;
+        }
 
-    textarea::-webkit-scrollbar {
-      width: 4px;
-    }
+        textarea::-webkit-scrollbar {
+            width: 4px;
+        }
 
-    textarea::-webkit-scrollbar-track {
-      background: transparent;
-    }
+        textarea::-webkit-scrollbar-track {
+            background: transparent;
+        }
 
-    textarea::-webkit-scrollbar-thumb {
-      background: var(--gray-200);
-      border-radius: 4px;
-    }
+        textarea::-webkit-scrollbar-thumb {
+            background: var(--gray-200);
+            border-radius: 4px;
+        }
 
-    textarea::-webkit-scrollbar-thumb:hover {
-      background: var(--gray-400);
-    }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-400);
+        }
 
-    /* ── COPY BUTTON ──────────────────────────────────────────── */
-    .copy-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Mona Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      z-index: 10;
-    }
+        /* ── COPY BUTTON ──────────────────────────────────────────── */
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Mona Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
 
-    .copy-btn:hover {
-      background: var(--orange);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(253, 98, 4, 0.35);
-    }
+        .copy-btn:hover {
+            background: var(--orange);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(253, 98, 4, 0.35);
+        }
 
-    .copy-btn:active {
-      transform: translateY(0);
-    }
+        .copy-btn:active {
+            transform: translateY(0);
+        }
 
-    .copy-btn.copied {
-      background: #22a05c;
-    }
+        .copy-btn.copied {
+            background: #22a05c;
+        }
 
-    .copy-icon {
-      width: 13px;
-      height: 13px;
-      flex-shrink: 0;
-    }
+        .copy-icon {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+        }
 
-    /* ── TOOLBAR ──────────────────────────────────────────────── */
-    .toolbar {
-      flex-shrink: 0;
-      background: var(--gray-100);
-      border-top: 1px solid var(--gray-200);
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        /* ── SEARCH & REPLACE PANEL ───────────────────────────────── */
+        .sr-panel {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            width: min(520px, calc(100% - 2rem));
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13), 0 2px 8px rgba(0, 0, 0, 0.07);
+            z-index: 100;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease;
+        }
 
-    .toolbar-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        .sr-panel.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.5rem 1rem;
-      background: var(--white);
-      color: var(--black);
-      font-family: 'Mona Sans', monospace;
-      font-size: 0.72rem;
-      font-weight: 500;
-      border: 1.5px solid var(--gray-200);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all var(--transition);
-      white-space: nowrap;
-      letter-spacing: 0.01em;
-    }
+        .sr-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 1rem 0.65rem 1.1rem;
+            background: var(--black);
+            color: var(--white);
+        }
 
-    .btn:hover {
-      background: var(--black);
-      color: var(--white);
-      border-color: var(--black);
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-    }
+        .sr-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .btn:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
+        .sr-title svg {
+            color: var(--orange);
+        }
 
-    .btn.primary {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-    }
+        .sr-match-info {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            font-variant-numeric: tabular-nums;
+            min-width: 80px;
+            text-align: center;
+        }
 
-    .btn.primary:hover {
-      background: var(--orange-dark);
-      border-color: var(--orange-dark);
-    }
+        .sr-match-info.has-matches {
+            color: var(--orange);
+        }
 
-    .btn.ghost {
-      background: transparent;
-      color: var(--gray-600);
-      border-color: var(--gray-200);
-    }
+        .sr-close {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 0.2rem;
+            border-radius: 4px;
+            line-height: 0;
+            transition: color var(--transition);
+            display: flex;
+        }
 
-    .btn.ghost:hover {
-      background: #fee8d8;
-      color: var(--orange-dark);
-      border-color: var(--orange);
-    }
+        .sr-close:hover {
+            color: var(--white);
+        }
 
-    /* Separator */
-    .sep {
-      width: 1px;
-      height: 32px;
-      background: var(--gray-200);
-      align-self: center;
-      margin: 0 0.15rem;
-      border-radius: 1px;
-    }
+        .sr-body {
+            padding: 0.85rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
 
-    /* ── CHAR HIGHLIGHT ANIMATION ─────────────────────────────── */
-    @keyframes statPop {
-      0% {
-        transform: scale(1);
-      }
+        .sr-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-      40% {
-        transform: scale(1.25);
-      }
+        .sr-input-wrap {
+            position: relative;
+            flex: 1;
+        }
 
-      100% {
-        transform: scale(1);
-      }
-    }
+        .sr-input {
+            width: 100%;
+            font-family: 'Mona Sans', monospace;
+            font-size: 0.88rem;
+            font-weight: 400;
+            padding: 0.55rem 0.85rem;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 8px;
+            background: var(--gray-100);
+            color: var(--black);
+            outline: none;
+            transition: border-color var(--transition), background var(--transition);
+        }
 
-    .stat-value.pop {
-      animation: statPop 280ms ease;
-    }
+        .sr-input:focus {
+            border-color: var(--orange);
+            background: var(--white);
+        }
 
-    /* ── WORD COUNT PROGRESS BAR ──────────────────────────────── */
-    .word-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--orange), #ff9f52);
-      transition: width 0.3s ease;
-      border-radius: 0 2px 2px 0;
-      pointer-events: none;
-      opacity: 0.6;
-    }
+        .sr-input::placeholder {
+            color: var(--gray-400);
+            font-style: normal;
+        }
 
-    .badge {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink3);
-      border: 1px solid var(--ink4);
-      border-radius: 4px;
-      padding: 4px 8px;
-      text-decoration: none;
-      margin-left: auto;
-    }
+        .sr-input.no-match {
+            border-color: #e53e3e;
+            background: #fff5f5;
+        }
 
-    /* responsive: hide some labels on small screens */
-    @media (max-width: 480px) {
-      .stat:nth-child(n+3) .stat-label {
-        display: none;
-      }
+        .sr-nav {
+            display: flex;
+            gap: 0.25rem;
+        }
 
-      .stat {
-        min-width: 48px;
-        padding: 0.3rem 0.6rem;
-      }
+        .sr-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--gray-100);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--gray-600);
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
 
-      .sep {
-        display: none;
-      }
-    }
-  </style>
+        .sr-nav-btn:hover:not(:disabled) {
+            background: var(--black);
+            border-color: var(--black);
+            color: var(--white);
+        }
+
+        .sr-nav-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .sr-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 0 0.1rem;
+        }
+
+        .sr-option {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--gray-600);
+            cursor: pointer;
+            user-select: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            border: 1.5px solid transparent;
+            transition: all var(--transition);
+        }
+
+        .sr-option input {
+            accent-color: var(--orange);
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+        }
+
+        .sr-option:hover {
+            background: var(--orange-light);
+            border-color: #ffdcc9;
+            color: var(--orange-dark);
+        }
+
+        .sr-option.active {
+            background: var(--orange-light);
+            border-color: var(--orange);
+            color: var(--orange-dark);
+        }
+
+        .sr-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .sr-btn {
+            flex: 1;
+            padding: 0.5rem 0.85rem;
+            font-family: 'Mona Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 7px;
+            border: 1.5px solid;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .sr-btn.replace-one {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--gray-200);
+        }
+
+        .sr-btn.replace-one:hover:not(:disabled) {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .sr-btn.replace-all {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+
+        .sr-btn.replace-all:hover:not(:disabled) {
+            background: var(--orange-dark);
+            border-color: var(--orange-dark);
+        }
+
+        .sr-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        /* ── TOOLBAR ──────────────────────────────────────────────── */
+        .toolbar {
+            flex-shrink: 0;
+            background: var(--gray-100);
+            border-top: 1px solid var(--gray-200);
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toolbar-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Mona Sans', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+        }
+
+        .btn:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .btn.primary {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+
+        .btn.primary:hover {
+            background: var(--orange-dark);
+            border-color: var(--orange-dark);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--gray-600);
+            border-color: var(--gray-200);
+        }
+
+        .btn.ghost:hover {
+            background: #fee8d8;
+            color: var(--orange-dark);
+            border-color: var(--orange);
+        }
+
+        .btn.sr-toggle {
+            background: transparent;
+            color: var(--gray-600);
+            border-color: var(--gray-200);
+        }
+
+        .btn.sr-toggle.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .btn.sr-toggle:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Separator */
+        .sep {
+            width: 1px;
+            height: 32px;
+            background: var(--gray-200);
+            align-self: center;
+            margin: 0 0.15rem;
+            border-radius: 1px;
+        }
+
+        /* ── CHAR HIGHLIGHT ANIMATION ─────────────────────────────── */
+        @keyframes statPop {
+            0% {
+                transform: scale(1);
+            }
+
+            40% {
+                transform: scale(1.25);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .stat-value.pop {
+            animation: statPop 280ms ease;
+        }
+
+        /* ── WORD COUNT PROGRESS BAR ──────────────────────────────── */
+        .word-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange), #ff9f52);
+            transition: width 0.3s ease;
+            border-radius: 0 2px 2px 0;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .badge {
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink3);
+            border: 1px solid var(--ink4);
+            border-radius: 4px;
+            padding: 4px 8px;
+            text-decoration: none;
+            margin-left: auto;
+        }
+
+        /* ── REPLACE FLASH ANIMATION ──────────────────────────────── */
+        @keyframes flashGreen {
+            0% {
+                background: #d4edda;
+            }
+
+            100% {
+                background: var(--white);
+            }
+        }
+
+        textarea.flash-replace {
+            animation: flashGreen 600ms ease;
+        }
+
+        /* responsive: hide some labels on small screens */
+        @media (max-width: 480px) {
+            .stat:nth-child(n+3) .stat-label {
+                display: none;
+            }
+
+            .stat {
+                min-width: 48px;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .sep {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header>
-    <a href="#" class="logo">
-      <span class="logo-text"><img src="assets/images/favicon.png" alt=""> Text Case</span>
-      <span class="logo-dot"></span>
-    </a>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <span class="logo-text"><img src="assets/images/favicon.png" alt=""> Text Case</span>
+            <span class="logo-dot"></span>
+        </a>
 
-    <div class="stats">
-      <div class="stat" title="Characters">
-        <span class="stat-value" id="charCount">0</span>
-        <span class="stat-label">Chars</span>
-      </div>
-      <div class="stat" title="Words">
-        <span class="stat-value" id="wordCount">0</span>
-        <span class="stat-label">Words</span>
-      </div>
-      <div class="stat" title="Sentences">
-        <span class="stat-value" id="sentenceCount">0</span>
-        <span class="stat-label">Sentences</span>
-      </div>
-      <div class="stat" title="Lines">
-        <span class="stat-value" id="lineCount">1</span>
-        <span class="stat-label">Lines</span>
-      </div>
-      <div class="stat" title="Reading time (minutes)">
-        <span class="stat-value" id="readTime">0m</span>
-        <span class="stat-label">Read</span>
-      </div>
+        <div class="stats">
+            <div class="stat" title="Characters">
+                <span class="stat-value" id="charCount">0</span>
+                <span class="stat-label">Chars</span>
+            </div>
+            <div class="stat" title="Words">
+                <span class="stat-value" id="wordCount">0</span>
+                <span class="stat-label">Words</span>
+            </div>
+            <div class="stat" title="Sentences">
+                <span class="stat-value" id="sentenceCount">0</span>
+                <span class="stat-label">Sentences</span>
+            </div>
+            <div class="stat" title="Lines">
+                <span class="stat-value" id="lineCount">1</span>
+                <span class="stat-label">Lines</span>
+            </div>
+            <div class="stat" title="Reading time (minutes)">
+                <span class="stat-value" id="readTime">0m</span>
+                <span class="stat-label">Read</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <div class="layout">
+        <div class="editor-wrap">
+            <textarea id="textArea" spellcheck="true" placeholder="Start typing, or paste your text here…"></textarea>
+            <div class="word-bar" id="wordBar"></div>
+
+            <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">
+                <svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="5" width="9" height="10" rx="2" />
+                    <path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+                </svg>
+                Copy
+            </button>
+
+            <!-- Search & Replace Panel -->
+            <div class="sr-panel" id="srPanel">
+                <div class="sr-header">
+                    <div class="sr-title">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="6.5" cy="6.5" r="4.5" />
+                            <path d="M14 14l-3-3" />
+                        </svg>
+                        Search &amp; Replace
+                    </div>
+                    <div class="sr-match-info" id="srMatchInfo">No matches</div>
+                    <button class="sr-close" onclick="closeSR()" title="Close (Esc)">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round">
+                            <path d="M3 3l10 10M13 3L3 13" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="sr-body">
+                    <!-- Search row -->
+                    <div class="sr-row">
+                        <div class="sr-input-wrap">
+                            <input class="sr-input" id="srSearch" type="text" placeholder="Find…" autocomplete="off"
+                                spellcheck="false" oninput="onSearchInput()" />
+                        </div>
+                        <div class="sr-nav">
+                            <button class="sr-nav-btn" id="srPrev" onclick="srNavigate(-1)"
+                                title="Previous match (Shift+Enter)">
+                                <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 12V4M4 8l4-4 4 4" />
+                                </svg>
+                            </button>
+                            <button class="sr-nav-btn" id="srNext" onclick="srNavigate(1)" title="Next match (Enter)">
+                                <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 4v8M4 8l4 4 4-4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="sr-options">
+                        <label class="sr-option" id="optCaseLabel">
+                            <input type="checkbox" id="optCase" onchange="onSearchInput()" />
+                            Match case
+                        </label>
+                        <label class="sr-option" id="optWholeLabel">
+                            <input type="checkbox" id="optWhole" onchange="onSearchInput()" />
+                            Whole word
+                        </label>
+                        <label class="sr-option" id="optRegexLabel">
+                            <input type="checkbox" id="optRegex" onchange="onSearchInput()" />
+                            Regex
+                        </label>
+                    </div>
+
+                    <!-- Replace row -->
+                    <div class="sr-row">
+                        <div class="sr-input-wrap">
+                            <input class="sr-input" id="srReplace" type="text" placeholder="Replace with…"
+                                autocomplete="off" spellcheck="false" />
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="sr-actions">
+                        <button class="sr-btn replace-one" id="srReplaceOne" onclick="replaceOne()"
+                            disabled>Replace</button>
+                        <button class="sr-btn replace-all" id="srReplaceAll" onclick="replaceAll()" disabled>Replace
+                            All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <button class="btn" onclick="toUpper()" title="Convert to UPPERCASE">ABC</button>
+                <button class="btn" onclick="toLower()" title="Convert to lowercase">abc</button>
+                <button class="btn" onclick="toCapitalized()" title="Capitalize Every Word">Abc</button>
+                <button class="btn" onclick="toTitle()" title="Title Case (skip small words)">Title</button>
+                <button class="btn" onclick="toSentence()" title="Sentence case">Sent.</button>
+                <button class="btn" onclick="toAlternating()" title="aLtErNaTiNg CaSe">aLt</button>
+                <button class="btn" onclick="toInverse()" title="Inverse case">iNV</button>
+
+                <div class="sep"></div>
+
+                <button class="btn" onclick="trimWhitespace()" title="Trim extra spaces & blank lines">Trim</button>
+                <button class="btn" onclick="removeDuplicateLines()" title="Remove duplicate lines">Dedup</button>
+                <button class="btn" onclick="sortLines()" title="Sort lines A→Z">Sort↑</button>
+                <button class="btn" onclick="reverseLines()" title="Reverse line order">Rev↕</button>
+
+                <div class="sep"></div>
+
+                <button class="btn sr-toggle" id="srToggleBtn" onclick="toggleSR()" title="Search & Replace (Ctrl+H)">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="6.5" cy="6.5" r="4.5" />
+                        <path d="M14 14l-3-3" />
+                    </svg>
+                    Find &amp; Replace
+                </button>
+
+                <div class="sep"></div>
+
+                <button class="btn primary" onclick="addLoremParagraph()" title="Add a Lorem Ipsum paragraph">+
+                    Lorem</button>
+                <button class="btn ghost" onclick="clearText()" title="Clear all text">Clear</button>
+            </div>
+            <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
+        </div>
     </div>
-  </header>
 
-  <!-- Main -->
-  <div class="layout">
-    <div class="editor-wrap">
-      <textarea id="textArea" spellcheck="true" placeholder="Start typing, or paste your text here…"></textarea>
-      <div class="word-bar" id="wordBar"></div>
+    <script>
+        const textArea = document.getElementById('textArea');
+        const charCountEl = document.getElementById('charCount');
+        const wordCountEl = document.getElementById('wordCount');
+        const sentenceCountEl = document.getElementById('sentenceCount');
+        const lineCountEl = document.getElementById('lineCount');
+        const readTimeEl = document.getElementById('readTime');
+        const wordBar = document.getElementById('wordBar');
+        const copyBtn = document.getElementById('copyBtn');
 
-      <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">
-        <svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round">
-          <rect x="5" y="5" width="9" height="10" rx="2" />
-          <path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
-        </svg>
-        Copy
-      </button>
-    </div>
+        const STORAGE_KEY = 'textcase_v2_text';
+        const EXPIRY_KEY = 'textcase_v2_expiry';
 
-    <!-- Toolbar -->
-    <div class="toolbar">
-      <div class="toolbar-inner">
-        <button class="btn" onclick="toUpper()" title="Convert to UPPERCASE">ABC</button>
-        <button class="btn" onclick="toLower()" title="Convert to lowercase">abc</button>
-        <button class="btn" onclick="toCapitalized()" title="Capitalize Every Word">Abc</button>
-        <button class="btn" onclick="toTitle()" title="Title Case (skip small words)">Title</button>
-        <button class="btn" onclick="toSentence()" title="Sentence case">Sent.</button>
-        <button class="btn" onclick="toAlternating()" title="aLtErNaTiNg CaSe">aLt</button>
-        <button class="btn" onclick="toInverse()" title="Inverse case">iNV</button>
+        // ── Storage ────────────────────────────────────────────────
+        function saveToStorage() {
+            localStorage.setItem(STORAGE_KEY, textArea.value);
+            localStorage.setItem(EXPIRY_KEY, Date.now() + 24 * 60 * 60 * 1000);
+        }
 
-        <div class="sep"></div>
+        function loadFromStorage() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            const expiry = localStorage.getItem(EXPIRY_KEY);
+            if (saved !== null && expiry && Date.now() < parseInt(expiry)) {
+                textArea.value = saved;
+                updateStats();
+            } else {
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(EXPIRY_KEY);
+            }
+        }
 
-        <button class="btn" onclick="trimWhitespace()" title="Trim extra spaces & blank lines">Trim</button>
-        <button class="btn" onclick="removeDuplicateLines()" title="Remove duplicate lines">Dedup</button>
-        <button class="btn" onclick="sortLines()" title="Sort lines A→Z">Sort↑</button>
-        <button class="btn" onclick="reverseLines()" title="Reverse line order">Rev↕</button>
+        // ── Stats ──────────────────────────────────────────────────
+        let prevChars = 0;
 
-        <div class="sep"></div>
+        function animatePop(el) {
+            el.classList.remove('pop');
+            void el.offsetWidth;
+            el.classList.add('pop');
+        }
 
-        <button class="btn primary" onclick="addLoremParagraph()" title="Add a Lorem Ipsum paragraph">+ Lorem</button>
-        <button class="btn ghost" onclick="clearText()" title="Clear all text">Clear</button>
-      </div>
-      <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
-    </div>
-  </div>
+        function updateStats() {
+            const text = textArea.value;
+            const chars = text.length;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const fallbackSentences = text.trim() === '' ? 0 : (text.match(/[.!?]/g) || []).length || (text.trim() ? 1 : 0);
+            const lines = text === '' ? 1 : text.split('\n').length;
+            const readMins = Math.max(0, Math.ceil(words / 200));
 
-  <script>
-    const textArea = document.getElementById('textArea');
-    const charCountEl = document.getElementById('charCount');
-    const wordCountEl = document.getElementById('wordCount');
-    const sentenceCountEl = document.getElementById('sentenceCount');
-    const lineCountEl = document.getElementById('lineCount');
-    const readTimeEl = document.getElementById('readTime');
-    const wordBar = document.getElementById('wordBar');
-    const copyBtn = document.getElementById('copyBtn');
+            if (chars !== prevChars) animatePop(charCountEl);
+            prevChars = chars;
 
-    const STORAGE_KEY = 'textcase_v2_text';
-    const EXPIRY_KEY = 'textcase_v2_expiry';
+            charCountEl.textContent = chars.toLocaleString();
+            wordCountEl.textContent = words.toLocaleString();
+            sentenceCountEl.textContent = fallbackSentences;
+            lineCountEl.textContent = lines;
+            readTimeEl.textContent = readMins < 1 ? '<1m' : readMins + 'm';
 
-    // ── Storage ────────────────────────────────────────────────
-    function saveToStorage() {
-      localStorage.setItem(STORAGE_KEY, textArea.value);
-      localStorage.setItem(EXPIRY_KEY, Date.now() + 24 * 60 * 60 * 1000);
-    }
+            const pct = Math.min(words / 500, 1) * 100;
+            wordBar.style.width = pct + '%';
+        }
 
-    function loadFromStorage() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      const expiry = localStorage.getItem(EXPIRY_KEY);
-      if (saved !== null && expiry && Date.now() < parseInt(expiry)) {
-        textArea.value = saved;
-        updateStats();
-      } else {
-        localStorage.removeItem(STORAGE_KEY);
-        localStorage.removeItem(EXPIRY_KEY);
-      }
-    }
+        // ── Case converters ────────────────────────────────────────
+        const TITLE_SMALL = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is', 'it']);
 
-    // ── Stats ──────────────────────────────────────────────────
-    let prevChars = 0;
+        function apply(fn) {
+            textArea.value = fn(textArea.value);
+            updateStats(); saveToStorage(); textArea.focus();
+            if (srOpen) onSearchInput();
+        }
 
-    function animatePop(el) {
-      el.classList.remove('pop');
-      void el.offsetWidth;
-      el.classList.add('pop');
-    }
+        function toUpper() { apply(t => t.toUpperCase()); }
+        function toLower() { apply(t => t.toLowerCase()); }
+        function toCapitalized() { apply(t => t.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())); }
+        function toTitle() {
+            apply(t => t.toLowerCase().replace(/\S+/g, (word, i) => {
+                if (i === 0 || !TITLE_SMALL.has(word)) return word.charAt(0).toUpperCase() + word.slice(1);
+                return word;
+            }));
+        }
+        function toSentence() {
+            apply(t => t.toLowerCase().replace(/(^\s*\S|[.!?]\s+\S)/g, l => l.toUpperCase()));
+        }
+        function toAlternating() {
+            apply(t => t.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join(''));
+        }
+        function toInverse() {
+            apply(t => t.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''));
+        }
+        function trimWhitespace() {
+            apply(t => t.split('\n').map(l => l.trim()).filter((l, i, a) => l || (a[i - 1] !== '')).join('\n').trim());
+        }
+        function removeDuplicateLines() {
+            apply(t => [...new Set(t.split('\n'))].join('\n'));
+        }
+        function sortLines() {
+            apply(t => t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n'));
+        }
+        function reverseLines() {
+            apply(t => t.split('\n').reverse().join('\n'));
+        }
+        function clearText() { apply(() => ''); }
 
-    function updateStats() {
-      const text = textArea.value;
-      const chars = text.length;
-      const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-      const fallbackSentences = text.trim() === '' ? 0 : (text.match(/[.!?]/g) || []).length || (text.trim() ? 1 : 0);
-      const lines = text === '' ? 1 : text.split('\n').length;
-      const readMins = Math.max(0, Math.ceil(words / 200));
+        // ── Lorem ipsum ────────────────────────────────────────────
+        const FALLBACK_LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
 
-      if (chars !== prevChars) animatePop(charCountEl);
-      prevChars = chars;
+        async function addLoremParagraph() {
+            try {
+                const res = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1&format=text&start-with-lorem=1');
+                if (!res.ok) throw new Error();
+                const para = (await res.text()).trim();
+                appendText(para);
+            } catch {
+                appendText(FALLBACK_LOREM);
+            }
+        }
 
-      charCountEl.textContent = chars.toLocaleString();
-      wordCountEl.textContent = words.toLocaleString();
-      sentenceCountEl.textContent = fallbackSentences;
-      lineCountEl.textContent = lines;
-      readTimeEl.textContent = readMins < 1 ? '<1m' : readMins + 'm';
+        function appendText(para) {
+            const sep = textArea.value && !textArea.value.endsWith('\n\n') ? '\n\n' : '';
+            textArea.value += sep + para;
+            updateStats(); saveToStorage(); textArea.focus();
+            textArea.scrollTop = textArea.scrollHeight;
+        }
 
-      // progress bar — grows up to ~500 words
-      const pct = Math.min(words / 500, 1) * 100;
-      wordBar.style.width = pct + '%';
-    }
+        // ── Copy ───────────────────────────────────────────────────
+        async function copyToClipboard() {
+            try {
+                await navigator.clipboard.writeText(textArea.value);
+            } catch {
+                textArea.select();
+                document.execCommand('copy');
+            }
+            copyBtn.textContent = '✓ Copied!';
+            copyBtn.classList.add('copied');
+            setTimeout(() => {
+                copyBtn.innerHTML = `<svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="9" height="10" rx="2"/><path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copy`;
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        }
 
-    // ── Case converters ────────────────────────────────────────
-    const TITLE_SMALL = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is', 'it']);
+        // ── SEARCH & REPLACE ───────────────────────────────────────
+        let srOpen = false;
+        let srMatches = [];   // [{start, end}, ...]
+        let srCurrent = -1;
 
-    function apply(fn) {
-      textArea.value = fn(textArea.value);
-      updateStats(); saveToStorage(); textArea.focus();
-    }
+        const srPanel = document.getElementById('srPanel');
+        const srToggleBtn = document.getElementById('srToggleBtn');
+        const srSearch = document.getElementById('srSearch');
+        const srReplace = document.getElementById('srReplace');
+        const srMatchInfo = document.getElementById('srMatchInfo');
+        const srPrev = document.getElementById('srPrev');
+        const srNext = document.getElementById('srNext');
+        const srReplaceOne = document.getElementById('srReplaceOne');
+        const srReplaceAll = document.getElementById('srReplaceAll');
+        const optCase = document.getElementById('optCase');
+        const optWhole = document.getElementById('optWhole');
+        const optRegex = document.getElementById('optRegex');
 
-    function toUpper() { apply(t => t.toUpperCase()); }
-    function toLower() { apply(t => t.toLowerCase()); }
-    function toCapitalized() { apply(t => t.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())); }
-    function toTitle() {
-      apply(t => t.toLowerCase().replace(/\S+/g, (word, i) => {
-        if (i === 0 || !TITLE_SMALL.has(word)) return word.charAt(0).toUpperCase() + word.slice(1);
-        return word;
-      }));
-    }
-    function toSentence() {
-      apply(t => t.toLowerCase().replace(/(^\s*\S|[.!?]\s+\S)/g, l => l.toUpperCase()));
-    }
-    function toAlternating() {
-      apply(t => t.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join(''));
-    }
-    function toInverse() {
-      apply(t => t.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''));
-    }
-    function trimWhitespace() {
-      apply(t => t.split('\n').map(l => l.trim()).filter((l, i, a) => l || (a[i - 1] !== '')).join('\n').trim());
-    }
-    function removeDuplicateLines() {
-      apply(t => [...new Set(t.split('\n'))].join('\n'));
-    }
-    function sortLines() {
-      apply(t => t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n'));
-    }
-    function reverseLines() {
-      apply(t => t.split('\n').reverse().join('\n'));
-    }
-    function clearText() { apply(() => ''); }
+        function toggleSR() {
+            srOpen ? closeSR() : openSR();
+        }
 
-    // ── Lorem ipsum ────────────────────────────────────────────
-    const FALLBACK_LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+        function openSR() {
+            srOpen = true;
+            srPanel.classList.add('open');
+            srToggleBtn.classList.add('active');
+            srSearch.focus();
+            srSearch.select();
+            onSearchInput();
+        }
 
-    async function addLoremParagraph() {
-      try {
-        const res = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1&format=text&start-with-lorem=1');
-        if (!res.ok) throw new Error();
-        const para = (await res.text()).trim();
-        appendText(para);
-      } catch {
-        appendText(FALLBACK_LOREM);
-      }
-    }
+        function closeSR() {
+            srOpen = false;
+            srPanel.classList.remove('open');
+            srToggleBtn.classList.remove('active');
+            srMatches = [];
+            srCurrent = -1;
+            textArea.focus();
+        }
 
-    function appendText(para) {
-      const sep = textArea.value && !textArea.value.endsWith('\n\n') ? '\n\n' : '';
-      textArea.value += sep + para;
-      updateStats(); saveToStorage(); textArea.focus();
-      textArea.scrollTop = textArea.scrollHeight;
-    }
+        function buildRegex(query) {
+            if (!query) return null;
+            try {
+                let pattern = optRegex.checked ? query : query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                if (optWhole.checked) pattern = `\\b${pattern}\\b`;
+                const flags = optCase.checked ? 'g' : 'gi';
+                return new RegExp(pattern, flags);
+            } catch (e) {
+                return null;
+            }
+        }
 
-    // ── Copy ───────────────────────────────────────────────────
-    async function copyToClipboard() {
-      try {
-        await navigator.clipboard.writeText(textArea.value);
-      } catch {
-        textArea.select();
-        document.execCommand('copy');
-      }
-      copyBtn.textContent = '✓ Copied!';
-      copyBtn.classList.add('copied');
-      setTimeout(() => {
-        copyBtn.innerHTML = `<svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="9" height="10" rx="2"/><path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copy`;
-        copyBtn.classList.remove('copied');
-      }, 2000);
-    }
+        function findAllMatches(regex) {
+            const text = textArea.value;
+            const matches = [];
+            let m;
+            while ((m = regex.exec(text)) !== null) {
+                matches.push({ start: m.index, end: m.index + m[0].length });
+                if (m[0].length === 0) regex.lastIndex++; // prevent infinite loop on zero-length match
+            }
+            return matches;
+        }
 
-    // ── Keyboard shortcut: Ctrl/Cmd+Shift+C to copy ────────────
-    document.addEventListener('keydown', e => {
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
-        e.preventDefault();
-        copyToClipboard();
-      }
-    });
+        function onSearchInput() {
+            const query = srSearch.value;
+            srSearch.classList.remove('no-match');
 
-    // ── Init ───────────────────────────────────────────────────
-    textArea.addEventListener('input', () => { saveToStorage(); updateStats(); });
+            if (!query) {
+                srMatches = [];
+                srCurrent = -1;
+                srMatchInfo.textContent = 'No matches';
+                srMatchInfo.classList.remove('has-matches');
+                setActionState(false);
+                return;
+            }
 
-    window.addEventListener('load', () => {
-      loadFromStorage();
-      textArea.focus();
-    });
-  </script>
+            const regex = buildRegex(query);
+            if (!regex) {
+                srMatchInfo.textContent = 'Invalid regex';
+                srMatchInfo.classList.remove('has-matches');
+                setActionState(false);
+                return;
+            }
+
+            srMatches = findAllMatches(regex);
+
+            if (srMatches.length === 0) {
+                srSearch.classList.add('no-match');
+                srCurrent = -1;
+                srMatchInfo.textContent = 'No matches';
+                srMatchInfo.classList.remove('has-matches');
+                setActionState(false);
+            } else {
+                srSearch.classList.remove('no-match');
+                // Keep current index in bounds, or jump to first
+                if (srCurrent < 0 || srCurrent >= srMatches.length) srCurrent = 0;
+                updateMatchInfo();
+                highlightCurrent();
+                setActionState(true);
+            }
+        }
+
+        function updateMatchInfo() {
+            if (srMatches.length === 0) {
+                srMatchInfo.textContent = 'No matches';
+                srMatchInfo.classList.remove('has-matches');
+            } else {
+                srMatchInfo.textContent = `${srCurrent + 1} / ${srMatches.length}`;
+                srMatchInfo.classList.add('has-matches');
+            }
+        }
+
+        function setActionState(enabled) {
+            srPrev.disabled = !enabled;
+            srNext.disabled = !enabled;
+            srReplaceOne.disabled = !enabled;
+            srReplaceAll.disabled = !enabled;
+        }
+
+        function highlightCurrent() {
+            if (srMatches.length === 0 || srCurrent < 0) return;
+            const { start, end } = srMatches[srCurrent];
+            textArea.focus();
+            textArea.setSelectionRange(start, end);
+            // Scroll the match into view
+            const lineHeight = parseFloat(getComputedStyle(textArea).lineHeight) || 28;
+            const textBefore = textArea.value.substring(0, start);
+            const linesBefore = textBefore.split('\n').length - 1;
+            const scrollTo = linesBefore * lineHeight - textArea.clientHeight / 2;
+            textArea.scrollTop = Math.max(0, scrollTo);
+        }
+
+        function srNavigate(dir) {
+            if (srMatches.length === 0) return;
+            srCurrent = (srCurrent + dir + srMatches.length) % srMatches.length;
+            updateMatchInfo();
+            highlightCurrent();
+        }
+
+        function replaceOne() {
+            if (srMatches.length === 0 || srCurrent < 0) return;
+            const { start, end } = srMatches[srCurrent];
+            const replaceVal = srReplace.value;
+            const text = textArea.value;
+
+            // If using regex with capture groups, handle substitution
+            const regex = buildRegex(srSearch.value);
+            let replacement = replaceVal;
+            if (optRegex.checked && regex) {
+                const matched = text.slice(start, end);
+                replacement = matched.replace(new RegExp(regex.source, regex.flags.replace('g', '')), replaceVal);
+            }
+
+            textArea.value = text.slice(0, start) + replacement + text.slice(end);
+            updateStats(); saveToStorage();
+
+            // Flash feedback
+            textArea.classList.remove('flash-replace');
+            void textArea.offsetWidth;
+            textArea.classList.add('flash-replace');
+
+            // Re-search and keep cursor at same relative position
+            const newPos = start + replacement.length;
+            onSearchInput();
+            if (srMatches.length > 0) {
+                srCurrent = srMatches.findIndex(m => m.start >= newPos);
+                if (srCurrent < 0) srCurrent = 0;
+                updateMatchInfo();
+                highlightCurrent();
+            }
+        }
+
+        function replaceAll() {
+            if (srMatches.length === 0) return;
+            const query = srSearch.value;
+            const replaceVal = srReplace.value;
+            const regex = buildRegex(query);
+            if (!regex) return;
+
+            textArea.value = textArea.value.replace(regex, replaceVal);
+            updateStats(); saveToStorage();
+
+            // Flash feedback
+            textArea.classList.remove('flash-replace');
+            void textArea.offsetWidth;
+            textArea.classList.add('flash-replace');
+
+            srMatches = [];
+            srCurrent = -1;
+            srMatchInfo.textContent = 'Replaced';
+            srMatchInfo.classList.remove('has-matches');
+            setActionState(false);
+            srSearch.classList.remove('no-match');
+        }
+
+        // Update option label active states
+        [optCase, optWhole, optRegex].forEach(cb => {
+            cb.addEventListener('change', () => {
+                cb.closest('.sr-option').classList.toggle('active', cb.checked);
+            });
+        });
+
+        // Search input: re-run on textarea change if panel open
+        textArea.addEventListener('input', () => {
+            saveToStorage();
+            updateStats();
+            if (srOpen) onSearchInput();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', e => {
+            // Ctrl/Cmd+H → toggle SR
+            if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
+                e.preventDefault();
+                toggleSR();
+                return;
+            }
+            // Ctrl/Cmd+F → open SR
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                openSR();
+                return;
+            }
+            // Ctrl/Cmd+Shift+C → copy
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
+                e.preventDefault();
+                copyToClipboard();
+                return;
+            }
+            if (srOpen) {
+                if (e.key === 'Escape') { closeSR(); return; }
+                if (e.target === srSearch) {
+                    if (e.key === 'Enter' && e.shiftKey) { e.preventDefault(); srNavigate(-1); return; }
+                    if (e.key === 'Enter') { e.preventDefault(); srNavigate(1); return; }
+                }
+                if (e.target === srReplace && e.key === 'Enter') {
+                    e.preventDefault();
+                    replaceOne();
+                    return;
+                }
+            }
+        });
+
+        // ── Init ───────────────────────────────────────────────────
+        window.addEventListener('load', () => {
+            loadFromStorage();
+            textArea.focus();
+        });
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,417 +7,640 @@
   <title>Comet Blitz | #thekishanmodi</title>
   <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0d0d1a; width: 100vw; height: 100vh; overflow: hidden; font-family: monospace, sans-serif; }
-    #wrap { position: absolute; inset: 0; background: #0d0d1a; overflow: hidden; }
-    canvas { display: block; width: 100%; height: 100%; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    #hud { position: absolute; top: 16px; left: 0; right: 0; display: flex; align-items: center; gap: 12px; padding: 0 20px; pointer-events: none; }
-    #score-pill { background: rgba(253,98,4,0.15); border: 0.5px solid rgba(253,98,4,0.35); border-radius: 20px; padding: 6px 14px; color: #fd6204; font-size: 13px; font-weight: 500; white-space: nowrap; }
-    #progress-bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
-    #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #fd6204, #ffaa66); border-radius: 3px; transition: width 0.3s; }
-    #timer-pill { background: rgba(253,98,4,0.15); border: 0.5px solid rgba(253,98,4,0.35); border-radius: 20px; padding: 6px 14px; color: #fd6204; font-size: 13px; font-weight: 500; min-width: 70px; text-align: center; white-space: nowrap; }
-    #timer-pill.urgent { background: rgba(163,45,45,0.25); border-color: rgba(226,75,74,0.4); color: #f09595; }
+    body {
+      background: #0d0d1a;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: monospace, sans-serif;
+    }
 
-    #speed-pill { background: rgba(29,158,117,0.12); border: 0.5px solid rgba(29,158,117,0.3); border-radius: 20px; padding: 6px 14px; color: rgba(29,158,117,0.9); font-size: 12px; font-weight: 500; white-space: nowrap; transition: color 0.4s, border-color 0.4s, background 0.4s; }
+    #wrap {
+      position: absolute;
+      inset: 0;
+      background: #0d0d1a;
+      overflow: hidden;
+    }
 
-    #creator { position: absolute; bottom: 14px; right: 18px; display: flex; align-items: center; gap: 7px; pointer-events: all; text-decoration: none; }
-    #creator span.label { color: rgba(255,255,255,0.28); font-size: 14px; }
-    #creator span.name { color: rgba(253,98,4,0.7); font-size: 14px; font-weight: 500; border-bottom: 0.5px solid rgba(253,98,4,0.35); transition: color 0.2s, border-color 0.2s; }
-    #creator:hover span.name { color: #fd6204; border-color: rgba(253,98,4,0.7); }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
 
-    #overlay { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; background: rgba(13,13,26,0.9); }
-    .logo-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-    .logo-icon { width: 42px; height: 42px; flex-shrink: 0; }
-    .logo-title { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(135deg, #ffaa66, #fd6204); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    #overlay h2 { color: rgba(255,255,255,0.85); font-size: 20px; font-weight: 400; margin-bottom: 6px; }
-    #overlay p { color: rgba(255,255,255,0.4); font-size: 13px; margin-bottom: 32px; }
-    .score-big { font-size: 56px; font-weight: 700; color: #fd6204; margin-bottom: 2px; line-height: 1; }
-    .restart-btn { background: rgba(253,98,4,0.15); border: 0.5px solid rgba(253,98,4,0.5); color: #fd6204; border-radius: 20px; padding: 11px 32px; font-size: 14px; cursor: pointer; transition: background 0.2s; font-family: monospace, sans-serif; }
-    .restart-btn:hover { background: rgba(253,98,4,0.3); }
+    #hud {
+      position: absolute;
+      top: 16px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+      pointer-events: none;
+    }
 
-    #logo-badge { position: absolute; top: 18px; left: 18px; display: flex; align-items: center; gap: 8px; pointer-events: none; }
-    #logo-badge .badge-title { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; background: linear-gradient(135deg, #ffaa66, #fd6204); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    #click-hint { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.28); font-size: 12px; pointer-events: none; transition: opacity 0.5s; white-space: nowrap; }
+    #score-pill {
+      background: rgba(253, 98, 4, 0.15);
+      border: 0.5px solid rgba(253, 98, 4, 0.35);
+      border-radius: 20px;
+      padding: 6px 14px;
+      color: #fd6204;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
 
-    @keyframes speed-flash-anim { 0%{opacity:1;transform:translateX(-50%) scale(1)} 100%{opacity:0;transform:translateX(-50%) scale(1.6)} }
-    #speed-flash { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); color: rgba(253,98,4,0.95); font-size: 13px; pointer-events: none; opacity: 0; white-space: nowrap; font-weight: 600; }
-    #speed-flash.active { animation: speed-flash-anim 0.7s ease-out forwards; }
+    #progress-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #fd6204, #ffaa66);
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+
+    #timer-pill {
+      background: rgba(253, 98, 4, 0.15);
+      border: 0.5px solid rgba(253, 98, 4, 0.35);
+      border-radius: 20px;
+      padding: 6px 14px;
+      color: #fd6204;
+      font-size: 13px;
+      font-weight: 500;
+      min-width: 70px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    #timer-pill.urgent {
+      background: rgba(163, 45, 45, 0.25);
+      border-color: rgba(226, 75, 74, 0.4);
+      color: #f09595;
+    }
+
+    #speed-pill {
+      background: rgba(29, 158, 117, 0.12);
+      border: 0.5px solid rgba(29, 158, 117, 0.3);
+      border-radius: 20px;
+      padding: 6px 14px;
+      color: rgba(29, 158, 117, 0.9);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.4s, border-color 0.4s, background 0.4s;
+    }
+
+    #creator {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      pointer-events: all;
+      text-decoration: none;
+    }
+
+    #creator span.label {
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 14px;
+    }
+
+    #creator span.name {
+      color: rgba(253, 98, 4, 0.7);
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 0.5px solid rgba(253, 98, 4, 0.35);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    #creator:hover span.name {
+      color: #fd6204;
+      border-color: rgba(253, 98, 4, 0.7);
+    }
+
+    #overlay {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(13, 13, 26, 0.9);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+
+    .logo-title {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffaa66, #fd6204);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #overlay h2 {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+
+    #overlay p {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+      margin-bottom: 32px;
+    }
+
+    .score-big {
+      font-size: 56px;
+      font-weight: 700;
+      color: #fd6204;
+      margin-bottom: 2px;
+      line-height: 1;
+    }
+
+    .restart-btn {
+      background: rgba(253, 98, 4, 0.15);
+      border: 0.5px solid rgba(253, 98, 4, 0.5);
+      color: #fd6204;
+      border-radius: 20px;
+      padding: 11px 32px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: monospace, sans-serif;
+    }
+
+    .restart-btn:hover {
+      background: rgba(253, 98, 4, 0.3);
+    }
+
+    #logo-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    #logo-badge .badge-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #ffaa66, #fd6204);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #click-hint {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 12px;
+      pointer-events: none;
+      transition: opacity 0.5s;
+      white-space: nowrap;
+    }
+
+    @keyframes speed-flash-anim {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1)
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(1.6)
+      }
+    }
+
+    #speed-flash {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(253, 98, 4, 0.95);
+      font-size: 13px;
+      pointer-events: none;
+      opacity: 0;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    #speed-flash.active {
+      animation: speed-flash-anim 0.7s ease-out forwards;
+    }
   </style>
 </head>
 
 <body>
-<div id="wrap">
-  <canvas id="c"></canvas>
+  <div id="wrap">
+    <canvas id="c"></canvas>
 
-  <div id="logo-badge">
-    <img src="assets/images/favicon.png" alt="comets" width="24" height="24">
-    <span class="badge-title">Comet Blitz</span>
-  </div>
-
-  <div id="hud">
-    <div style="width:120px"></div>
-    <div id="score-pill">0 / 20</div>
-    <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
-    <div id="speed-pill">speed x1.0</div>
-    <div id="timer-pill">0:30</div>
-  </div>
-
-  <div id="overlay">
-    <div class="logo-wrap">
-      <svg class="logo-icon" viewBox="0 0 42 42" fill="none">
-        <ellipse cx="28" cy="14" rx="10" ry="10" fill="rgba(253,98,4,0.2)" stroke="#fd6204" stroke-width="1.5"/>
-        <ellipse cx="28" cy="14" rx="5" ry="5" fill="rgba(255,180,80,0.5)" stroke="#ffaa66" stroke-width="1"/>
-        <ellipse cx="28" cy="14" rx="2" ry="2" fill="#fff"/>
-        <path d="M19 22 Q10 28 2 40" stroke="#fd6204" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-        <path d="M20 24 Q12 31 5 42" stroke="#ffaa66" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-        <path d="M18 21 Q9 26 1 37" stroke="#ffcc88" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
-      </svg>
-      <span class="logo-title">Comet Blitz</span>
+    <div id="logo-badge">
+      <img src="assets/images/favicon.png" alt="comets" width="24" height="24">
+      <span class="badge-title">Comet Blitz</span>
     </div>
-    <div id="overlay-content"></div>
+
+    <div id="hud">
+      <div style="width:120px"></div>
+      <div id="score-pill">0 / 20</div>
+      <div id="progress-bar-wrap">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="speed-pill">speed x1.0</div>
+      <div id="timer-pill">0:30</div>
+    </div>
+
+    <div id="overlay">
+      <div class="logo-wrap">
+        <svg class="logo-icon" viewBox="0 0 42 42" fill="none">
+          <ellipse cx="28" cy="14" rx="10" ry="10" fill="rgba(253,98,4,0.2)" stroke="#fd6204" stroke-width="1.5" />
+          <ellipse cx="28" cy="14" rx="5" ry="5" fill="rgba(255,180,80,0.5)" stroke="#ffaa66" stroke-width="1" />
+          <ellipse cx="28" cy="14" rx="2" ry="2" fill="#fff" />
+          <path d="M19 22 Q10 28 2 40" stroke="#fd6204" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+          <path d="M20 24 Q12 31 5 42" stroke="#ffaa66" stroke-width="1.5" stroke-linecap="round" opacity="0.5" />
+          <path d="M18 21 Q9 26 1 37" stroke="#ffcc88" stroke-width="1" stroke-linecap="round" opacity="0.3" />
+        </svg>
+        <span class="logo-title">Comet Blitz</span>
+      </div>
+      <div id="overlay-content"></div>
+    </div>
+
+    <a id="creator" href="index.html" target="_blank" rel="noopener">
+      <span class="label">made by</span>
+      <span class="name">#thekishanmodi</span>
+    </a>
+
+    <div id="speed-flash">⚡ comets speed up!</div>
+    <div id="click-hint">click to fire</div>
   </div>
 
-  <a id="creator" href="index.html" target="_blank" rel="noopener">
-    <span class="label">made by</span>
-    <span class="name">#thekishanmodi</span>
-  </a>
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const overlay = document.getElementById('overlay');
+    const overlayContent = document.getElementById('overlay-content');
+    const scorePill = document.getElementById('score-pill');
+    const progressBar = document.getElementById('progress-bar');
+    const timerPill = document.getElementById('timer-pill');
+    const speedPill = document.getElementById('speed-pill');
+    const speedFlash = document.getElementById('speed-flash');
+    const clickHint = document.getElementById('click-hint');
 
-  <div id="speed-flash">⚡ comets speed up!</div>
-  <div id="click-hint">click to fire</div>
-</div>
+    const PRIMARY = '#fd6204';
+    const PRIMARY_DIM = 'rgba(253,98,4,0.5)';
+    const TARGET = 20, TIMER = 30, SHOT_SPEED = 16;
 
-<script>
-  const canvas = document.getElementById('c');
-  const ctx = canvas.getContext('2d');
-  const overlay = document.getElementById('overlay');
-  const overlayContent = document.getElementById('overlay-content');
-  const scorePill = document.getElementById('score-pill');
-  const progressBar = document.getElementById('progress-bar');
-  const timerPill = document.getElementById('timer-pill');
-  const speedPill = document.getElementById('speed-pill');
-  const speedFlash = document.getElementById('speed-flash');
-  const clickHint = document.getElementById('click-hint');
+    // Speed config
+    const SPEED_MULTIPLIER_PER_HIT = 1.08; // 8% faster per hit
+    const MAX_SPEED_MULT = 4.0;             // cap at 4x base speed
+    const BASE_SPEED_MIN = 3.5;
+    const BASE_SPEED_MAX = 6.5;
 
-  const PRIMARY = '#fd6204';
-  const PRIMARY_DIM = 'rgba(253,98,4,0.5)';
-  const TARGET = 20, TIMER = 30, SHOT_SPEED = 16;
+    let W, H, COMET_R, LAUNCHER_X, LAUNCHER_Y;
+    let speedMult = 1.0;
+    let comets = [], shot = null, particles = [], popTexts = [], stars = [];
+    let score = 0, timeLeft = TIMER, gameOver = false;
+    let mouseX = 0, mouseY = 0;
+    let lastTick = 0, spawnTimer = 0, lastSecond = 0, hintVisible = true;
 
-  // Speed config
-  const SPEED_MULTIPLIER_PER_HIT = 1.08; // 8% faster per hit
-  const MAX_SPEED_MULT = 4.0;             // cap at 4x base speed
-  const BASE_SPEED_MIN = 3.5;
-  const BASE_SPEED_MAX = 6.5;
+    function rnd(a, b) { return a + Math.random() * (b - a); }
 
-  let W, H, COMET_R, LAUNCHER_X, LAUNCHER_Y;
-  let speedMult = 1.0;
-  let comets = [], shot = null, particles = [], popTexts = [], stars = [];
-  let score = 0, timeLeft = TIMER, gameOver = false;
-  let mouseX = 0, mouseY = 0;
-  let lastTick = 0, spawnTimer = 0, lastSecond = 0, hintVisible = true;
+    const COMET_COLORS = [
+      { head: '#fd6204', mid: '#ffaa66', tail: 'rgba(253,98,4,' },
+      { head: '#7F77DD', mid: '#CCC9F6', tail: 'rgba(127,119,221,' },
+      { head: '#1D9E75', mid: '#9FE1CB', tail: 'rgba(29,158,117,' },
+      { head: '#378ADD', mid: '#B5D4F4', tail: 'rgba(55,138,221,' },
+      { head: '#D4537E', mid: '#F4C0D1', tail: 'rgba(212,83,126,' },
+      { head: '#BA7517', mid: '#FAC775', tail: 'rgba(186,117,23,' },
+    ];
 
-  function rnd(a, b) { return a + Math.random() * (b - a); }
-
-  const COMET_COLORS = [
-    { head: '#fd6204', mid: '#ffaa66', tail: 'rgba(253,98,4,' },
-    { head: '#7F77DD', mid: '#CCC9F6', tail: 'rgba(127,119,221,' },
-    { head: '#1D9E75', mid: '#9FE1CB', tail: 'rgba(29,158,117,' },
-    { head: '#378ADD', mid: '#B5D4F4', tail: 'rgba(55,138,221,' },
-    { head: '#D4537E', mid: '#F4C0D1', tail: 'rgba(212,83,126,' },
-    { head: '#BA7517', mid: '#FAC775', tail: 'rgba(186,117,23,' },
-  ];
-
-  function resize() {
-    W = window.innerWidth; H = window.innerHeight;
-    canvas.width = W; canvas.height = H;
-    COMET_R = Math.round(Math.min(W, H) * 0.012);
-    LAUNCHER_X = W / 2; LAUNCHER_Y = H - 28;
-    mouseX = W / 2; mouseY = H / 2;
-    for (const c of comets) {
-      c.x = Math.min(Math.max(c.x, COMET_R+10), W-COMET_R-10);
-      c.y = Math.min(Math.max(c.y, COMET_R+10), H-COMET_R-80);
-    }
-    buildStars();
-  }
-
-  function buildStars() {
-    stars = Array.from({length: Math.round(W*H/6000)}, () => ({
-      x: rnd(0,W), y: rnd(0,H), r: rnd(0.5,2),
-      phase: rnd(0,Math.PI*2), speed: rnd(4,10),
-      baseAlpha: rnd(0.3,1.0), warm: Math.random() < 0.35
-    }));
-  }
-
-  function drawStars(ts) {
-    for (const s of stars) {
-      const alpha = s.baseAlpha * (0.15 + 0.85 * Math.abs(Math.sin(ts*0.001*s.speed+s.phase)));
-      ctx.save(); ctx.globalAlpha = alpha;
-      ctx.fillStyle = s.warm ? PRIMARY : '#ffffff';
-      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
-      if (s.r > 1.4) {
-        ctx.strokeStyle = s.warm ? PRIMARY : '#ffffff';
-        ctx.lineWidth = 0.5; ctx.globalAlpha = alpha*0.4;
-        ctx.beginPath();
-        ctx.moveTo(s.x-s.r*2.8, s.y); ctx.lineTo(s.x+s.r*2.8, s.y);
-        ctx.moveTo(s.x, s.y-s.r*2.8); ctx.lineTo(s.x, s.y+s.r*2.8);
-        ctx.stroke();
+    function resize() {
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W; canvas.height = H;
+      COMET_R = Math.round(Math.min(W, H) * 0.012);
+      LAUNCHER_X = W / 2; LAUNCHER_Y = H - 28;
+      mouseX = W / 2; mouseY = H / 2;
+      for (const c of comets) {
+        c.x = Math.min(Math.max(c.x, COMET_R + 10), W - COMET_R - 10);
+        c.y = Math.min(Math.max(c.y, COMET_R + 10), H - COMET_R - 80);
       }
+      buildStars();
+    }
+
+    function buildStars() {
+      stars = Array.from({ length: Math.round(W * H / 6000) }, () => ({
+        x: rnd(0, W), y: rnd(0, H), r: rnd(0.5, 2),
+        phase: rnd(0, Math.PI * 2), speed: rnd(4, 10),
+        baseAlpha: rnd(0.3, 1.0), warm: Math.random() < 0.35
+      }));
+    }
+
+    function drawStars(ts) {
+      for (const s of stars) {
+        const alpha = s.baseAlpha * (0.15 + 0.85 * Math.abs(Math.sin(ts * 0.001 * s.speed + s.phase)));
+        ctx.save(); ctx.globalAlpha = alpha;
+        ctx.fillStyle = s.warm ? PRIMARY : '#ffffff';
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+        if (s.r > 1.4) {
+          ctx.strokeStyle = s.warm ? PRIMARY : '#ffffff';
+          ctx.lineWidth = 0.5; ctx.globalAlpha = alpha * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(s.x - s.r * 2.8, s.y); ctx.lineTo(s.x + s.r * 2.8, s.y);
+          ctx.moveTo(s.x, s.y - s.r * 2.8); ctx.lineTo(s.x, s.y + s.r * 2.8);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+    }
+
+    function applySpeedBoost() {
+      speedMult = Math.min(MAX_SPEED_MULT, speedMult * SPEED_MULTIPLIER_PER_HIT);
+
+      // Scale velocity of every existing comet
+      for (const c of comets) {
+        const angle = Math.atan2(c.dy, c.dx);
+        const currentSpd = Math.hypot(c.dx, c.dy);
+        // Boost by the per-hit factor, capped at max
+        const newSpd = Math.min(currentSpd * SPEED_MULTIPLIER_PER_HIT, BASE_SPEED_MAX * MAX_SPEED_MULT);
+        c.dx = Math.cos(angle) * newSpd;
+        c.dy = Math.sin(angle) * newSpd;
+      }
+
+      // Update HUD pill
+      const mult = speedMult.toFixed(1);
+      speedPill.textContent = 'speed x' + mult;
+      if (speedMult < 1.5) {
+        speedPill.style.color = 'rgba(29,158,117,0.9)';
+        speedPill.style.borderColor = 'rgba(29,158,117,0.3)';
+        speedPill.style.background = 'rgba(29,158,117,0.12)';
+      } else if (speedMult < 2.5) {
+        speedPill.style.color = 'rgba(253,98,4,0.9)';
+        speedPill.style.borderColor = 'rgba(253,98,4,0.3)';
+        speedPill.style.background = 'rgba(253,98,4,0.12)';
+      } else {
+        speedPill.style.color = 'rgba(226,75,74,0.95)';
+        speedPill.style.borderColor = 'rgba(226,75,74,0.4)';
+        speedPill.style.background = 'rgba(226,75,74,0.12)';
+      }
+
+      // Flash label
+      speedFlash.classList.remove('active');
+      void speedFlash.offsetWidth;
+      speedFlash.classList.add('active');
+    }
+
+    function spawnComet() {
+      const col = COMET_COLORS[Math.floor(Math.random() * COMET_COLORS.length)];
+      const baseSpd = rnd(BASE_SPEED_MIN, BASE_SPEED_MAX) * speedMult;
+      const angle = rnd(0, Math.PI * 2);
+      comets.push({
+        x: rnd(COMET_R + 10, W - COMET_R - 10),
+        y: rnd(COMET_R + 10, H - COMET_R - 80),
+        dx: Math.cos(angle) * baseSpd,
+        dy: Math.sin(angle) * baseSpd,
+        col, alpha: 0
+      });
+    }
+
+    function drawComet(c) {
+      const r = COMET_R;
+      const spd = Math.hypot(c.dx, c.dy);
+      // Tail length grows with speed — faster = longer streaking tail
+      const tailLen = r * (4 + Math.min(spd / BASE_SPEED_MAX, 3));
+      const moveAngle = Math.atan2(c.dy, c.dx);
+      const ta = moveAngle + Math.PI;
+
+      ctx.save();
+      ctx.globalAlpha = c.alpha;
+
+      // Main tail
+      const tx = c.x + Math.cos(ta) * tailLen, ty = c.y + Math.sin(ta) * tailLen;
+      const tailGrd = ctx.createLinearGradient(c.x, c.y, tx, ty);
+      tailGrd.addColorStop(0, c.col.tail + '0.8)');
+      tailGrd.addColorStop(0.5, c.col.tail + '0.25)');
+      tailGrd.addColorStop(1, c.col.tail + '0)');
+      ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(tx, ty);
+      ctx.strokeStyle = tailGrd; ctx.lineWidth = r * 1.2; ctx.lineCap = 'round'; ctx.stroke();
+
+      // Wisp
+      const wx = c.x + Math.cos(ta + 0.2) * tailLen * 0.7, wy = c.y + Math.sin(ta + 0.2) * tailLen * 0.7;
+      const wispGrd = ctx.createLinearGradient(c.x, c.y, wx, wy);
+      wispGrd.addColorStop(0, c.col.tail + '0.45)'); wispGrd.addColorStop(1, c.col.tail + '0)');
+      ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(wx, wy);
+      ctx.strokeStyle = wispGrd; ctx.lineWidth = r * 0.45; ctx.stroke();
+
+      // Speed streak — extra thin trail at high speed
+      if (spd > BASE_SPEED_MAX * 1.5) {
+        const streakLen = tailLen * 0.6;
+        const sx = c.x + Math.cos(ta - 0.15) * streakLen, sy = c.y + Math.sin(ta - 0.15) * streakLen;
+        const streakGrd = ctx.createLinearGradient(c.x, c.y, sx, sy);
+        streakGrd.addColorStop(0, c.col.tail + '0.5)'); streakGrd.addColorStop(1, c.col.tail + '0)');
+        ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(sx, sy);
+        ctx.strokeStyle = streakGrd; ctx.lineWidth = r * 0.25; ctx.stroke();
+      }
+
+      // Halo
+      const haloGrd = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, r * 2.2);
+      haloGrd.addColorStop(0, c.col.tail + '0.3)'); haloGrd.addColorStop(1, c.col.tail + '0)');
+      ctx.beginPath(); ctx.arc(c.x, c.y, r * 2.2, 0, Math.PI * 2); ctx.fillStyle = haloGrd; ctx.fill();
+
+      // Core
+      const coreGrd = ctx.createRadialGradient(c.x - r * 0.25, c.y - r * 0.25, 0, c.x, c.y, r);
+      coreGrd.addColorStop(0, '#ffffff'); coreGrd.addColorStop(0.35, c.col.mid); coreGrd.addColorStop(1, c.col.head);
+      ctx.beginPath(); ctx.arc(c.x, c.y, r, 0, Math.PI * 2); ctx.fillStyle = coreGrd; ctx.fill();
+
       ctx.restore();
     }
-  }
 
-  function applySpeedBoost() {
-    speedMult = Math.min(MAX_SPEED_MULT, speedMult * SPEED_MULTIPLIER_PER_HIT);
-
-    // Scale velocity of every existing comet
-    for (const c of comets) {
-      const angle = Math.atan2(c.dy, c.dx);
-      const currentSpd = Math.hypot(c.dx, c.dy);
-      // Boost by the per-hit factor, capped at max
-      const newSpd = Math.min(currentSpd * SPEED_MULTIPLIER_PER_HIT, BASE_SPEED_MAX * MAX_SPEED_MULT);
-      c.dx = Math.cos(angle) * newSpd;
-      c.dy = Math.sin(angle) * newSpd;
+    function spawnParticles(x, y, col) {
+      for (let i = 0; i < 12; i++) {
+        const a = rnd(0, Math.PI * 2), spd = rnd(2, 6) * Math.min(speedMult, 2);
+        particles.push({ x, y, vx: Math.cos(a) * spd, vy: Math.sin(a) * spd, life: 1, color: col.mid, r: rnd(1, 3) });
+      }
+      for (let i = 0; i < 6; i++) {
+        const a = rnd(0, Math.PI * 2), spd = rnd(4, 9) * Math.min(speedMult, 2);
+        particles.push({ x, y, vx: Math.cos(a) * spd, vy: Math.sin(a) * spd, life: 1, color: col.head, r: rnd(0.8, 2) });
+      }
     }
 
-    // Update HUD pill
-    const mult = speedMult.toFixed(1);
-    speedPill.textContent = 'speed x' + mult;
-    if (speedMult < 1.5) {
+    function drawLauncher(angle) {
+      ctx.save();
+      ctx.strokeStyle = PRIMARY_DIM; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);
+      ctx.beginPath(); ctx.moveTo(LAUNCHER_X, LAUNCHER_Y);
+      ctx.lineTo(LAUNCHER_X + Math.cos(angle) * 100, LAUNCHER_Y + Math.sin(angle) * 100);
+      ctx.stroke(); ctx.setLineDash([]);
+      ctx.translate(LAUNCHER_X, LAUNCHER_Y); ctx.rotate(angle);
+      const grd = ctx.createLinearGradient(0, -6, 0, 6);
+      grd.addColorStop(0, '#ffaa66'); grd.addColorStop(1, '#c44800');
+      ctx.fillStyle = grd; ctx.beginPath(); ctx.roundRect(0, -5, 36, 10, 4); ctx.fill();
+      ctx.restore();
+      ctx.save();
+      ctx.beginPath(); ctx.arc(LAUNCHER_X, LAUNCHER_Y, 10, 0, Math.PI * 2); ctx.fillStyle = PRIMARY; ctx.fill();
+      ctx.beginPath(); ctx.arc(LAUNCHER_X, LAUNCHER_Y, 5, 0, Math.PI * 2); ctx.fillStyle = '#ffcc99'; ctx.fill();
+      ctx.restore();
+    }
+
+    function drawShot(s) {
+      ctx.save();
+      const ta = Math.atan2(s.dy, s.dx) + Math.PI, tLen = 18;
+      const tGrd = ctx.createLinearGradient(s.x, s.y, s.x + Math.cos(ta) * tLen, s.y + Math.sin(ta) * tLen);
+      tGrd.addColorStop(0, 'rgba(253,98,4,0.8)'); tGrd.addColorStop(1, 'rgba(253,98,4,0)');
+      ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x + Math.cos(ta) * tLen, s.y + Math.sin(ta) * tLen);
+      ctx.strokeStyle = tGrd; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.stroke();
+      ctx.beginPath(); ctx.arc(s.x, s.y, 4, 0, Math.PI * 2); ctx.fillStyle = '#ffffff'; ctx.fill();
+      ctx.beginPath(); ctx.arc(s.x, s.y, 6, 0, Math.PI * 2); ctx.strokeStyle = PRIMARY_DIM; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.restore();
+    }
+
+    function updateHUD() {
+      scorePill.textContent = score + ' / ' + TARGET;
+      progressBar.style.width = Math.min(100, score / TARGET * 100) + '%';
+      const s = timeLeft % 60;
+      timerPill.textContent = '0:' + (s < 10 ? '0' : '') + s;
+      timerPill.classList.toggle('urgent', timeLeft <= 10);
+    }
+
+    function showOverlay(didWin) {
+      overlay.style.display = 'flex';
+      const finalMult = speedMult.toFixed(1);
+      overlayContent.innerHTML = didWin
+        ? `<div class="score-big">${score}</div><h2>You win!</h2><p>Comets reached x${finalMult} speed — ${timeLeft}s to spare</p><button class="restart-btn" id="rb">Play again</button>`
+        : `<div class="score-big" style="color:#f09595">${score}</div><h2>Time's up!</h2><p>Needed ${TARGET} comets, got ${score} at x${finalMult} speed</p><button class="restart-btn" id="rb">Try again</button>`;
+      document.getElementById('rb').addEventListener('click', startGame);
+    }
+
+    function endGame(didWin) { gameOver = true; showOverlay(didWin); }
+
+    function loop(ts) {
+      if (gameOver) return;
+      const dt = Math.min(ts - lastTick, 50) / 16;
+      lastTick = ts;
+      spawnTimer += dt;
+      if (spawnTimer > 90) { spawnTimer = 0; if (comets.length < 20) spawnComet(); }
+      if (ts - lastSecond > 1000) {
+        lastSecond = ts; timeLeft = Math.max(0, timeLeft - 1);
+        if (timeLeft === 0) { endGame(false); return; }
+      }
+      const aimAngle = Math.atan2(mouseY - LAUNCHER_Y, mouseX - LAUNCHER_X);
+      ctx.fillStyle = '#0d0d1a'; ctx.fillRect(0, 0, W, H);
+      drawStars(ts);
+
+      for (const c of comets) {
+        c.x += c.dx * dt; c.y += c.dy * dt;
+        c.alpha = Math.min(1, c.alpha + 0.05 * dt);
+        if (c.x - COMET_R < 0 || c.x + COMET_R > W) c.dx *= -1;
+        if (c.y - COMET_R < 0 || c.y + COMET_R > H - 50) c.dy *= -1;
+        drawComet(c);
+      }
+
+      if (shot) {
+        const sdx = mouseX - shot.x, sdy = mouseY - shot.y, dist = Math.hypot(sdx, sdy) || 1;
+        shot.dx = (sdx / dist) * SHOT_SPEED; shot.dy = (sdy / dist) * SHOT_SPEED;
+        shot.x += shot.dx * dt; shot.y += shot.dy * dt;
+        drawShot(shot);
+        let hit = false;
+        for (let j = comets.length - 1; j >= 0; j--) {
+          const c = comets[j];
+          if (Math.hypot(c.x - shot.x, c.y - shot.y) < COMET_R + 4) {
+            spawnParticles(c.x, c.y, c.col);
+            popTexts.push({ x: c.x, y: c.y - 10, life: 1 });
+            score++; comets.splice(j, 1); hit = true;
+            // Speed up all remaining comets on every hit
+            applySpeedBoost();
+            if (score >= TARGET) { endGame(true); return; }
+            break;
+          }
+        }
+        if (hit || shot.x < 0 || shot.x > W || shot.y < 0 || shot.y > H) shot = null;
+      }
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx * dt * 0.6; p.y += p.vy * dt * 0.6; p.vy += 0.1 * dt; p.life -= 0.04 * dt;
+        if (p.life <= 0) { particles.splice(i, 1); continue; }
+        ctx.save(); ctx.globalAlpha = p.life;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2); ctx.fillStyle = p.color; ctx.fill();
+        ctx.restore();
+      }
+
+      for (let i = popTexts.length - 1; i >= 0; i--) {
+        const t = popTexts[i];
+        t.y -= 0.8 * dt; t.life -= 0.03 * dt;
+        if (t.life <= 0) { popTexts.splice(i, 1); continue; }
+        ctx.save(); ctx.globalAlpha = t.life;
+        ctx.font = '500 13px monospace'; ctx.fillStyle = PRIMARY;
+        ctx.textAlign = 'center'; ctx.fillText('+1', t.x, t.y);
+        ctx.restore();
+      }
+
+      drawLauncher(aimAngle);
+      updateHUD();
+      requestAnimationFrame(loop);
+    }
+
+    function startGame() {
+      comets = []; shot = null; particles = []; popTexts = [];
+      score = 0; timeLeft = TIMER; gameOver = false; speedMult = 1.0;
+      lastTick = 0; spawnTimer = 0; lastSecond = 0;
+      overlay.style.display = 'none';
+      hintVisible = true; clickHint.style.opacity = '1';
+      speedPill.textContent = 'speed x1.0';
       speedPill.style.color = 'rgba(29,158,117,0.9)';
       speedPill.style.borderColor = 'rgba(29,158,117,0.3)';
       speedPill.style.background = 'rgba(29,158,117,0.12)';
-    } else if (speedMult < 2.5) {
-      speedPill.style.color = 'rgba(253,98,4,0.9)';
-      speedPill.style.borderColor = 'rgba(253,98,4,0.3)';
-      speedPill.style.background = 'rgba(253,98,4,0.12)';
-    } else {
-      speedPill.style.color = 'rgba(226,75,74,0.95)';
-      speedPill.style.borderColor = 'rgba(226,75,74,0.4)';
-      speedPill.style.background = 'rgba(226,75,74,0.12)';
+      for (let i = 0; i < 6; i++) spawnComet();
+      requestAnimationFrame(ts => { lastTick = ts; lastSecond = ts; loop(ts); });
     }
 
-    // Flash label
-    speedFlash.classList.remove('active');
-    void speedFlash.offsetWidth;
-    speedFlash.classList.add('active');
-  }
-
-  function spawnComet() {
-    const col = COMET_COLORS[Math.floor(Math.random()*COMET_COLORS.length)];
-    const baseSpd = rnd(BASE_SPEED_MIN, BASE_SPEED_MAX) * speedMult;
-    const angle = rnd(0, Math.PI*2);
-    comets.push({
-      x: rnd(COMET_R+10, W-COMET_R-10),
-      y: rnd(COMET_R+10, H-COMET_R-80),
-      dx: Math.cos(angle)*baseSpd,
-      dy: Math.sin(angle)*baseSpd,
-      col, alpha: 0
-    });
-  }
-
-  function drawComet(c) {
-    const r = COMET_R;
-    const spd = Math.hypot(c.dx, c.dy);
-    // Tail length grows with speed — faster = longer streaking tail
-    const tailLen = r * (4 + Math.min(spd / BASE_SPEED_MAX, 3));
-    const moveAngle = Math.atan2(c.dy, c.dx);
-    const ta = moveAngle + Math.PI;
-
-    ctx.save();
-    ctx.globalAlpha = c.alpha;
-
-    // Main tail
-    const tx = c.x+Math.cos(ta)*tailLen, ty = c.y+Math.sin(ta)*tailLen;
-    const tailGrd = ctx.createLinearGradient(c.x, c.y, tx, ty);
-    tailGrd.addColorStop(0, c.col.tail+'0.8)');
-    tailGrd.addColorStop(0.5, c.col.tail+'0.25)');
-    tailGrd.addColorStop(1, c.col.tail+'0)');
-    ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(tx, ty);
-    ctx.strokeStyle = tailGrd; ctx.lineWidth = r*1.2; ctx.lineCap='round'; ctx.stroke();
-
-    // Wisp
-    const wx = c.x+Math.cos(ta+0.2)*tailLen*0.7, wy = c.y+Math.sin(ta+0.2)*tailLen*0.7;
-    const wispGrd = ctx.createLinearGradient(c.x, c.y, wx, wy);
-    wispGrd.addColorStop(0, c.col.tail+'0.45)'); wispGrd.addColorStop(1, c.col.tail+'0)');
-    ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(wx, wy);
-    ctx.strokeStyle=wispGrd; ctx.lineWidth=r*0.45; ctx.stroke();
-
-    // Speed streak — extra thin trail at high speed
-    if (spd > BASE_SPEED_MAX * 1.5) {
-      const streakLen = tailLen * 0.6;
-      const sx = c.x+Math.cos(ta-0.15)*streakLen, sy = c.y+Math.sin(ta-0.15)*streakLen;
-      const streakGrd = ctx.createLinearGradient(c.x, c.y, sx, sy);
-      streakGrd.addColorStop(0, c.col.tail+'0.5)'); streakGrd.addColorStop(1, c.col.tail+'0)');
-      ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(sx, sy);
-      ctx.strokeStyle=streakGrd; ctx.lineWidth=r*0.25; ctx.stroke();
-    }
-
-    // Halo
-    const haloGrd = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, r*2.2);
-    haloGrd.addColorStop(0, c.col.tail+'0.3)'); haloGrd.addColorStop(1, c.col.tail+'0)');
-    ctx.beginPath(); ctx.arc(c.x, c.y, r*2.2, 0, Math.PI*2); ctx.fillStyle=haloGrd; ctx.fill();
-
-    // Core
-    const coreGrd = ctx.createRadialGradient(c.x-r*0.25, c.y-r*0.25, 0, c.x, c.y, r);
-    coreGrd.addColorStop(0, '#ffffff'); coreGrd.addColorStop(0.35, c.col.mid); coreGrd.addColorStop(1, c.col.head);
-    ctx.beginPath(); ctx.arc(c.x, c.y, r, 0, Math.PI*2); ctx.fillStyle=coreGrd; ctx.fill();
-
-    ctx.restore();
-  }
-
-  function spawnParticles(x, y, col) {
-    for (let i=0;i<12;i++) {
-      const a=rnd(0,Math.PI*2), spd=rnd(2,6)*Math.min(speedMult,2);
-      particles.push({x,y,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,life:1,color:col.mid,r:rnd(1,3)});
-    }
-    for (let i=0;i<6;i++) {
-      const a=rnd(0,Math.PI*2), spd=rnd(4,9)*Math.min(speedMult,2);
-      particles.push({x,y,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,life:1,color:col.head,r:rnd(0.8,2)});
-    }
-  }
-
-  function drawLauncher(angle) {
-    ctx.save();
-    ctx.strokeStyle=PRIMARY_DIM; ctx.lineWidth=1; ctx.setLineDash([4,6]);
-    ctx.beginPath(); ctx.moveTo(LAUNCHER_X,LAUNCHER_Y);
-    ctx.lineTo(LAUNCHER_X+Math.cos(angle)*100, LAUNCHER_Y+Math.sin(angle)*100);
-    ctx.stroke(); ctx.setLineDash([]);
-    ctx.translate(LAUNCHER_X,LAUNCHER_Y); ctx.rotate(angle);
-    const grd=ctx.createLinearGradient(0,-6,0,6);
-    grd.addColorStop(0,'#ffaa66'); grd.addColorStop(1,'#c44800');
-    ctx.fillStyle=grd; ctx.beginPath(); ctx.roundRect(0,-5,36,10,4); ctx.fill();
-    ctx.restore();
-    ctx.save();
-    ctx.beginPath(); ctx.arc(LAUNCHER_X,LAUNCHER_Y,10,0,Math.PI*2); ctx.fillStyle=PRIMARY; ctx.fill();
-    ctx.beginPath(); ctx.arc(LAUNCHER_X,LAUNCHER_Y,5,0,Math.PI*2); ctx.fillStyle='#ffcc99'; ctx.fill();
-    ctx.restore();
-  }
-
-  function drawShot(s) {
-    ctx.save();
-    const ta=Math.atan2(s.dy,s.dx)+Math.PI, tLen=18;
-    const tGrd=ctx.createLinearGradient(s.x,s.y,s.x+Math.cos(ta)*tLen,s.y+Math.sin(ta)*tLen);
-    tGrd.addColorStop(0,'rgba(253,98,4,0.8)'); tGrd.addColorStop(1,'rgba(253,98,4,0)');
-    ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x+Math.cos(ta)*tLen,s.y+Math.sin(ta)*tLen);
-    ctx.strokeStyle=tGrd; ctx.lineWidth=5; ctx.lineCap='round'; ctx.stroke();
-    ctx.beginPath(); ctx.arc(s.x,s.y,4,0,Math.PI*2); ctx.fillStyle='#ffffff'; ctx.fill();
-    ctx.beginPath(); ctx.arc(s.x,s.y,6,0,Math.PI*2); ctx.strokeStyle=PRIMARY_DIM; ctx.lineWidth=1.5; ctx.stroke();
-    ctx.restore();
-  }
-
-  function updateHUD() {
-    scorePill.textContent = score+' / '+TARGET;
-    progressBar.style.width = Math.min(100, score/TARGET*100)+'%';
-    const s=timeLeft%60;
-    timerPill.textContent = '0:'+(s<10?'0':'')+s;
-    timerPill.classList.toggle('urgent', timeLeft<=10);
-  }
-
-  function showOverlay(didWin) {
-    overlay.style.display='flex';
-    const finalMult = speedMult.toFixed(1);
-    overlayContent.innerHTML = didWin
-      ? `<div class="score-big">${score}</div><h2>You win!</h2><p>Comets reached x${finalMult} speed — ${timeLeft}s to spare</p><button class="restart-btn" id="rb">Play again</button>`
-      : `<div class="score-big" style="color:#f09595">${score}</div><h2>Time's up!</h2><p>Needed ${TARGET} comets, got ${score} at x${finalMult} speed</p><button class="restart-btn" id="rb">Try again</button>`;
-    document.getElementById('rb').addEventListener('click', startGame);
-  }
-
-  function endGame(didWin) { gameOver=true; showOverlay(didWin); }
-
-  function loop(ts) {
-    if (gameOver) return;
-    const dt=Math.min(ts-lastTick,50)/16;
-    lastTick=ts;
-    spawnTimer+=dt;
-    if (spawnTimer>90) { spawnTimer=0; if (comets.length<20) spawnComet(); }
-    if (ts-lastSecond>1000) {
-      lastSecond=ts; timeLeft=Math.max(0,timeLeft-1);
-      if (timeLeft===0) { endGame(false); return; }
-    }
-    const aimAngle=Math.atan2(mouseY-LAUNCHER_Y, mouseX-LAUNCHER_X);
-    ctx.fillStyle='#0d0d1a'; ctx.fillRect(0,0,W,H);
-    drawStars(ts);
-
-    for (const c of comets) {
-      c.x+=c.dx*dt; c.y+=c.dy*dt;
-      c.alpha=Math.min(1,c.alpha+0.05*dt);
-      if (c.x-COMET_R<0||c.x+COMET_R>W) c.dx*=-1;
-      if (c.y-COMET_R<0||c.y+COMET_R>H-50) c.dy*=-1;
-      drawComet(c);
-    }
-
-    if (shot) {
-      const sdx=mouseX-shot.x, sdy=mouseY-shot.y, dist=Math.hypot(sdx,sdy)||1;
-      shot.dx=(sdx/dist)*SHOT_SPEED; shot.dy=(sdy/dist)*SHOT_SPEED;
-      shot.x+=shot.dx*dt; shot.y+=shot.dy*dt;
-      drawShot(shot);
-      let hit=false;
-      for (let j=comets.length-1;j>=0;j--) {
-        const c=comets[j];
-        if (Math.hypot(c.x-shot.x,c.y-shot.y)<COMET_R+4) {
-          spawnParticles(c.x,c.y,c.col);
-          popTexts.push({x:c.x,y:c.y-10,life:1});
-          score++; comets.splice(j,1); hit=true;
-          // Speed up all remaining comets on every hit
-          applySpeedBoost();
-          if (score>=TARGET) { endGame(true); return; }
-          break;
-        }
+    window.addEventListener('resize', resize);
+    canvas.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+    canvas.addEventListener('click', e => {
+      if (gameOver) return;
+      if (hintVisible) { hintVisible = false; clickHint.style.opacity = '0'; }
+      if (!shot) {
+        const dx = mouseX - LAUNCHER_X, dy = mouseY - LAUNCHER_Y, dist = Math.hypot(dx, dy) || 1;
+        shot = { x: LAUNCHER_X, y: LAUNCHER_Y, dx: (dx / dist) * SHOT_SPEED, dy: (dy / dist) * SHOT_SPEED };
       }
-      if (hit||shot.x<0||shot.x>W||shot.y<0||shot.y>H) shot=null;
-    }
+    });
 
-    for (let i=particles.length-1;i>=0;i--) {
-      const p=particles[i];
-      p.x+=p.vx*dt*0.6; p.y+=p.vy*dt*0.6; p.vy+=0.1*dt; p.life-=0.04*dt;
-      if (p.life<=0) { particles.splice(i,1); continue; }
-      ctx.save(); ctx.globalAlpha=p.life;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*p.life,0,Math.PI*2); ctx.fillStyle=p.color; ctx.fill();
-      ctx.restore();
-    }
-
-    for (let i=popTexts.length-1;i>=0;i--) {
-      const t=popTexts[i];
-      t.y-=0.8*dt; t.life-=0.03*dt;
-      if (t.life<=0) { popTexts.splice(i,1); continue; }
-      ctx.save(); ctx.globalAlpha=t.life;
-      ctx.font='500 13px monospace'; ctx.fillStyle=PRIMARY;
-      ctx.textAlign='center'; ctx.fillText('+1',t.x,t.y);
-      ctx.restore();
-    }
-
-    drawLauncher(aimAngle);
-    updateHUD();
-    requestAnimationFrame(loop);
-  }
-
-  function startGame() {
-    comets=[]; shot=null; particles=[]; popTexts=[];
-    score=0; timeLeft=TIMER; gameOver=false; speedMult=1.0;
-    lastTick=0; spawnTimer=0; lastSecond=0;
-    overlay.style.display='none';
-    hintVisible=true; clickHint.style.opacity='1';
-    speedPill.textContent='speed x1.0';
-    speedPill.style.color='rgba(29,158,117,0.9)';
-    speedPill.style.borderColor='rgba(29,158,117,0.3)';
-    speedPill.style.background='rgba(29,158,117,0.12)';
-    for (let i=0;i<6;i++) spawnComet();
-    requestAnimationFrame(ts=>{ lastTick=ts; lastSecond=ts; loop(ts); });
-  }
-
-  window.addEventListener('resize', resize);
-  canvas.addEventListener('mousemove', e=>{ mouseX=e.clientX; mouseY=e.clientY; });
-  canvas.addEventListener('click', e=>{
-    if (gameOver) return;
-    if (hintVisible) { hintVisible=false; clickHint.style.opacity='0'; }
-    if (!shot) {
-      const dx=mouseX-LAUNCHER_X, dy=mouseY-LAUNCHER_Y, dist=Math.hypot(dx,dy)||1;
-      shot={x:LAUNCHER_X,y:LAUNCHER_Y,dx:(dx/dist)*SHOT_SPEED,dy:(dy/dist)*SHOT_SPEED};
-    }
-  });
-
-  resize();
-  startGame();
-</script>
+    resize();
+    startGame();
+  </script>
 </body>
+
 </html>
