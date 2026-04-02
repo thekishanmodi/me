@@ -1,1220 +1,452 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Case | #thekishanmodi</title>
-    <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
-    <style>
-        @font-face {
-            font-family: "Mona Sans";
-            src: url("assets/fonts/MonaSans-VariableFont_wdth.ttf") format("truetype");
-            font-weight: 200 900;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: "Mona Sans";
-            src: url("assets/fonts/MonaSans-Italic-VariableFont_wdth.ttf") format("truetype");
-            font-weight: 200 900;
-            font-style: italic;
-        }
-
-        :root {
-            --orange: #fd6204;
-            --orange-dark: #d94e00;
-            --orange-light: #fff1ea;
-            --black: #111;
-            --gray-100: #f5f4f2;
-            --gray-200: #e8e6e2;
-            --gray-400: #a09d99;
-            --gray-600: #6b6763;
-            --white: #fdfcfa;
-            --radius: 10px;
-            --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            height: 100%;
-            font-family: 'Mona Sans', sans-serif;
-            background: var(--white);
-            color: var(--black);
-            overflow: hidden;
-        }
-
-        /* ── HEADER ───────────────────────────────────────────────── */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 0 1.5rem;
-            height: 56px;
-            background: var(--black);
-            border-bottom: 2px solid var(--orange);
-            flex-shrink: 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: baseline;
-            gap: 2px;
-            text-decoration: none;
-        }
-
-        .logo-text {
-            font-family: 'Mona Sans', serif;
-            font-size: 1.4rem;
-            color: var(--white);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 0.15rem;
-        }
-
-        .logo-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--orange);
-            margin-left: 1px;
-            margin-bottom: 3px;
-            align-self: flex-end;
-        }
-
-        .stats {
-            display: flex;
-            gap: 0.25rem;
-            align-items: center;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0.3rem 0.9rem;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            min-width: 64px;
-            cursor: default;
-            transition: background var(--transition);
-        }
-
-        .stat:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-value {
-            font-family: 'Mona Sans', monospace;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--orange);
-            line-height: 1.2;
-        }
-
-        .stat-label {
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gray-400);
-            line-height: 1.2;
-        }
-
-        /* ── MAIN LAYOUT ──────────────────────────────────────────── */
-        .layout {
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 56px);
-        }
-
-        /* ── TEXTAREA ─────────────────────────────────────────────── */
-        .editor-wrap {
-            flex: 1;
-            position: relative;
-            min-height: 0;
-        }
-
-        textarea {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-            font-weight: 400;
-            line-height: 1.7;
-            color: var(--black);
-            background: var(--white);
-            border: none;
-            outline: none;
-            resize: none;
-            padding: clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 8vw, 6rem);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            caret-color: var(--orange);
-        }
-
-        textarea::placeholder {
-            color: var(--gray-200);
-            font-style: italic;
-            font-family: 'DM Serif Display', serif;
-        }
-
-        textarea::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        textarea::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        textarea::-webkit-scrollbar-thumb {
-            background: var(--gray-200);
-            border-radius: 4px;
-        }
-
-        textarea::-webkit-scrollbar-thumb:hover {
-            background: var(--gray-400);
-        }
-
-        /* ── COPY BUTTON ──────────────────────────────────────────── */
-        .copy-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 1rem;
-            background: var(--black);
-            color: var(--white);
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border: none;
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            z-index: 10;
-        }
-
-        .copy-btn:hover {
-            background: var(--orange);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(253, 98, 4, 0.35);
-        }
-
-        .copy-btn:active {
-            transform: translateY(0);
-        }
-
-        .copy-btn.copied {
-            background: #22a05c;
-        }
-
-        .copy-icon {
-            width: 13px;
-            height: 13px;
-            flex-shrink: 0;
-        }
-
-        /* ── SEARCH & REPLACE PANEL ───────────────────────────────── */
-        .sr-panel {
-            position: absolute;
-            top: 1rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(-8px);
-            width: min(520px, calc(100% - 2rem));
-            background: var(--white);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 14px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13), 0 2px 8px rgba(0, 0, 0, 0.07);
-            z-index: 100;
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 200ms ease, transform 200ms ease;
-        }
-
-        .sr-panel.open {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .sr-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.65rem 1rem 0.65rem 1.1rem;
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .sr-title {
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--gray-400);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .sr-title svg {
-            color: var(--orange);
-        }
-
-        .sr-match-info {
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--gray-400);
-            font-variant-numeric: tabular-nums;
-            min-width: 80px;
-            text-align: center;
-        }
-
-        .sr-match-info.has-matches {
-            color: var(--orange);
-        }
-
-        .sr-close {
-            background: none;
-            border: none;
-            color: var(--gray-400);
-            cursor: pointer;
-            padding: 0.2rem;
-            border-radius: 4px;
-            line-height: 0;
-            transition: color var(--transition);
-            display: flex;
-        }
-
-        .sr-close:hover {
-            color: var(--white);
-        }
-
-        .sr-body {
-            padding: 0.85rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .sr-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .sr-input-wrap {
-            position: relative;
-            flex: 1;
-        }
-
-        .sr-input {
-            width: 100%;
-            font-family: 'Mona Sans', monospace;
-            font-size: 0.88rem;
-            font-weight: 400;
-            padding: 0.55rem 0.85rem;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 8px;
-            background: var(--gray-100);
-            color: var(--black);
-            outline: none;
-            transition: border-color var(--transition), background var(--transition);
-        }
-
-        .sr-input:focus {
-            border-color: var(--orange);
-            background: var(--white);
-        }
-
-        .sr-input::placeholder {
-            color: var(--gray-400);
-            font-style: normal;
-        }
-
-        .sr-input.no-match {
-            border-color: #e53e3e;
-            background: #fff5f5;
-        }
-
-        .sr-nav {
-            display: flex;
-            gap: 0.25rem;
-        }
-
-        .sr-nav-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background: var(--gray-100);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--gray-600);
-            transition: all var(--transition);
-            flex-shrink: 0;
-        }
-
-        .sr-nav-btn:hover:not(:disabled) {
-            background: var(--black);
-            border-color: var(--black);
-            color: var(--white);
-        }
-
-        .sr-nav-btn:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-
-        .sr-options {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            padding: 0 0.1rem;
-        }
-
-        .sr-option {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            color: var(--gray-600);
-            cursor: pointer;
-            user-select: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 5px;
-            border: 1.5px solid transparent;
-            transition: all var(--transition);
-        }
-
-        .sr-option input {
-            accent-color: var(--orange);
-            width: 13px;
-            height: 13px;
-            cursor: pointer;
-        }
-
-        .sr-option:hover {
-            background: var(--orange-light);
-            border-color: #ffdcc9;
-            color: var(--orange-dark);
-        }
-
-        .sr-option.active {
-            background: var(--orange-light);
-            border-color: var(--orange);
-            color: var(--orange-dark);
-        }
-
-        .sr-actions {
-            display: flex;
-            gap: 0.4rem;
-        }
-
-        .sr-btn {
-            flex: 1;
-            padding: 0.5rem 0.85rem;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            border-radius: 7px;
-            border: 1.5px solid;
-            cursor: pointer;
-            transition: all var(--transition);
-            white-space: nowrap;
-        }
-
-        .sr-btn.replace-one {
-            background: var(--white);
-            color: var(--black);
-            border-color: var(--gray-200);
-        }
-
-        .sr-btn.replace-one:hover:not(:disabled) {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-        }
-
-        .sr-btn.replace-all {
-            background: var(--orange);
-            color: var(--white);
-            border-color: var(--orange);
-        }
-
-        .sr-btn.replace-all:hover:not(:disabled) {
-            background: var(--orange-dark);
-            border-color: var(--orange-dark);
-        }
-
-        .sr-btn:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-
-        /* ── TOOLBAR ──────────────────────────────────────────────── */
-        .toolbar {
-            flex-shrink: 0;
-            background: var(--gray-100);
-            border-top: 1px solid var(--gray-200);
-            padding: 0.75rem 1.25rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .toolbar-inner {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.5rem 1rem;
-            background: var(--white);
-            color: var(--black);
-            font-family: 'Mona Sans', monospace;
-            font-size: 0.72rem;
-            font-weight: 500;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all var(--transition);
-            white-space: nowrap;
-            letter-spacing: 0.01em;
-        }
-
-        .btn:hover {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-            box-shadow: none;
-        }
-
-        .btn.primary {
-            background: var(--orange);
-            color: var(--white);
-            border-color: var(--orange);
-        }
-
-        .btn.primary:hover {
-            background: var(--orange-dark);
-            border-color: var(--orange-dark);
-        }
-
-        .btn.ghost {
-            background: transparent;
-            color: var(--gray-600);
-            border-color: var(--gray-200);
-        }
-
-        .btn.ghost:hover {
-            background: #fee8d8;
-            color: var(--orange-dark);
-            border-color: var(--orange);
-        }
-
-        .btn.sr-toggle {
-            background: transparent;
-            color: var(--gray-600);
-            border-color: var(--gray-200);
-        }
-
-        .btn.sr-toggle.active {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-        }
-
-        .btn.sr-toggle:hover {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-        }
-
-        /* Separator */
-        .sep {
-            width: 1px;
-            height: 32px;
-            background: var(--gray-200);
-            align-self: center;
-            margin: 0 0.15rem;
-            border-radius: 1px;
-        }
-
-        /* ── CHAR HIGHLIGHT ANIMATION ─────────────────────────────── */
-        @keyframes statPop {
-            0% {
-                transform: scale(1);
-            }
-
-            40% {
-                transform: scale(1.25);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .stat-value.pop {
-            animation: statPop 280ms ease;
-        }
-
-        /* ── WORD COUNT PROGRESS BAR ──────────────────────────────── */
-        .word-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--orange), #ff9f52);
-            transition: width 0.3s ease;
-            border-radius: 0 2px 2px 0;
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        .badge {
-            font-size: 14px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--ink3);
-            border: 1px solid var(--ink4);
-            border-radius: 4px;
-            padding: 4px 8px;
-            text-decoration: none;
-            margin-left: auto;
-        }
-
-        /* ── REPLACE FLASH ANIMATION ──────────────────────────────── */
-        @keyframes flashGreen {
-            0% {
-                background: #d4edda;
-            }
-
-            100% {
-                background: var(--white);
-            }
-        }
-
-        textarea.flash-replace {
-            animation: flashGreen 600ms ease;
-        }
-
-        /* responsive: hide some labels on small screens */
-        @media (max-width: 480px) {
-            .stat:nth-child(n+3) .stat-label {
-                display: none;
-            }
-
-            .stat {
-                min-width: 48px;
-                padding: 0.3rem 0.6rem;
-            }
-
-            .sep {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sticky Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#121212; --surface:#1E1E1E; --surface2:#2A2A2A;
+  --border:#333; --text:#E8E8E8; --muted:#777;
+  --accent:#FFD966; --accent-fg:#111;
+  --danger:#FF6B6B;
+  --sh:0 4px 20px rgba(0,0,0,.55);
+  --sh2:0 14px 44px rgba(0,0,0,.75);
+  --toolbar-h:62px;
+}
+[data-theme="light"] {
+  --bg:#EDE9E3; --surface:#fff; --surface2:#F5F2EE;
+  --border:#DDD; --text:#1A1A1A; --muted:#999;
+  --sh:0 4px 20px rgba(0,0,0,.10);
+  --sh2:0 14px 44px rgba(0,0,0,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+
+/* TOOLBAR */
+#toolbar{
+  position:fixed;top:0;left:0;right:0;height:var(--toolbar-h);
+  background:var(--surface);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;padding:0 20px;
+  z-index:900;box-shadow:0 2px 18px rgba(0,0,0,.25);
+}
+.logo{font-family:'Caveat',cursive;font-size:25px;font-weight:700;color:var(--accent);letter-spacing:-.3px;margin-right:6px;white-space:nowrap}
+.sep{width:1px;height:28px;background:var(--border);margin:0 2px;flex-shrink:0}
+#sw{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:0 12px;flex:1;max-width:260px;transition:border-color .2s}
+#sw:focus-within{border-color:var(--accent)}
+#sw svg{color:var(--muted);flex-shrink:0}
+#si{background:transparent;border:none;outline:none;color:var(--text);font-size:13.5px;font-family:'DM Sans',sans-serif;width:100%;padding:8px 0}
+#si::placeholder{color:var(--muted)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.tb-btn{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13.5px;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .17s;white-space:nowrap}
+.tb-btn:hover{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);transform:translateY(-1px)}
+.tb-btn.icon{padding:8px 10px}
+.tb-btn.red:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+#note-count{font-size:12px;color:var(--muted);padding:4px 10px;background:var(--surface2);border-radius:20px;border:1px solid var(--border);white-space:nowrap}
+
+/* BOARD */
+#board{padding:calc(var(--toolbar-h) + 22px) 18px 48px;columns:5 220px;column-gap:14px}
+
+/* NOTE CARD */
+.note{
+  break-inside:avoid;display:inline-block;width:100%;
+  margin-bottom:14px;border-radius:14px;padding:18px 16px 14px;
+  position:relative;box-shadow:var(--sh);
+  animation:noteIn .32s cubic-bezier(.34,1.56,.64,1) both;
+  word-break:break-word;vertical-align:top;
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;
+}
+.note:hover{box-shadow:var(--sh2);transform:translateY(-3px) scale(1.015)}
+.note.pinned{box-shadow:var(--sh2),0 0 0 2.5px var(--danger)!important}
+.note.hidden{display:none!important}
+
+@keyframes noteIn{
+  from{opacity:0;transform:scale(.82) translateY(18px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* pin flag */
+.pin-flag{position:absolute;top:-8px;right:14px;font-size:20px;display:none;filter:drop-shadow(0 2px 5px rgba(0,0,0,.5))}
+.note.pinned .pin-flag{display:block}
+
+/* hover actions */
+.note-actions{position:absolute;top:8px;right:8px;display:flex;gap:4px;opacity:0;pointer-events:none;transition:opacity .15s}
+.note:hover .note-actions{opacity:1;pointer-events:all}
+.na-btn{width:28px;height:28px;border-radius:8px;border:none;background:rgba(0,0,0,.2);color:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,transform .15s;backdrop-filter:blur(4px)}
+.na-btn:hover{background:rgba(0,0,0,.4);transform:scale(1.12)}
+.na-btn.del:hover{background:rgba(255,80,80,.5)}
+.na-btn.pin.active{background:rgba(255,107,107,.4)}
+
+/* text content */
+.note-title{font-family:'Caveat',cursive;font-size:21px;font-weight:700;line-height:1.25;margin-bottom:7px;display:none}
+.note-title.show{display:block}
+.note-body{font-family:'Caveat',cursive;font-size:17px;line-height:1.6;white-space:pre-wrap}
+.note-date{display:block;margin-top:10px;font-size:11px;font-family:'DM Sans',sans-serif;opacity:.4}
+
+/* FORM MODAL */
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1200;align-items:center;justify-content:center;backdrop-filter:blur(7px)}
+#overlay.open{display:flex;animation:fadeIn .18s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+#form-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 28px 26px;width:min(460px,94vw);box-shadow:var(--sh2);animation:slideUp .28s cubic-bezier(.34,1.56,.64,1)}
+@keyframes slideUp{from{transform:translateY(32px);opacity:0}to{transform:none;opacity:1}}
+.form-h{font-size:19px;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.form-h span{font-size:22px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
+.field input[type="text"],.field textarea{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:11px 14px;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.field textarea{resize:vertical;min-height:100px;font-size:14px;line-height:1.6}
+.field input[type="text"]:focus,.field textarea:focus{border-color:var(--accent)}
+.color-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cp-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:transform .15s,border-color .15s;flex-shrink:0}
+.cp-dot:hover{transform:scale(1.2)}
+.cp-dot.sel{border-color:rgba(255,255,255,.85);transform:scale(1.15)}
+[data-theme="light"] .cp-dot.sel{border-color:rgba(0,0,0,.45)}
+.cp-custom{position:relative;width:28px;height:28px;flex-shrink:0}
+.cp-custom input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none}
+.cp-icon{width:28px;height:28px;border-radius:50%;pointer-events:none;background:conic-gradient(red,yellow,lime,aqua,blue,magenta,red);border:3px solid rgba(255,255,255,.35);transition:transform .15s}
+.cp-custom:hover .cp-icon{transform:scale(1.2)}
+#preview-strip{border-radius:10px;padding:14px;margin-bottom:16px;font-family:'Caveat',cursive;font-size:17px;line-height:1.5;min-height:56px;transition:background .2s,color .2s;border:1px solid rgba(255,255,255,.06)}
+.form-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+.f-btn{padding:10px 20px;border-radius:10px;border:1px solid var(--border);cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .15s}
+.f-btn.cancel{background:var(--surface2);color:var(--text)}
+.f-btn.cancel:hover{background:var(--border)}
+.f-btn.submit{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.f-btn.submit:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.f-btn.submit:disabled{opacity:.4;cursor:not-allowed;transform:none;filter:none}
+.char-count{font-size:11px;color:var(--muted);text-align:right;margin-top:4px}
+
+/* CLEAR MODAL */
+#clear-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1300;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+#clear-overlay.open{display:flex}
+#clear-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px 30px;width:min(340px,92vw);box-shadow:var(--sh2);animation:slideUp .25s cubic-bezier(.34,1.56,.64,1)}
+#clear-card h3{font-size:17px;margin-bottom:8px}
+#clear-card p{font-size:14px;color:var(--muted);margin-bottom:22px}
+
+/* EMPTY */
+#empty{position:fixed;inset:var(--toolbar-h) 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;pointer-events:none;opacity:0;transition:opacity .35s}
+#empty.show{opacity:1}
+#empty svg{opacity:.18}
+#empty p{font-size:14.5px;color:var(--muted);font-style:italic}
+
+/* TOAST */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:30px;padding:10px 22px;font-size:13.5px;box-shadow:var(--sh);transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .25s;opacity:0;z-index:9999;pointer-events:none;white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:700px){#board{columns:2 150px;column-gap:10px;padding:calc(var(--toolbar-h)+14px) 10px 36px}#sw{max-width:130px}#note-count{display:none}}
+@media(max-width:430px){#board{columns:1}.tb-btn span{display:none}}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+</style>
 </head>
-
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo">
-            <span class="logo-text"><img src="assets/images/favicon.png" alt=""> Text Case</span>
-            <span class="logo-dot"></span>
-        </a>
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <div class="logo">📌 Sticky Board</div>
+  <div class="sep"></div>
+  <button class="tb-btn" id="add-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    <span>Add Note</span>
+  </button>
+  <div class="sep"></div>
+  <div id="sw">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="si" placeholder="Search notes…" type="text">
+  </div>
+  <div class="tb-right">
+    <span id="note-count">0 notes</span>
+    <button class="tb-btn icon" id="export-btn" title="Export JSON">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </button>
+    <button class="tb-btn icon" id="theme-btn" title="Toggle theme">
+      <svg id="ti" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="tb-btn icon red" id="clear-btn" title="Clear all">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+    </button>
+  </div>
+</div>
 
-        <div class="stats">
-            <div class="stat" title="Characters">
-                <span class="stat-value" id="charCount">0</span>
-                <span class="stat-label">Chars</span>
-            </div>
-            <div class="stat" title="Words">
-                <span class="stat-value" id="wordCount">0</span>
-                <span class="stat-label">Words</span>
-            </div>
-            <div class="stat" title="Sentences">
-                <span class="stat-value" id="sentenceCount">0</span>
-                <span class="stat-label">Sentences</span>
-            </div>
-            <div class="stat" title="Lines">
-                <span class="stat-value" id="lineCount">1</span>
-                <span class="stat-label">Lines</span>
-            </div>
-            <div class="stat" title="Reading time (minutes)">
-                <span class="stat-value" id="readTime">0m</span>
-                <span class="stat-label">Read</span>
-            </div>
-        </div>
-    </header>
+<!-- BOARD -->
+<div id="board"></div>
 
-    <!-- Main -->
-    <div class="layout">
-        <div class="editor-wrap">
-            <textarea id="textArea" spellcheck="true" placeholder="Start typing, or paste your text here…"></textarea>
-            <div class="word-bar" id="wordBar"></div>
+<!-- EMPTY STATE -->
+<div id="empty">
+  <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+  <p>Click "+ Add Note" to create your first sticky note</p>
+</div>
 
-            <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">
-                <svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="5" y="5" width="9" height="10" rx="2" />
-                    <path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
-                </svg>
-                Copy
-            </button>
+<!-- ADD NOTE MODAL -->
+<div id="overlay">
+  <div id="form-card">
+    <div class="form-h"><span>🗒️</span> New Sticky Note</div>
 
-            <!-- Search & Replace Panel -->
-            <div class="sr-panel" id="srPanel">
-                <div class="sr-header">
-                    <div class="sr-title">
-                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="6.5" cy="6.5" r="4.5" />
-                            <path d="M14 14l-3-3" />
-                        </svg>
-                        Search &amp; Replace
-                    </div>
-                    <div class="sr-match-info" id="srMatchInfo">No matches</div>
-                    <button class="sr-close" onclick="closeSR()" title="Close (Esc)">
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                            stroke-width="2.2" stroke-linecap="round">
-                            <path d="M3 3l10 10M13 3L3 13" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="sr-body">
-                    <!-- Search row -->
-                    <div class="sr-row">
-                        <div class="sr-input-wrap">
-                            <input class="sr-input" id="srSearch" type="text" placeholder="Find…" autocomplete="off"
-                                spellcheck="false" oninput="onSearchInput()" />
-                        </div>
-                        <div class="sr-nav">
-                            <button class="sr-nav-btn" id="srPrev" onclick="srNavigate(-1)"
-                                title="Previous match (Shift+Enter)">
-                                <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 12V4M4 8l4-4 4 4" />
-                                </svg>
-                            </button>
-                            <button class="sr-nav-btn" id="srNext" onclick="srNavigate(1)" title="Next match (Enter)">
-                                <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 4v8M4 8l4 4 4-4" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Options -->
-                    <div class="sr-options">
-                        <label class="sr-option" id="optCaseLabel">
-                            <input type="checkbox" id="optCase" onchange="onSearchInput()" />
-                            Match case
-                        </label>
-                        <label class="sr-option" id="optWholeLabel">
-                            <input type="checkbox" id="optWhole" onchange="onSearchInput()" />
-                            Whole word
-                        </label>
-                        <label class="sr-option" id="optRegexLabel">
-                            <input type="checkbox" id="optRegex" onchange="onSearchInput()" />
-                            Regex
-                        </label>
-                    </div>
-
-                    <!-- Replace row -->
-                    <div class="sr-row">
-                        <div class="sr-input-wrap">
-                            <input class="sr-input" id="srReplace" type="text" placeholder="Replace with…"
-                                autocomplete="off" spellcheck="false" />
-                        </div>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="sr-actions">
-                        <button class="sr-btn replace-one" id="srReplaceOne" onclick="replaceOne()"
-                            disabled>Replace</button>
-                        <button class="sr-btn replace-all" id="srReplaceAll" onclick="replaceAll()" disabled>Replace
-                            All</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Toolbar -->
-        <div class="toolbar">
-            <div class="toolbar-inner">
-                <button class="btn" onclick="toUpper()" title="Convert to UPPERCASE">ABC</button>
-                <button class="btn" onclick="toLower()" title="Convert to lowercase">abc</button>
-                <button class="btn" onclick="toCapitalized()" title="Capitalize Every Word">Abc</button>
-                <button class="btn" onclick="toTitle()" title="Title Case (skip small words)">Title</button>
-                <button class="btn" onclick="toSentence()" title="Sentence case">Sent.</button>
-                <button class="btn" onclick="toAlternating()" title="aLtErNaTiNg CaSe">aLt</button>
-                <button class="btn" onclick="toInverse()" title="Inverse case">iNV</button>
-
-                <div class="sep"></div>
-
-                <button class="btn" onclick="trimWhitespace()" title="Trim extra spaces & blank lines">Trim</button>
-                <button class="btn" onclick="removeDuplicateLines()" title="Remove duplicate lines">Dedup</button>
-                <button class="btn" onclick="sortLines()" title="Sort lines A→Z">Sort↑</button>
-                <button class="btn" onclick="reverseLines()" title="Reverse line order">Rev↕</button>
-
-                <div class="sep"></div>
-
-                <button class="btn sr-toggle" id="srToggleBtn" onclick="toggleSR()" title="Search & Replace (Ctrl+H)">
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="6.5" cy="6.5" r="4.5" />
-                        <path d="M14 14l-3-3" />
-                    </svg>
-                    Find &amp; Replace
-                </button>
-
-                <div class="sep"></div>
-
-                <button class="btn primary" onclick="addLoremParagraph()" title="Add a Lorem Ipsum paragraph">+
-                    Lorem</button>
-                <button class="btn ghost" onclick="clearText()" title="Clear all text">Clear</button>
-            </div>
-            <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
-        </div>
+    <div class="field">
+      <label>Title <span style="opacity:.5;font-size:11px;text-transform:none;font-weight:400">(optional)</span></label>
+      <input type="text" id="f-title" placeholder="Give it a title…" maxlength="60" autocomplete="off">
     </div>
 
-    <script>
-        const textArea = document.getElementById('textArea');
-        const charCountEl = document.getElementById('charCount');
-        const wordCountEl = document.getElementById('wordCount');
-        const sentenceCountEl = document.getElementById('sentenceCount');
-        const lineCountEl = document.getElementById('lineCount');
-        const readTimeEl = document.getElementById('readTime');
-        const wordBar = document.getElementById('wordBar');
-        const copyBtn = document.getElementById('copyBtn');
+    <div class="field">
+      <label>Note *</label>
+      <textarea id="f-text" placeholder="Write your note here…" maxlength="600"></textarea>
+      <div class="char-count"><span id="char-used">0</span> / 600</div>
+    </div>
 
-        const STORAGE_KEY = 'textcase_v2_text';
-        const EXPIRY_KEY = 'textcase_v2_expiry';
+    <div class="field">
+      <label>Color</label>
+      <div class="color-row" id="color-row"></div>
+    </div>
 
-        // ── Storage ────────────────────────────────────────────────
-        function saveToStorage() {
-            localStorage.setItem(STORAGE_KEY, textArea.value);
-            localStorage.setItem(EXPIRY_KEY, Date.now() + 24 * 60 * 60 * 1000);
-        }
+    <div class="field">
+      <label>Preview</label>
+      <div id="preview-strip">Your note will look like this…</div>
+    </div>
 
-        function loadFromStorage() {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            const expiry = localStorage.getItem(EXPIRY_KEY);
-            if (saved !== null && expiry && Date.now() < parseInt(expiry)) {
-                textArea.value = saved;
-                updateStats();
-            } else {
-                localStorage.removeItem(STORAGE_KEY);
-                localStorage.removeItem(EXPIRY_KEY);
-            }
-        }
+    <div class="form-btns">
+      <button class="f-btn cancel" id="f-cancel">Cancel</button>
+      <button class="f-btn submit" id="f-submit" disabled>Add Note ✓</button>
+    </div>
+  </div>
+</div>
 
-        // ── Stats ──────────────────────────────────────────────────
-        let prevChars = 0;
+<!-- CLEAR CONFIRM -->
+<div id="clear-overlay">
+  <div id="clear-card">
+    <h3>🗑️ Clear All Notes?</h3>
+    <p>This will permanently delete every note. This action cannot be undone.</p>
+    <div class="form-btns">
+      <button class="f-btn cancel" id="cc-cancel">Cancel</button>
+      <button class="f-btn submit" style="background:#FF6B6B;border-color:#FF6B6B" id="cc-confirm">Delete All</button>
+    </div>
+  </div>
+</div>
 
-        function animatePop(el) {
-            el.classList.remove('pop');
-            void el.offsetWidth;
-            el.classList.add('pop');
-        }
+<!-- TOAST -->
+<div id="toast"></div>
 
-        function updateStats() {
-            const text = textArea.value;
-            const chars = text.length;
-            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-            const fallbackSentences = text.trim() === '' ? 0 : (text.match(/[.!?]/g) || []).length || (text.trim() ? 1 : 0);
-            const lines = text === '' ? 1 : text.split('\n').length;
-            const readMins = Math.max(0, Math.ceil(words / 200));
+<script>
+const PRESETS=['#FFD966','#FF6B6B','#4D96FF','#6BCB77','#B983FF','#FF9F43','#48DBFB','#FFEAA7'];
+const ROTS=[-2.5,-1.5,-.5,0,.5,1.5,2.5];
+let notes=[];
+let selColor=PRESETS[0];
 
-            if (chars !== prevChars) animatePop(charCountEl);
-            prevChars = chars;
+const $=id=>document.getElementById(id);
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 
-            charCountEl.textContent = chars.toLocaleString();
-            wordCountEl.textContent = words.toLocaleString();
-            sentenceCountEl.textContent = fallbackSentences;
-            lineCountEl.textContent = lines;
-            readTimeEl.textContent = readMins < 1 ? '<1m' : readMins + 'm';
+function fg(hex){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return(r*.299+g*.587+b*.114)<186?'#FFFFFF':'#111111';
+}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function fmtDate(ts){
+  const d=new Date(ts);
+  return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+
+    ' '+d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'});
+}
 
-            const pct = Math.min(words / 500, 1) * 100;
-            wordBar.style.width = pct + '%';
-        }
+// STORAGE
+function save(){localStorage.setItem('sbv5',JSON.stringify(notes))}
+function load(){try{notes=JSON.parse(localStorage.getItem('sbv5'))||[]}catch{notes=[]}}
 
-        // ── Case converters ────────────────────────────────────────
-        const TITLE_SMALL = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is', 'it']);
+// RENDER
+function renderAll(){
+  $('board').innerHTML='';
+  notes.forEach(n=>$('board').appendChild(mkCard(n)));
+  syncCount();syncEmpty();
+}
 
-        function apply(fn) {
-            textArea.value = fn(textArea.value);
-            updateStats(); saveToStorage(); textArea.focus();
-            if (srOpen) onSearchInput();
-        }
+function mkCard(d){
+  const el=document.createElement('div');
+  el.className='note'+(d.pinned?' pinned':'');
+  el.dataset.id=d.id;
+  el.style.cssText=`background:${d.color};color:${fg(d.color)};transform:rotate(${d.rot||0}deg)`;
 
-        function toUpper() { apply(t => t.toUpperCase()); }
-        function toLower() { apply(t => t.toLowerCase()); }
-        function toCapitalized() { apply(t => t.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())); }
-        function toTitle() {
-            apply(t => t.toLowerCase().replace(/\S+/g, (word, i) => {
-                if (i === 0 || !TITLE_SMALL.has(word)) return word.charAt(0).toUpperCase() + word.slice(1);
-                return word;
-            }));
-        }
-        function toSentence() {
-            apply(t => t.toLowerCase().replace(/(^\s*\S|[.!?]\s+\S)/g, l => l.toUpperCase()));
-        }
-        function toAlternating() {
-            apply(t => t.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join(''));
-        }
-        function toInverse() {
-            apply(t => t.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''));
-        }
-        function trimWhitespace() {
-            apply(t => t.split('\n').map(l => l.trim()).filter((l, i, a) => l || (a[i - 1] !== '')).join('\n').trim());
-        }
-        function removeDuplicateLines() {
-            apply(t => [...new Set(t.split('\n'))].join('\n'));
-        }
-        function sortLines() {
-            apply(t => t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n'));
-        }
-        function reverseLines() {
-            apply(t => t.split('\n').reverse().join('\n'));
-        }
-        function clearText() { apply(() => ''); }
+  el.innerHTML=`
+    <div class="pin-flag">📌</div>
+    <div class="note-actions">
+      <button class="na-btn pin${d.pinned?' active':''}" title="${d.pinned?'Unpin':'Pin note'}">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="${d.pinned?'currentColor':'none'}" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L12 8M12 2L8 6M12 2L16 6M5 8h14l-2 6H7L5 8zM12 14v8"/></svg>
+      </button>
+      <button class="na-btn del" title="Delete note">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="note-title${d.title?' show':''}">${esc(d.title)}</div>
+    <div class="note-body">${esc(d.text)}</div>
+    <span class="note-date">${fmtDate(d.created)}</span>
+  `;
 
-        // ── Lorem ipsum ────────────────────────────────────────────
-        const FALLBACK_LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+  el.querySelector('.pin').addEventListener('click',e=>{e.stopPropagation();togglePin(el,d.id)});
+  el.querySelector('.del').addEventListener('click',e=>{e.stopPropagation();deleteNote(el,d.id)});
+  return el;
+}
 
-        async function addLoremParagraph() {
-            try {
-                const res = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1&format=text&start-with-lorem=1');
-                if (!res.ok) throw new Error();
-                const para = (await res.text()).trim();
-                appendText(para);
-            } catch {
-                appendText(FALLBACK_LOREM);
-            }
-        }
+// ACTIONS
+function togglePin(el,id){
+  const n=notes.find(x=>x.id===id);if(!n)return;
+  n.pinned=!n.pinned;save();
+  el.classList.toggle('pinned',n.pinned);
+  const btn=el.querySelector('.pin');
+  btn.classList.toggle('active',n.pinned);
+  btn.querySelector('svg').setAttribute('fill',n.pinned?'currentColor':'none');
+  btn.title=n.pinned?'Unpin':'Pin note';
+  showToast(n.pinned?'📌 Note pinned':'Unpinned');
+}
 
-        function appendText(para) {
-            const sep = textArea.value && !textArea.value.endsWith('\n\n') ? '\n\n' : '';
-            textArea.value += sep + para;
-            updateStats(); saveToStorage(); textArea.focus();
-            textArea.scrollTop = textArea.scrollHeight;
-        }
+function deleteNote(el,id){
+  el.style.transition='transform .22s ease,opacity .22s ease';
+  el.style.transform='scale(.8) rotate(-6deg)';el.style.opacity='0';
+  setTimeout(()=>{notes=notes.filter(n=>n.id!==id);save();el.remove();syncCount();syncEmpty()},220);
+}
 
-        // ── Copy ───────────────────────────────────────────────────
-        async function copyToClipboard() {
-            try {
-                await navigator.clipboard.writeText(textArea.value);
-            } catch {
-                textArea.select();
-                document.execCommand('copy');
-            }
-            copyBtn.textContent = '✓ Copied!';
-            copyBtn.classList.add('copied');
-            setTimeout(() => {
-                copyBtn.innerHTML = `<svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="9" height="10" rx="2"/><path d="M11 5V3a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copy`;
-                copyBtn.classList.remove('copied');
-            }, 2000);
-        }
+// COUNT / EMPTY
+function syncCount(){
+  const c=notes.length;
+  $('note-count').textContent=c===1?'1 note':`${c} notes`;
+}
+function syncEmpty(){
+  $('empty').classList.toggle('show',document.querySelectorAll('.note:not(.hidden)').length===0);
+}
 
-        // ── SEARCH & REPLACE ───────────────────────────────────────
-        let srOpen = false;
-        let srMatches = [];   // [{start, end}, ...]
-        let srCurrent = -1;
+// SEARCH
+$('si').addEventListener('input',function(){
+  const q=this.value.toLowerCase().trim();
+  document.querySelectorAll('.note').forEach(el=>{
+    const t=(el.querySelector('.note-title').textContent+el.querySelector('.note-body').textContent).toLowerCase();
+    el.classList.toggle('hidden',!!q&&!t.includes(q));
+  });
+  syncEmpty();
+});
 
-        const srPanel = document.getElementById('srPanel');
-        const srToggleBtn = document.getElementById('srToggleBtn');
-        const srSearch = document.getElementById('srSearch');
-        const srReplace = document.getElementById('srReplace');
-        const srMatchInfo = document.getElementById('srMatchInfo');
-        const srPrev = document.getElementById('srPrev');
-        const srNext = document.getElementById('srNext');
-        const srReplaceOne = document.getElementById('srReplaceOne');
-        const srReplaceAll = document.getElementById('srReplaceAll');
-        const optCase = document.getElementById('optCase');
-        const optWhole = document.getElementById('optWhole');
-        const optRegex = document.getElementById('optRegex');
+// THEME
+let dark=localStorage.getItem('sb-theme')!=='light';
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  localStorage.setItem('sb-theme',dark?'dark':'light');
+  $('ti').innerHTML=dark
+    ?`<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
+    :`<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+}
+applyTheme();
+$('theme-btn').addEventListener('click',()=>{dark=!dark;applyTheme();showToast(dark?'🌙 Dark mode':'☀️ Light mode')});
 
-        function toggleSR() {
-            srOpen ? closeSR() : openSR();
-        }
+// EXPORT
+$('export-btn').addEventListener('click',()=>{
+  const b=new Blob([JSON.stringify(notes,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);
+  a.download='sticky-notes.json';a.click();showToast('📥 Exported!');
+});
 
-        function openSR() {
-            srOpen = true;
-            srPanel.classList.add('open');
-            srToggleBtn.classList.add('active');
-            srSearch.focus();
-            srSearch.select();
-            onSearchInput();
-        }
+// CLEAR
+$('clear-btn').addEventListener('click',()=>{if(!notes.length){showToast('No notes to clear');return}$('clear-overlay').classList.add('open')});
+$('cc-cancel').addEventListener('click',()=>$('clear-overlay').classList.remove('open'));
+$('cc-confirm').addEventListener('click',()=>{notes=[];save();renderAll();$('clear-overlay').classList.remove('open');showToast('🗑️ All notes cleared')});
+$('clear-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open')});
 
-        function closeSR() {
-            srOpen = false;
-            srPanel.classList.remove('open');
-            srToggleBtn.classList.remove('active');
-            srMatches = [];
-            srCurrent = -1;
-            textArea.focus();
-        }
+// FORM — build color swatches
+function buildColorRow(){
+  const row=$('color-row');row.innerHTML='';
+  PRESETS.forEach(hex=>{
+    const d=document.createElement('div');
+    d.className='cp-dot'+(hex===selColor?' sel':'');
+    d.style.background=hex;d.dataset.hex=hex;d.title=hex;
+    d.addEventListener('click',()=>setColor(hex));
+    row.appendChild(d);
+  });
+  const wrap=document.createElement('div');wrap.className='cp-custom';wrap.title='Custom color';
+  const inp=document.createElement('input');inp.type='color';inp.value=selColor;
+  inp.addEventListener('input',e=>setColor(e.target.value));
+  const icon=document.createElement('div');icon.className='cp-icon';
+  wrap.appendChild(inp);wrap.appendChild(icon);
+  row.appendChild(wrap);
+}
 
-        function buildRegex(query) {
-            if (!query) return null;
-            try {
-                let pattern = optRegex.checked ? query : query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                if (optWhole.checked) pattern = `\\b${pattern}\\b`;
-                const flags = optCase.checked ? 'g' : 'gi';
-                return new RegExp(pattern, flags);
-            } catch (e) {
-                return null;
-            }
-        }
+function setColor(hex){
+  selColor=hex;
+  document.querySelectorAll('.cp-dot').forEach(d=>d.classList.toggle('sel',d.dataset.hex===hex));
+  updatePreview();
+}
 
-        function findAllMatches(regex) {
-            const text = textArea.value;
-            const matches = [];
-            let m;
-            while ((m = regex.exec(text)) !== null) {
-                matches.push({ start: m.index, end: m.index + m[0].length });
-                if (m[0].length === 0) regex.lastIndex++; // prevent infinite loop on zero-length match
-            }
-            return matches;
-        }
+function updatePreview(){
+  const p=$('preview-strip');
+  const title=$('f-title').value.trim();
+  const text=$('f-text').value.trim();
+  p.style.background=selColor;
+  p.style.color=fg(selColor);
+  if(title||text){
+    p.innerHTML=(title?`<strong style="display:block;font-size:20px;line-height:1.25;margin-bottom:5px">${esc(title)}</strong>`:'')+`<span style="white-space:pre-wrap">${esc(text||'…')}</span>`;
+  }else{
+    p.textContent='Your note will look like this…';
+    p.style.background=selColor;p.style.color=fg(selColor);
+  }
+}
 
-        function onSearchInput() {
-            const query = srSearch.value;
-            srSearch.classList.remove('no-match');
+function openForm(){
+  $('f-title').value='';$('f-text').value='';$('char-used').textContent='0';
+  selColor=rand(PRESETS);
+  buildColorRow();updatePreview();
+  $('f-submit').disabled=true;
+  $('overlay').classList.add('open');
+  setTimeout(()=>$('f-title').focus(),120);
+}
+function closeForm(){$('overlay').classList.remove('open')}
 
-            if (!query) {
-                srMatches = [];
-                srCurrent = -1;
-                srMatchInfo.textContent = 'No matches';
-                srMatchInfo.classList.remove('has-matches');
-                setActionState(false);
-                return;
-            }
+$('add-btn').addEventListener('click',openForm);
+$('f-cancel').addEventListener('click',closeForm);
+$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeForm()});
 
-            const regex = buildRegex(query);
-            if (!regex) {
-                srMatchInfo.textContent = 'Invalid regex';
-                srMatchInfo.classList.remove('has-matches');
-                setActionState(false);
-                return;
-            }
+$('f-title').addEventListener('input',updatePreview);
 
-            srMatches = findAllMatches(regex);
+$('f-text').addEventListener('input',function(){
+  updatePreview();
+  $('char-used').textContent=this.value.length;
+  $('f-submit').disabled=this.value.trim().length===0;
+});
 
-            if (srMatches.length === 0) {
-                srSearch.classList.add('no-match');
-                srCurrent = -1;
-                srMatchInfo.textContent = 'No matches';
-                srMatchInfo.classList.remove('has-matches');
-                setActionState(false);
-            } else {
-                srSearch.classList.remove('no-match');
-                // Keep current index in bounds, or jump to first
-                if (srCurrent < 0 || srCurrent >= srMatches.length) srCurrent = 0;
-                updateMatchInfo();
-                highlightCurrent();
-                setActionState(true);
-            }
-        }
+$('f-submit').addEventListener('click',()=>{
+  const title=$('f-title').value.trim();
+  const text=$('f-text').value.trim();
+  if(!text)return;
+  const rot=rand(ROTS);
+  const n={id:uid(),title,text,color:selColor,rot,pinned:false,created:Date.now()};
+  notes.unshift(n);save();
+  const el=mkCard(n);
+  $('board').prepend(el);
+  syncCount();syncEmpty();
+  closeForm();
+  showToast('✅ Note added!');
+});
 
-        function updateMatchInfo() {
-            if (srMatches.length === 0) {
-                srMatchInfo.textContent = 'No matches';
-                srMatchInfo.classList.remove('has-matches');
-            } else {
-                srMatchInfo.textContent = `${srCurrent + 1} / ${srMatches.length}`;
-                srMatchInfo.classList.add('has-matches');
-            }
-        }
+// keyboard shortcuts inside form
+$('f-title').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('f-text').focus()}});
+$('f-text').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();$('f-submit').click()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeForm();$('clear-overlay').classList.remove('open')}});
 
-        function setActionState(enabled) {
-            srPrev.disabled = !enabled;
-            srNext.disabled = !enabled;
-            srReplaceOne.disabled = !enabled;
-            srReplaceAll.disabled = !enabled;
-        }
+// TOAST
+let tt;
+function showToast(msg){
+  const t=$('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2100);
+}
 
-        function highlightCurrent() {
-            if (srMatches.length === 0 || srCurrent < 0) return;
-            const { start, end } = srMatches[srCurrent];
-            textArea.focus();
-            textArea.setSelectionRange(start, end);
-            // Scroll the match into view
-            const lineHeight = parseFloat(getComputedStyle(textArea).lineHeight) || 28;
-            const textBefore = textArea.value.substring(0, start);
-            const linesBefore = textBefore.split('\n').length - 1;
-            const scrollTo = linesBefore * lineHeight - textArea.clientHeight / 2;
-            textArea.scrollTop = Math.max(0, scrollTo);
-        }
+// INIT
+load();renderAll();
 
-        function srNavigate(dir) {
-            if (srMatches.length === 0) return;
-            srCurrent = (srCurrent + dir + srMatches.length) % srMatches.length;
-            updateMatchInfo();
-            highlightCurrent();
-        }
-
-        function replaceOne() {
-            if (srMatches.length === 0 || srCurrent < 0) return;
-            const { start, end } = srMatches[srCurrent];
-            const replaceVal = srReplace.value;
-            const text = textArea.value;
-
-            // If using regex with capture groups, handle substitution
-            const regex = buildRegex(srSearch.value);
-            let replacement = replaceVal;
-            if (optRegex.checked && regex) {
-                const matched = text.slice(start, end);
-                replacement = matched.replace(new RegExp(regex.source, regex.flags.replace('g', '')), replaceVal);
-            }
-
-            textArea.value = text.slice(0, start) + replacement + text.slice(end);
-            updateStats(); saveToStorage();
-
-            // Flash feedback
-            textArea.classList.remove('flash-replace');
-            void textArea.offsetWidth;
-            textArea.classList.add('flash-replace');
-
-            // Re-search and keep cursor at same relative position
-            const newPos = start + replacement.length;
-            onSearchInput();
-            if (srMatches.length > 0) {
-                srCurrent = srMatches.findIndex(m => m.start >= newPos);
-                if (srCurrent < 0) srCurrent = 0;
-                updateMatchInfo();
-                highlightCurrent();
-            }
-        }
-
-        function replaceAll() {
-            if (srMatches.length === 0) return;
-            const query = srSearch.value;
-            const replaceVal = srReplace.value;
-            const regex = buildRegex(query);
-            if (!regex) return;
-
-            textArea.value = textArea.value.replace(regex, replaceVal);
-            updateStats(); saveToStorage();
-
-            // Flash feedback
-            textArea.classList.remove('flash-replace');
-            void textArea.offsetWidth;
-            textArea.classList.add('flash-replace');
-
-            srMatches = [];
-            srCurrent = -1;
-            srMatchInfo.textContent = 'Replaced';
-            srMatchInfo.classList.remove('has-matches');
-            setActionState(false);
-            srSearch.classList.remove('no-match');
-        }
-
-        // Update option label active states
-        [optCase, optWhole, optRegex].forEach(cb => {
-            cb.addEventListener('change', () => {
-                cb.closest('.sr-option').classList.toggle('active', cb.checked);
-            });
-        });
-
-        // Search input: re-run on textarea change if panel open
-        textArea.addEventListener('input', () => {
-            saveToStorage();
-            updateStats();
-            if (srOpen) onSearchInput();
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', e => {
-            // Ctrl/Cmd+H → toggle SR
-            if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
-                e.preventDefault();
-                toggleSR();
-                return;
-            }
-            // Ctrl/Cmd+F → open SR
-            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                e.preventDefault();
-                openSR();
-                return;
-            }
-            // Ctrl/Cmd+Shift+C → copy
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') {
-                e.preventDefault();
-                copyToClipboard();
-                return;
-            }
-            if (srOpen) {
-                if (e.key === 'Escape') { closeSR(); return; }
-                if (e.target === srSearch) {
-                    if (e.key === 'Enter' && e.shiftKey) { e.preventDefault(); srNavigate(-1); return; }
-                    if (e.key === 'Enter') { e.preventDefault(); srNavigate(1); return; }
-                }
-                if (e.target === srReplace && e.key === 'Enter') {
-                    e.preventDefault();
-                    replaceOne();
-                    return;
-                }
-            }
-        });
-
-        // ── Init ───────────────────────────────────────────────────
-        window.addEventListener('load', () => {
-            loadFromStorage();
-            textArea.focus();
-        });
-    </script>
+if(!notes.length){
+  const demos=[
+    {title:'Welcome! 🎉',text:'Click "+ Add Note" to create your first sticky note.',color:'#FFD966'},
+    {title:'',text:'Notes are saved automatically — even after closing the tab. 💾',color:'#6BCB77'},
+    {title:'',text:'Use the search bar above to filter notes instantly. 🔍',color:'#4D96FF'},
+    {title:'Hover to reveal ✨',text:'Hover over any note to see pin and delete buttons.',color:'#B983FF'},
+    {title:'',text:'Toggle dark / light mode with the ☀️ button in the toolbar.',color:'#FF9F43'},
+  ];
+  demos.forEach((d,i)=>{
+    notes.push({id:uid(),title:d.title,text:d.text,color:d.color,rot:rand(ROTS),pinned:false,created:Date.now()-i*1000});
+  });
+  save();renderAll();
+}
+</script>
 </body>
-
 </html>
