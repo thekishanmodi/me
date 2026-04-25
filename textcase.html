@@ -4,24 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Free online text case converter by Kishan Modi. Easily convert text to uppercase, lowercase, title case, sentence case, and more with our fast, user-friendly tool.">
-    <meta name="keywords"
-        content="Text case converter, uppercase, lowercase, title case, sentence case, alternating case, inverse case, text tools, Kishan Modi, #thekishanmodi">
+    <meta name="description" content="Free online text case converter by Kishan Modi.">
     <meta name="author" content="Kishan Modi">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Text Case Converter | Kishan Modi">
-    <meta property="og:description"
-        content="Free online text case converter. Easily convert your text to uppercase, lowercase, title case, sentence case, and more.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thekishanmodi.com/textcase.html">
-    <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Text Case Converter | Kishan Modi">
-    <meta name="twitter:description"
-        content="Free online text case converter by Kishan Modi. Easily convert text to uppercase, lowercase, title case, and sentence case.">
     <title>Text Case | #thekishanmodi</title>
-    <link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.png' />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@400;700&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@300;400;500;700&family=Josefin+Sans:wght@300;400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@300;400;500;700&family=Nunito:wght@300;400;700&family=Open+Sans:wght@300;400;700&family=Oswald:wght@300;400;700&family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@300;400;700&family=Rubik:wght@300;400;700&family=Source+Code+Pro:wght@400;700&family=Source+Sans+3:wght@300;400;700&family=Space+Mono:wght@400;700&family=Ubuntu:wght@300;400;700&family=Work+Sans:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <style>
         @font-face {
             font-family: "Mona Sans";
@@ -62,18 +54,19 @@
         html,
         body {
             height: 100%;
-            font-family: 'Mona Sans', sans-serif;
+            font-family: 'Mona Sans', 'Inter', sans-serif;
             background: var(--white);
             color: var(--black);
             overflow: hidden;
         }
 
+        /* ── HEADER ── */
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            padding: 0 1.5rem;
+            padding: 0 1.25rem;
             height: 56px;
             background: var(--black);
             border-bottom: 2px solid var(--orange);
@@ -82,20 +75,19 @@
 
         .logo {
             display: flex;
-            align-items: baseline;
-            gap: 2px;
+            align-items: center;
+            gap: 6px;
             text-decoration: none;
         }
 
         .logo-text {
-            font-family: 'Mona Sans', serif;
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             color: var(--white);
             font-weight: 700;
             letter-spacing: -0.02em;
             display: flex;
             align-items: center;
-            gap: 0.15rem;
+            gap: 0.4rem;
         }
 
         .logo-dot {
@@ -103,14 +95,13 @@
             height: 7px;
             border-radius: 50%;
             background: var(--orange);
-            margin-left: 1px;
-            margin-bottom: 3px;
-            align-self: flex-end;
+            flex-shrink: 0;
         }
 
+        /* ── STATS ── */
         .stats {
             display: flex;
-            gap: 0.25rem;
+            gap: 0.2rem;
             align-items: center;
         }
 
@@ -118,11 +109,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0.3rem 0.9rem;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            min-width: 64px;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            min-width: 58px;
             cursor: default;
             transition: background var(--transition);
         }
@@ -132,15 +123,15 @@
         }
 
         .stat-value {
-            font-family: 'Mona Sans', monospace;
-            font-size: 1.05rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--orange);
             line-height: 1.2;
+            font-variant-numeric: tabular-nums;
         }
 
         .stat-label {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: 500;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -148,6 +139,78 @@
             line-height: 1.2;
         }
 
+        /* ── MODE TOGGLE ── */
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .mode-lbl {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            user-select: none;
+            transition: color var(--transition);
+            white-space: nowrap;
+        }
+
+        .mode-lbl.active {
+            color: var(--white);
+        }
+
+        .toggle-sw {
+            position: relative;
+            width: 38px;
+            height: 21px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .toggle-sw input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+
+        .toggle-track {
+            position: absolute;
+            inset: 0;
+            border-radius: 21px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .toggle-sw input:checked+.toggle-track {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            pointer-events: none;
+            transition: transform var(--transition), background var(--transition);
+        }
+
+        .toggle-sw input:checked~.toggle-thumb {
+            transform: translateX(17px);
+            background: var(--white);
+        }
+
+        /* ── LAYOUT ── */
         .layout {
             display: flex;
             flex-direction: column;
@@ -159,22 +222,27 @@
             flex-shrink: 0;
             background: var(--gray-100);
             border-bottom: 1px solid var(--gray-200);
-            padding: 0.45rem 1.25rem;
-            display: flex;
+            padding: 0.4rem 1.25rem;
+            display: none;
+            /* hidden by default — plain is default */
             flex-wrap: wrap;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.2rem;
         }
 
-        .rte-group {
+        .rte-toolbar.visible {
+            display: flex;
+        }
+
+        .rte-grp {
             display: flex;
             align-items: center;
-            gap: 0.15rem;
+            gap: 0.1rem;
         }
 
         .rte-sep {
             width: 1px;
-            height: 24px;
+            height: 22px;
             background: var(--gray-200);
             margin: 0 0.3rem;
             border-radius: 1px;
@@ -185,19 +253,21 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 30px;
-            height: 30px;
+            min-width: 28px;
+            height: 28px;
+            padding: 0 4px;
             background: transparent;
             color: var(--gray-600);
             border: 1.5px solid transparent;
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
             transition: all var(--transition);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            font-family: 'Mona Sans', sans-serif;
+            font-family: inherit;
             flex-shrink: 0;
             position: relative;
+            white-space: nowrap;
         }
 
         .rte-btn:hover {
@@ -206,86 +276,82 @@
             color: var(--black);
         }
 
-        .rte-btn.active {
+        .rte-btn.on {
             background: var(--black);
             border-color: var(--black);
             color: var(--white);
         }
 
         .rte-btn svg {
-            width: 14px;
-            height: 14px;
+            width: 13px;
+            height: 13px;
             flex-shrink: 0;
         }
 
-        .rte-btn[title]:hover::after {
-            content: attr(title);
+        .rte-btn[data-tip]:hover::after {
+            content: attr(data-tip);
             position: absolute;
-            bottom: calc(100% + 6px);
+            bottom: calc(100% + 5px);
             left: 50%;
             transform: translateX(-50%);
             background: var(--black);
             color: var(--white);
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 500;
-            padding: 3px 7px;
+            padding: 2px 6px;
             border-radius: 4px;
             white-space: nowrap;
             pointer-events: none;
             z-index: 999;
-            font-family: 'Mona Sans', sans-serif;
-            letter-spacing: 0.02em;
         }
 
-        .rte-color-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-            border: 1.5px solid var(--gray-200);
-            cursor: pointer;
+        .rte-color-wrap {
             position: relative;
-            background: transparent;
+            width: 28px;
+            height: 28px;
+            border-radius: 5px;
+            border: 1.5px solid var(--gray-200);
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all var(--transition);
-            flex-shrink: 0;
+            transition: border-color var(--transition);
         }
 
-        .rte-color-btn:hover {
+        .rte-color-wrap:hover {
             border-color: var(--black);
         }
 
-        .rte-color-btn input[type="color"] {
+        .rte-color-wrap input[type="color"] {
             position: absolute;
-            inset: 0;
+            inset: -4px;
             opacity: 0;
             cursor: pointer;
-            width: 100%;
-            height: 100%;
-            border: none;
-            padding: 0;
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);
         }
 
-        .color-swatch {
-            width: 14px;
-            height: 14px;
+        .color-dot {
+            width: 13px;
+            height: 13px;
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.12);
             pointer-events: none;
-            background: #000;
         }
 
-        .rte-select {
-            height: 30px;
-            padding: 0 0.5rem;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.72rem;
+        .rte-select,
+        .font-select {
+            height: 28px;
+            padding: 0 6px;
+            font-family: inherit;
+            font-size: 0.7rem;
             font-weight: 500;
             background: var(--white);
             color: var(--black);
             border: 1.5px solid var(--gray-200);
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
             outline: none;
             transition: border-color var(--transition);
@@ -293,172 +359,179 @@
         }
 
         .rte-select:hover,
-        .rte-select:focus {
+        .rte-select:focus,
+        .font-select:hover,
+        .font-select:focus {
             border-color: var(--black);
         }
 
-        .rte-font-select {
-            height: 30px;
-            padding: 0 0.5rem;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 500;
-            background: var(--white);
-            color: var(--black);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 6px;
-            cursor: pointer;
-            outline: none;
-            transition: border-color var(--transition);
-            min-width: 100px;
-            flex-shrink: 0;
+        .font-select {
+            min-width: 130px;
         }
 
-        .rte-font-select:hover,
-        .rte-font-select:focus {
-            border-color: var(--black);
-        }
-
-        /* ── EDITOR ── */
+        /* ── EDITORS ── */
         .editor-wrap {
             flex: 1;
             position: relative;
             min-height: 0;
         }
 
-        .rte-editor {
+        /* shared base */
+        .editor-base {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-size: clamp(1rem, 2.2vw, 1.45rem);
             font-weight: 400;
-            line-height: 1.7;
+            line-height: 1.75;
             color: var(--black);
             background: var(--white);
-            border: none;
-            outline: none;
-            padding: clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 8vw, 6rem);
+            padding: clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 8vw, 6rem);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             caret-color: var(--orange);
         }
 
-        .rte-editor:empty::before {
-            content: attr(data-placeholder);
+        /* plain textarea */
+        #plainEditor {
+            font-family: 'Mona Sans', 'Inter', sans-serif;
+            border: none;
+            outline: none;
+            resize: none;
+            display: block;
+            /* PLAIN IS DEFAULT — visible */
+        }
+
+        #plainEditor::placeholder {
+            color: var(--gray-200);
+            font-style: italic;
+        }
+
+        /* rich contenteditable */
+        #rteEditor {
+            font-family: 'Mona Sans', 'Inter', sans-serif;
+            border: none;
+            outline: none;
+            display: none;
+            /* hidden by default */
+        }
+
+        #rteEditor:empty::before {
+            content: attr(data-ph);
             color: var(--gray-200);
             font-style: italic;
             pointer-events: none;
         }
 
-        .rte-editor::-webkit-scrollbar {
+        /* scrollbars */
+        .editor-base::-webkit-scrollbar {
             width: 4px;
         }
 
-        .rte-editor::-webkit-scrollbar-track {
+        .editor-base::-webkit-scrollbar-track {
             background: transparent;
         }
 
-        .rte-editor::-webkit-scrollbar-thumb {
+        .editor-base::-webkit-scrollbar-thumb {
             background: var(--gray-200);
             border-radius: 4px;
         }
 
-        .rte-editor::-webkit-scrollbar-thumb:hover {
+        .editor-base::-webkit-scrollbar-thumb:hover {
             background: var(--gray-400);
         }
 
-        .rte-editor h1 {
+        /* rich text content styles */
+        #rteEditor h1 {
             font-size: 2em;
             font-weight: 700;
-            margin: 0.5em 0 0.3em;
-            line-height: 1.25;
+            margin: .4em 0 .25em;
+            line-height: 1.2;
         }
 
-        .rte-editor h2 {
+        #rteEditor h2 {
             font-size: 1.5em;
             font-weight: 700;
-            margin: 0.5em 0 0.3em;
+            margin: .4em 0 .25em;
             line-height: 1.3;
         }
 
-        .rte-editor h3 {
-            font-size: 1.17em;
+        #rteEditor h3 {
+            font-size: 1.2em;
             font-weight: 700;
-            margin: 0.5em 0 0.3em;
+            margin: .4em 0 .2em;
         }
 
-        .rte-editor ul {
-            padding-left: 1.5em;
-            margin: 0.4em 0;
-            list-style-type: disc;
+        #rteEditor ul {
+            padding-left: 1.4em;
+            margin: .35em 0;
+            list-style: disc;
         }
 
-        .rte-editor ol {
-            padding-left: 1.5em;
-            margin: 0.4em 0;
-            list-style-type: decimal;
+        #rteEditor ol {
+            padding-left: 1.4em;
+            margin: .35em 0;
+            list-style: decimal;
         }
 
-        .rte-editor li {
-            margin: 0.15em 0;
+        #rteEditor li {
+            margin: .1em 0;
         }
 
-        .rte-editor blockquote {
+        #rteEditor blockquote {
             border-left: 3px solid var(--orange);
-            margin: 0.6em 0;
-            padding: 0.4em 1em;
+            margin: .5em 0;
+            padding: .35em .9em;
             background: var(--orange-light);
             border-radius: 0 6px 6px 0;
             font-style: italic;
             color: var(--gray-600);
         }
 
-        .rte-editor pre {
-            font-family: 'Courier New', monospace;
+        #rteEditor pre {
+            font-family: 'Fira Code', 'Source Code Pro', monospace;
             background: var(--gray-100);
-            border-radius: 4px;
-            padding: 0.75em 1em;
-            margin: 0.4em 0;
+            border-radius: 6px;
+            padding: .65em 1em;
+            margin: .35em 0;
+            font-size: .82em;
             overflow-x: auto;
-            font-size: 0.85em;
         }
 
-        .rte-editor code {
-            font-family: 'Courier New', monospace;
+        #rteEditor code {
+            font-family: 'Fira Code', 'Source Code Pro', monospace;
             background: var(--gray-100);
-            border-radius: 4px;
-            padding: 0.1em 0.35em;
-            font-size: 0.88em;
+            border-radius: 3px;
+            padding: .1em .35em;
+            font-size: .85em;
         }
 
-        .rte-editor a {
+        #rteEditor a {
             color: var(--orange);
             text-decoration: underline;
         }
 
-        .rte-editor hr {
+        #rteEditor hr {
             border: none;
             border-top: 2px solid var(--gray-200);
-            margin: 1em 0;
+            margin: .8em 0;
         }
 
-        .rte-editor table {
+        #rteEditor table {
             border-collapse: collapse;
             width: 100%;
-            margin: 0.5em 0;
-            font-size: 0.9em;
+            margin: .5em 0;
+            font-size: .88em;
         }
 
-        .rte-editor th,
-        .rte-editor td {
+        #rteEditor th,
+        #rteEditor td {
             border: 1px solid var(--gray-200);
-            padding: 0.4em 0.75em;
-            text-align: left;
+            padding: .35em .7em;
         }
 
-        .rte-editor th {
+        #rteEditor th {
             background: var(--gray-100);
             font-weight: 600;
         }
@@ -470,14 +543,14 @@
             right: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 1rem;
+            gap: .4rem;
+            padding: .45rem .9rem;
             background: var(--black);
             color: var(--white);
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.78rem;
+            font-family: inherit;
+            font-size: .72rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            letter-spacing: .05em;
             text-transform: uppercase;
             border: none;
             border-radius: var(--radius);
@@ -490,11 +563,11 @@
         .copy-btn:hover {
             background: var(--orange);
             transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(253, 98, 4, 0.35);
+            box-shadow: 0 4px 14px rgba(253, 98, 4, .35);
         }
 
         .copy-btn:active {
-            transform: translateY(0);
+            transform: none;
         }
 
         .copy-btn.copied {
@@ -507,22 +580,35 @@
             flex-shrink: 0;
         }
 
-        /* ── SEARCH & REPLACE ── */
+        /* ── WORD BAR ── */
+        .word-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange), #ff9f52);
+            transition: width .35s ease;
+            border-radius: 0 2px 2px 0;
+            pointer-events: none;
+            opacity: .55;
+        }
+
+        /* ── S&R PANEL ── */
         .sr-panel {
             position: absolute;
             top: 1rem;
             left: 50%;
-            transform: translateX(-50%) translateY(-8px);
-            width: min(520px, calc(100% - 2rem));
+            transform: translateX(-50%) translateY(-10px);
+            width: min(500px, calc(100% - 2rem));
             background: var(--white);
             border: 1.5px solid var(--gray-200);
             border-radius: 14px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13), 0 2px 8px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .13), 0 2px 8px rgba(0, 0, 0, .07);
             z-index: 100;
             overflow: hidden;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 200ms ease, transform 200ms ease;
+            transition: opacity .2s ease, transform .2s ease;
         }
 
         .sr-panel.open {
@@ -531,85 +617,83 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        .sr-header {
+        .sr-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.65rem 1rem 0.65rem 1.1rem;
+            padding: .6rem 1rem .6rem 1.1rem;
             background: var(--black);
             color: var(--white);
         }
 
         .sr-title {
-            font-size: 0.72rem;
+            font-size: .7rem;
             font-weight: 700;
-            letter-spacing: 0.12em;
+            letter-spacing: .12em;
             text-transform: uppercase;
             color: var(--gray-400);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .4rem;
         }
 
         .sr-title svg {
             color: var(--orange);
         }
 
-        .sr-match-info {
-            font-size: 0.7rem;
+        .sr-info {
+            font-size: .68rem;
             font-weight: 500;
             color: var(--gray-400);
             font-variant-numeric: tabular-nums;
-            min-width: 80px;
+            min-width: 72px;
             text-align: center;
         }
 
-        .sr-match-info.has-matches {
+        .sr-info.hit {
             color: var(--orange);
         }
 
-        .sr-close {
+        .sr-x {
             background: none;
             border: none;
             color: var(--gray-400);
             cursor: pointer;
-            padding: 0.2rem;
+            padding: .2rem;
             border-radius: 4px;
             line-height: 0;
             transition: color var(--transition);
             display: flex;
         }
 
-        .sr-close:hover {
+        .sr-x:hover {
             color: var(--white);
         }
 
         .sr-body {
-            padding: 0.85rem 1rem;
+            padding: .8rem 1rem;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: .55rem;
         }
 
         .sr-row {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .45rem;
         }
 
-        .sr-input-wrap {
-            position: relative;
+        .sr-iw {
             flex: 1;
         }
 
         .sr-input {
             width: 100%;
-            font-family: 'Mona Sans', monospace;
-            font-size: 0.88rem;
-            font-weight: 400;
-            padding: 0.55rem 0.85rem;
+            font-family: inherit;
+            font-size: .85rem;
+            padding: .5rem .8rem;
             border: 1.5px solid var(--gray-200);
-            border-radius: 8px;
+            border-radius: 7px;
             background: var(--gray-100);
             color: var(--black);
             outline: none;
@@ -621,134 +705,127 @@
             background: var(--white);
         }
 
-        .sr-input::placeholder {
-            color: var(--gray-400);
-            font-style: normal;
-        }
-
-        .sr-input.no-match {
+        .sr-input.bad {
             border-color: #e53e3e;
             background: #fff5f5;
         }
 
         .sr-nav {
             display: flex;
-            gap: 0.25rem;
+            gap: .2rem;
         }
 
-        .sr-nav-btn {
+        .sr-nb {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             background: var(--gray-100);
             border: 1.5px solid var(--gray-200);
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
             color: var(--gray-600);
             transition: all var(--transition);
-            flex-shrink: 0;
         }
 
-        .sr-nav-btn:hover:not(:disabled) {
+        .sr-nb:hover:not(:disabled) {
             background: var(--black);
             border-color: var(--black);
             color: var(--white);
         }
 
-        .sr-nav-btn:disabled {
-            opacity: 0.35;
+        .sr-nb:disabled {
+            opacity: .35;
             cursor: not-allowed;
         }
 
-        .sr-options {
+        .sr-opts {
             display: flex;
-            gap: 0.5rem;
+            gap: .4rem;
             align-items: center;
-            padding: 0 0.1rem;
         }
 
-        .sr-option {
+        .sr-opt {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            font-size: 0.7rem;
+            gap: .25rem;
+            font-size: .67rem;
             font-weight: 500;
-            letter-spacing: 0.04em;
+            letter-spacing: .04em;
             color: var(--gray-600);
             cursor: pointer;
             user-select: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 5px;
+            padding: .2rem .45rem;
+            border-radius: 4px;
             border: 1.5px solid transparent;
             transition: all var(--transition);
         }
 
-        .sr-option input {
+        .sr-opt input {
             accent-color: var(--orange);
-            width: 13px;
-            height: 13px;
+            width: 12px;
+            height: 12px;
             cursor: pointer;
         }
 
-        .sr-option:hover {
+        .sr-opt:hover {
             background: var(--orange-light);
             border-color: #ffdcc9;
             color: var(--orange-dark);
         }
 
-        .sr-option.active {
+        .sr-opt.on {
             background: var(--orange-light);
             border-color: var(--orange);
             color: var(--orange-dark);
         }
 
-        .sr-actions {
+        .sr-acts {
             display: flex;
-            gap: 0.4rem;
+            gap: .35rem;
         }
 
         .sr-btn {
             flex: 1;
-            padding: 0.5rem 0.85rem;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.72rem;
+            padding: .45rem .8rem;
+            font-family: inherit;
+            font-size: .68rem;
             font-weight: 700;
-            letter-spacing: 0.06em;
+            letter-spacing: .06em;
             text-transform: uppercase;
-            border-radius: 7px;
+            border-radius: 6px;
             border: 1.5px solid;
             cursor: pointer;
             transition: all var(--transition);
             white-space: nowrap;
         }
 
-        .sr-btn.replace-one {
+        .sr-btn.r1 {
             background: var(--white);
             color: var(--black);
             border-color: var(--gray-200);
         }
 
-        .sr-btn.replace-one:hover:not(:disabled) {
+        .sr-btn.r1:hover:not(:disabled) {
             background: var(--black);
             color: var(--white);
             border-color: var(--black);
         }
 
-        .sr-btn.replace-all {
+        .sr-btn.ra {
             background: var(--orange);
             color: var(--white);
             border-color: var(--orange);
         }
 
-        .sr-btn.replace-all:hover:not(:disabled) {
+        .sr-btn.ra:hover:not(:disabled) {
             background: var(--orange-dark);
             border-color: var(--orange-dark);
         }
 
         .sr-btn:disabled {
-            opacity: 0.35;
+            opacity: .35;
             cursor: not-allowed;
         }
 
@@ -757,38 +834,37 @@
             flex-shrink: 0;
             background: var(--gray-100);
             border-top: 1px solid var(--gray-200);
-            padding: 0.75rem 1.25rem;
+            padding: .65rem 1.25rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
         }
 
-        .toolbar-inner {
+        .tb-inner {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
             align-items: center;
-            gap: 0.5rem;
+            gap: .4rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.35rem;
-            padding: 0.5rem 1rem;
+            gap: .3rem;
+            padding: .42rem .85rem;
             background: var(--white);
             color: var(--black);
-            font-family: 'Mona Sans', monospace;
-            font-size: 0.72rem;
-            font-weight: 500;
+            font-family: inherit;
+            font-size: .7rem;
+            font-weight: 600;
             border: 1.5px solid var(--gray-200);
-            border-radius: 8px;
+            border-radius: 7px;
             cursor: pointer;
             transition: all var(--transition);
             white-space: nowrap;
-            letter-spacing: 0.01em;
+            letter-spacing: .01em;
         }
 
         .btn:hover {
@@ -796,21 +872,21 @@
             color: var(--white);
             border-color: var(--black);
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .12);
         }
 
         .btn:active {
-            transform: translateY(0);
+            transform: none;
             box-shadow: none;
         }
 
-        .btn.primary {
+        .btn.pri {
             background: var(--orange);
             color: var(--white);
             border-color: var(--orange);
         }
 
-        .btn.primary:hover {
+        .btn.pri:hover {
             background: var(--orange-dark);
             border-color: var(--orange-dark);
         }
@@ -827,154 +903,142 @@
             border-color: var(--orange);
         }
 
-        .btn.sr-toggle {
+        .btn.sr-tog {
             background: transparent;
             color: var(--gray-600);
             border-color: var(--gray-200);
         }
 
-        .btn.sr-toggle.active {
+        .btn.sr-tog.on {
             background: var(--black);
             color: var(--white);
             border-color: var(--black);
         }
 
-        .btn.sr-toggle:hover {
+        .btn.sr-tog:hover {
             background: var(--black);
             color: var(--white);
             border-color: var(--black);
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
         }
 
         .sep {
             width: 1px;
-            height: 32px;
+            height: 30px;
             background: var(--gray-200);
             align-self: center;
-            margin: 0 0.15rem;
+            margin: 0 .1rem;
             border-radius: 1px;
         }
 
         .badge {
-            font-size: 14px;
-            letter-spacing: 0.1em;
+            font-size: 12px;
+            letter-spacing: .1em;
             text-transform: uppercase;
-            color: var(--ink3);
-            border: 1px solid var(--ink4);
+            color: var(--gray-600);
+            border: 1px solid var(--gray-200);
             border-radius: 4px;
-            padding: 4px 8px;
+            padding: 3px 7px;
             text-decoration: none;
             margin-left: auto;
         }
 
-        .word-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--orange), #ff9f52);
-            transition: width 0.3s ease;
-            border-radius: 0 2px 2px 0;
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
         /* ── LINK DIALOG ── */
-        .link-dialog-overlay {
+        .dlg-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, .45);
             z-index: 200;
             align-items: center;
             justify-content: center;
         }
 
-        .link-dialog-overlay.open {
+        .dlg-overlay.open {
             display: flex;
         }
 
-        .link-dialog {
+        .dlg {
             background: var(--white);
             border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            width: min(360px, calc(100% - 2rem));
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+            padding: 1.2rem 1.4rem;
+            width: min(340px, calc(100% - 2rem));
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .18);
         }
 
-        .link-dialog h3 {
-            font-size: 0.8rem;
+        .dlg h3 {
+            font-size: .75rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
+            letter-spacing: .1em;
             text-transform: uppercase;
             color: var(--gray-600);
-            margin-bottom: 0.85rem;
+            margin-bottom: .8rem;
         }
 
-        .link-dialog input {
+        .dlg input {
             width: 100%;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.88rem;
-            padding: 0.55rem 0.85rem;
+            font-family: inherit;
+            font-size: .85rem;
+            padding: .5rem .8rem;
             border: 1.5px solid var(--gray-200);
-            border-radius: 8px;
+            border-radius: 7px;
             outline: none;
             background: var(--gray-100);
             color: var(--black);
-            margin-bottom: 0.75rem;
+            margin-bottom: .65rem;
             transition: border-color var(--transition);
         }
 
-        .link-dialog input:focus {
+        .dlg input:focus {
             border-color: var(--orange);
             background: var(--white);
         }
 
-        .link-dialog-btns {
+        .dlg-btns {
             display: flex;
-            gap: 0.5rem;
+            gap: .4rem;
             justify-content: flex-end;
         }
 
-        .link-dialog-btns button {
-            padding: 0.45rem 1rem;
-            font-family: 'Mona Sans', sans-serif;
-            font-size: 0.75rem;
+        .dlg-btns button {
+            padding: .4rem .9rem;
+            font-family: inherit;
+            font-size: .72rem;
             font-weight: 600;
-            border-radius: 7px;
+            border-radius: 6px;
             border: 1.5px solid var(--gray-200);
             cursor: pointer;
             transition: all var(--transition);
         }
 
-        .link-dialog-btns .btn-cancel {
+        .d-cancel {
             background: var(--white);
             color: var(--gray-600);
         }
 
-        .link-dialog-btns .btn-cancel:hover {
+        .d-cancel:hover {
             background: var(--gray-100);
         }
 
-        .link-dialog-btns .btn-ok {
+        .d-ok {
             background: var(--orange);
             color: var(--white);
             border-color: var(--orange);
         }
 
-        .link-dialog-btns .btn-ok:hover {
+        .d-ok:hover {
             background: var(--orange-dark);
             border-color: var(--orange-dark);
         }
 
+        /* ── ANIMATIONS ── */
         @keyframes statPop {
             0% {
                 transform: scale(1);
             }
 
             40% {
-                transform: scale(1.25);
+                transform: scale(1.22);
             }
 
             100% {
@@ -982,18 +1046,13 @@
             }
         }
 
-        .stat-value.pop {
-            animation: statPop 280ms ease;
+        .pop {
+            animation: statPop 260ms ease;
         }
 
-        @media (max-width: 480px) {
-            .stat:nth-child(n+3) .stat-label {
+        @media (max-width: 600px) {
+            .stat:nth-child(n+4) {
                 display: none;
-            }
-
-            .stat {
-                min-width: 48px;
-                padding: 0.3rem 0.6rem;
             }
 
             .sep {
@@ -1001,7 +1060,11 @@
             }
 
             .rte-toolbar {
-                gap: 0.15rem;
+                gap: .1rem;
+            }
+
+            .mode-lbl {
+                display: none;
             }
         }
     </style>
@@ -1011,56 +1074,106 @@
 
     <header>
         <a href="#" class="logo">
-            <span class="logo-text"><img src="assets/images/favicon.png" alt=""> Text Case</span>
+            <span class="logo-text">
+                <img src="assets/images/favicon.png" alt="" style="height:22px;width:22px;object-fit:contain;">
+                Text Case
+            </span>
             <span class="logo-dot"></span>
         </a>
+
         <div class="stats">
-            <div class="stat" title="Characters"><span class="stat-value" id="charCount">0</span><span
+            <div class="stat" title="Characters"><span class="stat-value" id="statChars">0</span><span
                     class="stat-label">Chars</span></div>
-            <div class="stat" title="Words"><span class="stat-value" id="wordCount">0</span><span
+            <div class="stat" title="Words"><span class="stat-value" id="statWords">0</span><span
                     class="stat-label">Words</span></div>
-            <div class="stat" title="Sentences"><span class="stat-value" id="sentenceCount">0</span><span
-                    class="stat-label">Sentences</span></div>
-            <div class="stat" title="Lines"><span class="stat-value" id="lineCount">1</span><span
+            <div class="stat" title="Sentences"><span class="stat-value" id="statSents">0</span><span
+                    class="stat-label">Sents</span></div>
+            <div class="stat" title="Lines"><span class="stat-value" id="statLines">1</span><span
                     class="stat-label">Lines</span></div>
-            <div class="stat" title="Reading time"><span class="stat-value" id="readTime">0m</span><span
+            <div class="stat" title="Read time"><span class="stat-value" id="statRead">&lt;1m</span><span
                     class="stat-label">Read</span></div>
         </div>
+
+        <!-- Rich Text toggle — OFF by default (plain is default) -->
+        <label class="mode-toggle" title="Enable Rich Text editor">
+            <span class="mode-lbl active" id="lbl-plain">Plain</span>
+            <div class="toggle-sw">
+                <input type="checkbox" id="richToggle" onchange="handleModeToggle(this.checked)">
+                <div class="toggle-track"></div>
+                <div class="toggle-thumb"></div>
+            </div>
+            <span class="mode-lbl" id="lbl-rich">Rich</span>
+        </label>
     </header>
 
     <div class="layout">
 
-        <!-- Rich Text Toolbar -->
-        <div class="rte-toolbar">
-            <div class="rte-group">
-                <select class="rte-select" id="blockFormat" onchange="applyBlockFormat(this.value)"
-                    title="Block format">
+        <!-- Rich Text Toolbar (hidden by default) -->
+        <div class="rte-toolbar" id="rteToolbar">
+
+            <div class="rte-grp">
+                <select class="rte-select" id="blockSel" onchange="rteCmd('formatBlock',this.value)"
+                    title="Block style">
                     <option value="p">Paragraph</option>
                     <option value="h1">Heading 1</option>
                     <option value="h2">Heading 2</option>
                     <option value="h3">Heading 3</option>
                     <option value="pre">Code Block</option>
-                    <option value="blockquote">Quote</option>
+                    <option value="blockquote">Blockquote</option>
                 </select>
             </div>
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <select class="rte-font-select" id="fontFamily" onchange="applyFont(this.value)" title="Font family">
-                    <option value="">Default</option>
-                    <option value="Georgia, serif">Georgia</option>
-                    <option value="'Times New Roman', serif">Times New Roman</option>
-                    <option value="Arial, sans-serif">Arial</option>
-                    <option value="Verdana, sans-serif">Verdana</option>
-                    <option value="'Courier New', monospace">Courier New</option>
-                    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+            <!-- Google Font selector -->
+            <div class="rte-grp">
+                <select class="font-select" id="fontSel" onchange="applyFont(this.value)" title="Font family">
+                    <optgroup label="— Sans Serif —">
+                        <option value="Inter, sans-serif">Inter</option>
+                        <option value="Roboto, sans-serif">Roboto</option>
+                        <option value="Open Sans, sans-serif">Open Sans</option>
+                        <option value="Lato, sans-serif">Lato</option>
+                        <option value="Poppins, sans-serif">Poppins</option>
+                        <option value="Montserrat, sans-serif">Montserrat</option>
+                        <option value="Nunito, sans-serif">Nunito</option>
+                        <option value="Raleway, sans-serif">Raleway</option>
+                        <option value="Rubik, sans-serif">Rubik</option>
+                        <option value="Work Sans, sans-serif">Work Sans</option>
+                        <option value="Josefin Sans, sans-serif">Josefin Sans</option>
+                        <option value="Oswald, sans-serif">Oswald</option>
+                        <option value="Ubuntu, sans-serif">Ubuntu</option>
+                        <option value="Source Sans 3, sans-serif">Source Sans 3</option>
+                    </optgroup>
+                    <optgroup label="— Serif —">
+                        <option value="Merriweather, serif">Merriweather</option>
+                        <option value="Playfair Display, serif">Playfair Display</option>
+                        <option value="Lora, serif">Lora</option>
+                        <option value="EB Garamond, serif">EB Garamond</option>
+                        <option value="PT Serif, serif">PT Serif</option>
+                        <option value="Roboto Slab, serif">Roboto Slab</option>
+                        <option value="Georgia, serif">Georgia</option>
+                    </optgroup>
+                    <optgroup label="— Monospace —">
+                        <option value="Fira Code, monospace">Fira Code</option>
+                        <option value="Source Code Pro, monospace">Source Code Pro</option>
+                        <option value="Roboto Mono, monospace">Roboto Mono</option>
+                        <option value="IBM Plex Mono, monospace">IBM Plex Mono</option>
+                        <option value="Space Mono, monospace">Space Mono</option>
+                        <option value="Courier New, monospace">Courier New</option>
+                    </optgroup>
+                    <optgroup label="— Display / Fun —">
+                        <option value="Pacifico, cursive">Pacifico</option>
+                        <option value="Dancing Script, cursive">Dancing Script</option>
+                        <option value="Caveat, cursive">Caveat</option>
+                        <option value="Comic Neue, cursive">Comic Neue</option>
+                    </optgroup>
                 </select>
             </div>
 
-            <div class="rte-group">
-                <select class="rte-select" id="fontSize" onchange="applyFontSize(this.value)" title="Font size"
-                    style="min-width:62px">
+            <!-- Font size -->
+            <div class="rte-grp">
+                <select class="rte-select" id="sizeSel" onchange="rteCmd('fontSize',this.value)" style="min-width:58px"
+                    title="Font size">
                     <option value="">Size</option>
                     <option value="1">8pt</option>
                     <option value="2">10pt</option>
@@ -1074,48 +1187,52 @@
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <button class="rte-btn" id="btnBold" onclick="fmt('bold')" title="Bold (Ctrl+B)"><b>B</b></button>
-                <button class="rte-btn" id="btnItalic" onclick="fmt('italic')" title="Italic (Ctrl+I)"><i>I</i></button>
-                <button class="rte-btn" id="btnUnderline" onclick="fmt('underline')" title="Underline (Ctrl+U)"
+            <!-- Text style -->
+            <div class="rte-grp">
+                <button class="rte-btn" id="btnB" onclick="rteCmd('bold')" data-tip="Bold (Ctrl+B)"><b>B</b></button>
+                <button class="rte-btn" id="btnI" onclick="rteCmd('italic')" data-tip="Italic (Ctrl+I)"><i
+                        style="font-style:italic">I</i></button>
+                <button class="rte-btn" id="btnU" onclick="rteCmd('underline')" data-tip="Underline (Ctrl+U)"
                     style="text-decoration:underline">U</button>
-                <button class="rte-btn" id="btnStrike" onclick="fmt('strikeThrough')" title="Strikethrough"
+                <button class="rte-btn" id="btnS" onclick="rteCmd('strikeThrough')" data-tip="Strikethrough"
                     style="text-decoration:line-through">S</button>
-                <button class="rte-btn" id="btnSup" onclick="fmt('superscript')" title="Superscript">X<sup
-                        style="font-size:8px">2</sup></button>
-                <button class="rte-btn" id="btnSub" onclick="fmt('subscript')" title="Subscript">X<sub
-                        style="font-size:8px">2</sub></button>
+                <button class="rte-btn" id="btnSup" onclick="rteCmd('superscript')" data-tip="Superscript">X<sup
+                        style="font-size:7px;line-height:1">2</sup></button>
+                <button class="rte-btn" id="btnSub" onclick="rteCmd('subscript')" data-tip="Subscript">X<sub
+                        style="font-size:7px;line-height:1">2</sub></button>
             </div>
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <div class="rte-color-btn" title="Text color">
-                    <span class="color-swatch" id="textColorSwatch"></span>
-                    <input type="color" id="textColorPicker" value="#111111" oninput="applyTextColor(this.value)" />
+            <!-- Colors -->
+            <div class="rte-grp">
+                <div class="rte-color-wrap" data-tip="Text color" title="Text color">
+                    <span class="color-dot" id="dotFg" style="background:#111"></span>
+                    <input type="color" id="picFg" value="#111111" oninput="applyFgColor(this.value)">
                 </div>
-                <div class="rte-color-btn" title="Highlight color" style="margin-left:2px;">
-                    <span class="color-swatch" id="bgColorSwatch" style="background:#ffff00;"></span>
-                    <input type="color" id="bgColorPicker" value="#ffff00" oninput="applyBgColor(this.value)" />
+                <div class="rte-color-wrap" data-tip="Highlight" title="Highlight color" style="margin-left:2px">
+                    <span class="color-dot" id="dotBg" style="background:#ffff00"></span>
+                    <input type="color" id="picBg" value="#ffff00" oninput="applyBgColor(this.value)">
                 </div>
             </div>
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <button class="rte-btn" id="btnAlignL" onclick="fmt('justifyLeft')" title="Align left"><svg
+            <!-- Alignment -->
+            <div class="rte-grp">
+                <button class="rte-btn" id="btnAL" onclick="rteCmd('justifyLeft')" data-tip="Align left"><svg
                         viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M2 4h12M2 7h8M2 10h12M2 13h6" />
                     </svg></button>
-                <button class="rte-btn" id="btnAlignC" onclick="fmt('justifyCenter')" title="Align center"><svg
+                <button class="rte-btn" id="btnAC" onclick="rteCmd('justifyCenter')" data-tip="Center"><svg
                         viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M2 4h12M4 7h8M2 10h12M5 13h6" />
                     </svg></button>
-                <button class="rte-btn" id="btnAlignR" onclick="fmt('justifyRight')" title="Align right"><svg
+                <button class="rte-btn" id="btnAR" onclick="rteCmd('justifyRight')" data-tip="Align right"><svg
                         viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M2 4h12M6 7h8M2 10h12M8 13h6" />
                     </svg></button>
-                <button class="rte-btn" id="btnAlignJ" onclick="fmt('justifyFull')" title="Justify"><svg
+                <button class="rte-btn" id="btnAJ" onclick="rteCmd('justifyFull')" data-tip="Justify"><svg
                         viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M2 4h12M2 7h12M2 10h12M2 13h12" />
                     </svg></button>
@@ -1123,45 +1240,48 @@
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <button class="rte-btn" onclick="fmt('insertUnorderedList')" title="Bullet list"><svg
+            <!-- Lists & indent -->
+            <div class="rte-grp">
+                <button class="rte-btn" onclick="rteCmd('insertUnorderedList')" data-tip="Bullet list"><svg
                         viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-                        <circle cx="3" cy="5" r="1.2" fill="currentColor" stroke="none" />
-                        <circle cx="3" cy="9" r="1.2" fill="currentColor" stroke="none" />
-                        <circle cx="3" cy="13" r="1.2" fill="currentColor" stroke="none" />
+                        <circle cx="3" cy="5" r="1.1" fill="currentColor" stroke="none" />
+                        <circle cx="3" cy="9" r="1.1" fill="currentColor" stroke="none" />
+                        <circle cx="3" cy="13" r="1.1" fill="currentColor" stroke="none" />
                         <path d="M6 5h8M6 9h8M6 13h8" />
                     </svg></button>
-                <button class="rte-btn" onclick="fmt('insertOrderedList')" title="Numbered list"><svg
+                <button class="rte-btn" onclick="rteCmd('insertOrderedList')" data-tip="Numbered list"><svg
                         viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M2 3h2M3 3v4M2 7h2M6 5h8M6 9h8M6 13h8" />
                         <path d="M2 10h2l-2 3h2" stroke-linejoin="round" />
                     </svg></button>
-                <button class="rte-btn" onclick="fmt('outdent')" title="Decrease indent"><svg viewBox="0 0 16 16"
+                <button class="rte-btn" onclick="rteCmd('outdent')" data-tip="Outdent"><svg viewBox="0 0 16 16"
                         fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M6 4h8M6 8h8M6 12h8M2 6l3 2-3 2" />
                     </svg></button>
-                <button class="rte-btn" onclick="fmt('indent')" title="Increase indent"><svg viewBox="0 0 16 16"
+                <button class="rte-btn" onclick="rteCmd('indent')" data-tip="Indent"><svg viewBox="0 0 16 16"
                         fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round">
-                        <path d="M6 4h8M6 8h8M6 12h8M2 6l3 2-3 2" transform="scale(-1,1) translate(-16,0)" />
+                        <path d="M6 4h8M6 8h8M6 12h8" />
+                        <path d="M5 6l-3 2 3 2" />
                     </svg></button>
             </div>
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <button class="rte-btn" onclick="insertLink()" title="Insert link"><svg viewBox="0 0 16 16" fill="none"
-                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Insert -->
+            <div class="rte-grp">
+                <button class="rte-btn" onclick="openLinkDlg()" data-tip="Insert link"><svg viewBox="0 0 16 16"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="M6 10a3.5 3.5 0 0 0 5 0l2-2a3.5 3.5 0 0 0-5-5l-1 1" />
                         <path d="M10 6a3.5 3.5 0 0 0-5 0L3 8a3.5 3.5 0 0 0 5 5l1-1" />
                     </svg></button>
-                <button class="rte-btn" onclick="insertHR()" title="Insert horizontal rule"><svg viewBox="0 0 16 16"
-                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <button class="rte-btn" onclick="rteCmd('insertHorizontalRule')" data-tip="Horizontal rule"><svg
+                        viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M2 8h12" />
-                        <path d="M5 5l3-3 3 3M5 11l3 3 3-3" />
                     </svg></button>
-                <button class="rte-btn" onclick="insertTable()" title="Insert table"><svg viewBox="0 0 16 16"
+                <button class="rte-btn" onclick="insertTable()" data-tip="Insert table"><svg viewBox="0 0 16 16"
                         fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round">
                         <rect x="1" y="1" width="14" height="14" rx="2" />
@@ -1171,33 +1291,40 @@
 
             <div class="rte-sep"></div>
 
-            <div class="rte-group">
-                <button class="rte-btn" onclick="document.execCommand('undo')" title="Undo (Ctrl+Z)"><svg
-                        viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            <!-- Undo / Redo / Clear fmt -->
+            <div class="rte-grp">
+                <button class="rte-btn" onclick="rteCmd('undo')" data-tip="Undo (Ctrl+Z)"><svg viewBox="0 0 16 16"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M2 6h7a4 4 0 0 1 0 8H5" />
                         <path d="M2 6l3-3-3 3 3 3" />
                     </svg></button>
-                <button class="rte-btn" onclick="document.execCommand('redo')" title="Redo (Ctrl+Y)"><svg
-                        viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                <button class="rte-btn" onclick="rteCmd('redo')" data-tip="Redo (Ctrl+Y)"><svg viewBox="0 0 16 16"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M14 6H7a4 4 0 0 0 0 8h4" />
                         <path d="M14 6l-3-3 3 3-3 3" />
                     </svg></button>
-                <button class="rte-btn" onclick="fmt('removeFormat')" title="Clear formatting"><svg viewBox="0 0 16 16"
-                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <button class="rte-btn" onclick="rteCmd('removeFormat')" data-tip="Clear formatting"><svg
+                        viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                         <path d="M3 2h10M6 2l-3 12M10 2l3 12M5 8h6" />
                         <path d="M11 14l3-3M14 14l-3-3" stroke="#e53e3e" />
                     </svg></button>
             </div>
-        </div>
+        </div><!-- /rte-toolbar -->
 
         <div class="editor-wrap">
-            <div contenteditable="true" id="rteEditor" class="rte-editor"
-                data-placeholder="Start typing here… use the toolbar above to format." spellcheck="true"></div>
+            <!-- PLAIN TEXT (default, visible) -->
+            <textarea id="plainEditor" class="editor-base" spellcheck="true"
+                placeholder="Start typing or paste your text here…"></textarea>
+
+            <!-- RICH TEXT (hidden until toggled) -->
+            <div id="rteEditor" class="editor-base" contenteditable="true" spellcheck="true"
+                data-ph="Start typing rich text here… use the toolbar above to format."></div>
+
             <div class="word-bar" id="wordBar"></div>
 
-            <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">
+            <button class="copy-btn" id="copyBtn" onclick="copyText()">
                 <svg class="copy-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
                     stroke-linecap="round" stroke-linejoin="round">
                     <rect x="5" y="5" width="9" height="10" rx="2" />
@@ -1206,19 +1333,20 @@
                 Copy
             </button>
 
+            <!-- Search & Replace -->
             <div class="sr-panel" id="srPanel">
-                <div class="sr-header">
+                <div class="sr-head">
                     <div class="sr-title">
-                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="6.5" cy="6.5" r="4.5" />
                             <path d="M14 14l-3-3" />
                         </svg>
                         Search &amp; Replace
                     </div>
-                    <div class="sr-match-info" id="srMatchInfo">No matches</div>
-                    <button class="sr-close" onclick="closeSR()" title="Close (Esc)">
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                    <div class="sr-info" id="srInfo">No matches</div>
+                    <button class="sr-x" onclick="closeSR()" title="Close (Esc)">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
                             stroke-width="2.2" stroke-linecap="round">
                             <path d="M3 3l10 10M13 3L3 13" />
                         </svg>
@@ -1226,290 +1354,368 @@
                 </div>
                 <div class="sr-body">
                     <div class="sr-row">
-                        <div class="sr-input-wrap">
-                            <input class="sr-input" id="srSearch" type="text" placeholder="Find…" autocomplete="off"
-                                spellcheck="false" oninput="onSearchInput()" />
+                        <div class="sr-iw">
+                            <input class="sr-input" id="srFind" type="text" placeholder="Find…" autocomplete="off"
+                                spellcheck="false" oninput="srSearch()">
                         </div>
                         <div class="sr-nav">
-                            <button class="sr-nav-btn" id="srPrev" onclick="srNavigate(-1)"
-                                title="Previous (Shift+Enter)"><svg width="11" height="11" viewBox="0 0 16 16"
-                                    fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                            <button class="sr-nb" id="srPrev" onclick="srNav(-1)" title="Prev (Shift+Enter)"
+                                disabled><svg width="10" height="10" viewBox="0 0 16 16" fill="none"
+                                    stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
                                     stroke-linejoin="round">
                                     <path d="M8 12V4M4 8l4-4 4 4" />
                                 </svg></button>
-                            <button class="sr-nav-btn" id="srNext" onclick="srNavigate(1)" title="Next (Enter)"><svg
-                                    width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            <button class="sr-nb" id="srNext" onclick="srNav(1)" title="Next (Enter)" disabled><svg
+                                    width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor"
                                     stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M8 4v8M4 8l4 4 4-4" />
                                 </svg></button>
                         </div>
                     </div>
-                    <div class="sr-options">
-                        <label class="sr-option"><input type="checkbox" id="optCase"
-                                onchange="onSearchInput(); this.closest('.sr-option').classList.toggle('active',this.checked)" />
-                            Match case</label>
-                        <label class="sr-option"><input type="checkbox" id="optWhole"
-                                onchange="onSearchInput(); this.closest('.sr-option').classList.toggle('active',this.checked)" />
-                            Whole word</label>
-                        <label class="sr-option"><input type="checkbox" id="optRegex"
-                                onchange="onSearchInput(); this.closest('.sr-option').classList.toggle('active',this.checked)" />
-                            Regex</label>
+                    <div class="sr-opts">
+                        <label class="sr-opt" id="optCaseLbl"><input type="checkbox" id="optCase"
+                                onchange="toggleOpt(this);srSearch()"> Match case</label>
+                        <label class="sr-opt" id="optWholeLbl"><input type="checkbox" id="optWhole"
+                                onchange="toggleOpt(this);srSearch()"> Whole word</label>
+                        <label class="sr-opt" id="optRxLbl"><input type="checkbox" id="optRx"
+                                onchange="toggleOpt(this);srSearch()"> Regex</label>
                     </div>
                     <div class="sr-row">
-                        <div class="sr-input-wrap">
-                            <input class="sr-input" id="srReplace" type="text" placeholder="Replace with…"
-                                autocomplete="off" spellcheck="false" />
+                        <div class="sr-iw">
+                            <input class="sr-input" id="srRep" type="text" placeholder="Replace with…"
+                                autocomplete="off" spellcheck="false">
                         </div>
                     </div>
-                    <div class="sr-actions">
-                        <button class="sr-btn replace-one" id="srReplaceOne" onclick="replaceAll()"
-                            disabled>Replace</button>
-                        <button class="sr-btn replace-all" id="srReplaceAll" onclick="replaceAll()" disabled>Replace
-                            All</button>
+                    <div class="sr-acts">
+                        <button class="sr-btn r1" id="btnR1" onclick="replaceOne()" disabled>Replace</button>
+                        <button class="sr-btn ra" id="btnRA" onclick="replaceAll()" disabled>Replace All</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!-- /editor-wrap -->
 
+        <!-- Bottom toolbar -->
         <div class="toolbar">
-            <div class="toolbar-inner">
-                <button class="btn" onclick="toUpper()" title="UPPERCASE">ABC</button>
-                <button class="btn" onclick="toLower()" title="lowercase">abc</button>
-                <button class="btn" onclick="toCapitalized()" title="Capitalize Every Word">Abc</button>
-                <button class="btn" onclick="toTitle()" title="Title Case">Title</button>
-                <button class="btn" onclick="toSentence()" title="Sentence case">Sent.</button>
-                <button class="btn" onclick="toAlternating()" title="aLtErNaTiNg">aLt</button>
-                <button class="btn" onclick="toInverse()" title="Inverse case">iNV</button>
+            <div class="tb-inner">
+                <button class="btn" onclick="doCase('upper')" title="UPPERCASE">ABC</button>
+                <button class="btn" onclick="doCase('lower')" title="lowercase">abc</button>
+                <button class="btn" onclick="doCase('cap')" title="Capitalize Every Word">Abc</button>
+                <button class="btn" onclick="doCase('title')" title="Title Case">Title</button>
+                <button class="btn" onclick="doCase('sent')" title="Sentence case">Sent.</button>
+                <button class="btn" onclick="doCase('alt')" title="aLtErNaTiNg">aLt</button>
+                <button class="btn" onclick="doCase('inv')" title="Inverse case">iNV</button>
 
                 <div class="sep"></div>
 
-                <button class="btn" onclick="trimWhitespace()" title="Trim extra spaces">Trim</button>
-                <button class="btn" onclick="removeDuplicateLines()" title="Remove duplicate lines">Dedup</button>
-                <button class="btn" onclick="sortLines()" title="Sort lines A→Z">Sort↑</button>
-                <button class="btn" onclick="reverseLines()" title="Reverse line order">Rev↕</button>
+                <button class="btn" onclick="doCase('trim')" title="Trim spaces & blank lines">Trim</button>
+                <button class="btn" onclick="doCase('dedup')" title="Remove duplicate lines">Dedup</button>
+                <button class="btn" onclick="doCase('sort')" title="Sort lines A→Z">Sort↑</button>
+                <button class="btn" onclick="doCase('rev')" title="Reverse lines">Rev↕</button>
 
                 <div class="sep"></div>
 
-                <button class="btn sr-toggle" id="srToggleBtn" onclick="toggleSR()" title="Search & Replace (Ctrl+H)">
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+                <button class="btn sr-tog" id="srTogBtn" onclick="toggleSR()" title="Find & Replace (Ctrl+H)">
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="6.5" cy="6.5" r="4.5" />
                         <path d="M14 14l-3-3" />
                     </svg>
-                    Find &amp; Replace (Ctrl+H)
+                    Find &amp; Replace
                 </button>
 
                 <div class="sep"></div>
 
-                <button class="btn primary" onclick="addLoremParagraph()">+ Lorem</button>
-                <button class="btn ghost" onclick="clearText()">Clear</button>
+                <button class="btn pri" onclick="addLorem()">+ Lorem</button>
+                <button class="btn ghost" onclick="clearAll()">Clear</button>
             </div>
             <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
         </div>
-    </div>
+    </div><!-- /layout -->
 
-    <div class="link-dialog-overlay" id="linkDialogOverlay">
-        <div class="link-dialog">
+    <!-- Link dialog -->
+    <div class="dlg-overlay" id="linkDlg">
+        <div class="dlg">
             <h3>Insert Link</h3>
-            <input type="text" id="linkText" placeholder="Link text (optional)" />
-            <input type="url" id="linkUrl" placeholder="https://…" />
-            <div class="link-dialog-btns">
-                <button class="btn-cancel" onclick="closeLinkDialog()">Cancel</button>
-                <button class="btn-ok" onclick="confirmLink()">Insert</button>
+            <input type="text" id="dlgText" placeholder="Display text (optional)">
+            <input type="url" id="dlgUrl" placeholder="https://…">
+            <div class="dlg-btns">
+                <button class="d-cancel" onclick="closeLinkDlg()">Cancel</button>
+                <button class="d-ok" onclick="confirmLink()">Insert</button>
             </div>
         </div>
     </div>
 
     <script>
+        // ── Elements ───────────────────────────────────────────────────────────────
+        const plainEditor = document.getElementById('plainEditor');
         const rteEditor = document.getElementById('rteEditor');
-        const charCountEl = document.getElementById('charCount');
-        const wordCountEl = document.getElementById('wordCount');
-        const sentenceCountEl = document.getElementById('sentenceCount');
-        const lineCountEl = document.getElementById('lineCount');
-        const readTimeEl = document.getElementById('readTime');
+        const rteToolbar = document.getElementById('rteToolbar');
+        const richToggle = document.getElementById('richToggle');
+        const lblPlain = document.getElementById('lbl-plain');
+        const lblRich = document.getElementById('lbl-rich');
         const wordBar = document.getElementById('wordBar');
         const copyBtn = document.getElementById('copyBtn');
 
-        const RTE_KEY = 'textcase_rte';
-        const EXPIRY_KEY = 'textcase_expiry';
+        // ── State ──────────────────────────────────────────────────────────────────
+        let isRich = false; // plain is DEFAULT
 
-        function saveToStorage() {
-            localStorage.setItem(RTE_KEY, rteEditor.innerHTML);
-            localStorage.setItem(EXPIRY_KEY, Date.now() + 24 * 60 * 60 * 1000);
+        // ── Storage keys ───────────────────────────────────────────────────────────
+        const K_PLAIN = 'tc_plain';
+        const K_RICH = 'tc_rich';
+        const K_MODE = 'tc_mode';
+        const K_EXP = 'tc_exp';
+        const TTL = 24 * 60 * 60 * 1000;
+
+        function saveNow() {
+            if (isRich) localStorage.setItem(K_RICH, rteEditor.innerHTML);
+            else localStorage.setItem(K_PLAIN, plainEditor.value);
+            localStorage.setItem(K_EXP, Date.now() + TTL);
         }
 
-        function loadFromStorage() {
-            const expiry = localStorage.getItem(EXPIRY_KEY);
-            if (expiry && Date.now() < parseInt(expiry)) {
-                const saved = localStorage.getItem(RTE_KEY);
-                if (saved) rteEditor.innerHTML = saved;
+        function loadSaved() {
+            const exp = parseInt(localStorage.getItem(K_EXP) || '0');
+            const ok = Date.now() < exp;
+            if (!ok) { [K_PLAIN, K_RICH, K_MODE, K_EXP].forEach(k => localStorage.removeItem(k)); return; }
+
+            const savedPlain = localStorage.getItem(K_PLAIN) || '';
+            const savedRich = localStorage.getItem(K_RICH) || '';
+            const savedMode = localStorage.getItem(K_MODE) || 'plain';
+
+            if (savedPlain) plainEditor.value = savedPlain;
+            if (savedRich) rteEditor.innerHTML = savedRich;
+
+            if (savedMode === 'rich') {
+                richToggle.checked = true;
+                handleModeToggle(true);
+            }
+        }
+
+        // ── Mode toggle ────────────────────────────────────────────────────────────
+        function handleModeToggle(toRich) {
+            isRich = toRich;
+            localStorage.setItem(K_MODE, toRich ? 'rich' : 'plain');
+
+            if (toRich) {
+                // Switching plain → rich: carry text over if rich is empty
+                if (!rteEditor.innerText.trim() && plainEditor.value.trim()) {
+                    rteEditor.innerHTML = plainEditor.value
+                        .split('\n')
+                        .map(l => `<p>${escHtml(l) || '<br>'}</p>`)
+                        .join('');
+                }
+                plainEditor.style.display = 'none';
+                rteEditor.style.display = 'block';
+                rteToolbar.classList.add('visible');
+                lblPlain.classList.remove('active');
+                lblRich.classList.add('active');
+                rteEditor.focus();
+            } else {
+                // Switching rich → plain: carry text over if plain is empty
+                if (!plainEditor.value.trim() && rteEditor.innerText.trim()) {
+                    plainEditor.value = rteEditor.innerText;
+                }
+                rteEditor.style.display = 'none';
+                plainEditor.style.display = 'block';
+                rteToolbar.classList.remove('visible');
+                lblRich.classList.remove('active');
+                lblPlain.classList.add('active');
+                plainEditor.focus();
             }
             updateStats();
         }
 
-        let prevChars = 0;
-
-        function animatePop(el) {
-            el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+        function escHtml(s) {
+            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
-        function updateStats() {
-            const text = rteEditor.innerText;
-            const chars = text.length;
-            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-            const sentences = text.trim() === '' ? 0 : (text.match(/[.!?]/g) || []).length || 1;
-            const lines = text === '' ? 1 : text.split('\n').length;
-            const readMins = Math.ceil(words / 200);
+        // ── Stats ──────────────────────────────────────────────────────────────────
+        let prevChars = 0;
+        const elChars = document.getElementById('statChars');
+        const elWords = document.getElementById('statWords');
+        const elSents = document.getElementById('statSents');
+        const elLines = document.getElementById('statLines');
+        const elRead = document.getElementById('statRead');
 
-            if (chars !== prevChars) animatePop(charCountEl);
+        function updateStats() {
+            const txt = isRich ? rteEditor.innerText : plainEditor.value;
+            const chars = txt.length;
+            const words = txt.trim() ? txt.trim().split(/\s+/).length : 0;
+            const sents = txt.trim() ? ((txt.match(/[.!?]+/g) || []).length || 1) : 0;
+            const lines = txt ? txt.split('\n').length : 1;
+            const mins = Math.max(1, Math.ceil(words / 200));
+
+            if (chars !== prevChars) { elChars.classList.remove('pop'); void elChars.offsetWidth; elChars.classList.add('pop'); }
             prevChars = chars;
 
-            charCountEl.textContent = chars.toLocaleString();
-            wordCountEl.textContent = words.toLocaleString();
-            sentenceCountEl.textContent = sentences;
-            lineCountEl.textContent = lines;
-            readTimeEl.textContent = readMins < 1 ? '<1m' : readMins + 'm';
+            elChars.textContent = chars.toLocaleString();
+            elWords.textContent = words.toLocaleString();
+            elSents.textContent = sents;
+            elLines.textContent = lines;
+            elRead.textContent = words < 1 ? '<1m' : mins + 'm';
             wordBar.style.width = (Math.min(words / 500, 1) * 100) + '%';
         }
 
-        function fmt(cmd) {
-            rteEditor.focus();
-            document.execCommand(cmd, false, null);
-            updateFormatState();
-        }
+        // ── Plain editor events ────────────────────────────────────────────────────
+        plainEditor.addEventListener('input', () => { saveNow(); updateStats(); if (srOpen) srSearch(); });
 
-        function applyBlockFormat(tag) {
+        // ── Rich editor events ────────────────────────────────────────────────────
+        rteEditor.addEventListener('input', () => { saveNow(); updateStats(); if (srOpen) srSearch(); });
+        rteEditor.addEventListener('keyup', updateRteButtons);
+        rteEditor.addEventListener('mouseup', updateRteButtons);
+
+        // ── RTE commands ───────────────────────────────────────────────────────────
+        function rteCmd(cmd, val) {
             rteEditor.focus();
-            document.execCommand('formatBlock', false, tag);
-            updateStats();
+            document.execCommand(cmd, false, val || null);
+            updateRteButtons();
         }
 
         function applyFont(font) {
+            if (!font) return;
             rteEditor.focus();
-            if (font) document.execCommand('fontName', false, font);
+            document.execCommand('fontName', false, font);
         }
 
-        function applyFontSize(size) {
+        function applyFgColor(c) {
+            document.getElementById('dotFg').style.background = c;
             rteEditor.focus();
-            if (size) document.execCommand('fontSize', false, size);
+            document.execCommand('foreColor', false, c);
         }
 
-        function applyTextColor(color) {
-            document.getElementById('textColorSwatch').style.background = color;
+        function applyBgColor(c) {
+            document.getElementById('dotBg').style.background = c;
             rteEditor.focus();
-            document.execCommand('foreColor', false, color);
+            document.execCommand('hiliteColor', false, c);
         }
-
-        function applyBgColor(color) {
-            document.getElementById('bgColorSwatch').style.background = color;
-            rteEditor.focus();
-            document.execCommand('hiliteColor', false, color);
-        }
-
-        function insertHR() { rteEditor.focus(); document.execCommand('insertHorizontalRule'); }
 
         function insertTable() {
             rteEditor.focus();
-            document.execCommand('insertHTML', false, `<table><thead><tr><th>Header 1</th><th>Header 2</th><th>Header 3</th></tr></thead><tbody><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr></tbody></table><p><br></p>`);
+            document.execCommand('insertHTML', false,
+                '<table><thead><tr><th>Header 1</th><th>Header 2</th><th>Header 3</th></tr></thead>' +
+                '<tbody><tr><td>Cell</td><td>Cell</td><td>Cell</td></tr>' +
+                '<tr><td>Cell</td><td>Cell</td><td>Cell</td></tr></tbody></table><p><br></p>');
             updateStats();
         }
 
-        function updateFormatState() {
-            [['btnBold', 'bold'], ['btnItalic', 'italic'], ['btnUnderline', 'underline'],
-            ['btnStrike', 'strikeThrough'], ['btnSup', 'superscript'], ['btnSub', 'subscript'],
-            ['btnAlignL', 'justifyLeft'], ['btnAlignC', 'justifyCenter'],
-            ['btnAlignR', 'justifyRight'], ['btnAlignJ', 'justifyFull']
-            ].forEach(([id, cmd]) => {
+        function updateRteButtons() {
+            const pairs = [
+                ['btnB', 'bold'], ['btnI', 'italic'], ['btnU', 'underline'], ['btnS', 'strikeThrough'],
+                ['btnSup', 'superscript'], ['btnSub', 'subscript'],
+                ['btnAL', 'justifyLeft'], ['btnAC', 'justifyCenter'], ['btnAR', 'justifyRight'], ['btnAJ', 'justifyFull'],
+            ];
+            pairs.forEach(([id, cmd]) => {
                 const el = document.getElementById(id);
-                if (el) el.classList.toggle('active', document.queryCommandState(cmd));
+                if (el) el.classList.toggle('on', document.queryCommandState(cmd));
             });
             const tag = document.queryCommandValue('formatBlock').toLowerCase();
-            const sel = document.getElementById('blockFormat');
+            const sel = document.getElementById('blockSel');
             if (['p', 'h1', 'h2', 'h3', 'pre', 'blockquote'].includes(tag)) sel.value = tag;
             else sel.value = 'p';
         }
 
-        rteEditor.addEventListener('keyup', updateFormatState);
-        rteEditor.addEventListener('mouseup', updateFormatState);
-
+        // ── Link dialog ────────────────────────────────────────────────────────────
         let savedRange = null;
 
-        function insertLink() {
+        function openLinkDlg() {
             rteEditor.focus();
             const sel = window.getSelection();
-            if (sel.rangeCount) savedRange = sel.getRangeAt(0).cloneRange();
-            document.getElementById('linkText').value = sel.toString();
-            document.getElementById('linkUrl').value = '';
-            document.getElementById('linkDialogOverlay').classList.add('open');
-            setTimeout(() => document.getElementById('linkUrl').focus(), 50);
+            savedRange = sel.rangeCount ? sel.getRangeAt(0).cloneRange() : null;
+            document.getElementById('dlgText').value = sel.toString();
+            document.getElementById('dlgUrl').value = '';
+            document.getElementById('linkDlg').classList.add('open');
+            setTimeout(() => document.getElementById('dlgUrl').focus(), 50);
         }
 
-        function closeLinkDialog() { document.getElementById('linkDialogOverlay').classList.remove('open'); }
+        function closeLinkDlg() { document.getElementById('linkDlg').classList.remove('open'); }
 
         function confirmLink() {
-            const url = document.getElementById('linkUrl').value.trim();
-            const text = document.getElementById('linkText').value.trim();
-            if (!url) { closeLinkDialog(); return; }
+            const url = document.getElementById('dlgUrl').value.trim();
+            const text = document.getElementById('dlgText').value.trim();
+            if (!url) { closeLinkDlg(); return; }
             rteEditor.focus();
-            if (savedRange) { const s = window.getSelection(); s.removeAllRanges(); s.addRange(savedRange); }
+            if (savedRange) {
+                const s = window.getSelection(); s.removeAllRanges(); s.addRange(savedRange);
+            }
+            const anchor = `<a href="${escHtml(url)}" target="_blank">${escHtml(text || url)}</a>`;
             if (text && !window.getSelection().toString()) {
-                document.execCommand('insertHTML', false, `<a href="${url}" target="_blank">${text}</a>`);
+                document.execCommand('insertHTML', false, anchor);
             } else {
                 document.execCommand('createLink', false, url);
                 rteEditor.querySelectorAll('a:not([target])').forEach(a => a.setAttribute('target', '_blank'));
             }
-            closeLinkDialog(); updateStats();
+            closeLinkDlg(); updateStats(); saveNow();
         }
 
-        const TITLE_SMALL = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is', 'it']);
+        // ── Case / text transforms ─────────────────────────────────────────────────
+        const SMALL = new Set(['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is', 'it']);
 
-        function applyCase(fn) {
-            rteEditor.innerText = fn(rteEditor.innerText);
-            updateStats(); saveToStorage(); rteEditor.focus();
+        function getText() { return isRich ? rteEditor.innerText : plainEditor.value; }
+        function setText(v) {
+            if (isRich) rteEditor.innerText = v;
+            else plainEditor.value = v;
         }
 
-        function toUpper() { applyCase(t => t.toUpperCase()); }
-        function toLower() { applyCase(t => t.toLowerCase()); }
-        function toCapitalized() { applyCase(t => t.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())); }
-        function toTitle() {
-            applyCase(t => t.toLowerCase().replace(/\S+/g, (w, i) =>
-                i === 0 || !TITLE_SMALL.has(w) ? w.charAt(0).toUpperCase() + w.slice(1) : w));
+        function doCase(type) {
+            let t = getText();
+            switch (type) {
+                case 'upper': t = t.toUpperCase(); break;
+                case 'lower': t = t.toLowerCase(); break;
+                case 'cap': t = t.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase()); break;
+                case 'title': t = t.toLowerCase().replace(/\S+/g, (w, i) =>
+                    i === 0 || !SMALL.has(w) ? w[0].toUpperCase() + w.slice(1) : w); break;
+                case 'sent': t = t.toLowerCase().replace(/(^\s*\S|[.!?]\s+\S)/g, c => c.toUpperCase()); break;
+                case 'alt': t = [...t].map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join(''); break;
+                case 'inv': t = [...t].map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''); break;
+                case 'trim': t = t.split('\n').map(l => l.trim()).filter((l, i, a) => l || a[i - 1] !== '').join('\n').trim(); break;
+                case 'dedup': t = [...new Set(t.split('\n'))].join('\n'); break;
+                case 'sort': t = t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n'); break;
+                case 'rev': t = t.split('\n').reverse().join('\n'); break;
+            }
+            setText(t);
+            updateStats(); saveNow();
+            if (isRich) rteEditor.focus(); else plainEditor.focus();
+            if (srOpen) srSearch();
         }
-        function toSentence() { applyCase(t => t.toLowerCase().replace(/(^\s*\S|[.!?]\s+\S)/g, l => l.toUpperCase())); }
-        function toAlternating() { applyCase(t => t.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join('')); }
-        function toInverse() { applyCase(t => t.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('')); }
-        function trimWhitespace() { applyCase(t => t.split('\n').map(l => l.trim()).filter((l, i, a) => l || a[i - 1] !== '').join('\n').trim()); }
-        function removeDuplicateLines() { applyCase(t => [...new Set(t.split('\n'))].join('\n')); }
-        function sortLines() { applyCase(t => t.split('\n').sort((a, b) => a.localeCompare(b)).join('\n')); }
-        function reverseLines() { applyCase(t => t.split('\n').reverse().join('\n')); }
-        function clearText() { rteEditor.innerHTML = ''; updateStats(); saveToStorage(); }
 
-        const FALLBACK_LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+        function clearAll() {
+            if (isRich) rteEditor.innerHTML = '';
+            else plainEditor.value = '';
+            updateStats(); saveNow();
+        }
 
-        async function addLoremParagraph() {
+        // ── Lorem ipsum ────────────────────────────────────────────────────────────
+        const LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+
+        async function addLorem() {
+            let para = LOREM;
             try {
-                const res = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1&format=text&start-with-lorem=1');
-                if (!res.ok) throw new Error();
-                appendText((await res.text()).trim());
-            } catch { appendText(FALLBACK_LOREM); }
+                const r = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1&format=text&start-with-lorem=1');
+                if (r.ok) para = (await r.text()).trim();
+            } catch { }
+            if (isRich) {
+                const p = document.createElement('p'); p.textContent = para;
+                rteEditor.appendChild(p); rteEditor.scrollTop = rteEditor.scrollHeight; rteEditor.focus();
+            } else {
+                const sep = plainEditor.value && !plainEditor.value.endsWith('\n\n') ? '\n\n' : '';
+                plainEditor.value += sep + para;
+                plainEditor.scrollTop = plainEditor.scrollHeight; plainEditor.focus();
+            }
+            updateStats(); saveNow();
         }
 
-        function appendText(para) {
-            const p = document.createElement('p');
-            p.textContent = para;
-            rteEditor.appendChild(p);
-            rteEditor.scrollTop = rteEditor.scrollHeight;
-            updateStats(); saveToStorage(); rteEditor.focus();
-        }
-
-        async function copyToClipboard() {
+        // ── Copy ───────────────────────────────────────────────────────────────────
+        async function copyText() {
             try {
-                await navigator.clipboard.write([new ClipboardItem({
-                    'text/html': new Blob([rteEditor.innerHTML], { type: 'text/html' }),
-                    'text/plain': new Blob([rteEditor.innerText], { type: 'text/plain' })
-                })]);
+                if (isRich) {
+                    await navigator.clipboard.write([new ClipboardItem({
+                        'text/html': new Blob([rteEditor.innerHTML], { type: 'text/html' }),
+                        'text/plain': new Blob([rteEditor.innerText], { type: 'text/plain' }),
+                    })]);
+                } else {
+                    await navigator.clipboard.writeText(plainEditor.value);
+                }
             } catch {
-                try { await navigator.clipboard.writeText(rteEditor.innerText); } catch { }
+                try { await navigator.clipboard.writeText(getText()); } catch { }
             }
             copyBtn.textContent = '✓ Copied!';
             copyBtn.classList.add('copied');
@@ -1519,103 +1725,142 @@
             }, 2000);
         }
 
-        let srOpen = false, srMatches = [], srCurrent = -1;
-
-        const srPanel = document.getElementById('srPanel');
-        const srToggleBtn = document.getElementById('srToggleBtn');
-        const srSearch = document.getElementById('srSearch');
-        const srReplace = document.getElementById('srReplace');
-        const srMatchInfo = document.getElementById('srMatchInfo');
-        const srPrev = document.getElementById('srPrev');
-        const srNext = document.getElementById('srNext');
-        const srReplaceOne = document.getElementById('srReplaceOne');
-        const srReplaceAll = document.getElementById('srReplaceAll');
+        // ── Search & Replace ───────────────────────────────────────────────────────
+        let srOpen = false, srMatches = [], srCur = -1;
 
         function toggleSR() { srOpen ? closeSR() : openSR(); }
 
         function openSR() {
             srOpen = true;
-            srPanel.classList.add('open');
-            srToggleBtn.classList.add('active');
-            srSearch.focus(); srSearch.select();
-            onSearchInput();
+            document.getElementById('srPanel').classList.add('open');
+            document.getElementById('srTogBtn').classList.add('on');
+            document.getElementById('srFind').focus();
+            document.getElementById('srFind').select();
+            srSearch();
         }
 
         function closeSR() {
             srOpen = false;
-            srPanel.classList.remove('open');
-            srToggleBtn.classList.remove('active');
-            srMatches = []; srCurrent = -1;
-            rteEditor.focus();
+            document.getElementById('srPanel').classList.remove('open');
+            document.getElementById('srTogBtn').classList.remove('on');
+            srMatches = []; srCur = -1;
+            if (isRich) rteEditor.focus(); else plainEditor.focus();
         }
 
-        function buildRegex(q) {
+        function buildRx() {
+            const q = document.getElementById('srFind').value;
             if (!q) return null;
             try {
-                let p = document.getElementById('optRegex').checked ? q : q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let p = document.getElementById('optRx').checked ? q : q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 if (document.getElementById('optWhole').checked) p = `\\b${p}\\b`;
                 return new RegExp(p, document.getElementById('optCase').checked ? 'g' : 'gi');
             } catch { return null; }
         }
 
-        function onSearchInput() {
-            const q = srSearch.value;
-            srSearch.classList.remove('no-match');
-            if (!q) { srMatches = []; srCurrent = -1; srMatchInfo.textContent = 'No matches'; srMatchInfo.classList.remove('has-matches'); setAct(false); return; }
-            const rx = buildRegex(q);
-            if (!rx) { srMatchInfo.textContent = 'Invalid regex'; srMatchInfo.classList.remove('has-matches'); setAct(false); return; }
-            const text = rteEditor.innerText;
-            srMatches = [];
-            let m;
-            while ((m = rx.exec(text)) !== null) { srMatches.push({ start: m.index, end: m.index + m[0].length }); if (m[0].length === 0) rx.lastIndex++; }
-            if (!srMatches.length) { srSearch.classList.add('no-match'); srCurrent = -1; srMatchInfo.textContent = 'No matches'; srMatchInfo.classList.remove('has-matches'); setAct(false); }
-            else { if (srCurrent < 0 || srCurrent >= srMatches.length) srCurrent = 0; updInfo(); setAct(true); }
+        function srSearch() {
+            const inp = document.getElementById('srFind');
+            const info = document.getElementById('srInfo');
+            inp.classList.remove('bad');
+            const rx = buildRx();
+            if (!rx) {
+                srMatches = []; srCur = -1; info.textContent = 'No matches'; info.classList.remove('hit');
+                setActs(false); return;
+            }
+            const txt = getText();
+            srMatches = []; let m;
+            while ((m = rx.exec(txt)) !== null) {
+                srMatches.push({ start: m.index, end: m.index + m[0].length });
+                if (m[0].length === 0) rx.lastIndex++;
+            }
+            if (!srMatches.length) {
+                inp.classList.add('bad'); srCur = -1;
+                info.textContent = 'No matches'; info.classList.remove('hit'); setActs(false);
+            } else {
+                if (srCur < 0 || srCur >= srMatches.length) srCur = 0;
+                info.textContent = `${srCur + 1} / ${srMatches.length}`; info.classList.add('hit');
+                setActs(true);
+                // highlight in plain mode
+                if (!isRich) {
+                    const { start, end } = srMatches[srCur];
+                    plainEditor.focus(); plainEditor.setSelectionRange(start, end);
+                }
+            }
         }
 
-        function updInfo() {
-            srMatchInfo.textContent = srMatches.length ? `${srCurrent + 1} / ${srMatches.length}` : 'No matches';
-            srMatchInfo.classList.toggle('has-matches', !!srMatches.length);
-        }
-
-        function setAct(e) { srPrev.disabled = srNext.disabled = srReplaceOne.disabled = srReplaceAll.disabled = !e; }
-
-        function srNavigate(d) {
+        function srNav(dir) {
             if (!srMatches.length) return;
-            srCurrent = (srCurrent + d + srMatches.length) % srMatches.length;
-            updInfo();
+            srCur = (srCur + dir + srMatches.length) % srMatches.length;
+            document.getElementById('srInfo').textContent = `${srCur + 1} / ${srMatches.length}`;
+            if (!isRich) {
+                const { start, end } = srMatches[srCur];
+                plainEditor.focus(); plainEditor.setSelectionRange(start, end);
+            }
+        }
+
+        function setActs(on) {
+            ['srPrev', 'srNext', 'btnR1', 'btnRA'].forEach(id => document.getElementById(id).disabled = !on);
+        }
+
+        function replaceOne() {
+            if (!srMatches.length || srCur < 0) return;
+            const rx = buildRx(); if (!rx) return;
+            const rep = document.getElementById('srRep').value;
+            if (!isRich) {
+                const { start, end } = srMatches[srCur];
+                const txt = plainEditor.value;
+                const matched = txt.slice(start, end);
+                const replacement = document.getElementById('optRx').checked
+                    ? matched.replace(new RegExp(rx.source, rx.flags.replace('g', '')), rep)
+                    : rep;
+                plainEditor.value = txt.slice(0, start) + replacement + txt.slice(end);
+            } else {
+                rteEditor.innerHTML = rteEditor.innerHTML.replace(rx, rep);
+            }
+            updateStats(); saveNow(); srSearch();
         }
 
         function replaceAll() {
             if (!srMatches.length) return;
-            const rx = buildRegex(srSearch.value);
-            if (!rx) return;
-            rteEditor.innerHTML = rteEditor.innerHTML.replace(rx, srReplace.value);
-            updateStats(); saveToStorage();
-            srMatches = []; srCurrent = -1;
-            srMatchInfo.textContent = 'Replaced';
-            srMatchInfo.classList.remove('has-matches');
-            setAct(false);
-            srSearch.classList.remove('no-match');
+            const rx = buildRx(); if (!rx) return;
+            const rep = document.getElementById('srRep').value;
+            if (!isRich) plainEditor.value = plainEditor.value.replace(rx, rep);
+            else rteEditor.innerHTML = rteEditor.innerHTML.replace(rx, rep);
+            updateStats(); saveNow();
+            srMatches = []; srCur = -1;
+            const info = document.getElementById('srInfo');
+            info.textContent = 'Replaced'; info.classList.remove('hit');
+            setActs(false);
+            document.getElementById('srFind').classList.remove('bad');
         }
 
-        rteEditor.addEventListener('input', () => { saveToStorage(); updateStats(); if (srOpen) onSearchInput(); });
+        function toggleOpt(cb) {
+            cb.closest('.sr-opt').classList.toggle('on', cb.checked);
+        }
 
+        // ── Keyboard shortcuts ─────────────────────────────────────────────────────
         document.addEventListener('keydown', e => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'h') { e.preventDefault(); toggleSR(); return; }
-            if ((e.ctrlKey || e.metaKey) && e.key === 'f') { e.preventDefault(); openSR(); return; }
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'c') { e.preventDefault(); copyToClipboard(); return; }
+            const mod = e.ctrlKey || e.metaKey;
+            if (mod && e.key === 'h') { e.preventDefault(); toggleSR(); return; }
+            if (mod && e.key === 'f') { e.preventDefault(); openSR(); return; }
+            if (mod && e.shiftKey && e.key.toLowerCase() === 'c') { e.preventDefault(); copyText(); return; }
             if (srOpen) {
                 if (e.key === 'Escape') { closeSR(); return; }
-                if (e.target === srSearch) {
-                    if (e.key === 'Enter' && e.shiftKey) { e.preventDefault(); srNavigate(-1); return; }
-                    if (e.key === 'Enter') { e.preventDefault(); srNavigate(1); return; }
+                if (e.target === document.getElementById('srFind')) {
+                    if (e.key === 'Enter' && e.shiftKey) { e.preventDefault(); srNav(-1); return; }
+                    if (e.key === 'Enter') { e.preventDefault(); srNav(1); return; }
                 }
-                if (e.target === srReplace && e.key === 'Enter') { e.preventDefault(); replaceAll(); return; }
+                if (e.target === document.getElementById('srRep') && e.key === 'Enter') { e.preventDefault(); replaceOne(); return; }
             }
-            if (e.key === 'Escape' && document.getElementById('linkDialogOverlay').classList.contains('open')) closeLinkDialog();
+            if (e.key === 'Escape' && document.getElementById('linkDlg').classList.contains('open')) { closeLinkDlg(); }
         });
 
-        window.addEventListener('load', () => { loadFromStorage(); rteEditor.focus(); });
+        // ── Init ───────────────────────────────────────────────────────────────────
+        window.addEventListener('load', () => {
+            loadSaved();
+            updateStats();
+            // focus the active editor
+            if (isRich) rteEditor.focus(); else plainEditor.focus();
+        });
     </script>
 </body>
 
