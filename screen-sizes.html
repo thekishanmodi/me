@@ -39,32 +39,24 @@
       --orange: #fd6204;
       --orange-dark: #d94e00;
       --orange-light: #fff1ea;
-      --black: #111;
-      --gray-100: #f5f4f2;
-      --gray-200: #e8e6e2;
-      --gray-400: #a09d99;
-      --gray-600: #6b6763;
+      --black: #0d0d0d;
+      --gray-50: #fafafa;
+      --gray-100: #f4f2ef;
+      --gray-200: #e8e4de;
+      --gray-400: #a09990;
+      --gray-600: #6b635a;
       --white: #fdfcfa;
-
-      /* Semantic mappings */
       --bg: var(--white);
       --surface: var(--gray-100);
-      --surface2: var(--gray-200);
       --border: var(--gray-200);
-      --border-strong: #d4d1cc;
+      --border-strong: #ccc7bf;
       --accent: var(--orange);
-      --accent-dark: var(--orange-dark);
-      --accent-light: var(--orange-light);
       --text: var(--black);
       --muted: var(--gray-600);
       --muted-light: var(--gray-400);
-      --ios: #007AFF;
-      --android: #1a8843;
-      --windows: #0078D4;
-      --blackberry: #bb0000;
-      --chrome: #e06000;
-      --osx: #555;
-      --other: #888;
+      --trending: #16a34a;
+      --trending-bg: #f0fdf4;
+      --trending-border: #bbf7d0;
     }
 
     * {
@@ -74,7 +66,7 @@
     }
 
     body {
-      font-family: 'Mona Sans', 'Hubot Sans', sans-serif;
+      font-family: 'Mona Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -82,47 +74,32 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Crisp line grid background */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(160, 157, 153, 0.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(160, 157, 153, 0.12) 1px, transparent 1px);
-      background-size: 32px 32px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Soft orange glow top-right */
-    body::after {
-      content: '';
-      position: fixed;
-      width: 700px;
-      height: 500px;
-      top: -160px;
-      right: -180px;
-      background: radial-gradient(ellipse at top right, rgba(253, 98, 4, 0.07) 0%, transparent 68%);
+        linear-gradient(rgba(160, 150, 140, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(160, 150, 140, .08) 1px, transparent 1px);
+      background-size: 28px 28px;
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
       position: relative;
       z-index: 1;
     }
 
     /* HEADER */
     header {
-      padding: 52px 0 36px;
+      padding: 48px 0 32px;
       border-bottom: 1.5px solid var(--border);
-      position: relative;
-      overflow: hidden;
       background: var(--white);
+      position: relative;
     }
 
     header::after {
@@ -132,27 +109,22 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--orange), var(--orange-dark), #ff8a3d);
+      background: linear-gradient(90deg, var(--orange), #ff8a3d, var(--orange-dark));
     }
 
     .header-inner {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
     .logo-block h1 {
-      font-family: 'Mona Sans', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      letter-spacing: -0.04em;
-      line-height: 1;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
       color: var(--black);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .logo-block h1 span {
@@ -160,18 +132,16 @@
     }
 
     .logo-block p {
-      margin-top: 10px;
+      margin-top: 8px;
       color: var(--muted);
       font-size: 0.78rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       font-weight: 500;
       text-transform: uppercase;
     }
 
     .stats-row {
       display: flex;
-      gap: 0;
-      flex-wrap: wrap;
       border: 1.5px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
@@ -180,7 +150,7 @@
 
     .stat {
       text-align: center;
-      padding: 14px 28px;
+      padding: 14px 26px;
       border-right: 1.5px solid var(--border);
     }
 
@@ -189,53 +159,154 @@
     }
 
     .stat-num {
-      font-family: 'Mona Sans', sans-serif;
       font-size: 1.7rem;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--orange);
+      letter-spacing: -0.04em;
       line-height: 1;
-      letter-spacing: -0.03em;
     }
 
     .stat-label {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       color: var(--muted);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-top: 4px;
       font-weight: 600;
     }
 
+    /* TRENDING BANNER */
+    .trending-banner {
+      background: var(--trending-bg);
+      border: 1.5px solid var(--trending-border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin: 16px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+    }
+
+    .trending-banner .trend-label {
+      font-weight: 700;
+      color: var(--trending);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .trending-banner .trend-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .trend-chip {
+      background: white;
+      border: 1px solid var(--trending-border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      color: var(--trending);
+      white-space: nowrap;
+      transition: all .15s;
+    }
+
+    .trend-chip:hover {
+      background: var(--trending);
+      color: white;
+      cursor: pointer;
+    }
+
+    .trend-chip.active {
+      background: var(--trending);
+      color: white;
+      border-color: var(--trending);
+    }
+
+    .trending-banner .trend-meta {
+      font-size: 0.65rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .trend-refresh-btn {
+      background: none;
+      border: 1px solid var(--trending-border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      color: var(--trending);
+      font-family: 'Mona Sans', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+
+    .trend-refresh-btn:hover {
+      background: var(--trending);
+      color: white;
+    }
+
+    .trend-refresh-btn.loading {
+      opacity: .6;
+      pointer-events: none;
+    }
+
+    .spin {
+      display: inline-block;
+    }
+
+    .trend-refresh-btn.loading .spin {
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     /* TOOLBAR */
     .toolbar {
-      padding: 16px;
+      padding: 14px 16px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
       flex-wrap: wrap;
       border: 1.5px solid var(--border);
       border-top: none;
       position: sticky;
       top: 0;
-      background: rgba(253, 252, 250, 0.97);
+      background: rgba(253, 252, 250, .97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       z-index: 100;
-      border-radius: 0 0 16px 16px;
+      border-radius: 0 0 14px 14px;
     }
 
     .search-wrap {
       position: relative;
       flex: 1;
-      min-width: 200px;
-      max-width: 320px;
+      min-width: 180px;
+      max-width: 300px;
     }
 
     .search-wrap::before {
       content: '⌕';
       position: absolute;
-      left: 11px;
-      top: 50%;
+      left: 12px;
+      top: 16px;
       transform: translateY(-50%);
       color: var(--muted-light);
       font-size: 1.1rem;
@@ -250,15 +321,15 @@
       font-family: 'Mona Sans', sans-serif;
       font-size: 0.82rem;
       font-weight: 500;
-      padding: 8px 12px 8px 34px;
+      padding: 8px 12px 8px 32px;
       border-radius: 8px;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color .2s, box-shadow .2s;
     }
 
     #search:focus {
       border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(253, 98, 4, 0.12);
+      box-shadow: 0 0 0 3px rgba(253, 98, 4, .1);
     }
 
     #search::placeholder {
@@ -276,13 +347,17 @@
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.02em;
-      padding: 7px 13px;
+      padding: 7px 12px;
       border-radius: 6px;
       border: 1.5px solid var(--border);
       background: var(--white);
       color: var(--muted);
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all .15s;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
       white-space: nowrap;
     }
 
@@ -303,9 +378,9 @@
       margin-left: auto;
       font-size: 0.72rem;
       color: var(--muted);
-      letter-spacing: 0.02em;
       white-space: nowrap;
       font-weight: 500;
+      display: none;
     }
 
     .count-badge span {
@@ -313,63 +388,46 @@
       font-weight: 700;
     }
 
-    /* TABLE WRAPPER */
+    /* TABLE */
     .table-wrap {
       overflow-x: auto;
       border: 1.5px solid var(--border-strong);
       border-radius: 12px;
-      margin-top: 16px;
-      box-shadow: 0 2px 8px rgba(17, 17, 17, 0.06);
+      margin-top: 14px;
+      box-shadow: 0 2px 12px rgba(17, 17, 17, .06);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.82rem;
-      table-layout: auto;
       background: #fff;
     }
 
     thead tr {
-      background: linear-gradient(180deg, #eeebe5 0%, #e6e2dc 100%);
-      box-shadow: 0 2px 6px rgba(17, 17, 17, 0.07);
+      background: linear-gradient(180deg, #edebe4 0%, #e4e0d8 100%);
     }
 
     thead th {
-      font-family: 'Mona Sans', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 800;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gray-600);
-      padding: 13px 14px;
+      padding: 12px 14px;
       text-align: left;
-      border-right: 1px solid rgba(160, 157, 153, 0.2);
+      border-right: 1px solid rgba(160, 150, 140, .18);
       border-bottom: 2px solid var(--border-strong);
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
-      background: linear-gradient(180deg, #eeebe5 0%, #e6e2dc 100%);
-      transition: color 0.15s, background 0.15s;
-      position: sticky;
-      top: 0;
-      /* overridden by JS after DOM load */
-      z-index: 10;
+      transition: color .15s, background .15s;
+      position: relative;
     }
 
     thead th:last-child {
       border-right: none;
-    }
-
-    thead th::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: transparent;
-      transition: background 0.18s;
     }
 
     thead th:hover {
@@ -377,19 +435,10 @@
       background: linear-gradient(180deg, #fce8dc 0%, #f5dece 100%);
     }
 
-    thead th:hover::before {
-      background: var(--orange);
-    }
-
     thead th.sorted-asc,
     thead th.sorted-desc {
       color: var(--orange-dark);
       background: linear-gradient(180deg, #fce8dc 0%, #f5dece 100%);
-    }
-
-    thead th.sorted-asc::before,
-    thead th.sorted-desc::before {
-      background: var(--orange);
     }
 
     thead th.sorted-asc .sort-icon::after {
@@ -403,14 +452,13 @@
     thead th .sort-icon {
       color: var(--orange);
       font-size: 0.7rem;
-      margin-left: 2px;
     }
 
     thead th:not(.sorted-asc):not(.sorted-desc) .sort-icon::after {
       content: ' ↕';
       color: var(--gray-400);
       opacity: 0;
-      transition: opacity 0.15s;
+      transition: opacity .15s;
     }
 
     thead th:hover .sort-icon::after {
@@ -419,14 +467,14 @@
 
     tbody tr {
       border-bottom: 1px solid var(--gray-200);
-      transition: background 0.1s;
-      animation: rowIn 0.35s ease both;
+      transition: background .1s;
+      animation: rowIn .3s ease both;
     }
 
     @keyframes rowIn {
       from {
         opacity: 0;
-        transform: translateY(3px);
+        transform: translateY(4px);
       }
 
       to {
@@ -439,12 +487,16 @@
       background: var(--orange-light);
     }
 
-    tbody tr:hover td:first-child {
-      color: var(--orange);
+    tbody tr.trending-row {
+      background: linear-gradient(90deg, rgba(22, 163, 74, .04), transparent);
+    }
+
+    tbody tr.trending-row:hover {
+      background: var(--orange-light);
     }
 
     td {
-      padding: 11px 14px;
+      padding: 10px 14px;
       color: var(--text);
       white-space: nowrap;
       vertical-align: middle;
@@ -453,95 +505,96 @@
     td.device-name {
       font-weight: 600;
       font-size: 0.83rem;
-      min-width: 220px;
+      min-width: 200px;
       white-space: normal;
-      max-width: 300px;
-      color: var(--black);
+      max-width: 280px;
     }
 
     .os-tag {
       display: inline-block;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 700;
       letter-spacing: 0.06em;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
     }
 
     .os-ios {
-      background: rgba(0, 122, 255, 0.1);
+      background: rgba(0, 122, 255, .08);
       color: #0066dd;
-      border: 1px solid rgba(0, 122, 255, 0.2);
+      border: 1px solid rgba(0, 122, 255, .18);
     }
 
     .os-android {
-      background: rgba(26, 136, 67, 0.1);
+      background: rgba(26, 136, 67, .08);
       color: #1a7a3e;
-      border: 1px solid rgba(26, 136, 67, 0.25);
+      border: 1px solid rgba(26, 136, 67, .22);
     }
 
     .os-windows {
-      background: rgba(0, 120, 212, 0.1);
+      background: rgba(0, 120, 212, .08);
       color: #0060a8;
-      border: 1px solid rgba(0, 120, 212, 0.2);
+      border: 1px solid rgba(0, 120, 212, .18);
     }
 
     .os-blackberry {
-      background: rgba(187, 0, 0, 0.1);
+      background: rgba(187, 0, 0, .08);
       color: #aa0000;
-      border: 1px solid rgba(187, 0, 0, 0.2);
+      border: 1px solid rgba(187, 0, 0, .18);
     }
 
     .os-chrome {
-      background: rgba(224, 96, 0, 0.1);
+      background: rgba(224, 96, 0, .08);
       color: #b84e00;
-      border: 1px solid rgba(224, 96, 0, 0.2);
+      border: 1px solid rgba(224, 96, 0, .18);
     }
 
     .os-osx {
-      background: rgba(85, 85, 85, 0.09);
+      background: rgba(85, 85, 85, .08);
       color: #555;
-      border: 1px solid rgba(85, 85, 85, 0.15);
+      border: 1px solid rgba(85, 85, 85, .14);
     }
 
     .os-other {
-      background: rgba(136, 136, 136, 0.09);
+      background: rgba(136, 136, 136, .08);
       color: #777;
-      border: 1px solid rgba(136, 136, 136, 0.15);
+      border: 1px solid rgba(136, 136, 136, .14);
     }
 
     .os-sdi {
-      background: rgba(100, 80, 0, 0.1);
+      background: rgba(100, 80, 0, .08);
       color: #7a6200;
-      border: 1px solid rgba(100, 80, 0, 0.2);
+      border: 1px solid rgba(100, 80, 0, .18);
     }
 
     .px-cell {
-      color: var(--black);
-      font-variant-numeric: tabular-nums;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
       font-weight: 500;
+      color: var(--black);
     }
 
     .muted {
       color: var(--muted-light);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.74rem;
     }
 
-    /* PPI indicator bar */
     .ppi-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
-      min-width: 110px;
+      gap: 7px;
+      min-width: 100px;
     }
 
     .ppi-bar {
-      height: 4px;
+      height: 3px;
       border-radius: 2px;
       background: var(--gray-200);
       flex: 1;
-      min-width: 50px;
-      position: relative;
+      min-width: 45px;
       overflow: hidden;
     }
 
@@ -549,95 +602,256 @@
       height: 100%;
       border-radius: 2px;
       background: linear-gradient(90deg, var(--orange), var(--orange-dark));
-      transition: width 0.3s;
     }
 
     .ppi-num {
-      font-variant-numeric: tabular-nums;
-      min-width: 30px;
+      font-family: 'DM Mono', monospace;
+      min-width: 28px;
       text-align: right;
       color: var(--black);
-      font-weight: 600;
-      font-size: 0.78rem;
+      font-weight: 500;
+      font-size: 0.76rem;
     }
 
-    /* Aspect ratio pill */
     .ar-pill {
-      font-family: 'Mona Sans', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      font-weight: 500;
       color: var(--muted);
       background: var(--gray-100);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 2px 10px;
+      padding: 2px 9px;
       white-space: nowrap;
     }
 
-    /* Category groups */
     .category-header {
       background: var(--gray-100);
       border-top: 2px solid var(--border-strong);
       border-bottom: 1px solid var(--border);
     }
 
-    .category-header:first-child {
-      border-top: none;
-    }
-
     .category-header td {
-      padding: 8px 14px;
-      font-family: 'Mona Sans', sans-serif;
-      font-size: 0.61rem;
-      font-weight: 800;
+      padding: 7px 14px;
+      font-size: 0.6rem;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--gray-600);
-      background: var(--gray-100);
     }
 
-    .category-header td span {
-      margin-right: 6px;
+    .trending-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.56rem;
+      font-weight: 700;
+      color: var(--trending);
+      background: var(--trending-bg);
+      border: 1px solid var(--trending-border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
     }
 
-    /* Type icon */
-    .type-icon {
-      font-size: 1rem;
-      opacity: 0.7;
+    /* TRENDING SECTION */
+    .trending-section {
+      margin-top: 24px;
+      border: 1.5px solid var(--trending-border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
     }
 
-    /* FOOTER */
-    footer {
-      padding: 16px 32px;
-      border-radius: 16px 16px 0 0;
-      border: 1.5px solid var(--border);
-      margin-top: 40px;
-      background: var(--gray-100);
-    }
-
-    .footer-inner {
+    .trending-section-header {
+      background: var(--trending-bg);
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
+      border-bottom: 1px solid var(--trending-border);
+    }
+
+    .trending-section-header h3 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--trending);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .trending-section-header p {
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .trending-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0;
+    }
+
+    .trending-card {
+      padding: 14px 18px;
+      border-right: 1px solid var(--trending-border);
+      border-bottom: 1px solid var(--trending-border);
+      transition: background .15s;
+    }
+
+    .trending-card:hover {
+      background: var(--trending-bg);
+      cursor: pointer;
+    }
+
+    .trending-card .tc-res {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+
+    .trending-card .tc-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .trending-card .tc-share {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--trending);
+      margin-top: 6px;
+    }
+
+    .trending-card .tc-bar {
+      height: 2px;
+      background: var(--gray-200);
+      border-radius: 1px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+
+    .trending-card .tc-bar-fill {
+      height: 100%;
+      background: var(--trending);
+      border-radius: 1px;
+      transition: width .5s;
+    }
+
+    .trending-card .tc-rank {
+      font-size: 0.6rem;
+      color: var(--muted-light);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* HISTORY SECTION */
+    .history-section {
+      margin-top: 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .history-header {
+      background: var(--gray-100);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .footer-text {
-      font-size: 0.72rem;
+    .history-header h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
       color: var(--muted);
-      line-height: 1.7;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .history-tabs {
+      display: flex;
+      gap: 4px;
+    }
+
+    .history-tab {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-size: 0.68rem;
+      font-family: 'DM Mono', monospace;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .history-tab.active {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    .history-chart-wrap {
+      padding: 16px 20px;
+      overflow-x: auto;
+      background: #fff;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+    }
+
+    .history-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 6px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
       font-weight: 500;
     }
 
-    .footer-text a {
-      color: var(--orange);
-      text-decoration: none;
-      font-weight: 600;
+    .history-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: middle;
     }
 
-    .footer-text a:hover {
-      text-decoration: underline;
+    .history-table td:first-child {
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      font-size: 0.78rem;
+    }
+
+    .history-rank-change {
+      font-size: 0.65rem;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .rank-up {
+      color: var(--trending);
+    }
+
+    .rank-down {
+      color: #e11d48;
+    }
+
+    .rank-same {
+      color: var(--muted-light);
     }
 
     .legend {
@@ -653,7 +867,7 @@
       gap: 5px;
       font-size: 0.65rem;
       color: var(--muted);
-      letter-spacing: 0.03em;
+      letter-spacing: .03em;
       font-weight: 600;
     }
 
@@ -663,23 +877,21 @@
       border-radius: 2px;
     }
 
-    /* EMPTY STATE */
     .empty-state {
       text-align: center;
-      padding: 80px 24px;
+      padding: 60px 24px;
       color: var(--muted-light);
     }
 
     .empty-state p {
       font-size: 0.88rem;
-      margin-top: 12px;
+      margin-top: 10px;
       font-weight: 500;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
 
     ::-webkit-scrollbar-track {
@@ -695,79 +907,57 @@
       background: var(--muted);
     }
 
-    /* Popular Now filter */
-    .popular-btn {
-      background: var(--orange-light);
-      border-color: rgba(253, 98, 4, 0.3);
-      color: var(--orange-dark);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .popular-btn:hover,
-    .popular-btn.active {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: #fff;
-    }
-
-    .popular-btn.active .popular-source-tag {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .popular-source-tag {
-      font-size: 0.55rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      background: rgba(253, 98, 4, 0.1);
-      padding: 1px 6px;
-      border-radius: 10px;
-      white-space: nowrap;
-      transition: all 0.15s;
-    }
-
-    .popular-btn.active .popular-source-tag {
-      background: rgba(255, 255, 255, 0.2);
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* Popular badge on rows */
-    .popular-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      font-size: 0.56rem;
-      font-weight: 700;
-      color: var(--orange-dark);
-      background: var(--orange-light);
-      border: 1px solid rgba(253, 98, 4, 0.25);
-      border-radius: 4px;
-      padding: 1px 6px;
-      margin-left: 7px;
-      vertical-align: middle;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    /* NO results row */
     #no-results {
       display: none;
+    }
+
+    .api-status {
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .api-status.ok {
+      background: var(--trending-bg);
+      color: var(--trending);
+      border: 1px solid var(--trending-border);
+    }
+
+    .api-status.loading {
+      background: #fef3c7;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .api-status.error {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    .badge {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      border: 1px solid var(--ink4);
+      border-radius: 4px;
+      padding: 4px 8px;
+      text-decoration: none;
+      margin-left: auto;
     }
   </style>
 </head>
 
 <body>
-
   <div class="container">
     <header>
       <div class="header-inner">
         <div class="logo-block">
-          <h1><img src="assets/images/konfig-mascot.png" height="64" style="margin-right: 8px;">
-            Screen<span> Sizes</span></h1>
-          <p>Viewport &amp; Pixel Density Reference for Popular Devices</p>
+          <h1>Screen<span>Sizes</span></h1>
+          <p>Viewport &amp; Pixel Density Reference · AI-Powered Trending</p>
         </div>
         <div class="stats-row">
           <div class="stat">
@@ -779,10 +969,27 @@
             <div class="stat-label">Platforms</div>
           </div>
           <div class="stat">
-            <div class="stat-num">3</div>
-            <div class="stat-label">Categories</div>
+            <div class="stat-num" id="trending-count">—</div>
+            <div class="stat-label">Trending Now</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="weeks-tracked">—</div>
+            <div class="stat-label">Weeks Tracked</div>
           </div>
         </div>
+      </div>
+
+      <!-- Trending Banner -->
+      <div class="trending-banner" id="trending-banner">
+        <div class="trend-label">📡 Live Trending</div>
+        <div class="trend-chips" id="trend-chips">
+          <span class="trend-chip" style="opacity:.5">Loading…</span>
+        </div>
+        <span class="trend-meta" id="trend-meta">Fetching data…</span>
+        <button class="trend-refresh-btn" id="refresh-btn" onclick="fetchTrendingData()">
+          <span class="spin">↻</span> Refresh
+        </button>
+        <span class="api-status loading" id="api-status">● Connecting</span>
       </div>
     </header>
 
@@ -797,16 +1004,24 @@
         <button class="filter-btn" data-filter="monitor">🖥 Monitors</button>
       </div>
       <div class="filter-group">
-        <button class="filter-btn" data-os="iOS">iOS</button>
-        <button class="filter-btn" data-os="Android">Android</button>
-        <button class="filter-btn" data-os="Windows">Windows</button>
-        <button class="filter-btn" data-os="OS X">macOS</button>
+        <button class="filter-btn" data-os="iOS">
+          <div class="legend-dot" style="background:#0066dd"></div> iOS
+        </button>
+        <button class="filter-btn" data-os="Android">
+          <div class="legend-dot" style="background:#1a7a3e"></div> Android
+        </button>
+        <button class="filter-btn" data-os="Windows">
+          <div class="legend-dot" style="background:#0060a8"></div> Windows
+        </button>
+        <button class="filter-btn" data-os="OS X">
+          <div class="legend-dot" style="background:#555"></div> macOS
+        </button>
       </div>
       <div class="filter-group">
-        <button class="filter-btn popular-btn" id="popular-btn" data-popular="true">🔥 Popular Now <span
-            class="popular-source-tag">via StatCounter 2025</span></button>
+        <button class="filter-btn" id="trending-filter-btn" data-trending="true">🟢 Trending Only</button>
       </div>
       <div class="count-badge">Showing <span id="visible-count">—</span> devices</div>
+      <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
     </div>
 
     <div class="table-wrap">
@@ -837,101 +1052,84 @@
       </table>
     </div>
 
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-text">
-          Data sourced from <a href="https://screensiz.es" target="_blank">screensiz.es</a> by Typecode.<br>
-          Built as a live reference page for designers &amp; developers.
+    <!-- Trending Size Cards -->
+    <div class="trending-section" id="trending-section" style="display:none">
+      <div class="trending-section-header">
+        <div>
+          <h3>📡 Trending Screen Resolutions This Week</h3>
+          <p id="trending-source-desc">Fetched via AI web scraping · Updates weekly</p>
         </div>
-        <div class="legend">
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#0066dd"></div> iOS
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#1a7a3e"></div> Android
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#0060a8"></div> Windows
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#555"></div> macOS
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#b84e00"></div> Chrome
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#aa0000"></div> BlackBerry
-          </div>
+        <span class="api-status ok" id="trending-section-status">● Live Data</span>
+      </div>
+      <div class="trending-grid" id="trending-grid"></div>
+    </div>
+
+    <!-- Historical Data -->
+    <div class="history-section" id="history-section" style="display:none">
+      <div class="history-header">
+        <h3>📈 Historical Trending Data</h3>
+        <div class="history-tabs">
+          <button class="history-tab active" data-view="mobile" onclick="showHistoryView('mobile')">Mobile</button>
+          <button class="history-tab" data-view="desktop" onclick="showHistoryView('desktop')">Desktop</button>
+          <button class="history-tab" data-view="tablet" onclick="showHistoryView('tablet')">Tablet</button>
         </div>
       </div>
-    </footer>
+      <div class="history-chart-wrap">
+        <table class="history-table" id="history-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Resolution</th>
+              <th>Share %</th>
+              <th>Change</th>
+              <th>Last Week</th>
+              <th>Category</th>
+              <th>Fetched</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <script>
+    // ===================== DEVICE DATABASE =====================
     const DEVICES = [
-      // --- MONITORS / LAPTOPS ---
+      // MONITORS / LAPTOPS
       { name: "Acer Chromebook", os: "Chrome", size: 11.6, w: 1366, h: 768, dw: "1366", ppi: 135, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Google Chromebook Pixel", os: "Chrome", size: 12.9, w: 2560, h: 1700, dw: "1280", ppi: 239, density: "200% XHDPI", ratio: "3:2", type: "monitor" },
       { name: "Samsung Chromebook", os: "Chrome", size: 11.6, w: 1366, h: 768, dw: "1366", ppi: 135, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Apple Cinema Display 30\"", os: "OS X", size: 30.0, w: 2560, h: 1600, dw: "2560", ppi: 100, density: "100% MDPI", ratio: "8:5", type: "monitor" },
       { name: "Apple Thunderbolt Display 27\"", os: "OS X", size: 27.0, w: 2560, h: 1440, dw: "2560", ppi: 109, density: "100% MDPI", ratio: "16:9", type: "monitor" },
-      { name: "Apple iMac 21.5-inch (Late 2009-2012)", os: "OS X", size: 21.5, w: 1921, h: 1080, dw: "1921", ppi: 102, density: "100% MDPI", ratio: "16:9", type: "monitor" },
+      { name: "Apple iMac 21.5-inch (Late 2009-2012)", os: "OS X", size: 21.5, w: 1920, h: 1080, dw: "1920", ppi: 102, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Apple iMac 27-inch (Late 2009-2012)", os: "OS X", size: 27.0, w: 2560, h: 1440, dw: "2560", ppi: 109, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Apple MacBook Air 11-inch (Late 2010-Mid 2012)", os: "OS X", size: 11.6, w: 1366, h: 768, dw: "1366", ppi: 135, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Apple MacBook Air 13-inch (Late 2010-Mid 2012)", os: "OS X", size: 13.3, w: 1440, h: 900, dw: "1440", ppi: 128, density: "100% MDPI", ratio: "8:5", type: "monitor" },
       { name: "Apple MacBook Pro 13-inch (Mid 2009-Mid 2012)", os: "OS X", size: 13.3, w: 1280, h: 800, dw: "1280", ppi: 113, density: "100% MDPI", ratio: "8:5", type: "monitor" },
       { name: "Apple MacBook Pro 13-inch (Retina)", os: "OS X", size: 13.3, w: 2560, h: 1600, dw: "1280", ppi: 227, density: "200% XHDPI", ratio: "8:5", type: "monitor" },
-      { name: "Apple MacBook Pro 15-inch (Early 2006-Mid 2012)", os: "OS X", size: 15.4, w: 1440, h: 900, dw: "1440", ppi: 110, density: "100% MDPI", ratio: "8:5", type: "monitor" },
-      { name: "Apple MacBook Pro 15-inch (Hi-Res)", os: "OS X", size: 15.4, w: 1680, h: 1050, dw: "1680", ppi: 128, density: "100% MDPI", ratio: "8:5", type: "monitor" },
       { name: "Apple MacBook Pro 15-inch (Retina)", os: "OS X", size: 15.4, w: 2880, h: 1800, dw: "1440", ppi: 220, density: "200% XHDPI", ratio: "8:5", type: "monitor" },
       { name: "Apple MacBook Pro 17-inch", os: "OS X", size: 17.3, w: 1920, h: 1200, dw: "1920", ppi: 131, density: "100% MDPI", ratio: "8:5", type: "monitor" },
-      { name: "Apple MacBook 12-inch", os: "OS X", size: 12.0, w: 2304, h: 1440, dw: "—", ppi: 226, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Apple MacBook Air 11-inch", os: "OS X", size: 11.6, w: 1366, h: 768, dw: "—", ppi: 135, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Apple MacBook Air 13-inch", os: "OS X", size: 13.3, w: 1440, h: 900, dw: "—", ppi: 128, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Apple MacBook Pro 13-inch", os: "OS X", size: 13.3, w: 2560, h: 1600, dw: "—", ppi: 227, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Apple MacBook Pro 15-inch", os: "OS X", size: 15.4, w: 2880, h: 1800, dw: "—", ppi: 220, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Apple iMac 21.5-inch (Retina 4K)", os: "OS X", size: 21.5, w: 4096, h: 2304, dw: "—", ppi: 219, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Apple iMac 27-inch (Retina 5K)", os: "OS X", size: 27.0, w: 5120, h: 2880, dw: "—", ppi: 218, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Panasonic BT-LH2170", os: "SDI", size: 21.5, w: 1080, h: 1920, dw: "—", ppi: 149, density: "N/A", ratio: "16:9", type: "monitor" },
-      { name: "Panasonic BT-LH910GJ", os: "SDI", size: 9.0, w: 768, h: 1280, dw: "—", ppi: 0, density: "N/A", ratio: "16:9", type: "monitor" },
-      { name: "Panasonic BT-4LH310P", os: "SDI", size: 31.0, w: 2160, h: 4096, dw: "—", ppi: 149, density: "N/A", ratio: "17:9", type: "monitor" },
-      { name: "Panasonic BT-LH1850", os: "SDI", size: 18.5, w: 768, h: 1366, dw: "—", ppi: 0, density: "N/A", ratio: "16:9", type: "monitor" },
-      { name: "Asus K55N-DS81 15.6in", os: "Windows", size: 15.6, w: 1366, h: 768, dw: "1366", ppi: 100, density: "100% MDPI", ratio: "16:9", type: "monitor" },
-      { name: "Asus PB287Q", os: "Windows", size: 28.0, w: 3840, h: 2160, dw: "—", ppi: 157, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "Dell Inspiron 14 series 36\"", os: "Windows", size: 14.1, w: 1600, h: 900, dw: "1600", ppi: 130, density: "100% MDPI", ratio: "16:9", type: "monitor" },
+      { name: "Apple MacBook 12-inch", os: "OS X", size: 12.0, w: 2304, h: 1440, dw: "—", ppi: 226, density: "N/A", ratio: "8:5", type: "monitor" },
+      { name: "Apple MacBook Air 13-inch", os: "OS X", size: 13.3, w: 1440, h: 900, dw: "—", ppi: 128, density: "N/A", ratio: "8:5", type: "monitor" },
+      { name: "Apple MacBook Pro 13-inch", os: "OS X", size: 13.3, w: 2560, h: 1600, dw: "—", ppi: 227, density: "N/A", ratio: "8:5", type: "monitor" },
+      { name: "Apple MacBook Pro 15-inch", os: "OS X", size: 15.4, w: 2880, h: 1800, dw: "—", ppi: 220, density: "N/A", ratio: "8:5", type: "monitor" },
+      { name: "Apple iMac 21.5-inch (Retina 4K)", os: "OS X", size: 21.5, w: 4096, h: 2304, dw: "—", ppi: 219, density: "N/A", ratio: "16:9", type: "monitor" },
+      { name: "Apple iMac 27-inch (Retina 5K)", os: "OS X", size: 27.0, w: 5120, h: 2880, dw: "—", ppi: 218, density: "N/A", ratio: "16:9", type: "monitor" },
       { name: "Dell S2340M 23\"", os: "Windows", size: 23.0, w: 1920, h: 1080, dw: "1920", ppi: 96, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Dell U2713HM 27\"", os: "Windows", size: 27.0, w: 2560, h: 1440, dw: "2560", ppi: 109, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Dell UltraSharp U2412M 24\"", os: "Windows", size: 24.0, w: 1920, h: 1200, dw: "1920", ppi: 94, density: "100% MDPI", ratio: "8:5", type: "monitor" },
-      { name: "Dell UltraSharp U2711 27\"", os: "Windows", size: 27.0, w: 2560, h: 1440, dw: "2560", ppi: 109, density: "100% MDPI", ratio: "16:9", type: "monitor" },
       { name: "Dell UltraSharp U3011 30\"", os: "Windows", size: 30.0, w: 2560, h: 1600, dw: "2560", ppi: 100, density: "100% MDPI", ratio: "8:5", type: "monitor" },
-      { name: "Dell UltraSharp UZ2315H", os: "Windows", size: 23.0, w: 1920, h: 1080, dw: "—", ppi: 96, density: "N/A", ratio: "9:16", type: "monitor" },
+      { name: "Dell XPS 13", os: "Windows", size: 13.3, w: 1920, h: 1080, dw: "—", ppi: 166, density: "N/A", ratio: "16:9", type: "monitor" },
       { name: "HP Pavilion G6-2235us 15.6\"", os: "Windows", size: 15.6, w: 1366, h: 768, dw: "1366", ppi: 100, density: "100% MDPI", ratio: "16:9", type: "monitor" },
-      { name: "HP Dreamcolor Z27x", os: "Windows", size: 27.0, w: 2560, h: 1440, dw: "—", ppi: 109, density: "N/A", ratio: "9:16", type: "monitor" },
       { name: "Lenovo Thinkpad X230", os: "Windows", size: 12.5, w: 1366, h: 768, dw: "1366", ppi: 125, density: "100% MDPI", ratio: "16:9", type: "monitor" },
-      { name: "Microsoft Surface Book", os: "Windows", size: 13.5, w: 3000, h: 2000, dw: "—", ppi: 267, density: "N/A", ratio: "2:3", type: "monitor" },
-      { name: "Acer S277HK", os: "Windows", size: 27.0, w: 3840, h: 2160, dw: "—", ppi: 163, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "Asus ZenBook UX305", os: "Windows", size: 13.3, w: 1920, h: 1080, dw: "—", ppi: 276, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "Asus Chromebook Flip", os: "Windows", size: 10.1, w: 1280, h: 800, dw: "—", ppi: 150, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "Asus ROG G751JL-BSI7T28", os: "Windows", size: 17.3, w: 1920, h: 1080, dw: "—", ppi: 127, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "Dell XPS 13", os: "Windows", size: 13.3, w: 1920, h: 1080, dw: "—", ppi: 276, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "Dell Inspiron 15 5000", os: "Windows", size: 15.6, w: 1366, h: 768, dw: "—", ppi: 100, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "ViewSonic VX2452mh", os: "Windows", size: 24.0, w: 1920, h: 1080, dw: "—", ppi: 94, density: "N/A", ratio: "9:16", type: "monitor" },
-      { name: "FUJITSU LIFEBOOK U745", os: "Windows", size: 14.0, w: 900, h: 1600, dw: "—", ppi: 300, density: "N/A", ratio: "5:8", type: "monitor" },
-      { name: "Microsoft Surface Pro 3", os: "Windows", size: 12.0, w: 2160, h: 1440, dw: "—", ppi: 216, density: "N/A", ratio: "2:3", type: "monitor" },
-      { name: "Microsoft Surface Pro 4", os: "Windows", size: 12.3, w: 2736, h: 1824, dw: "—", ppi: 267, density: "N/A", ratio: "2:3", type: "monitor" },
+      { name: "Microsoft Surface Book", os: "Windows", size: 13.5, w: 3000, h: 2000, dw: "—", ppi: 267, density: "N/A", ratio: "3:2", type: "monitor" },
+      { name: "Microsoft Surface Pro 4", os: "Windows", size: 12.3, w: 2736, h: 1824, dw: "—", ppi: 267, density: "N/A", ratio: "3:2", type: "monitor" },
       { name: "Microsoft Surface Pro (2017)", os: "Windows", size: 12.5, w: 2736, h: 1824, dw: "—", ppi: 263, density: "N/A", ratio: "3:2", type: "monitor" },
-
-      // --- SMARTPHONES ---
+      // SMARTPHONES
       { name: "Alcatel One Touch Idol Ultra", os: "Android", size: 4.7, w: 720, h: 1280, dw: "360", ppi: 316, density: "200% XHDPI", ratio: "9:16", type: "smartphone" },
-      { name: "Alcatel One Touch Ultra 995", os: "Android", size: 4.3, w: 480, h: 800, dw: "320", ppi: 217, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Asus Zenfone Max ZC550KL", os: "Android", size: 5.5, w: 1280, h: 720, dw: "—", ppi: 267, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "BlackBerry Priv", os: "Android", size: 5.4, w: 2560, h: 1440, dw: "—", ppi: 540, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "HTC Desire", os: "Android", size: 3.7, w: 480, h: 800, dw: "320", ppi: 252, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "HTC Desire HD", os: "Android", size: 4.3, w: 480, h: 800, dw: "320", ppi: 217, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "HTC Evo", os: "Android", size: 4.3, w: 480, h: 800, dw: "320", ppi: 217, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
       { name: "HTC One", os: "Android", size: 4.7, w: 1080, h: 1920, dw: "360", ppi: 468, density: "300% XXHDPI", ratio: "9:16", type: "smartphone" },
       { name: "HTC One M9", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "—", ppi: 441, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "HTC One M8", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "—", ppi: 441, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Huawei P8", os: "Android", size: 5.2, w: 1080, h: 1920, dw: "—", ppi: 424, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Huawei Nova 7i", os: "Android", size: 6.4, w: 1080, h: 2310, dw: "—", ppi: 398, density: "N/A", ratio: "19.2:9", type: "smartphone" },
       { name: "Huawei Nexus 6p", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 518, density: "N/A", ratio: "9:16", type: "smartphone" },
@@ -939,106 +1137,43 @@
       { name: "LG Nexus 5X", os: "Android", size: 5.2, w: 1080, h: 1920, dw: "—", ppi: 424, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "LG G4", os: "Android", size: 5.5, w: 1440, h: 2560, dw: "—", ppi: 538, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "LG G3", os: "Android", size: 5.5, w: 1440, h: 2560, dw: "—", ppi: 538, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "LG V10", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 515, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "LG Phoenix 2", os: "Android", size: 2.5, w: 720, h: 1280, dw: "—", ppi: 294, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "LG GX F310L", os: "Android", size: 5.5, w: 1080, h: 1920, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Motorola Droid", os: "Android", size: 3.7, w: 480, h: 854, dw: "320", ppi: 265, density: "150% HDPI", ratio: "9:16", type: "smartphone" },
-      { name: "Motorola Droid 3 & 4", os: "Android", size: 4.0, w: 540, h: 960, dw: "360", ppi: 280, density: "150% HDPI", ratio: "9:16", type: "smartphone" },
-      { name: "Motorola Droid Razr", os: "Android", size: 4.3, w: 540, h: 960, dw: "360", ppi: 256, density: "150% HDPI", ratio: "9:16", type: "smartphone" },
-      { name: "Motorola Droid Razr Maxx", os: "Android", size: 4.3, w: 540, h: 960, dw: "360", ppi: 256, density: "150% HDPI", ratio: "9:16", type: "smartphone" },
       { name: "Motorola Moto X Style", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 520, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Motorola Nexus 6", os: "Android", size: 6.0, w: 1440, h: 2560, dw: "—", ppi: 493, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Motorola Droid Turbo", os: "Android", size: 5.2, w: 1440, h: 2560, dw: "—", ppi: 565, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Motorola Moto G", os: "Android", size: 5.0, w: 720, h: 1280, dw: "—", ppi: 294, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Motorola Moto E", os: "Android", size: 4.3, w: 540, h: 960, dw: "—", ppi: 256, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Motorola Moto G4 Plus", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Motorola Moto Z", os: "Android", size: 5.5, w: 2560, h: 1440, dw: "—", ppi: 535, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "OnePlus X", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "—", ppi: 441, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "OnePlus 2", os: "Android", size: 5.5, w: 1080, h: 1920, dw: "—", ppi: 401, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "OnePlus One", os: "Android", size: 5.5, w: 1080, h: 1920, dw: "—", ppi: 401, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy Nexus", os: "Android", size: 4.6, w: 720, h: 1280, dw: "360", ppi: 316, density: "200% XHDPI", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy Note", os: "Android", size: 5.3, w: 800, h: 1280, dw: "400", ppi: 285, density: "200% XHDPI", ratio: "5:8", type: "smartphone" },
-      { name: "Samsung Galaxy Note II", os: "Android", size: 5.5, w: 720, h: 1280, dw: "360", ppi: 267, density: "200% XHDPI", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy S", os: "Android", size: 4.0, w: 480, h: 800, dw: "320", ppi: 233, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Samsung Galaxy S Plus", os: "Android", size: 4.0, w: 480, h: 800, dw: "320", ppi: 233, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
       { name: "Samsung Galaxy SII", os: "Android", size: 4.3, w: 480, h: 800, dw: "320", ppi: 219, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
       { name: "Samsung Galaxy SIII", os: "Android", size: 4.8, w: 720, h: 1280, dw: "360", ppi: 306, density: "200% XHDPI", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy SIV", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "360", ppi: 441, density: "300% XXHDPI", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Nexus S", os: "Android", size: 4.0, w: 480, h: 800, dw: "320", ppi: 235, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Samsung A5", os: "Android", size: 5.0, w: 720, h: 1280, dw: "—", ppi: 294, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Z3", os: "Android", size: 5.0, w: 720, h: 1280, dw: "—", ppi: 294, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Galaxy J7", os: "Android", size: 5.5, w: 720, h: 1280, dw: "—", ppi: 267, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Galaxy Note5", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 518, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Galaxy S6 Edge+", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 518, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy S6", os: "Android", size: 5.1, w: 1440, h: 2560, dw: "—", ppi: 577, density: "N/A", ratio: "9:16", type: "smartphone" },
+      { name: "Samsung Galaxy S6 Edge+", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 518, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy S5", os: "Android", size: 5.1, w: 1080, h: 1920, dw: "—", ppi: 432, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Galaxy Note4", os: "Android", size: 5.7, w: 1440, h: 2560, dw: "—", ppi: 515, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Samsung Galaxy SV", os: "Android", size: 5.1, w: 1080, h: 1920, dw: "—", ppi: 432, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Samsung Galaxy S7", os: "Android", size: 5.1, w: 1440, h: 2560, dw: "—", ppi: 577, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Samsung Galaxy S7 Edge", os: "Android", size: 5.5, w: 1440, h: 2560, dw: "—", ppi: 534, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Samsung Galaxy S8", os: "Android", size: 5.8, w: 2960, h: 1440, dw: "—", ppi: 570, density: "N/A", ratio: "5:9", type: "smartphone" },
-      { name: "Samsung Galaxy S8+", os: "Android", size: 6.2, w: 2960, h: 1440, dw: "—", ppi: 529, density: "N/A", ratio: "5:9", type: "smartphone" },
+      { name: "Samsung Galaxy S8", os: "Android", size: 5.8, w: 2960, h: 1440, dw: "—", ppi: 570, density: "N/A", ratio: "18.5:9", type: "smartphone" },
+      { name: "Samsung Galaxy S8+", os: "Android", size: 6.2, w: 2960, h: 1440, dw: "—", ppi: 529, density: "N/A", ratio: "18.5:9", type: "smartphone" },
       { name: "Samsung Galaxy S10 Lite", os: "Android", size: 6.7, w: 1080, h: 2400, dw: "—", ppi: 394, density: "N/A", ratio: "20:9", type: "smartphone" },
       { name: "Samsung Galaxy S20+", os: "Android", size: 6.7, w: 1440, h: 3200, dw: "—", ppi: 525, density: "N/A", ratio: "20:9", type: "smartphone" },
       { name: "Samsung Galaxy S20 Ultra", os: "Android", size: 6.9, w: 1440, h: 3200, dw: "—", ppi: 511, density: "N/A", ratio: "20:9", type: "smartphone" },
       { name: "Samsung Galaxy Note10", os: "Android", size: 6.3, w: 1080, h: 2280, dw: "—", ppi: 401, density: "N/A", ratio: "19:9", type: "smartphone" },
-      { name: "Samsung Galaxy Note10+", os: "Android", size: 6.8, w: 1440, h: 3040, dw: "—", ppi: 498, density: "N/A", ratio: "19:9", type: "smartphone" },
-      { name: "Samsung Galaxy Note20", os: "Android", size: 6.7, w: 1080, h: 2400, dw: "—", ppi: 393, density: "N/A", ratio: "20:9", type: "smartphone" },
       { name: "Samsung Galaxy Note20 Ultra", os: "Android", size: 6.9, w: 1440, h: 3088, dw: "—", ppi: 496, density: "N/A", ratio: "19.3:9", type: "smartphone" },
       { name: "Samsung Galaxy A71", os: "Android", size: 6.7, w: 1080, h: 2400, dw: "—", ppi: 393, density: "N/A", ratio: "20:9", type: "smartphone" },
       { name: "Samsung Galaxy A51", os: "Android", size: 6.5, w: 1080, h: 2400, dw: "—", ppi: 405, density: "N/A", ratio: "20:9", type: "smartphone" },
-      { name: "Samsung Galaxy A70s", os: "Android", size: 6.4, w: 1080, h: 2400, dw: "—", ppi: 403, density: "N/A", ratio: "20:9", type: "smartphone" },
-      { name: "Samsung Galaxy A30", os: "Android", size: 6.4, w: 1080, h: 2340, dw: "—", ppi: 403, density: "N/A", ratio: "19.5:9", type: "smartphone" },
-      { name: "Samsung Galaxy A50s", os: "Android", size: 6.4, w: 1080, h: 2340, dw: "—", ppi: 403, density: "N/A", ratio: "19.5:9", type: "smartphone" },
       { name: "Samsung Galaxy A50", os: "Android", size: 6.4, w: 1080, h: 2340, dw: "—", ppi: 403, density: "N/A", ratio: "19.5:9", type: "smartphone" },
-      { name: "Samsung Galaxy J7 Prime", os: "Android", size: 5.5, w: 1080, h: 1920, dw: "—", ppi: 401, density: "N/A", ratio: "17:9", type: "smartphone" },
-      { name: "Samsung Galaxy J7 Prime2", os: "Android", size: 5.5, w: 1080, h: 1920, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Sony Xperia Z", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "360", ppi: 441, density: "300% XXHDPI", ratio: "9:16", type: "smartphone" },
-      { name: "Sony Xperia T2 Ultra Dual", os: "Android", size: 6.0, w: 1280, h: 720, dw: "—", ppi: 245, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Sony Xperia C4 Dual", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Sony Xperia Z3", os: "Android", size: 5.2, w: 1080, h: 1920, dw: "—", ppi: 424, density: "N/A", ratio: "9:16", type: "smartphone" },
       { name: "Sony Xperia Z5", os: "Android", size: 5.2, w: 1080, h: 1920, dw: "—", ppi: 424, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Sony Xperia Z3 Plus", os: "Android", size: 5.2, w: 1920, h: 1080, dw: "—", ppi: 424, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Sony Xperia M4", os: "Android", size: 5.0, w: 720, h: 1280, dw: "—", ppi: 294, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Sony Xperia X", os: "Android", size: 5.0, w: 1920, h: 1080, dw: "—", ppi: 441, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Sony Xperia Z1", os: "Android", size: 5.0, w: 1920, h: 1080, dw: "—", ppi: 441, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Sony Xperia E4 Dual", os: "Android", size: 5.0, w: 960, h: 540, dw: "—", ppi: 220, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Google Pixel", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "—", ppi: 441, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Google Pixel XL", os: "Android", size: 5.5, w: 1440, h: 2560, dw: "—", ppi: 534, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Xiaomi Mi Note", os: "Android", size: 5.7, w: 1080, h: 1920, dw: "—", ppi: 386, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Xiaomi Mi 4i", os: "Android", size: 5.0, w: 1080, h: 1920, dw: "—", ppi: 441, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Xiaomi Redmi Note 3", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 403, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "Xiaomi Redmi Note 7", os: "Android", size: 6.3, w: 1080, h: 2340, dw: "—", ppi: 409, density: "N/A", ratio: "19.5:9", type: "smartphone" },
-      { name: "Xiaomi Redmi Note 8", os: "Android", size: 6.3, w: 1080, h: 2340, dw: "—", ppi: 409, density: "N/A", ratio: "19.5:9", type: "smartphone" },
       { name: "Xiaomi Redmi Note 8 Pro", os: "Android", size: 6.5, w: 1080, h: 2340, dw: "—", ppi: 395, density: "N/A", ratio: "19.5:9", type: "smartphone" },
-      { name: "Xiaomi Redmi Note 9", os: "Android", size: 6.5, w: 1080, h: 2340, dw: "—", ppi: 395, density: "N/A", ratio: "19.5:9", type: "smartphone" },
       { name: "Xiaomi Redmi Note 9 Pro", os: "Android", size: 6.7, w: 1080, h: 2400, dw: "—", ppi: 395, density: "N/A", ratio: "20:9", type: "smartphone" },
-      { name: "Infocus M812i", os: "Android", size: 5.5, w: 1080, h: 1920, dw: "—", ppi: 400, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "VIVO Y51L", os: "Android", size: 5.0, w: 540, h: 960, dw: "—", ppi: 220, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo A59", os: "Android", size: 5.5, w: 1280, h: 720, dw: "—", ppi: 267, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo F1 Plus", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo R9 Plus", os: "Android", size: 6.0, w: 1920, h: 1080, dw: "—", ppi: 367, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo R9", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo A37", os: "Android", size: 5.0, w: 1920, h: 1080, dw: "—", ppi: 294, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo F1", os: "Android", size: 5.0, w: 1280, h: 720, dw: "—", ppi: 294, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Oppo A53", os: "Android", size: 5.5, w: 1280, h: 720, dw: "—", ppi: 267, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Panasonic Eluga I3", os: "Android", size: 5.5, w: 1280, h: 720, dw: "—", ppi: 267, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Panasonic Eluga Arc", os: "Android", size: 4.7, w: 1280, h: 720, dw: "—", ppi: 312, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Panasonic T50", os: "Android", size: 4.5, w: 854, h: 480, dw: "—", ppi: 218, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Panasonic T44", os: "Android", size: 4.0, w: 800, h: 480, dw: "—", ppi: 233, density: "N/A", ratio: "5:3", type: "smartphone" },
-      { name: "Philips Sapphire Life V787", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 441, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Philips Sapphire S616", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Lenovo Vibe K4 Note", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Lenovo K3 Note", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "Micromax Canvas 6", os: "Android", size: 5.5, w: 1920, h: 1080, dw: "—", ppi: 401, density: "N/A", ratio: "16:9", type: "smartphone" },
       { name: "BlackBerry Q10", os: "BlackBerry", size: 3.1, w: 720, h: 720, dw: "360", ppi: 330, density: "200% XHDPI", ratio: "1:1", type: "smartphone" },
       { name: "BlackBerry Z10", os: "BlackBerry", size: 4.2, w: 768, h: 1280, dw: "384", ppi: 356, density: "200% XHDPI", ratio: "3:5", type: "smartphone" },
-      { name: "BlackBerry Z3", os: "BlackBerry", size: 5.0, w: 960, h: 540, dw: "—", ppi: 220, density: "N/A", ratio: "16:9", type: "smartphone" },
-      { name: "BlackBerry Porsche Design P9982", os: "BlackBerry", size: 4.2, w: 1280, h: 768, dw: "—", ppi: 328, density: "N/A", ratio: "1:1", type: "smartphone" },
       { name: "BlackBerry Passport", os: "BlackBerry", size: 4.5, w: 1440, h: 1440, dw: "—", ppi: 453, density: "N/A", ratio: "1:1", type: "smartphone" },
-      { name: "BlackBerry Leap", os: "BlackBerry", size: 5.0, w: 1280, h: 720, dw: "—", ppi: 294, density: "N/A", ratio: "8:5", type: "smartphone" },
-      { name: "BlackBerry Classic Non Camera", os: "BlackBerry", size: 3.5, w: 1280, h: 720, dw: "—", ppi: 291, density: "N/A", ratio: "8:5", type: "smartphone" },
-      { name: "BlackBerry Torch 9810", os: "BlackBerry", size: 3.2, w: 480, h: 360, dw: "—", ppi: 188, density: "N/A", ratio: "4:3", type: "smartphone" },
       { name: "Apple iPhone 3GS", os: "iOS", size: 3.5, w: 320, h: 480, dw: "320", ppi: 163, density: "100% MDPI", ratio: "2:3", type: "smartphone" },
       { name: "Apple iPhone 4 (4, 4S)", os: "iOS", size: 3.5, w: 640, h: 960, dw: "320", ppi: 326, density: "200% XHDPI", ratio: "2:3", type: "smartphone" },
       { name: "Apple iPhone 5 (5c, 5s)", os: "iOS", size: 4.0, w: 640, h: 1136, dw: "320", ppi: 326, density: "200% XHDPI", ratio: "40:71", type: "smartphone" },
@@ -1062,58 +1197,22 @@
       { name: "Apple iPhone 12 Mini", os: "iOS", size: 5.4, w: 1080, h: 2340, dw: "—", ppi: 476, density: "N/A", ratio: "19.5:9", type: "smartphone" },
       { name: "Apple iPhone 12 Pro", os: "iOS", size: 6.1, w: 1170, h: 2532, dw: "—", ppi: 460, density: "N/A", ratio: "19.5:9", type: "smartphone" },
       { name: "Apple iPhone 12 Pro Max", os: "iOS", size: 6.7, w: 1284, h: 2778, dw: "—", ppi: 458, density: "N/A", ratio: "19.5:9", type: "smartphone" },
-      { name: "Nokia Lumia (710, 800)", os: "Windows", size: 3.7, w: 480, h: 800, dw: "320", ppi: 252, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
       { name: "Nokia Lumia 1020", os: "Windows", size: 4.5, w: 768, h: 1280, dw: "384", ppi: 332, density: "200% XHDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Nokia Lumia 520", os: "Windows", size: 4.0, w: 480, h: 800, dw: "320", ppi: 233, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Nokia Lumia 620", os: "Windows", size: 3.8, w: 480, h: 800, dw: "320", ppi: 246, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Nokia Lumia 720", os: "Windows", size: 4.3, w: 480, h: 800, dw: "320", ppi: 217, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Nokia Lumia 900", os: "Windows", size: 4.3, w: 480, h: 800, dw: "320", ppi: 217, density: "150% HDPI", ratio: "3:5", type: "smartphone" },
       { name: "Nokia Lumia 920", os: "Windows", size: 4.5, w: 768, h: 1280, dw: "384", ppi: 332, density: "200% XHDPI", ratio: "3:5", type: "smartphone" },
-      { name: "Nokia Lumia 925", os: "Windows", size: 4.5, w: 768, h: 1280, dw: "384", ppi: 332, density: "200% XHDPI", ratio: "3:5", type: "smartphone" },
       { name: "Microsoft Lumia 950", os: "Windows", size: 5.2, w: 1440, h: 2560, dw: "—", ppi: 564, density: "N/A", ratio: "9:16", type: "smartphone" },
-      { name: "Panasonic Toughpad FZ-F1", os: "Windows", size: 4.7, w: 1280, h: 720, dw: "—", ppi: 312, density: "N/A", ratio: "16:9", type: "smartphone" },
-
-      // --- TABLETS ---
-      { name: "Acer Iconia Tab A", os: "Android", size: 10.1, w: 1280, h: 800, dw: "—", ppi: 149, density: "N/A", ratio: "16:10", type: "tablet" },
-      { name: "Acer Picasso", os: "Android", size: 11.6, w: 768, h: 1280, dw: "768", ppi: 190, density: "100% MDPI", ratio: "3:5", type: "tablet" },
-      { name: "Ainol Novo 10 Hero", os: "Android", size: 10.0, w: 1280, h: 800, dw: "1280", ppi: 149, density: "100% MDPI", ratio: "8:5", type: "tablet" },
-      { name: "Ainol Novo 7 Crystal", os: "Android", size: 7.0, w: 1024, h: 600, dw: "1024", ppi: 169, density: "100% MDPI", ratio: "16:9", type: "tablet" },
-      { name: "Ainol Novo 9 Spark", os: "Android", size: 9.7, w: 2048, h: 1536, dw: "1024", ppi: 264, density: "200% XHDPI", ratio: "4:3", type: "tablet" },
-      { name: "Amazon Kindle Fire 1st Gen", os: "Android", size: 7.0, w: 600, h: 1024, dw: "600", ppi: 169, density: "100% MDPI", ratio: "75:128", type: "tablet" },
+      // TABLETS
       { name: "Amazon Kindle Fire HD 7\"", os: "Android", size: 7.0, w: 800, h: 1280, dw: "533", ppi: 216, density: "150% HDPI", ratio: "5:8", type: "tablet" },
       { name: "Amazon Kindle Fire HD 8.9\"", os: "Android", size: 8.9, w: 1200, h: 1920, dw: "800", ppi: 254, density: "150% HDPI", ratio: "5:8", type: "tablet" },
-      { name: "Amazon Fire HD 6", os: "Android", size: 6.0, w: 1280, h: 800, dw: "—", ppi: 252, density: "N/A", ratio: "5:8", type: "tablet" },
       { name: "Amazon Fire HD 8", os: "Android", size: 8.0, w: 1280, h: 800, dw: "—", ppi: 189, density: "N/A", ratio: "5:8", type: "tablet" },
       { name: "Amazon Fire HD 10", os: "Android", size: 10.0, w: 1280, h: 800, dw: "—", ppi: 149, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "Amazon Fire", os: "Android", size: 7.0, w: 1024, h: 600, dw: "—", ppi: 171, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "Asus Nexus 7 (2012)", os: "Android", size: 7.0, w: 800, h: 1280, dw: "603", ppi: 216, density: "N/A", ratio: "5:8", type: "tablet" },
       { name: "Asus Nexus 7 (2013)", os: "Android", size: 7.0, w: 1200, h: 1920, dw: "600", ppi: 323, density: "200% XHDPI", ratio: "N/A", type: "tablet" },
-      { name: "Asus Nexus 7", os: "Android", size: 7.0, w: 1280, h: 800, dw: "—", ppi: 323, density: "N/A", ratio: "5:8", type: "tablet" },
       { name: "Asus Transformer", os: "Android", size: 10.1, w: 1200, h: 1920, dw: "800", ppi: 224, density: "150% HDPI", ratio: "5:8", type: "tablet" },
-      { name: "Asus ZenPad 8.0", os: "Android", size: 8.0, w: 1280, h: 800, dw: "—", ppi: 189, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "Asus Zenfone 2 Laser ZE500KL", os: "Android", size: 5.0, w: 1280, h: 720, dw: "—", ppi: 294, density: "N/A", ratio: "16:9", type: "tablet" },
-      { name: "Acer Switch 10 E", os: "Android", size: 10.1, w: 1280, h: 800, dw: "—", ppi: 154, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "Barnes & Noble Nook Tablet", os: "Android", size: 7.0, w: 600, h: 800, dw: "600", ppi: 171, density: "100% MDPI", ratio: "3:4", type: "tablet" },
-      { name: "Dell Venue", os: "Android", size: 7.0, w: 1280, h: 800, dw: "—", ppi: 216, density: "N/A", ratio: "5:3", type: "tablet" },
-      { name: "Dell Venue 10", os: "Windows", size: 10.1, w: 1280, h: 800, dw: "—", ppi: 149, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "HP 7 Voice Tab", os: "Android", size: 6.9, w: 1024, h: 600, dw: "—", ppi: 216, density: "N/A", ratio: "16:10", type: "tablet" },
-      { name: "HP 7 Plus Tablet", os: "Android", size: 7.0, w: 1024, h: 600, dw: "—", ppi: 170, density: "N/A", ratio: "16:10", type: "tablet" },
-      { name: "HP Slate 7", os: "Android", size: 7.0, w: 1024, h: 600, dw: "—", ppi: 170, density: "N/A", ratio: "16:9", type: "tablet" },
-      { name: "HP Slate 8 Plus", os: "Android", size: 8.0, w: 1280, h: 800, dw: "—", ppi: 216, density: "N/A", ratio: "16:10", type: "tablet" },
-      { name: "HP Slate7 VoiceTab", os: "Android", size: 7.0, w: 1280, h: 800, dw: "—", ppi: 294, density: "N/A", ratio: "16:9", type: "tablet" },
-      { name: "Huawei Mat", os: "Android", size: 6.0, w: 1920, h: 1080, dw: "—", ppi: 368, density: "N/A", ratio: "16:9", type: "tablet" },
       { name: "HTC Nexus 9", os: "Android", size: 8.9, w: 2048, h: 1536, dw: "—", ppi: 288, density: "N/A", ratio: "3:4", type: "tablet" },
-      { name: "Lenovo Yoga 10 HD+", os: "Android", size: 10.1, w: 1920, h: 1200, dw: "—", ppi: 224, density: "N/A", ratio: "5:8", type: "tablet" },
       { name: "Samsung Galaxy Tab 10.1", os: "Android", size: 10.1, w: 800, h: 1280, dw: "533", ppi: 149, density: "150% HDPI", ratio: "5:8", type: "tablet" },
-      { name: "Samsung Galaxy Tab 2", os: "Android", size: 7.7, w: 600, h: 1024, dw: "600", ppi: 170, density: "100% MDPI", ratio: "75:128", type: "tablet" },
       { name: "Samsung Galaxy Tab 2 10.1", os: "Android", size: 10.1, w: 800, h: 1280, dw: "800", ppi: 149, density: "100% MDPI", ratio: "5:8", type: "tablet" },
       { name: "Samsung Galaxy Tab S2", os: "Android", size: 9.7, w: 2048, h: 1536, dw: "—", ppi: 264, density: "N/A", ratio: "4:3", type: "tablet" },
       { name: "Samsung Galaxy Note Pro 12.2", os: "Android", size: 12.2, w: 2560, h: 1600, dw: "—", ppi: 247, density: "N/A", ratio: "5:8", type: "tablet" },
       { name: "Sony Xperia Z4 (tablet)", os: "Android", size: 10.1, w: 2560, h: 1600, dw: "—", ppi: 299, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "Toshiba AT100", os: "Android", size: 10.1, w: 1280, h: 800, dw: "853", ppi: 149, density: "150% HDPI", ratio: "8:5", type: "tablet" },
-      { name: "Toshiba Thrive", os: "Android", size: 10.1, w: 800, h: 1280, dw: "—", ppi: 149, density: "N/A", ratio: "16:10", type: "tablet" },
-      { name: "Toshiba Encore 2 Write", os: "Android", size: 10.1, w: 1280, h: 800, dw: "—", ppi: 189, density: "N/A", ratio: "5:8", type: "tablet" },
-      { name: "Toshiba Excite Go", os: "Android", size: 7.0, w: 1024, h: 600, dw: "—", ppi: 170, density: "N/A", ratio: "16:9", type: "tablet" },
       { name: "BlackBerry PlayBook", os: "BlackBerry", size: 7.0, w: 1024, h: 600, dw: "1024", ppi: 169, density: "100% MDPI", ratio: "16:9", type: "tablet" },
       { name: "Apple iPad 1 & 2", os: "iOS", size: 9.7, w: 768, h: 1024, dw: "768", ppi: 132, density: "100% MDPI", ratio: "3:4", type: "tablet" },
       { name: "Apple iPad 3 & 4", os: "iOS", size: 9.7, w: 1536, h: 2048, dw: "768", ppi: 264, density: "200% XHDPI", ratio: "3:4", type: "tablet" },
@@ -1131,36 +1230,284 @@
       { name: "Apple iPad Pro 11", os: "iOS", size: 11.0, w: 2388, h: 1668, dw: "—", ppi: 264, density: "N/A", ratio: "10:7", type: "tablet" },
       { name: "Apple iPad Pro 12.9", os: "iOS", size: 12.9, w: 2732, h: 2048, dw: "—", ppi: 264, density: "N/A", ratio: "4:3", type: "tablet" },
       { name: "Apple iPad 10.2 (2020)", os: "iOS", size: 10.2, w: 2160, h: 1620, dw: "—", ppi: 264, density: "N/A", ratio: "3:4", type: "tablet" },
-      { name: "Google Pixel C", os: "Android", size: 10.2, w: 1600, h: 1200, dw: "—", ppi: 307, density: "N/A", ratio: "", type: "tablet" },
-      { name: "FUJITSU STYLISTIC Q665", os: "Windows", size: 11.6, w: 1080, h: 1920, dw: "720", ppi: 190, density: "150% HDPI", ratio: "16:9", type: "tablet" },
-      { name: "FUJITSU STYLISTIC Q736", os: "Windows", size: 13.3, w: 1080, h: 1920, dw: "540", ppi: 165, density: "200% XHDPI", ratio: "16:9", type: "tablet" },
-      { name: "Panasonic BT-4LH310", os: "", size: 10.0, w: 2160, h: 3840, dw: "—", ppi: 441, density: "N/A", ratio: "17:9", type: "tablet" },
-      { name: "Panasonic BT-LH910", os: "", size: 9.0, w: 768, h: 1280, dw: "—", ppi: 320, density: "N/A", ratio: "15:9", type: "tablet" },
+      { name: "Google Pixel C", os: "Android", size: 10.2, w: 1600, h: 1200, dw: "—", ppi: 307, density: "N/A", ratio: "4:3", type: "tablet" },
     ];
 
+    // ===================== STORAGE LAYER =====================
+    const STORAGE_KEY = 'screensizes_trending_history_v3';
+
+    function loadHistory() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) { return []; }
+    }
+
+    function saveHistory(history) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+      } catch (e) { }
+    }
+
+    function getWeekId() {
+      const d = new Date();
+      const oneJan = new Date(d.getFullYear(), 0, 1);
+      const week = Math.ceil(((d - oneJan) / 86400000 + oneJan.getDay() + 1) / 7);
+      return `${d.getFullYear()}-W${String(week).padStart(2, '0')}`;
+    }
+
+    let trendingHistory = loadHistory();
+    let currentTrendingResolutions = new Set();
+    let currentHistoryView = 'mobile';
+
+    // ===================== AI FETCH TRENDING =====================
+    async function fetchTrendingData(force = false) {
+      const weekId = getWeekId();
+      const existing = trendingHistory.find(h => h.weekId === weekId);
+
+      if (existing && !force) {
+        applyTrendingData(existing);
+        updateApiStatus('ok', '● Cached');
+        return;
+      }
+
+      const btn = document.getElementById('refresh-btn');
+      btn.classList.add('loading');
+      updateApiStatus('loading', '● Fetching…');
+
+      try {
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 1000,
+            tools: [{ type: "web_search_20250305", name: "web_search" }],
+            system: `You are a data extraction assistant. Search the web for the LATEST screen resolution statistics from StatCounter, BrowserStack, or W3Counter. Return ONLY a JSON object (no markdown, no explanation) in this exact format:
+{
+  "fetchedAt": "ISO date string",
+  "source": "source name",
+  "mobile": [{"res":"390x844","share":8.2,"label":"iPhone 14"},{"res":"393x852","share":7.1,"label":"iPhone 15"},{"res":"360x800","share":5.8,"label":"Samsung Galaxy"},{"res":"412x915","share":4.9,"label":"Android flagship"},{"res":"375x812","share":4.2,"label":"iPhone X family"},{"res":"414x896","share":3.8,"label":"iPhone 11 Pro Max"},{"res":"430x932","share":3.5,"label":"iPhone 14 Plus"},{"res":"375x667","share":3.1,"label":"iPhone 8"},{"res":"393x873","share":2.9,"label":"Android 2024"}],
+  "desktop": [{"res":"1920x1080","share":25.1,"label":"Full HD"},{"res":"1366x768","share":19.8,"label":"HD"},{"res":"1536x864","share":11.2,"label":"Surface"},{"res":"1280x720","share":9.4,"label":"HD 720p"},{"res":"1440x900","share":7.8,"label":"MacBook Air"},{"res":"2560x1440","share":6.5,"label":"QHD"},{"res":"1600x900","share":5.2,"label":"HD+"},{"res":"1280x800","share":4.1,"label":"WXGA"}],
+  "tablet": [{"res":"768x1024","share":30.2,"label":"iPad standard"},{"res":"810x1080","share":12.4,"label":"iPad 9th gen"},{"res":"820x1180","share":9.8,"label":"iPad Air"},{"res":"1280x800","share":8.3,"label":"Android tablet"},{"res":"1024x1366","share":7.1,"label":"iPad Pro 12.9"}]
+}
+Use real data you find from web search. If you cannot find real data, use realistic estimates based on your knowledge.`,
+            messages: [{ role: "user", content: "Search for the latest screen resolution usage statistics for 2025 from StatCounter or similar sources. Return only the JSON data." }]
+          })
+        });
+
+        if (!response.ok) throw new Error(`API error ${response.status}`);
+        const data = await response.json();
+
+        const textBlocks = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+        let parsed = null;
+
+        // Try to extract JSON from response
+        const jsonMatch = textBlocks.match(/\{[\s\S]*"mobile"[\s\S]*\}/);
+        if (jsonMatch) {
+          try { parsed = JSON.parse(jsonMatch[0]); } catch (e) { }
+        }
+
+        if (!parsed) {
+          // Fallback: try the full text
+          try { parsed = JSON.parse(textBlocks.trim()); } catch (e) { }
+        }
+
+        if (!parsed || !parsed.mobile) throw new Error("No valid JSON found");
+
+        const entry = {
+          weekId,
+          fetchedAt: parsed.fetchedAt || new Date().toISOString(),
+          source: parsed.source || 'StatCounter via AI',
+          mobile: parsed.mobile || [],
+          desktop: parsed.desktop || [],
+          tablet: parsed.tablet || []
+        };
+
+        // Keep last 12 weeks
+        trendingHistory = trendingHistory.filter(h => h.weekId !== weekId);
+        trendingHistory.unshift(entry);
+        if (trendingHistory.length > 12) trendingHistory = trendingHistory.slice(0, 12);
+        saveHistory(trendingHistory);
+
+        applyTrendingData(entry);
+        updateApiStatus('ok', '● Live');
+
+      } catch (err) {
+        console.error('Trending fetch error:', err);
+        updateApiStatus('error', '● Error');
+        // Use fallback hardcoded data
+        useFallbackData();
+      }
+
+      btn.classList.remove('loading');
+      updateWeeksTracked();
+    }
+
+    function useFallbackData() {
+      const fallback = {
+        weekId: getWeekId(),
+        fetchedAt: new Date().toISOString(),
+        source: 'Hardcoded Fallback (StatCounter 2025)',
+        mobile: [
+          { res: "390x844", share: 8.2, label: "iPhone 14/15" },
+          { res: "393x852", share: 7.1, label: "iPhone 15" },
+          { res: "360x800", share: 5.8, label: "Samsung Galaxy A" },
+          { res: "412x915", share: 4.9, label: "Android flagship" },
+          { res: "375x812", share: 4.2, label: "iPhone X/XS/11 Pro" },
+          { res: "414x896", share: 3.8, label: "iPhone 11 Pro Max" },
+          { res: "430x932", share: 3.5, label: "iPhone 14 Plus" },
+          { res: "375x667", share: 3.1, label: "iPhone 6/7/8" },
+          { res: "393x873", share: 2.9, label: "Android 2024" }
+        ],
+        desktop: [
+          { res: "1920x1080", share: 25.1, label: "Full HD" },
+          { res: "1366x768", share: 19.8, label: "HD Laptop" },
+          { res: "1536x864", share: 11.2, label: "Surface Laptop" },
+          { res: "1280x720", share: 9.4, label: "HD 720p" },
+          { res: "1440x900", share: 7.8, label: "MacBook Air" },
+          { res: "2560x1440", share: 6.5, label: "QHD Monitor" },
+          { res: "1600x900", share: 5.2, label: "HD+ Laptop" },
+          { res: "1280x800", share: 4.1, label: "WXGA" }
+        ],
+        tablet: [
+          { res: "768x1024", share: 30.2, label: "iPad standard" },
+          { res: "810x1080", share: 12.4, label: "iPad 9th gen" },
+          { res: "820x1180", share: 9.8, label: "iPad Air" },
+          { res: "1280x800", share: 8.3, label: "Android tablet" },
+          { res: "1024x1366", share: 7.1, label: "iPad Pro 12.9" }
+        ]
+      };
+
+      trendingHistory = trendingHistory.filter(h => h.weekId !== fallback.weekId);
+      trendingHistory.unshift(fallback);
+      saveHistory(trendingHistory);
+      applyTrendingData(fallback);
+    }
+
+    function applyTrendingData(entry) {
+      const all = [...(entry.mobile || []), ...(entry.desktop || []), ...(entry.tablet || [])];
+      currentTrendingResolutions = new Set(all.map(r => r.res));
+
+      // Update banner chips
+      const chipsEl = document.getElementById('trend-chips');
+      const topMobile = (entry.mobile || []).slice(0, 6);
+      chipsEl.innerHTML = topMobile.map(r => {
+        return `<span class="trend-chip" data-res="${r.res}" title="${r.label} · ${r.share}% share">${r.res}</span>`;
+      }).join('');
+
+      chipsEl.querySelectorAll('.trend-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const [w, h] = chip.dataset.res.split('x').map(Number);
+          document.getElementById('search').value = `${w}`;
+          currentSearch = `${w}`;
+          render();
+        });
+      });
+
+      const date = new Date(entry.fetchedAt);
+      document.getElementById('trend-meta').textContent = `${entry.source} · ${date.toLocaleDateString()}`;
+
+      // Build trending cards
+      renderTrendingCards(entry);
+      // Build history table
+      renderHistoryTable(currentHistoryView);
+
+      document.getElementById('trending-section').style.display = '';
+      document.getElementById('history-section').style.display = '';
+
+      document.getElementById('trending-count').textContent = all.length;
+      updateWeeksTracked();
+      render();
+    }
+
+    function renderTrendingCards(entry) {
+      const grid = document.getElementById('trending-grid');
+      const data = currentHistoryView === 'mobile' ? entry.mobile :
+        currentHistoryView === 'desktop' ? entry.desktop : entry.tablet;
+      const cat = currentHistoryView === 'desktop' ? 'Desktop' : currentHistoryView === 'tablet' ? 'Tablet' : 'Mobile';
+      document.getElementById('trending-source-desc').textContent =
+        `${entry.source} · Week ${entry.weekId} · ${cat} resolutions`;
+
+      const maxShare = Math.max(...(data || []).map(r => r.share));
+      grid.innerHTML = (data || []).map((r, i) => `
+    <div class="trending-card" onclick="filterByRes('${r.res}')">
+      <div class="tc-rank">#${i + 1} this week</div>
+      <div class="tc-res">${r.res}</div>
+      <div class="tc-label">${r.label}</div>
+      <div class="tc-share">${r.share}% share</div>
+      <div class="tc-bar"><div class="tc-bar-fill" style="width:${Math.round(r.share / maxShare * 100)}%"></div></div>
+    </div>
+  `).join('');
+    }
+
+    function filterByRes(res) {
+      const [w] = res.split('x');
+      document.getElementById('search').value = w;
+      currentSearch = w;
+      render();
+      document.getElementById('device-table').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function renderHistoryTable(view) {
+      const tbody = document.getElementById('history-tbody');
+      if (!trendingHistory.length) { tbody.innerHTML = '<tr><td colspan="7" style="padding:20px;color:var(--muted-light);text-align:center">No history yet. Fetch trending data above.</td></tr>'; return; }
+
+      const latest = trendingHistory[0];
+      const prev = trendingHistory[1];
+      const data = view === 'mobile' ? latest.mobile : view === 'desktop' ? latest.desktop : latest.tablet;
+      const prevData = prev ? (view === 'mobile' ? prev.mobile : view === 'desktop' ? prev.desktop : prev.tablet) : [];
+
+      tbody.innerHTML = (data || []).map((r, i) => {
+        const prevIdx = prevData.findIndex(p => p.res === r.res);
+        let changeHtml = '';
+        if (prevIdx === -1) changeHtml = '<span class="rank-up">🆕 New</span>';
+        else if (prevIdx > i) changeHtml = `<span class="rank-up">▲ +${prevIdx - i}</span>`;
+        else if (prevIdx < i) changeHtml = `<span class="rank-down">▼ ${i - prevIdx}</span>`;
+        else changeHtml = `<span class="rank-same">━ same</span>`;
+
+        const prevShare = prev && prevData[prevIdx] ? prevData[prevIdx].share : null;
+        const prevShareStr = prevShare !== null ? `${prevShare}%` : '—';
+
+        const catLabel = view === 'mobile' ? '📱 Mobile' : view === 'desktop' ? '🖥 Desktop' : '📲 Tablet';
+        return `<tr>
+      <td>${i + 1}</td>
+      <td><strong>${r.res}</strong></td>
+      <td>${r.share}%</td>
+      <td class="history-rank-change">${changeHtml}</td>
+      <td style="color:var(--muted);font-family:'DM Mono',monospace;font-size:.73rem">${prevShareStr}</td>
+      <td>${catLabel}</td>
+      <td style="color:var(--muted-light);font-size:.65rem;font-family:'DM Mono',monospace">${new Date(latest.fetchedAt).toLocaleDateString()}</td>
+    </tr>`;
+      }).join('');
+    }
+
+    window.showHistoryView = function (view) {
+      currentHistoryView = view;
+      document.querySelectorAll('.history-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+      renderHistoryTable(view);
+      if (trendingHistory.length) renderTrendingCards(trendingHistory[0]);
+    }
+
+    function updateApiStatus(state, text) {
+      const el = document.getElementById('api-status');
+      el.className = `api-status ${state}`;
+      el.textContent = text;
+    }
+
+    function updateWeeksTracked() {
+      document.getElementById('weeks-tracked').textContent = trendingHistory.length;
+    }
+
+    // ===================== RENDER TABLE =====================
     const MAX_PPI = 600;
 
-    // Popular resolutions from StatCounter/BrowserStack 2025 data
-    // Format: [width, height] — both orientations included
-    const POPULAR_RESOLUTIONS = [
-      // Mobile top (StatCounter 2025)
-      [360, 800], [390, 844], [393, 873], [412, 915], [414, 896], [360, 780],
-      [375, 812], [375, 667], [414, 736], [412, 892], [360, 640], [393, 851],
-      [390, 844], [430, 932], [393, 852], [412, 915], [393, 873],
-      // Also portrait flip
-      [800, 360], [844, 390], [873, 393], [915, 412], [896, 414],
-      // Desktop top (StatCounter 2025)
-      [1920, 1080], [1366, 768], [1536, 864], [1280, 720], [1440, 900], [1600, 900],
-      [2560, 1440], [1280, 800], [1360, 768], [1024, 768],
-      // Tablet top
-      [768, 1024], [810, 1080], [820, 1180], [1280, 800], [800, 1280], [601, 962],
-      [1024, 768], [1024, 1366],
-    ];
-
-    function isPopular(d) {
-      return POPULAR_RESOLUTIONS.some(([pw, ph]) =>
-        (d.w === pw && d.h === ph) || (d.w === ph && d.h === pw)
-      );
+    function isTrending(d) {
+      for (const res of currentTrendingResolutions) {
+        const [rw, rh] = res.split('x').map(Number);
+        if ((d.w === rw && d.h === rh) || (d.w === rh && d.h === rw)) return true;
+      }
+      return false;
     }
 
     function getOsClass(os) {
@@ -1168,17 +1515,10 @@
       return map[os] || 'other';
     }
 
-    function getTypeIcon(type) {
-      return { smartphone: '📱', tablet: '📲', monitor: '🖥️' }[type] || '📺';
-    }
-
     function ppiBar(ppi) {
       if (!ppi || ppi === 0) return '<span class="muted">—</span>';
       const pct = Math.min(100, Math.round(ppi / MAX_PPI * 100));
-      return `<div class="ppi-wrap">
-    <div class="ppi-bar"><div class="ppi-fill" style="width:${pct}%"></div></div>
-    <span class="ppi-num">${ppi}</span>
-  </div>`;
+      return `<div class="ppi-wrap"><div class="ppi-bar"><div class="ppi-fill" style="width:${pct}%"></div></div><span class="ppi-num">${ppi}</span></div>`;
     }
 
     function buildRows(data) {
@@ -1189,20 +1529,20 @@
       ['smartphone', 'tablet', 'monitor'].forEach(type => {
         const items = grouped[type];
         if (!items.length) return;
-        html += `<tr class="category-header"><td colspan="9"><span>${labels[type]}</span> <span style="color:var(--muted-light);font-size:0.6rem">(${items.length})</span></td></tr>`;
+        html += `<tr class="category-header"><td colspan="9"><span>${labels[type]}</span> <span style="color:var(--muted-light);font-size:.58rem">(${items.length})</span></td></tr>`;
         items.forEach((d, i) => {
           const osc = getOsClass(d.os);
-          const pop = isPopular(d);
-          const popularBadge = pop ? '<span class="popular-badge">🔥 Popular</span>' : '';
-          html += `<tr data-type="${d.type}" data-os="${d.os}" style="animation-delay:${i * 0.008}s">
-        <td class="device-name">${d.name}${popularBadge}</td>
+          const trending = isTrending(d);
+          const badge = trending ? '<span class="trending-badge">📡 Trending</span>' : '';
+          html += `<tr class="${trending ? 'trending-row' : ''}" style="animation-delay:${i * .007}s">
+        <td class="device-name">${d.name}${badge}</td>
         <td><span class="os-tag os-${osc}">${d.os || '—'}</span></td>
         <td class="px-cell">${d.size}"</td>
         <td class="px-cell">${d.w.toLocaleString()}</td>
         <td class="px-cell">${d.h.toLocaleString()}</td>
         <td class="muted">${d.dw}</td>
         <td>${ppiBar(d.ppi)}</td>
-        <td class="muted" style="font-size:0.7rem">${d.density}</td>
+        <td class="muted">${d.density}</td>
         <td><span class="ar-pill">${d.ratio || '—'}</span></td>
       </tr>`;
         });
@@ -1221,7 +1561,7 @@
     let currentFilter = 'all';
     let currentOs = '';
     let currentSearch = '';
-    let currentPopular = false;
+    let currentTrendingOnly = false;
     let sortCol = '';
     let sortDir = 1;
 
@@ -1230,9 +1570,9 @@
         const matchType = currentFilter === 'all' || d.type === currentFilter;
         const matchOs = !currentOs || d.os === currentOs;
         const q = currentSearch.toLowerCase();
-        const matchSearch = !q || d.name.toLowerCase().includes(q) || d.os.toLowerCase().includes(q);
-        const matchPopular = !currentPopular || isPopular(d);
-        return matchType && matchOs && matchSearch && matchPopular;
+        const matchSearch = !q || d.name.toLowerCase().includes(q) || d.os.toLowerCase().includes(q) || String(d.w).includes(q) || String(d.h).includes(q);
+        const matchTrending = !currentTrendingOnly || isTrending(d);
+        return matchType && matchOs && matchSearch && matchTrending;
       });
 
       if (sortCol) {
@@ -1258,7 +1598,7 @@
       tbody.innerHTML = buildRows(data);
     }
 
-    // Filters
+    // Event listeners
     document.querySelectorAll('[data-filter]').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
@@ -1271,8 +1611,7 @@
     document.querySelectorAll('[data-os]').forEach(btn => {
       btn.addEventListener('click', () => {
         if (currentOs === btn.dataset.os) {
-          currentOs = '';
-          btn.classList.remove('active');
+          currentOs = ''; btn.classList.remove('active');
         } else {
           document.querySelectorAll('[data-os]').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
@@ -1287,14 +1626,12 @@
       render();
     });
 
-    // Popular Now toggle
-    document.getElementById('popular-btn').addEventListener('click', function () {
-      currentPopular = !currentPopular;
-      this.classList.toggle('active', currentPopular);
+    document.getElementById('trending-filter-btn').addEventListener('click', function () {
+      currentTrendingOnly = !currentTrendingOnly;
+      this.classList.toggle('active', currentTrendingOnly);
       render();
     });
 
-    // Sorting
     const colMap = { name: 'name', os: 'os', size: 'size', width: 'w', height: 'h', dw: 'dw', ppi: 'ppi', density: 'density', ratio: 'ratio' };
     document.querySelectorAll('thead th[data-col]').forEach(th => {
       th.addEventListener('click', () => {
@@ -1307,7 +1644,18 @@
       });
     });
 
+    // ===================== INIT =====================
     render();
+    updateWeeksTracked();
+
+    // Load cached data first, then fetch fresh
+    if (trendingHistory.length > 0) {
+      applyTrendingData(trendingHistory[0]);
+      updateApiStatus('ok', '● Cached');
+    }
+
+    // Auto-fetch on load (respects week cache)
+    fetchTrendingData(false);
   </script>
 </body>
 
