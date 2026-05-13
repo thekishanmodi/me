@@ -4,12 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free online grid calculator by Kishan Modi. Design pixel-perfect grids with columns, gutters & margins for your UI/UX and web design projects.">
-  <meta name="keywords" content="Grid Calculator, UI/UX Grid Tool, Column Calculator, Web Design Grid, Pixel Perfect Grids, Kishan Modi, #thekishanmodi">
+  <meta name="description"
+    content="Free online grid calculator by Kishan Modi. Design pixel-perfect grids with columns, gutters & margins for your UI/UX and web design projects.">
+  <meta name="keywords"
+    content="Grid Calculator, UI/UX Grid Tool, Column Calculator, Web Design Grid, Pixel Perfect Grids, Kishan Modi, #thekishanmodi">
   <meta name="author" content="Kishan Modi">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Grid Calculator | Kishan Modi">
-  <meta property="og:description" content="Design pixel-perfect grids with columns, gutters & margins. Free UI/UX grid calculator.">
+  <meta property="og:description"
+    content="Design pixel-perfect grids with columns, gutters & margins. Free UI/UX grid calculator.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thekishanmodi.com/grid-calculator.html">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
@@ -156,7 +159,6 @@
       background: var(--paper2);
     }
 
-    /* Mode tabs */
     .mode-tabs {
       display: flex;
       flex-direction: column;
@@ -246,7 +248,6 @@
       border-radius: 0 2px 2px 0;
     }
 
-    /* Input section */
     .inputs-section {
       flex: 1;
       display: flex;
@@ -476,7 +477,127 @@
       background: var(--ink3);
     }
 
-    /* Ruler */
+    /* ─── Export Bar ─── */
+    .export-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .export-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink4);
+      margin-right: 2px;
+    }
+
+    .export-btn {
+      font-family: 'Mona Sans', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1.5px solid var(--paper3);
+      background: var(--paper2);
+      color: var(--ink2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.14s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .export-btn svg {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+
+    .export-btn:hover {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .export-btn:active {
+      transform: scale(0.95);
+    }
+
+    .export-btn.copied {
+      border-color: #1a8a2e;
+      background: #e8f7ec;
+      color: #1a8a2e;
+    }
+
+    .export-btn.btn-png {
+      border-color: var(--col-bdr);
+      color: var(--col-fg);
+      background: #eef6ff;
+    }
+
+    .export-btn.btn-png:hover {
+      border-color: var(--col-fg);
+      background: var(--col-fg);
+      color: var(--white);
+    }
+
+    .export-btn.btn-svg {
+      border-color: #d8c8f8;
+      color: #6b35c9;
+      background: #f5f0ff;
+    }
+
+    .export-btn.btn-svg:hover {
+      border-color: #6b35c9;
+      background: #6b35c9;
+      color: var(--white);
+    }
+
+    .export-btn.btn-css {
+      border-color: #ffd8b0;
+      color: #b05a00;
+      background: #fff8f0;
+    }
+
+    .export-btn.btn-css:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .export-btn.btn-figma {
+      border-color: #c8f0d8;
+      color: #1a8a4a;
+      background: #f0fff5;
+    }
+
+    .export-btn.btn-figma:hover {
+      border-color: #1a8a4a;
+      background: #1a8a4a;
+      color: var(--white);
+    }
+
+    .export-btn.btn-json {
+      border-color: #f0d8b0;
+      color: #8a5a00;
+      background: #fffbf0;
+    }
+
+    .export-btn.btn-json:hover {
+      border-color: #8a5a00;
+      background: #8a5a00;
+      color: var(--white);
+    }
+
+    /* ─── Ruler ─── */
     .ruler {
       height: 22px;
       width: 100%;
@@ -575,9 +696,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(135deg,
-          transparent, transparent 10px,
-          rgba(26, 95, 168, 0.05) 10px, rgba(26, 95, 168, 0.05) 11px);
+      background: repeating-linear-gradient(135deg, transparent, transparent 10px, rgba(26, 95, 168, 0.05) 10px, rgba(26, 95, 168, 0.05) 11px);
       pointer-events: none;
     }
 
@@ -613,9 +732,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(45deg,
-          transparent, transparent 10px,
-          rgba(26, 95, 168, 0.05) 10px, rgba(26, 95, 168, 0.05) 11px);
+      background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(26, 95, 168, 0.05) 10px, rgba(26, 95, 168, 0.05) 11px);
       pointer-events: none;
     }
 
@@ -670,7 +787,6 @@
       opacity: 1;
     }
 
-    /* Row tooltip - show to the right */
     #verticalPreview .seg-tip {
       bottom: auto;
       top: 50%;
@@ -721,6 +837,35 @@
       color: var(--ink4);
     }
 
+    /* ─── Toast ─── */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'Mona Sans', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 10px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.22s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 24px rgba(26, 22, 18, 0.22);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* ─── Animations ─── */
     .seg {
       animation: segIn 0.18s ease both;
@@ -766,6 +911,9 @@
 
 <body>
 
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
   <!-- Page Header -->
   <div class="page-header">
     <div class="page-header-left">
@@ -784,15 +932,11 @@
       <!-- Mode Tabs -->
       <div class="mode-tabs">
         <button class="mode-btn active" data-mode="columns">
-          <span class="mode-icon">
-            <span></span><span></span><span></span>
-          </span>
+          <span class="mode-icon"><span></span><span></span><span></span></span>
           Cols
         </button>
         <button class="mode-btn" data-mode="rows">
-          <span class="mode-icon">
-            <span></span><span></span><span></span>
-          </span>
+          <span class="mode-icon"><span></span><span></span><span></span></span>
           Rows
         </button>
       </div>
@@ -957,6 +1101,58 @@
     <div class="preview-area">
       <div class="preview-header">
         <span class="preview-title" id="previewTitle">Horizontal Preview</span>
+
+        <!-- Export Bar -->
+        <div class="export-bar">
+          <span class="export-label">Export</span>
+
+          <button class="export-btn btn-png" id="btnPNG" title="Download as PNG image">
+            <svg viewBox="0 0 12 12" fill="none">
+              <rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+              <path d="M1 8l2.5-2.5 2 2 2-2.5 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            PNG
+          </button>
+
+          <button class="export-btn btn-svg" id="btnSVG" title="Download as SVG vector">
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M2 10V2h5l3 3v5H2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+              <path d="M7 2v3h3" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+            </svg>
+            SVG
+          </button>
+
+          <button class="export-btn btn-css" id="btnCSS" title="Copy CSS Grid variables">
+            <svg viewBox="0 0 12 12" fill="none">
+              <rect x="1" y="2" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2" />
+              <path d="M4 5l-2 1 2 1M8 5l2 1-2 1M6 4.5l-1 3" stroke="currentColor" stroke-width="1.1"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Copy CSS
+          </button>
+
+          <button class="export-btn btn-figma" id="btnFigma" title="Copy Figma grid plugin values">
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M4 2h4a2 2 0 1 1 0 4H4a2 2 0 1 1 0-4z" stroke="currentColor" stroke-width="1.1" />
+              <path d="M4 6h4a2 2 0 1 1 0 4H4" stroke="currentColor" stroke-width="1.1" />
+              <circle cx="4" cy="6" r="2" stroke="currentColor" stroke-width="1.1" />
+            </svg>
+            Figma
+          </button>
+
+          <button class="export-btn btn-json" id="btnJSON" title="Copy JSON token values">
+            <svg viewBox="0 0 12 12" fill="none">
+              <path
+                d="M3 2c-1 0-1.5.5-1.5 1.5v1C1.5 5.5 1 6 1 6s.5.5.5 1.5v1C1.5 9.5 2 10 3 10M9 2c1 0 1.5.5 1.5 1.5v1c0 1 .5 1.5.5 1.5s-.5.5-.5 1.5v1C10.5 9.5 10 10 9 10"
+                stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+              <circle cx="4.5" cy="6" r=".6" fill="currentColor" />
+              <circle cx="6" cy="6" r=".6" fill="currentColor" />
+              <circle cx="7.5" cy="6" r=".6" fill="currentColor" />
+            </svg>
+            JSON
+          </button>
+        </div>
       </div>
 
       <!-- Columns section -->
@@ -992,7 +1188,17 @@
 
   <script>
     let viewMode = 'columns';
+    let _gridState = {};
 
+    // ─── Toast ───
+    function showToast(msg, icon = '✓') {
+      const t = document.getElementById('toast');
+      t.innerHTML = `<span>${icon}</span> ${msg}`;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    // ─── Mode tabs ───
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.onclick = () => {
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
@@ -1002,6 +1208,7 @@
       };
     });
 
+    // ─── Stepper buttons ───
     document.querySelectorAll('.step-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const input = document.getElementById(btn.dataset.target);
@@ -1012,6 +1219,7 @@
       });
     });
 
+    // ─── Arrow key support ───
     document.querySelectorAll('input[type=number]').forEach(input => {
       input.addEventListener('keydown', e => {
         if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
@@ -1025,12 +1233,12 @@
       });
     });
 
+    // ─── Segment factory ───
     function makeSeg(cls, sizeKey, sizeVal, label, tipText) {
       const div = document.createElement('div');
       div.className = `seg ${cls}`;
       div.style[sizeKey] = sizeVal + 'px';
       div.style[sizeKey === 'width' ? 'height' : 'width'] = '100%';
-
       if (label !== null && label !== undefined) {
         const lbl = document.createElement('span');
         lbl.className = 'seg-label';
@@ -1046,10 +1254,7 @@
       return div;
     }
 
-    function maybeLabel(pxSize, threshold) {
-      return pxSize > threshold ? Math.round(pxSize / (window._scale || 1)) : null;
-    }
-
+    // ─── Main update ───
     function updatePreview() {
       const isCol = viewMode === 'columns';
 
@@ -1071,6 +1276,8 @@
         const pageW = c * colW + (c - 1) * g + 2 * m;
         const diff = pageW - t;
 
+        _gridState = { mode: 'columns', target: t, count: c, gutter: g, margin: m, unit: Math.max(0, colW), page: pageW, span2: Math.max(0, colW * 2 + g) };
+
         document.getElementById('targetOut').textContent = t;
         document.getElementById('unitOut').textContent = Math.max(0, colW);
         document.getElementById('pageOut').textContent = pageW;
@@ -1088,9 +1295,7 @@
         const scale = avail / pageW;
         window._scale = scale;
 
-        // ruler
         rulerEl.innerHTML = '';
-        rulerEl.style.borderRadius = '5px 5px 0 0';
         const addRulerSeg = (cls, w, txt) => {
           const d = document.createElement('div');
           d.className = `ruler-seg ${cls}`;
@@ -1105,18 +1310,12 @@
         }
         addRulerSeg('r-mar', m * scale, '');
 
-        // preview
         preview.innerHTML = '';
-        if (colW <= 0) {
-          preview.innerHTML = '<div class="error-state">⚠ Column width too small</div>';
-          return;
-        }
+        if (colW <= 0) { preview.innerHTML = '<div class="error-state">⚠ Column width too small</div>'; return; }
         preview.appendChild(makeSeg('s-mar', 'width', m * scale, m * scale > 26 ? m : null, `Margin: ${m}px`));
         for (let i = 0; i < c; i++) {
           preview.appendChild(makeSeg('s-col', 'width', colW * scale, colW * scale > 30 ? colW : null, `Column ${i + 1}: ${colW}px`));
-          if (i < c - 1) {
-            preview.appendChild(makeSeg('s-gut', 'width', g * scale, g * scale > 22 ? g : null, `Gutter: ${g}px`));
-          }
+          if (i < c - 1) preview.appendChild(makeSeg('s-gut', 'width', g * scale, g * scale > 22 ? g : null, `Gutter: ${g}px`));
         }
         preview.appendChild(makeSeg('s-mar', 'width', m * scale, m * scale > 26 ? m : null, `Margin: ${m}px`));
 
@@ -1128,6 +1327,8 @@
         const rowH = Math.floor((t - 2 * m - (r - 1) * g) / r);
         const pageH = r * rowH + (r - 1) * g + 2 * m;
         const diff = pageH - t;
+
+        _gridState = { mode: 'rows', target: t, count: r, gutter: g, margin: m, unit: Math.max(0, rowH), page: pageH, span2: Math.max(0, rowH * 2 + g) };
 
         document.getElementById('targetOut').textContent = t;
         document.getElementById('unitOut').textContent = Math.max(0, rowH);
@@ -1145,19 +1346,287 @@
         const scale = avail / pageH;
 
         preview.innerHTML = '';
-        if (rowH <= 0) {
-          preview.innerHTML = '<div class="error-state">⚠ Row height too small</div>';
-          return;
-        }
+        if (rowH <= 0) { preview.innerHTML = '<div class="error-state">⚠ Row height too small</div>'; return; }
         preview.appendChild(makeSeg('s-vmar', 'height', m * scale, m * scale > 18 ? m : null, `Margin: ${m}px`));
         for (let i = 0; i < r; i++) {
           preview.appendChild(makeSeg('s-row', 'height', rowH * scale, rowH * scale > 22 ? rowH : null, `Row ${i + 1}: ${rowH}px`));
-          if (i < r - 1) {
-            preview.appendChild(makeSeg('s-vgut', 'height', g * scale, g * scale > 16 ? g : null, `Gutter: ${g}px`));
-          }
+          if (i < r - 1) preview.appendChild(makeSeg('s-vgut', 'height', g * scale, g * scale > 16 ? g : null, `Gutter: ${g}px`));
         }
         preview.appendChild(makeSeg('s-vmar', 'height', m * scale, m * scale > 18 ? m : null, `Margin: ${m}px`));
       }
+    }
+
+    // ─── Build SVG grid representation ───
+    function buildGridSVG(state, w = 800, h = 200) {
+      const { mode, count, gutter, margin, unit, target, page } = state;
+      const isCol = mode === 'columns';
+
+      const COL_BG = '#ddeeff', COL_FG = '#1a5fa8', COL_BDR = '#b8d8f8';
+      const GUT_BG = '#faf9f6', GUT_BDR = '#ddd9d0';
+      const MAR_BG = '#f2f0eb', MAR_FG = '#9a9490';
+
+      let rects = '';
+      let labels = '';
+
+      if (isCol) {
+        const scale = w / page;
+        let x = 0;
+
+        // Left margin
+        if (margin > 0) {
+          rects += `<rect x="${x}" y="0" width="${margin * scale}" height="${h}" fill="${MAR_BG}" stroke="#e0dbd0" stroke-width="0.5"/>`;
+          x += margin * scale;
+        }
+
+        for (let i = 0; i < count; i++) {
+          const cw = unit * scale;
+          rects += `<rect x="${x}" y="0" width="${cw}" height="${h}" fill="${COL_BG}" stroke="${COL_BDR}" stroke-width="0.5"/>`;
+          // Hatching
+          rects += `<rect x="${x}" y="0" width="${cw}" height="${h}" fill="url(#hatch)" opacity="0.4"/>`;
+          if (cw > 20) {
+            labels += `<text x="${x + cw / 2}" y="${h / 2 + 4}" text-anchor="middle" fill="${COL_FG}" font-size="10" font-family="monospace" font-weight="600">${unit}</text>`;
+          }
+          x += cw;
+
+          if (i < count - 1) {
+            const gw = gutter * scale;
+            if (gw > 0) {
+              rects += `<rect x="${x}" y="0" width="${gw}" height="${h}" fill="${GUT_BG}" stroke="${GUT_BDR}" stroke-width="0.5" stroke-dasharray="3,3"/>`;
+              x += gw;
+            }
+          }
+        }
+
+        // Right margin
+        if (margin > 0) {
+          rects += `<rect x="${x}" y="0" width="${margin * scale}" height="${h}" fill="${MAR_BG}" stroke="#e0dbd0" stroke-width="0.5"/>`;
+        }
+
+      } else {
+        // rows mode
+        const scale = h / page;
+        let y = 0;
+
+        if (margin > 0) {
+          rects += `<rect x="0" y="${y}" width="${w}" height="${margin * scale}" fill="${MAR_BG}" stroke="#e0dbd0" stroke-width="0.5"/>`;
+          y += margin * scale;
+        }
+
+        for (let i = 0; i < count; i++) {
+          const rh = unit * scale;
+          rects += `<rect x="0" y="${y}" width="${w}" height="${rh}" fill="${COL_BG}" stroke="${COL_BDR}" stroke-width="0.5"/>`;
+          rects += `<rect x="0" y="${y}" width="${w}" height="${rh}" fill="url(#hatchV)" opacity="0.4"/>`;
+          if (rh > 14) {
+            labels += `<text x="${w / 2}" y="${y + rh / 2 + 4}" text-anchor="middle" fill="${COL_FG}" font-size="10" font-family="monospace" font-weight="600">${unit}</text>`;
+          }
+          y += rh;
+
+          if (i < count - 1) {
+            const gh = gutter * scale;
+            if (gh > 0) {
+              rects += `<rect x="0" y="${y}" width="${w}" height="${gh}" fill="${GUT_BG}" stroke="${GUT_BDR}" stroke-width="0.5" stroke-dasharray="3,3"/>`;
+              y += gh;
+            }
+          }
+        }
+
+        if (margin > 0) {
+          rects += `<rect x="0" y="${y}" width="${w}" height="${margin * scale}" fill="${MAR_BG}" stroke="#e0dbd0" stroke-width="0.5"/>`;
+        }
+      }
+
+      const title = `${isCol ? count + ' Columns' : count + ' Rows'} · ${isCol ? target : target}px · Gutter ${gutter}px · Margin ${margin}px`;
+
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h + 32}" viewBox="0 0 ${w} ${h + 32}" style="background:#faf9f6">
+  <defs>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(135)">
+      <line x1="0" y1="0" x2="0" y2="14" stroke="${COL_FG}" stroke-width="0.7" stroke-opacity="0.15"/>
+    </pattern>
+    <pattern id="hatchV" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="14" stroke="${COL_FG}" stroke-width="0.7" stroke-opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="${w}" height="${h + 32}" fill="#faf9f6"/>
+  ${rects}
+  ${labels}
+  <text x="${w / 2}" y="${h + 20}" text-anchor="middle" fill="#9a9490" font-size="9" font-family="monospace" letter-spacing="0.08em">${title.toUpperCase()}</text>
+</svg>`;
+    }
+
+    // ─── PNG export ───
+    document.getElementById('btnPNG').onclick = function () {
+      const s = _gridState;
+      if (!s.count) return;
+      const W = 900, H = 200;
+      const svgStr = buildGridSVG(s, W, H);
+      const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = W * 2; canvas.height = (H + 32) * 2;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(2, 2);
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(pngBlob => {
+          const a = document.createElement('a');
+          a.download = `grid-${s.mode}-${s.count}-col-${s.gutter}g-${s.margin}m.png`;
+          a.href = URL.createObjectURL(pngBlob);
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+          showToast('PNG downloaded at 2×', '🖼');
+        });
+      };
+      img.src = url;
+    };
+
+    // ─── SVG export ───
+    document.getElementById('btnSVG').onclick = function () {
+      const s = _gridState;
+      if (!s.count) return;
+      const svgStr = buildGridSVG(s, 900, 200);
+      const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+      const a = document.createElement('a');
+      a.download = `grid-${s.mode}-${s.count}-${s.gutter}g-${s.margin}m.svg`;
+      a.href = URL.createObjectURL(blob);
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      showToast('SVG downloaded', '📐');
+    };
+
+    // ─── CSS copy ───
+    document.getElementById('btnCSS').onclick = function () {
+      const s = _gridState;
+      if (!s.count) return;
+      let css = '';
+      if (s.mode === 'columns') {
+        css = `/* Grid System — ${s.count} Columns */
+:root {
+  --grid-columns: ${s.count};
+  --grid-column-width: ${s.unit}px;
+  --grid-gutter: ${s.gutter}px;
+  --grid-margin: ${s.margin}px;
+  --grid-page-width: ${s.page}px;
+  --grid-span-2: ${s.span2}px;
+}
+
+.container {
+  max-width: ${s.page}px;
+  padding-inline: ${s.margin}px;
+  margin-inline: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(${s.count}, ${s.unit}px);
+  gap: ${s.gutter}px;
+}`;
+      } else {
+        css = `/* Grid System — ${s.count} Rows */
+:root {
+  --grid-rows: ${s.count};
+  --grid-row-height: ${s.unit}px;
+  --grid-gutter: ${s.gutter}px;
+  --grid-margin: ${s.margin}px;
+  --grid-page-height: ${s.page}px;
+  --grid-span-2: ${s.span2}px;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(${s.count}, ${s.unit}px);
+  gap: ${s.gutter}px;
+  padding-block: ${s.margin}px;
+}`;
+      }
+      copyText(css, 'CSS copied to clipboard', '🎨');
+      flashBtn('btnCSS');
+    };
+
+    // ─── Figma copy ───
+    document.getElementById('btnFigma').onclick = function () {
+      const s = _gridState;
+      if (!s.count) return;
+      let txt = '';
+      if (s.mode === 'columns') {
+        txt = `Figma Grid Settings — Column Grid
+─────────────────────────────
+Type:       Column
+Count:      ${s.count}
+Width:      ${s.unit}px
+Gutter:     ${s.gutter}px
+Margin:     ${s.margin}px
+Offset:     ${s.margin}px
+Frame width: ${s.page}px
+
+→ In Figma: Select frame → Design panel → Layout Grid → + → Column
+  Set Count: ${s.count} | Width: ${s.unit} | Gutter: ${s.gutter} | Margin: ${s.margin}`;
+      } else {
+        txt = `Figma Grid Settings — Row Grid
+─────────────────────────────
+Type:       Row
+Count:      ${s.count}
+Height:     ${s.unit}px
+Gutter:     ${s.gutter}px
+Margin:     ${s.margin}px
+Frame height: ${s.page}px
+
+→ In Figma: Select frame → Design panel → Layout Grid → + → Row
+  Set Count: ${s.count} | Height: ${s.unit} | Gutter: ${s.gutter} | Margin: ${s.margin}`;
+      }
+      copyText(txt, 'Figma settings copied', '🟣');
+      flashBtn('btnFigma');
+    };
+
+    // ─── JSON copy ───
+    document.getElementById('btnJSON').onclick = function () {
+      const s = _gridState;
+      if (!s.count) return;
+      const isCol = s.mode === 'columns';
+      const json = JSON.stringify({
+        grid: {
+          mode: s.mode,
+          [isCol ? 'columns' : 'rows']: s.count,
+          [isCol ? 'columnWidth' : 'rowHeight']: s.unit,
+          gutter: s.gutter,
+          margin: s.margin,
+          [isCol ? 'pageWidth' : 'pageHeight']: s.page,
+          span2: s.span2
+        },
+        tokens: {
+          [`grid-${isCol ? 'columns' : 'rows'}`]: String(s.count),
+          [`grid-${isCol ? 'column' : 'row'}-size`]: `${s.unit}px`,
+          'grid-gutter': `${s.gutter}px`,
+          'grid-margin': `${s.margin}px`,
+          'grid-page-size': `${s.page}px`
+        }
+      }, null, 2);
+      copyText(json, 'JSON tokens copied', '📦');
+      flashBtn('btnJSON');
+    };
+
+    // ─── Helpers ───
+    function copyText(text, successMsg, icon) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg, icon);
+      }).catch(() => {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(successMsg, icon);
+      });
+    }
+
+    function flashBtn(id) {
+      const btn = document.getElementById(id);
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 1800);
     }
 
     document.addEventListener('input', updatePreview);
