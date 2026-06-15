@@ -14,7 +14,7 @@
   <meta property="og:description"
     content="Generate beautiful color shades and tints online. Create perfect color palettes for your UI/UX projects.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thekishanmodi.com/color-shades.html">
+  <meta property="og:url" content="https://thekishanmodi.com/color-shades.php">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Color Shades Generator | Kishan Modi">
@@ -1014,7 +1014,7 @@
 
     <div class="s-footer">
       <!-- <span>Click any swatch to copy</span> -->
-      <a href="index.html" target="_blank">#thekishanmodi</a>
+      <a href="index.php" target="_blank">#thekishanmodi</a>
     </div>
   </aside>
 

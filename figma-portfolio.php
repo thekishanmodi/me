@@ -11,7 +11,7 @@
   <meta property="og:title" content="Figma Portfolio | Kishan Modi">
   <meta property="og:description" content="Explore Kishan Modi's next-level Figma portfolio featuring creative UI/UX designs, web mockups, and mobile app interface prototypes.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thekishanmodi.com/figma-portfolio.html">
+  <meta property="og:url" content="https://thekishanmodi.com/figma-portfolio.php">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Figma Portfolio | Kishan Modi">
@@ -296,7 +296,7 @@
 
   <div
     style="background-color: var(--primary-color); color: #fff; position: fixed; bottom: 0; width: 100%; padding: 1rem; text-align: center; font-size: clamp(1rem, 1.1vw, 2rem); font-weight: 500; left: 0;">
-    I’m <a href="index.html" target="_blank" style="color: #000;text-decoration: none; font-weight: 700;">Kishan
+    I’m <a href="index.php" target="_blank" style="color: #000;text-decoration: none; font-weight: 700;">Kishan
       Modi</a>, a UI/UX designer by choice & empathy by nature for customer experience(CX).
   </div>
 </body>

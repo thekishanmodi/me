@@ -8,9 +8,9 @@
   <!-- ═══════════════════════════════════════════
        PRIMARY SEO META TAGS
   ═══════════════════════════════════════════ -->
-  <title>Live Projects | Kishan Modi – UI/UX Designer & Frontend Developer | #thekishanmodi</title>
+  <title>Portfolio | Kishan Modi – UI/UX Designer & Frontend Developer | #thekishanmodi</title>
   <meta name="description"
-    content="Explore 39+ live projects by Kishan Modi — UI/UX Designer & Frontend Developer from Surat, India. Portfolio includes websites, SaaS, e-commerce, AI, crypto, mobile apps, and branding projects.">
+    content="Explore 39+ live Portfolio by Kishan Modi — UI/UX Designer & Frontend Developer from Surat, India. Portfolio includes websites, SaaS, e-commerce, AI, crypto, mobile apps, and branding projects.">
   <meta name="keywords"
     content="Kishan Modi, UI UX designer Surat, frontend developer India, web designer portfolio, live projects, SaaS UI design, e-commerce website design, crypto website, AI website design, branding designer, app design, logo design, graphic design, React developer, HTML CSS developer, Bitrix Infotech, #thekishanmodi, web development portfolio, UI designer India">
   <meta name="author" content="Kishan Modi">
@@ -22,7 +22,7 @@
   <meta name="category" content="Portfolio, UI/UX Design, Web Development">
 
   <!-- Canonical URL — update to your actual domain -->
-  <link rel="canonical" href="https://thekishanmodi.com/projects">
+  <link rel="canonical" href="https://thekishanmodi.com/portfolio">
 
   <!-- ═══════════════════════════════════════════
        OPEN GRAPH (Facebook, LinkedIn, WhatsApp)
@@ -32,7 +32,7 @@
   <meta property="og:title" content="Live Projects | Kishan Modi – UI/UX Designer & Frontend Developer">
   <meta property="og:description"
     content="39+ live client projects across websites, SaaS, e-commerce, AI, crypto & apps — designed and developed by Kishan Modi, UI/UX Designer from Surat, India.">
-  <meta property="og:url" content="https://thekishanmodi.com/projects">
+  <meta property="og:url" content="https://thekishanmodi.com/portfolio">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/og-projects.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -83,9 +83,9 @@
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Live Projects – Kishan Modi Portfolio",
+    "name": "Portfolio – Kishan Modi Portfolio",
     "description": "A curated collection of 39+ live web design and development projects by Kishan Modi, including websites, SaaS platforms, e-commerce stores, AI products, and mobile apps.",
-    "url": "https://thekishanmodi.com/projects",
+    "url": "https://thekishanmodi.com/portfolio",
     "author": {
       "@type": "Person",
       "name": "Kishan Modi",
@@ -113,8 +113,8 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Live Projects",
-        "item": "https://thekishanmodi.com/projects"
+        "name": "Portfolio",
+        "item": "https://thekishanmodi.com/portfolio"
       }
     ]
   }
@@ -742,7 +742,7 @@
         <div class="title-block">
           <!-- H1 for SEO -->
           <h1 class="page-title">
-            Live <span><span id="totalProject"></span> Projects.</span>
+            Live <span><span id="totalProject"></span> Portfolio</span>
           </h1>
           <!-- Subtitle for crawlers -->
           <p class="sr-only">
@@ -794,7 +794,7 @@
       <h2 class="designer-name" id="sName" itemprop="name"></h2>
       <p class="designer-role" id="sRole" itemprop="jobTitle"></p>
       <p class="designer-bio" id="sBio" itemprop="description"></p>
-      <a class="designer-url" id="sUrl" href="/index.html" target="_blank" rel="noopener" itemprop="url"
+      <a class="designer-url" id="sUrl" href="/index.php" target="_blank" rel="noopener" itemprop="url"
         aria-label="Visit Kishan Modi's homepage">
         <span id="sUrlLabel">#thekishanmodi</span><span class="designer-url-arrow" aria-hidden="true">↗</span>
       </a>
@@ -830,32 +830,32 @@
       { url: 'https://play.google.com/store/apps/details?id=com.bitrix.brain.game&hl=en_IN', category: ['Game', 'App'] },
       { url: 'https://diamondsutra.in/', category: ['E-commerce', 'Website'] },
       { url: 'https://smartlink.so/', category: ['Website', 'SaaS'] },
-      { url: 'https://regumsoft.com/', category: ['Website'] },
+      { url: 'https://regumsoft.com/', category: ['Website', 'Wordpress'] },
       { url: 'https://codzio.com/', category: ['Website'] },
       { url: 'https://pumpd.ai/', category: ['Crypto', 'Website'] },
-      { url: 'https://www.arteel.com/', category: ['Website'] },
+      { url: 'https://www.arteel.com/', category: ['Website', 'Wordpress'] },
       { url: 'https://www.pagarguru.com/', category: ['Website', 'SaaS'] },
-      { url: 'https://corp-angels.com/', category: ['Website', 'Agency'] },
+      { url: 'https://corp-angels.com/', category: ['Website', 'Agency', 'Wordpress'] },
       { url: 'https://tensorgo.com/', category: ['Website', 'AI'] },
       { url: 'https://theme.bitrixinfotech.com/', category: ['E-commerce', 'Website', 'Marketplace'] },
-      { url: 'https://aportglobal.com/', category: ['Website'] },
-      { url: 'https://aportglobal.us/', category: ['Website'] },
+      { url: 'https://aportglobal.com/', category: ['Website', 'Wordpress'] },
+      { url: 'https://aportglobal.us/', category: ['Website', 'Wordpress'] },
       { url: 'https://www.g-crankz.com/', category: ['Website'] },
       { url: 'https://miyax.com/', category: ['E-commerce', 'Website'] },
       { url: 'https://thermwinsystems.com/', category: ['Website'] },
       { url: 'https://www.softenwebmedia.com/', category: ['Website', 'Agency'] },
       { url: 'https://spendwelltechsystem.com/', category: ['Website'] },
       { url: 'https://nexoratechai.com/', category: ['Website', 'AI'] },
-      { url: 'https://texfabindia.in/', category: ['Website', 'E-commerce'] },
-      { url: 'https://prajaktchemical.com/', category: ['Website'] },
+      { url: 'https://texfabindia.in/', category: ['Website', 'E-commerce', 'Wordpress'] },
+      { url: 'https://prajaktchemical.com/', category: ['Website', 'Wordpress'] },
       { url: 'https://www.kosmiclabs.com/', category: ['Website'] },
-      { url: 'https://www.chrome35.co.uk/', category: ['Website'] },
+      { url: 'https://www.chrome35.co.uk/', category: ['Website', 'Wordpress'] },
       { url: 'https://accademiadellameccanica.eu/', category: ['Website'] },
       { url: 'https://lasazondesofia.be/', category: ['Website'] },
-      { url: 'https://whitephgroup.co.uk/', category: ['Website'] },
+      { url: 'https://whitephgroup.co.uk/', category: ['Website', 'Wordpress'] },
       { url: 'https://www.hyperin.com/', category: ['Website'] },
       { url: 'https://www.instagram.com/softenwebmedia/', category: ['Graphics Design', 'Post Design'] },
-      { url: 'https://blog.coinremitter.com/', category: ['Graphics Design', 'Banner Design'] },
+      { url: 'https://blog.coinremitter.com/', category: ['Graphics Design', 'Banner Design', 'Wordpress', 'Blog portol'] },
       { url: 'https://kyidongsamtenling.com/', category: ['Website', 'Donation'] },
     ];
 

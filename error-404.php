@@ -1,7 +1,12 @@
+<?php
+http_response_code(404);
+$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <base href="<?php echo $basePath; ?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
@@ -60,7 +65,7 @@
         <h2 style="font-weight: 300;font-size: 32px;">Lost in the design maze? We're sending a search party.</h2>
     </section>
     <a style="position: absolute; bottom: 10%; left: 0;right: 0; margin: auto;color: #fff; font-size: 20px;text-decoration: none;letter-spacing: 2px; width: fit-content;border: 1px solid #fff;
-    padding: 12px 36px; border-radius: 20px;" href="index.html">Ctrl + Z</a>
+    padding: 12px 36px; border-radius: 20px;" href="index.php">Ctrl + Z</a>
 </body>
 
 <script>
@@ -70,11 +75,11 @@
 
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
             e.preventDefault();
-            window.location.href = "index.html";
+            window.location.href = "index.php";
         }
 
         if (e.key === "Escape") {
-            window.location.href = "index.html";
+            window.location.href = "index.php";
         }
     });
 

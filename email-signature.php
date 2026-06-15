@@ -23,7 +23,7 @@
                 <table cellpadding="0" cellspacing="0" style="width: 100%;">
                   <tbody>
                     <tr>
-                      <td style="vertical-align: middle;" >
+                      <td style="vertical-align: middle;">
                         <p
                           style="font-family: 'Mona Sans', sans-serif; font-size: 20px; font-weight: 600; color: #fd6204; margin: 0;">
                           Kishan Modi
@@ -101,9 +101,9 @@
                                   style="width: 24px; height: 24px; display: inline-block; vertical-align: middle;" />
                               </td>
                               <td style="vertical-align: middle;">
-                                <a href="mailto:kishan.modi1995@gmail.com"
+                                <a href="mailto:thekishanmodi@gmail.com"
                                   style="font-family: 'Mona Sans', sans-serif; font-size: 12px; font-weight: 500; color: #2f3438; text-decoration: none; white-space: nowrap;">
-                                  kishan.modi1995@gmail.com
+                                  thekishanmodi@gmail.com
                                 </a>
                               </td>
                             </tr>

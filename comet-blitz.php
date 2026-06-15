@@ -11,7 +11,7 @@
   <meta property="og:title" content="Comet Blitz | Kishan Modi">
   <meta property="og:description" content="Play Comet Blitz, an exciting browser-based 2D HTML5 game.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thekishanmodi.com/comet-blitz.html">
+  <meta property="og:url" content="https://thekishanmodi.com/comet-blitz.php">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Comet Blitz | Kishan Modi">
@@ -312,7 +312,7 @@
       <div id="overlay-content"></div>
     </div>
 
-    <a id="creator" href="index.html" target="_blank" rel="noopener">
+    <a id="creator" href="index.php" target="_blank" rel="noopener">
       <span class="label">made by</span>
       <span class="name">#thekishanmodi</span>
     </a>

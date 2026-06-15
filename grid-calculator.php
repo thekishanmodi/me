@@ -14,7 +14,7 @@
   <meta property="og:description"
     content="Design pixel-perfect grids with columns, gutters & margins. Free UI/UX grid calculator.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thekishanmodi.com/grid-calculator.html">
+  <meta property="og:url" content="https://thekishanmodi.com/grid-calculator.php">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Grid Calculator | Kishan Modi">
@@ -921,7 +921,7 @@
       <p class="page-sub">Layout System Utility</p>
     </div>
     <div>
-      <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
+      <a href="index.php" class="badge" target="_blank">#thekishanmodi</a>
     </div>
   </div>
 

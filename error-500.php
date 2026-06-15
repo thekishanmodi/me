@@ -1,7 +1,12 @@
+<?php
+http_response_code(500);
+$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
+  <base href="<?php echo $basePath; ?>">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
@@ -62,7 +67,7 @@
   </section>
 
   <a style="position: absolute; bottom: 10%; left: 0;right: 0; margin: auto;color: #000;font-size: 20px; text-decoration: none;letter-spacing: 2px; width: fit-content;border: 1px solid #000;
-  padding: 12px 36px; border-radius: 20px;" href="mailto:kishan.modi1995@gmail.com">kishan.modi1995@gmail.com</a>
+  padding: 12px 36px; border-radius: 20px;" href="mailto:thekishanmodi@gmail.com">thekishanmodi@gmail.com</a>
   <script>
     (function () {
       var lastTime = 0;

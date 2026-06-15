@@ -13,7 +13,7 @@
   <meta property="og:title" content="ScreenSizes — Device Screen Specifications | Kishan Modi">
   <meta property="og:description" content="A comprehensive viewport & pixel density reference for popular devices.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thekishanmodi.com/screen-sizes.html">
+  <meta property="og:url" content="https://thekishanmodi.com/screen-sizes.php">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ScreenSizes — Device Screen Specifications | Kishan Modi">
@@ -1021,7 +1021,7 @@
         <button class="filter-btn" id="trending-filter-btn" data-trending="true">🟢 Trending Only</button>
       </div>
       <div class="count-badge">Showing <span id="visible-count">—</span> devices</div>
-      <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
+      <a href="index.php" class="badge" target="_blank">#thekishanmodi</a>
     </div>
 
     <div class="table-wrap">

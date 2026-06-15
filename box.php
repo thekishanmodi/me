@@ -14,7 +14,7 @@
   <meta property="og:description"
     content="A curated suite of creative tools and design knowledge for building with precision.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thekishanmodi.com/box.html">
+  <meta property="og:url" content="https://thekishanmodi.com/box.php">
   <meta property="og:image" content="https://thekishanmodi.com/assets/images/favicon.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Konfig's Box | Kishan Modi">
@@ -716,7 +716,7 @@
     <aside class="sidebar">
       <div class="sidebar-inner">
 
-        <a href="index.html" style="text-decoration: none;">
+        <a href="index.php" style="text-decoration: none;">
           <img src="assets/images/konfig-mascot.png" alt="" style="max-width: 120px;margin-bottom: 20px;">
 
           <!-- Title -->
@@ -733,7 +733,7 @@
         <div class="s-spacer"></div>
 
         <!-- Profile -->
-        <a href="index.html" class="s-profile" aria-label="About Kishan Modi" target="_blank">
+        <a href="index.php" class="s-profile" aria-label="About Kishan Modi" target="_blank">
           <div class="s-profile-info">
             <span class="s-profile-name">Kishan Modi</span>
             <span class="s-profile-role">UI/UX & Graphics Designer</span>
@@ -762,7 +762,7 @@
             <p>Try a different search term.</p>
           </div>
 
-          <a href="textcase.html" class="card card--wide" data-title="text transform" tabindex="0">
+          <a href="textcase.php" class="card card--wide" data-title="text transform" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -774,7 +774,7 @@
             </div>
           </a>
 
-          <a href="color-shades.html" class="card card--half" data-title="color shades" tabindex="0">
+          <a href="color-shades.php" class="card card--half" data-title="color shades" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -787,7 +787,7 @@
             </div>
           </a>
 
-          <a href="grid-calculator.html" class="card card--half" data-title="grid calculator" tabindex="0">
+          <a href="grid-calculator.php" class="card card--half" data-title="grid calculator" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -828,7 +828,7 @@
             </div>
           </a>
 
-          <a href="comet-blitz.html" class="card card--half" data-title="multi skill multitasking" tabindex="0">
+          <a href="comet-blitz.php" class="card card--half" data-title="multi skill multitasking" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -841,7 +841,7 @@
             </div>
           </a>
 
-          <a href="screen-sizes.html" class="card card--half" data-title="Screen Sizes" tabindex="0">
+          <a href="screen-sizes.php" class="card card--half" data-title="Screen Sizes" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -854,11 +854,12 @@
             </div>
           </a>
 
-          <a href="design-keyword-cloud.html" class="card card--half" data-title="Screen Sizes" tabindex="0">
+          <a href="design-keyword-cloud.php" class="card card--half" data-title="Screen Sizes" tabindex="0">
             <div class="card-body">
               <div class="card-icon-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
               <h3>Design Keyword Cloud</h3>

@@ -761,7 +761,7 @@
   <header class="topbar" role="banner">
 
     <!-- Logo -->
-    <a class="logo" href="index.html" target="_blank" rel="noopener" aria-label="Kishan Modi homepage">
+    <a class="logo" href="index.php" target="_blank" rel="noopener" aria-label="Kishan Modi homepage">
       <img class="logo-img" src="assets/images/favicon.png" alt="Design Keyword Cloud logo" width="28" height="28">
       <div class="logo-wordmark">
         <div class="logo-name">Design Keyword Cloud</div>

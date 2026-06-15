@@ -1428,7 +1428,7 @@
                 <button class="btn pri" onclick="addLorem()">+ Lorem</button>
                 <button class="btn ghost" onclick="clearAll()">Clear</button>
             </div>
-            <a href="index.html" class="badge" target="_blank">#thekishanmodi</a>
+            <a href="index.php" class="badge" target="_blank">#thekishanmodi</a>
         </div>
     </div><!-- /layout -->
 
