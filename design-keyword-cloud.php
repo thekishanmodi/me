@@ -756,12 +756,20 @@
 </head>
 
 <body>
+  <?php include 'sidebar.php'; ?>
 
   <!-- ════════════ TOPBAR ════════════ -->
   <header class="topbar" role="banner">
 
     <!-- Logo -->
     <a class="logo" href="index.php" target="_blank" rel="noopener" aria-label="Kishan Modi homepage">
+      <div class="global-hover-btn-container">
+              <button class="global-hover-btn" aria-label="Open Sidebar">
+                <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="24" height="24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
       <img class="logo-img" src="assets/images/favicon.png" alt="Design Keyword Cloud logo" width="28" height="28">
       <div class="logo-wordmark">
         <div class="logo-name">Design Keyword Cloud</div>

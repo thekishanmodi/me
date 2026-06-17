@@ -89,7 +89,7 @@
     /* ─── Page Header ─── */
     .page-header {
       width: 100%;
-      max-width: 960px;
+      max-width: 1280px;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -143,7 +143,7 @@
     /* ─── Main Card ─── */
     .card {
       width: 100%;
-      max-width: 960px;
+      max-width: 1280px;
       background: var(--white);
       border: 1.5px solid var(--ink);
       border-radius: var(--radius);
@@ -638,7 +638,7 @@
     /* Preview containers */
     #horizontalPreview {
       width: 100%;
-      height: 90px;
+      height: 140px;
       display: flex;
       overflow: hidden;
       border-radius: 0 0 8px 8px;
@@ -647,7 +647,7 @@
 
     #verticalPreview {
       width: 100%;
-      height: 270px;
+      height: 400px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -906,10 +906,52 @@
       background: var(--ink4);
       border-radius: 2px;
     }
+
+    @media (min-width: 1024px) {
+      .page-title { font-size: 48px; }
+      .page-sub { font-size: 14px; }
+      .badge { font-size: 16px; padding: 6px 12px; }
+      
+      .mode-btn { font-size: 14px; min-height: 60px; padding: 0 24px; }
+      .mode-btn .mode-icon { width: 18px; height: 18px; }
+      
+      .field { padding: 16px 24px 14px; gap: 8px; }
+      .field label { font-size: 12px; }
+      .field input { font-size: 32px; width: 80px; }
+      .px-label { font-size: 14px; }
+      
+      .step-btn { width: 28px; height: 20px; }
+      .step-btn svg { width: 12px; height: 12px; }
+      
+      .stat { padding: 12px 24px; gap: 12px; }
+      .stat-label { font-size: 12px; }
+      .stat-value { font-size: 18px; }
+      .stat-value .unit { font-size: 12px; }
+      .stat-diff { font-size: 12px; }
+      
+      .preview-area { padding: 32px 40px 40px; }
+      .preview-title { font-size: 13px; }
+      
+      .export-label { font-size: 12px; }
+      .export-btn { font-size: 12px; padding: 8px 14px; }
+      .export-btn svg { width: 14px; height: 14px; }
+      
+      .ruler { height: 32px; }
+      .ruler-seg { font-size: 11px; }
+      
+      .seg-label { font-size: 12px; }
+      .seg-tip { font-size: 13px; padding: 6px 12px; }
+      
+      .legend { gap: 32px; margin-top: 24px; padding-top: 24px; }
+      .legend-item { font-size: 13px; gap: 12px; }
+      .legend-swatch { width: 36px; height: 18px; }
+      .legend-hint { font-size: 12px; }
+    }
   </style>
 </head>
 
 <body>
+  <?php include 'sidebar.php'; ?>
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
@@ -917,7 +959,14 @@
   <!-- Page Header -->
   <div class="page-header">
     <div class="page-header-left">
-      <h1 class="page-title"><img src="assets/images/favicon.png" alt=""> Grid <em>Calculator</em></h1>
+      
+      <h1 class="page-title"><div class="global-hover-btn-container">
+                <button class="global-hover-btn" aria-label="Open Sidebar">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div> <img src="assets/images/favicon.png" alt=""> Grid <em>Calculator</em></h1>
       <p class="page-sub">Layout System Utility</p>
     </div>
     <div>

@@ -111,34 +111,18 @@
     }
 
     .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--accent);
+      background: transparent !important;
+      box-shadow: none !important;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--sans);
       font-weight: 700;
       font-size: 15px;
-      color: #fff;
       flex-shrink: 0;
       transition: background 0.4s var(--ease);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 2px 10px rgba(var(--accent-rgb), 0.38);
-    }
-
-    .brand-icon::after {
-      content: '';
-      position: absolute;
-      top: -30%;
-      left: -10%;
-      width: 60%;
-      height: 60%;
-      background: rgba(255, 255, 255, 0.28);
-      border-radius: 50%;
-      pointer-events: none;
     }
 
     .brand-name {
@@ -933,10 +917,19 @@
 </head>
 
 <body>
+  <?php include 'sidebar.php'; ?>
 
   <!-- ── Sidebar ── -->
   <aside class="sidebar" id="sidebar">
+    
     <div class="brand">
+      <div class="global-hover-btn-container">
+      <button class="global-hover-btn" aria-label="Open Sidebar">
+        <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
       <div class="brand-icon" id="brand-icon"><img src="assets/images/favicon.png" alt=""></div>
       <div class="brand-text">
         <div class="brand-name">Color Shades</div>

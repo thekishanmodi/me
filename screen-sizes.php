@@ -121,10 +121,13 @@
     }
 
     .logo-block h1 {
-      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.05em;
       color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 4px
     }
 
     .logo-block h1 span {
@@ -952,11 +955,20 @@
 </head>
 
 <body>
+  <?php include 'sidebar.php'; ?>
   <div class="container">
     <header>
       <div class="header-inner">
+        
         <div class="logo-block">
-          <h1>Screen<span>Sizes</span></h1>
+          
+          <h1><div class="global-hover-btn-container">
+              <button class="global-hover-btn" aria-label="Open Sidebar">
+                <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="28" height="28">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div> <img src="assets/images/favicon.png" alt="" style="height:32px;width:32px;object-fit:contain;"> Screen<span> Sizes</span></h1>
           <p>Viewport &amp; Pixel Density Reference · AI-Powered Trending</p>
         </div>
         <div class="stats-row">

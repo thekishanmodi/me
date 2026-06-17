@@ -279,10 +279,18 @@
 </head>
 
 <body>
+  <?php include 'sidebar.php'; ?>
   <div id="wrap">
     <canvas id="c"></canvas>
 
-    <div id="logo-badge">
+    <div class="global-hover-btn-container" style="position: absolute; top: 18px; left: 18px; pointer-events: auto; z-index: 10000;">
+      <button class="global-hover-btn" aria-label="Open Sidebar">
+        <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div id="logo-badge" style="left: 64px;">
       <img src="assets/images/favicon.png" alt="comets" width="24" height="24">
       <span class="badge-title">Comet Blitz</span>
     </div>

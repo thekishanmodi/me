@@ -1071,9 +1071,17 @@
 </head>
 
 <body>
+  <?php include 'sidebar.php'; ?>
 
     <header>
         <a href="#" class="logo">
+            <div class="global-hover-btn-container">
+              <button class="global-hover-btn" aria-label="Open Sidebar">
+                <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="28" height="28">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
             <span class="logo-text">
                 <img src="assets/images/favicon.png" alt="" style="height:22px;width:22px;object-fit:contain;">
                 Text Case
