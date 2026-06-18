@@ -111,8 +111,8 @@
     }
 
     .brand-icon {
-      background: transparent !important;
-      box-shadow: none !important;
+      background: transparent
+      box-shadow: none
       display: flex;
       align-items: center;
       justify-content: center;
@@ -123,6 +123,9 @@
       transition: background 0.4s var(--ease);
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--border-md);
+      padding: 6px;
+      border-radius: 6px;
     }
 
     .brand-name {
@@ -405,7 +408,8 @@
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap:6px
     }
 
     .s-footer span,
@@ -414,8 +418,6 @@
       font-size: 14px;
       color: var(--ink-3);
       text-decoration: none;
-      text-align: center;
-      width: 100%;
     }
 
     /* Scrollbar */
@@ -923,14 +925,16 @@
   <aside class="sidebar" id="sidebar">
     
     <div class="brand">
-      <div class="global-hover-btn-container">
-      <button class="global-hover-btn" aria-label="Open Sidebar">
-        <svg fill="none" viewBox="0 0 24 24" stroke="#f04f00" stroke-width="2.5" width="24" height="24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-      <div class="brand-icon" id="brand-icon"><img src="assets/images/favicon.png" alt=""></div>
+      <div class="brand-icon" id="brand-icon">
+        <div class="global-hover-btn-container">
+        <button class="global-hover-btn" aria-label="Open Sidebar">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#ffffff" stroke-width="2.5" width="24" height="24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      </div>
       <div class="brand-text">
         <div class="brand-name">Color Shades</div>
         <div class="brand-tag">tints &amp; shades</div>
@@ -1006,7 +1010,7 @@
     </div>
 
     <div class="s-footer">
-      <!-- <span>Click any swatch to copy</span> -->
+      <img src="assets/images/favicon.png" alt="" style="height:22px;width:22px;object-fit:contain;"> 
       <a href="index.php" target="_blank">#thekishanmodi</a>
     </div>
   </aside>

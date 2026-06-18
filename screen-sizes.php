@@ -950,6 +950,9 @@
       padding: 4px 8px;
       text-decoration: none;
       margin-left: auto;
+      display: flex;
+    align-items: center;
+    gap: 4px;
     }
   </style>
 </head>
@@ -968,7 +971,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
-            </div> <img src="assets/images/favicon.png" alt="" style="height:32px;width:32px;object-fit:contain;"> Screen<span> Sizes</span></h1>
+            </div>Screen<span> Sizes</span></h1>
           <p>Viewport &amp; Pixel Density Reference · AI-Powered Trending</p>
         </div>
         <div class="stats-row">
@@ -1033,7 +1036,7 @@
         <button class="filter-btn" id="trending-filter-btn" data-trending="true">🟢 Trending Only</button>
       </div>
       <div class="count-badge">Showing <span id="visible-count">—</span> devices</div>
-      <a href="index.php" class="badge" target="_blank">#thekishanmodi</a>
+      <a href="index.php" class="badge" target="_blank"><img src="assets/images/favicon.png" alt="" style="height:32px;width:32px;object-fit:contain;"> #thekishanmodi</a>
     </div>
 
     <div class="table-wrap">

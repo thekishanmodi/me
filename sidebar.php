@@ -30,7 +30,8 @@
   }
 
   .global-sidebar:hover,
-  .global-sidebar.open {
+  .global-sidebar.open,
+  .global-sidebar.force-open {
     left: 0;
   }
 
@@ -262,6 +263,19 @@
           sidebar.classList.add('open');
         } else {
           sidebar.classList.remove('open');
+        }
+      });
+
+      // Keyboard shortcut to toggle sidebar
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key.toLowerCase() === 'b') {
+          e.preventDefault();
+          sidebar.classList.toggle('force-open');
+          if (sidebar.classList.contains('force-open') && searchInput) {
+            setTimeout(() => searchInput.focus(), 100);
+          }
+        } else if (e.key === 'Escape') {
+          sidebar.classList.remove('force-open');
         }
       });
     }

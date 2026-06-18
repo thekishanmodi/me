@@ -941,6 +941,9 @@
             padding: 3px 7px;
             text-decoration: none;
             margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px
         }
 
         /* ── LINK DIALOG ── */
@@ -1082,8 +1085,7 @@
                 </svg>
               </button>
             </div>
-            <span class="logo-text">
-                <img src="assets/images/favicon.png" alt="" style="height:22px;width:22px;object-fit:contain;">
+            <span class="logo-text">            
                 Text Case
             </span>
             <span class="logo-dot"></span>
@@ -1436,7 +1438,7 @@
                 <button class="btn pri" onclick="addLorem()">+ Lorem</button>
                 <button class="btn ghost" onclick="clearAll()">Clear</button>
             </div>
-            <a href="index.php" class="badge" target="_blank">#thekishanmodi</a>
+            <a href="index.php" class="badge" target="_blank"><img src="assets/images/favicon.png" alt="" style="height:22px;width:22px;object-fit:contain;"> #thekishanmodi</a>
         </div>
     </div><!-- /layout -->
 

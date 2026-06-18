@@ -217,7 +217,7 @@
 
     #logo-badge {
       position: absolute;
-      top: 18px;
+      top: 20px;
       left: 18px;
       display: flex;
       align-items: center;
@@ -290,8 +290,7 @@
         </svg>
       </button>
     </div>
-    <div id="logo-badge" style="left: 64px;">
-      <img src="assets/images/favicon.png" alt="comets" width="24" height="24">
+    <div id="logo-badge" style="left: 54px;">
       <span class="badge-title">Comet Blitz</span>
     </div>
 
@@ -322,7 +321,8 @@
 
     <a id="creator" href="index.php" target="_blank" rel="noopener">
       <span class="label">made by</span>
-      <span class="name">#thekishanmodi</span>
+      <span class="name"> #thekishanmodi</span>
+      <img src="assets/images/favicon.png" alt="comets" width="24" height="24">
     </a>
 
     <div id="speed-flash">⚡ comets speed up!</div>
